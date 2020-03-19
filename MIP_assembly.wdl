@@ -367,7 +367,7 @@ task cluster_genes {
     command {
         cat ${sep=' ' genepredictions} > combined_genepredictions.fna
 
-        usearch8.1.1861_i86linux64 -sortbylength combined_genepredictions.fna -fastaout combinedgenepredictions.sorted.fna -minseqlength 102
+        usearch8.1.1861_i86linux64 -sortbylength combined_genepredictions.fna -fastaout combined_genepredictions.sorted.fna -minseqlength 102
         cd-hit-est -i combinedgenepredictions.sorted.fna -T 32 -aS 0.9 -c 0.95 -M 0 -r 0 -B 0 -d 0 -o nr.fa
         bwa index nr.fa
         samtools faidx nr.fa
