@@ -119,9 +119,11 @@ task qcAdapters {
     
     runtime {
         docker: "gcr.io/microbiome-xavier/metagenomicstools:070318"
+        noAddress: true
         cpu: 1
         memory: "1GB"
         preemptible: 2
+        maxRetries: 3
         disks: "local-disk 40 SSD"
     }
 }
@@ -158,9 +160,11 @@ task qcQualityHuman {
     
     runtime {
         docker: "gcr.io/microbiome-xavier/metagenomicstools:070318"
+        noAddress: true
         cpu: 4
         memory: "24GB"
         preemptible: 2
+        maxRetries: 3
         disks: "local-disk 501 SSD"
     }
 }
@@ -185,9 +189,11 @@ task assemble {
     }
     runtime {
         docker: "gcr.io/microbiome-xavier/metagenomicstools:081518"
+        noAddress: true
         cpu: 4
         memory: "15GB"
         preemptible: 2
+        maxRetries: 3
         disks: "local-disk 100 SSD"
     }
 }
@@ -220,9 +226,11 @@ task predictgenes {
 
     runtime {
         docker: "gcr.io/microbiome-xavier/metagenomicstools:081518"
+        noAddress: true
         cpu: 1
         memory: "7GB"
         preemptible: 2
+        maxRetries: 3
         disks: "local-disk 100 SSD"
     }
 }
@@ -252,9 +260,11 @@ task map_to_contigs {
     
     runtime {
         docker: "gcr.io/microbiome-xavier/metagenomicstools:082018"
+        noAddress: true
         cpu: 8
         memory: "24GB"
         preemptible: 2
+        maxRetries: 3
         bootDiskSizeGb: 50
         disks: "local-disk 200 SSD"
     }
@@ -284,9 +294,11 @@ task metabat2 {
     
     runtime {
         docker: "gcr.io/microbiome-xavier/metabat2:021420"
+        noAddress: true
         cpu: 8
         memory: "12GB"
         preemptible: 2
+        maxRetries: 3
         bootDiskSizeGb: 50
         disks: "local-disk 100 SSD"
     }
@@ -316,10 +328,11 @@ task checkm {
 
     runtime {
         docker: "gcr.io/microbiome-xavier/checkm:v1.1.2"
+        noAddress: true
         cpu: 4
         memory: "100GB"
         preemptible: 2
-        maxRetries: 2
+        maxRetries: 3
         disks: "local-disk 100 HDD"
     }
 }
@@ -349,11 +362,12 @@ task gtdbtk {
     }
 
     runtime {
-        docker: "gcr.io/microbiome-xavier/gtdbtk:v1.0.2"    
+        docker: "gcr.io/microbiome-xavier/gtdbtk:v1.0.2"
+        noAddress: true
         cpu: 4
         memory: "128GB"
         preemptible: 2
-        maxRetries: 2
+        maxRetries: 3
         bootDiskSizeGb: 50
         disks: "local-disk 100 SSD"
     }
@@ -384,9 +398,12 @@ task cluster_genes {
 
     runtime {
         docker: "gcr.io/microbiome-xavier/metagenomicstools:082018"
+        noAddress: true
         cpu: 32
         memory: "120GB"
         bootDiskSizeGb: 50
+        preemptible: 2
+        maxRetries: 3
         disks: "local-disk 500 SSD"
     }
 }
@@ -438,9 +455,11 @@ task map_to_gene_clusters {
     
     runtime {
         docker: "gcr.io/microbiome-xavier/metagenomicstools:082018"
+        noAddress: true
         cpu: 8
         memory: "24GB"
         preemptible: 2
+        maxRetries: 3
         bootDiskSizeGb: 50
         disks: "local-disk 200 SSD"
     }
