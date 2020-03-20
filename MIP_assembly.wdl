@@ -332,21 +332,19 @@ task gtdbtk {
 
     command {
 
-        tar -xvf ${gtdb_reference} -C /gtdbtk-data/
+        tar -xf ${gtdb_reference} -C /gtdbtk-data/
         export GTDBTK_DATA_PATH=/gtdbtk-data/${gtdb_release}/
-
-        tar -xvf ${bins}
-
+        tar -xf ${bins}
         gtdbtk classify_wf --genome_dir ${sample}_bins/ -x fa --cpus 4 --out_dir ${sample}_gtdb
-
-        tar -cf ${sample}_gtdb.tar ${sample}_gtdb
-        gzip ${sample}_gtdb.tar
+        tar -czf ${sample}_gtdb.tar.gz ${sample}_gtdb
+        cp ${sample}_gtdb/classify/gtdbtk.bac120.summary.tsv ${sample}.bac120.summary.tsv
 
     }
 
     output {
 
         File gtdbtk_out = "${sample}_gtdb.tar.gz"
+        File gtdbtk_summary = "${sample}.bac120.summary.tsv"
 
     }
 
@@ -368,7 +366,7 @@ task cluster_genes {
         cat ${sep=' ' genepredictions} > combined_genepredictions.fna
 
         usearch8.1.1861_i86linux64 -sortbylength combined_genepredictions.fna -fastaout combined_genepredictions.sorted.fna -minseqlength 102
-        cd-hit-est -i combinedgenepredictions.sorted.fna -T 32 -aS 0.9 -c 0.95 -M 0 -r 0 -B 0 -d 0 -o nr.fa
+        cd-hit-est -i combined_genepredictions.sorted.fna -T 32 -aS 0.9 -c 0.95 -M 0 -r 0 -B 0 -d 0 -o nr.fa
         bwa index nr.fa
         samtools faidx nr.fa
     }
