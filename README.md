@@ -1,7 +1,7 @@
 # Metagenome_assembly
 WDL Workflow for metagenome assembly
 
-## Introduction
+# Introduction
 ### This pipeline will perform;
 * Pre-processing of reads with Trim Galore and Kneaddata
 * Metagenomics assembly with Megahit
@@ -18,7 +18,7 @@ WDL Workflow for metagenome assembly
 
 This pipeline uses docker image 
 
-# Inputs parameters 
+# Input parameters 
 All the inputs needed by the workflow are provided through a JSON file and can be generated using [Womtool](https://cromwell.readthedocs.io/en/stable/WOMtool/) with the following command  
 
 java -jar womtool.jar inputs workflow.wdl > inputs.json
