@@ -7,7 +7,7 @@ WDL Workflow for metagenome assembly
 * Metagenomics assembly with Megahit
 * Gene prediction
 * Mapping of reads against the contigs 
-* Metagenome binning using  MetaBAT2 
+* Metagenome binning using MetaBAT2 
 * Quality assessment of genome bins
 * Taxonomic classifications
 * Gene clustering with CD-HIT-EST
