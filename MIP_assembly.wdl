@@ -1,5 +1,20 @@
-workflow MIP_assembly {
+# WDL workfow for metagenome assembly
 
+# Description
+# This WDL workflow perfoms the following tasks;
+# quality control of the metagenomics sequences using Trim Galore and KneadData 
+# runs assembly using Megahit
+# gene prediction using prodigal
+# Aligns reads against the contigs using BWA
+# metagenomics binning using MetaBAT
+# assessment of the quality of the genome using CheckM
+# taxonomic classifications using gtdbtk
+# cluster genes with CD-Hit 
+# mapping of reads against the non-redundant gene catalog and computing read counts for every gene
+
+# workflow
+workflow MIP_assembly {
+    # specfying paths to the data
     File Sample_Path_List
     String Fastq1_Extension
     String Fastq2_Extension
@@ -10,7 +25,7 @@ workflow MIP_assembly {
         String sample = pair[0]
         File F1 = SampleDir + sample + Fastq1_Extension
         File F2 = SampleDir + sample + Fastq2_Extension
-
+	# specifying tasks to be executed
         call qcAdapters {
             input: 
             sample=sample, 
@@ -94,6 +109,7 @@ workflow MIP_assembly {
 
 }
 
+# this task will trim the adapter sequences using trim galore
 task qcAdapters {
     File file1
     File file2
@@ -116,7 +132,7 @@ task qcAdapters {
         File fileR1 = "${sample}.adapterTrimmed.1.fq.gz"
         File fileR2 = "${sample}.adapterTrimmed.2.fq.gz"
     }
-    
+    # specifying docker runtime parameters
     runtime {
         docker: "gcr.io/microbiome-xavier/metagenomicstools:070318"
         noAddress: true
@@ -127,6 +143,9 @@ task qcAdapters {
         disks: "local-disk 40 SSD"
     }
 }
+
+# quality control of metagenomics sequences
+# removing host DNA contamination
 
 task qcQualityHuman {
     File file1
@@ -157,7 +176,7 @@ task qcQualityHuman {
         File fileS1 = "${sample}.adapterTrimmed.1_kneaddata_unmatched_1.fastq.gz"
         File fileS2 = "${sample}.adapterTrimmed.1_kneaddata_unmatched_2.fastq.gz"
     }
-    
+    # specifying docker  runtime parameters    
     runtime {
         docker: "gcr.io/microbiome-xavier/metagenomicstools:070318"
         noAddress: true
@@ -168,6 +187,7 @@ task qcQualityHuman {
         disks: "local-disk 501 SSD"
     }
 }
+# metagenomics assembly using megahit
 
 task assemble {
     File r1
@@ -197,7 +217,7 @@ task assemble {
         disks: "local-disk 100 SSD"
     }
 }
-
+# gene prediction with prodigal
 task predictgenes {
     File fileContigs
     String sample
@@ -234,7 +254,7 @@ task predictgenes {
         disks: "local-disk 100 SSD"
     }
 }
-
+# mapping of reads against the assembled contigs with Burrow-wheeler aligner
 task map_to_contigs {
     File fileR1
     File fileR2
@@ -242,12 +262,13 @@ task map_to_contigs {
     File contigs
 
     command {
-        
+        # indexing contigs file with BWA and Samtools
         bwa index ${contigs}
         samtools faidx ${contigs}
 
         bwa mem -t 8 -M ${contigs} ${fileR1} ${fileR2} | \
         samtools view - -h -Su -F 2308 -q 0 | \
+	# sorting BAM file with Samtools
         samtools sort -@ 8 -m 2G -O bam -o ${sample}.sort.bam 
 
     }
@@ -269,7 +290,7 @@ task map_to_contigs {
         disks: "local-disk 200 SSD"
     }
 }
-
+# clustering metagenomic contigs into bins
 task metabat2 {
     File bam
     String sample
@@ -303,7 +324,7 @@ task metabat2 {
         disks: "local-disk 100 SSD"
     }
 }
-
+# assessing completeness of the genome
 task checkm {
     File bins
     String sample
@@ -336,7 +357,7 @@ task checkm {
         disks: "local-disk 100 HDD"
     }
 }
-
+# taxonomic classifications  
 task gtdbtk {
     File bins
     File gtdb_reference
@@ -372,7 +393,7 @@ task gtdbtk {
         disks: "local-disk 100 SSD"
     }
 }
-
+# gene clustering with CD-HIT 
 task cluster_genes {
     Array[File] genepredictions
 
@@ -407,7 +428,7 @@ task cluster_genes {
         disks: "local-disk 500 SSD"
     }
 }
-
+# mapping reads against non-redundant gene catalog
 task map_to_gene_clusters {
     File fileR1
     File fileR2
@@ -428,8 +449,9 @@ task map_to_gene_clusters {
 
         /app/bamfilter_mate_saver.py -i ${sample}.sort.bam -o ${sample}.sort.filtered.ID95.bam -f 0.95
 
-        samtools flagstat ${sample}.sort.filtered.ID95.bam > ${sample}.ID95.flagstat.txt
-
+        # generating mapping statistics
+	samtools flagstat ${sample}.sort.filtered.ID95.bam > ${sample}.ID95.flagstat.txt
+	# computing the number of reads that fall into specific genomic region 
         /app/bam2counts.py -t 1 -y 1  -s ${sample} -v ${nrFai} -c ${sample}.count.txt -a ${sample}.abundance.txt -l ${sample}.learn.txt -i ${sample}.sort.filtered.ID95.bam
 
         cut -f1 ${sample}.count.txt > gene.names.txt
