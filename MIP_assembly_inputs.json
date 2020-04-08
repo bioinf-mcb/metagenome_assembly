@@ -1,0 +1,14 @@
+{
+  "MIP_assembly.gtdbtk.gtdb_release": "String",
+  "MIP_assembly.qcQualityHuman.ref2": "File",
+  "MIP_assembly.Fastq2_Extension": "String",
+  "MIP_assembly.Fastq1_Extension": "String",
+  "MIP_assembly.qcQualityHuman.ref5": "File",
+  "MIP_assembly.qcQualityHuman.ref4": "File",
+  "MIP_assembly.gtdbtk.gtdb_reference": "File",
+  "MIP_assembly.qcQualityHuman.ref3": "File",
+  "MIP_assembly.qcQualityHuman.ref1": "File",
+  "MIP_assembly.Sample_Path_List": "File",
+  "MIP_assembly.qcQualityHuman.ref6": "File"
+}
+
