@@ -381,6 +381,7 @@ task cluster_genes {
 
         usearch8.1.1861_i86linux64 -sortbylength combined_genepredictions.fna -fastaout combined_genepredictions.sorted.fna -minseqlength 102
         cd-hit-est -i combined_genepredictions.sorted.fna -T 32 -aS 0.9 -c 0.95 -M 0 -r 0 -B 0 -d 0 -o nr.fa
+
         bwa index nr.fa
         samtools faidx nr.fa
     }
@@ -388,6 +389,7 @@ task cluster_genes {
     output { 
         File combined_genepredictions = "combined_genepredictions.sorted.fna" 
         File nrFa = "nr.fa"
+        File nrClusters = "nr.fa.clstr"
         File nrFai = "nr.fa.fai"
         File nrRef1 = "nr.fa.bwt"
         File nrRef2 = "nr.fa.pac"
