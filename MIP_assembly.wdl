@@ -86,6 +86,11 @@ workflow MIP_assembly {
         genepredictions=predictgenes.fileFNA 
     }
 
+    call annotate_gene_catalogue {
+        input:
+        gene_catalogue=cluster_genes.nrFa 
+    }
+
     Array[Pair[File, File]] fileR1R2 = zip(qcQualityHuman.fileR1, qcQualityHuman.fileR2) 
     
     scatter (pair in fileR1R2){
@@ -421,6 +426,37 @@ task cluster_genes {
         disks: "local-disk 500 SSD"
     }
 }
+
+task annotate_gene_catalogue {
+    File gene_catalogue
+    File eggnog_db
+    File eggnog_db_diamond
+
+    command {
+        gunzip -c ${eggnog_db} > /app/eggnog-mapper-2.0.1/data/eggnog.db
+        gunzip -c ${eggnog_db_diamond} > /app/eggnog-mapper-2.0.1/data/eggnog_proteins.dmnd
+
+        python /app/eggnog-mapper-2.0.1/emapper.py --cpu 10 -i ${gene_catalogue} --output nr-eggnog --output_dir . -m diamond -d none --tax_scope auto --go_evidence non-electronic --target_orthologs all --seed_ortholog_evalue 0.001 --seed_ortholog_score 60 --query-cover 20 --subject-cover 0 --translate --override
+
+    }
+
+    output {
+        File eggnog_annotations = "nr-eggnog.emapper.annotations"
+        File eggnog_seed_orthologs = "nr-eggnog.emapper.seed_orthologs"
+    }
+
+    runtime {
+        docker: "gcr.io/microbiome-xavier/eggnog-mapper:v2.0.1"
+        cpu: 10
+        memory: "16GB"
+        bootDiskSizeGb: 100
+        preemptible: 2
+        maxRetries: 3
+        disks: "local-disk 200 HDD"
+    }
+
+}
+
 # mapping reads against non-redundant gene catalog
 task map_to_gene_clusters {
     File fileR1
