@@ -1,7 +1,9 @@
 # Metagenome_assembly
 WDL Workflow for metagenome assembly
 
-# Introduction
+Python script to generate mapping between non-redundant gene catalogue and MAGS
+
+# Introduction to WDL workflow
 ### This pipeline will perform;
 * Pre-processing of reads with Trim Galore and Kneaddata
 * Metagenomics assembly with Megahit
@@ -39,6 +41,30 @@ This pipeline will produce a number of directories and files
 * gtdbtk; taxonomic classification summary file
 * cluster_genes; representative sequences and list of clusters
 
+
+# Mapping between gene catalogue, MAGS and eggNOG annotation
+Python3 script to map non-redundant gene catalogue back to contigs, MAGS and eggNOG annotations 
+
+# Runtime dependencies
+The following softwares are required by python script:
+* [Click](https://palletsprojects.com/p/click/)
+* [NumPy](https://numpy.org/)
+* [Pandas](https://pandas.pydata.org/)
+* [scikit-bio](http://scikit-bio.org/)
+
+# Usage
+python genes_MAGS_eggNOG_mapping.py --help
+
+## Input requirements
+* clustering file - tab-delimited file with cluster ID and gene ID
+* Non-redundant gene catalogue (fasta)
+* Contig files in fasta
+* binned contigs (MAGS) in fasta
+* taxonomy files (tsv)
+* EggNOG annotation file (tsv)
+
+# Output
+mapping table (tsv file) that links the non-redundant gene catalogue back to contigs, MAGs and to eggNOG annotations
 
 
 
