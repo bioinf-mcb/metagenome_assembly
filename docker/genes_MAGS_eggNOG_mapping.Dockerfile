@@ -10,9 +10,7 @@ RUN mkdir /app
 # set the working directory to /app
 WORKDIR /app
 
-
-# Installing needed dependancies
-
+# Installing needed dependencies
 RUN apt-get update -y && apt-get upgrade -y && apt-get install -y \
 	python3 \
 	python3-pip   
@@ -21,7 +19,7 @@ RUN python3 -m pip install click numpy pandas
 RUN python3 -m pip install scikit-bio
 
 # copy the script to the container
-COPY genes_eggNOG_mapping.py /app
+COPY genes_MAGS_eggNOG_mapping.py /app
 
 CMD ["bash"]
 CMD ["python3"] 
