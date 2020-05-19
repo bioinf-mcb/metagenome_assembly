@@ -91,6 +91,11 @@ workflow MIP_assembly {
         gene_catalogue=cluster_genes.nrFa 
     }
 
+    call annotate_deepfri {
+        input:
+        gene_catalogue=cluster_genes.nrFa 
+    }
+
     Array[Pair[File, File]] fileR1R2 = zip(qcQualityHuman.fileR1, qcQualityHuman.fileR2) 
     
     scatter (pair in fileR1R2){
@@ -456,6 +461,29 @@ task annotate_gene_catalogue {
     }
 
 }
+
+task annotate_deepfri {
+    File gene_catalogue
+
+    command {
+        /bin/python3 /app/scripts/cromwell_process_fasta.py -i ${gene_catalogue} -o deepfri_annotations.csv -m /app
+    }
+
+    output {
+        File deepfri_out = "deepfri_annotations.csv"
+    }
+
+    runtime {
+        docker: "gcr.io/microbiome-xavier/deepfried-api:051920"
+        cpu: 2
+        memory: "32GB"
+        bootDiskSizeGb: 100
+        preemptible: 2
+        maxRetries: 3
+        disks: "local-disk 200 HDD"
+    }
+}
+
 
 # mapping reads against non-redundant gene catalog
 task map_to_gene_clusters {
