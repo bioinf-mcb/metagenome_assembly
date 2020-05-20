@@ -81,6 +81,12 @@ workflow MIP_assembly {
         }
     }
 
+
+    call kneaddataReadCountTable {
+        input:
+        logFiles=qcQualityHuman.log_file
+    }
+
     call cluster_genes { 
         input: 
         genepredictions=predictgenes.fileFNA 
@@ -95,6 +101,7 @@ workflow MIP_assembly {
         input:
         gene_catalogue=cluster_genes.nrFa 
     }
+
 
     Array[Pair[File, File]] fileR1R2 = zip(qcQualityHuman.fileR1, qcQualityHuman.fileR2) 
     
@@ -142,7 +149,7 @@ task qcAdapters {
         File fileR1 = "${sample}.adapterTrimmed.1.fq.gz"
         File fileR2 = "${sample}.adapterTrimmed.2.fq.gz"
     }
-    # specifying docker runtime parameters
+
     runtime {
         docker: "gcr.io/microbiome-xavier/metagenomicstools:070318"
         cpu: 1
@@ -169,14 +176,16 @@ task qcQualityHuman {
 
     command {
         kneaddata --input ${file1} --input ${file2} -o . \
-        -db tools-rx/DATABASES/HG19 --trimmomatic-options "HEADCROP:15 SLIDINGWINDOW:4:15 MINLEN:50" -t 4
-        rm *trimmed*
-        rm *bowtie2*
+          -db tools-tvat-us/DATABASES/HG19 \
+          --trimmomatic-options "HEADCROP:15 SLIDINGWINDOW:4:15 MINLEN:50" \
+          -t 4 \
+          --log ${sample}.log
         
         gzip ${sample}.adapterTrimmed.1_kneaddata_paired_1.fastq
         gzip ${sample}.adapterTrimmed.1_kneaddata_paired_2.fastq
         gzip ${sample}.adapterTrimmed.1_kneaddata_unmatched_1.fastq
         gzip ${sample}.adapterTrimmed.1_kneaddata_unmatched_2.fastq
+
     }
     
     output {
@@ -184,8 +193,9 @@ task qcQualityHuman {
         File fileR2 = "${sample}.adapterTrimmed.1_kneaddata_paired_2.fastq.gz"
         File fileS1 = "${sample}.adapterTrimmed.1_kneaddata_unmatched_1.fastq.gz"
         File fileS2 = "${sample}.adapterTrimmed.1_kneaddata_unmatched_2.fastq.gz"
+        File log_file = "${sample}.log"
     }
-    # specifying docker  runtime parameters    
+
     runtime {
         docker: "gcr.io/microbiome-xavier/metagenomicstools:070318"
         cpu: 4
@@ -195,6 +205,34 @@ task qcQualityHuman {
         disks: "local-disk 501 SSD"
     }
 }
+
+task kneaddataReadCountTable {
+    Array[String] logFiles
+
+    command {
+        
+        cat ${write_lines(logFiles)} > logFiles_2_download.txt
+        mkdir dir_logfiles
+        cat logFiles_2_download.txt | gsutil -m cp -I dir_logfiles/
+        
+        kneaddata_read_count_table --input dir_logfiles/ --output kneaddata_read_count_table.tsv
+
+    }
+
+    output {
+        File kneaddataReadCountTable = "kneaddata_read_count_table.tsv"
+    }
+
+    runtime {
+        docker: "gcr.io/microbiome-xavier/metagenomicstools:041419"
+        cpu: 1
+        memory: "4GB"
+        preemptible: 2
+        disks: "local-disk 50 HDD"
+        maxRetries: 2
+    }
+}
+
 # metagenomics assembly using megahit
 
 task assemble {
