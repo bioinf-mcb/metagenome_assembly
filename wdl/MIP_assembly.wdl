@@ -436,8 +436,18 @@ task cluster_genes {
 
     command {
         cat ${sep=' ' genepredictions} > combined_genepredictions.fna
+        /app/extract_complete_gene.py combined_genepredictions.fna > combined_genepredictions.complete.fna
 
-        usearch8.1.1861_i86linux64 -sortbylength combined_genepredictions.fna -fastaout combined_genepredictions.sorted.fna -minseqlength 102
+        usearch8.1.1861_i86linux64 \
+          -derep_fulllength combined_genepredictions.complete.fna \
+          -fastaout combined_genepredictions.derep.fna \
+          -minseqlength 1
+
+        usearch8.1.1861_i86linux64 \
+          -sortbylength combined_genepredictions.derep.fna \
+          -fastaout combined_genepredictions.sorted.fna \
+          -minseqlength 1
+
         cd-hit-est -i combined_genepredictions.sorted.fna -T 32 -aS 0.9 -c 0.95 -M 0 -r 0 -B 0 -d 0 -o nr.fa
 
         bwa index nr.fa
