@@ -466,7 +466,7 @@ task cluster_genes {
     }
 
     runtime {
-        docker: "gcr.io/microbiome-xavier/metagenomicstools:082018"
+        docker: "gcr.io/microbiome-xavier/metagenomicstools:032819"
         cpu: 32
         memory: "120GB"
         bootDiskSizeGb: 50
