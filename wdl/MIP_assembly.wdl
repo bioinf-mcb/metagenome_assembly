@@ -264,8 +264,7 @@ task predictgenes {
     File fileContigs
     String sample
 
-    command <<<
-
+    command {
         mkdir prodigal
         if [[ `wc -l ${fileContigs} | awk '{print $1}'` == "0" ]]; then
             touch prodigal/${sample}.gff
@@ -278,7 +277,7 @@ task predictgenes {
             -a prodigal/${sample}.faa \
             2> prodigal/prodigal.stderr > prodigal/prodigal.out
         fi
-    >>>
+    }
     
     output {
         File fileFNA = "prodigal/${sample}.fna"
