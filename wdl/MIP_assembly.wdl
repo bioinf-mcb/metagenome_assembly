@@ -176,7 +176,8 @@ task kneadData {
           -db ref_homo_sapiens \
           --trimmomatic-options "HEADCROP:15 SLIDINGWINDOW:4:15 MINLEN:50" \
           -t 4 \
-          --log ${sample}.log
+          --log ${sample}.log \
+          --reorder
         
         gzip ${sample}.adapterTrimmed.1_kneaddata_paired_1.fastq
         gzip ${sample}.adapterTrimmed.1_kneaddata_paired_2.fastq
