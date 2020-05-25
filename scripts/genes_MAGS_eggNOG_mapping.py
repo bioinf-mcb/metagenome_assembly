@@ -11,15 +11,45 @@ from skbio import io
 """
 Script for mapping genes to contigs, MAGS and eggNOG annotations
 input files required:
-1) clustering file: tab-delimited file with cluster ID and gene ID
+1) clustering file with cluster ID and gene ID
 2) Non-redundant gene catalogue (fasta)
 3) Contig files (fasta)
 4) binned contigs (MAGS)
 5) taxonomy files (tsv)
 6) EggNOG annotation file (tsv)
-The script outputs a tsv file that links the non-redundant gene catalogue back to contigs, MAGs and to eggNOG annotations
-
+The script outputs two files:
+Tsv file that links the non-redundant gene catalogue back to contigs, and then back to MAGs with eggNOG annotations
+Tsv file that maps gene families to taxonomy and generate counts
 """
+
+def tabulate_cluster_info(path):
+  """
+  transforming raw cluster file
+  Reads cluster file from CD-HIT 
+  transforms it into two-column format (cluster centroid ID and gene ID)
+  Parameters
+    ----------
+  input_file : str
+        clustering file containing cluster centroids and gene IDS
+
+    Returns
+    -------
+  Pandas dataframe containing cluster IDS and gene IDS
+  """
+  clusters, genes = [], []
+  with open(path, 'r') as file:
+      for line in file:
+          if line.startswith(">"):
+              cluster_id = line.rstrip().replace(">", "")
+          else:
+              gene_id = line.split(">")[1].split("...")[0]
+              clusters.append(cluster_id)
+              genes.append(gene_id)
+  gene_cluster_df = pd.DataFrame(list(zip(clusters, genes)), 
+             columns=['Cluster ID', 'Gene ID']) 
+  return gene_cluster_df
+  
+
 def load_fasta_ids(path):
   """
   Reads sequences from a fasta file and extracts identifiers.
@@ -99,37 +129,39 @@ def load_mags_contigs_taxonomies(bin_path, taxonomy_path):
     return concatenated_df
 
 @click.command()
+@click.option('--cluster_file', '-r', required=True,
+              type=click.Path(resolve_path=True, readable=True, exists=True),
+              help='Input path to raw clustering .clstr file.')
 @click.option('--genes_file', '-g', required=True,
               type=click.Path(resolve_path=True, readable=True, exists=True),
               help='Input path to genes .fa file.')
-@click.option('--cluster_file', '-r', required=True,
-              type=click.Path(resolve_path=True, readable=True, exists=True),
-              help='Input path to cluster .txt file.')
 @click.option('--contigs_file', '-c', required=True,
               type=click.Path(resolve_path=True, readable=True, exists=True),
               help='Input path to contigs .fa file.')
-@click.option('--eggnog_ann_file', '-e', required=True,
-              type=click.Path(resolve_path=True, readable=True, exists=True),
-              help='Input path to eggnog .annotations file.')
 @click.option('--bin_fp', '-b', required=True,
               type=click.Path(resolve_path=True, readable=True, exists=True),
               help='Input path to bin folder.')
 @click.option('--tax_fp', '-t', required=True,
               type=click.Path(resolve_path=True, readable=True, exists=True),
               help='Input path to taxonomy folder.')
-@click.option('--out_file', '-o', required=True,
+@click.option('--eggnog_ann_file', '-e', required=True,
+              type=click.Path(resolve_path=True, readable=True, exists=True),
+              help='Input path to eggnog .annotations file.')
+@click.option('--out_gene_mapping_file', '-o', required=True,
+              type=click.Path(resolve_path=True, readable=True, exists=False),
+              help='Output .tsv file.')
+@click.option('--out_cluster_taxa_file', '-f', required=True,
               type=click.Path(resolve_path=True, readable=True, exists=False),
               help='Output .tsv file.')
 def _perform_mapping(genes_file, cluster_file, contigs_file,
-                     eggnog_ann_file, bin_fp, tax_fp, out_file):
+                     eggnog_ann_file, bin_fp, tax_fp, out_gene_mapping_file, out_cluster_taxa_file):
+
+    # load cluster file
+    cluster_df = tabulate_cluster_info(cluster_file)
 
     # Load contig and gene IDs
     contigs = load_fasta_ids(contigs_file)
     genes = load_fasta_ids(genes_file)
-
-    # Cluster dataframe
-    cluster_df = pd.read_csv(cluster_file, sep="\t",
-                             names=['Cluster ID', 'Gene ID'])
 
     # Create gene catalogue dataframe
     genes_df = pd.DataFrame({'centroid': genes})
@@ -187,9 +219,14 @@ def _perform_mapping(genes_file, cluster_file, contigs_file,
                                                 right_on='query_name',
                                                 how='outer')
 
-    # Saving results to file
-    mapped_genes_contigs_mags_eggNOG.to_csv(out_file, sep='\t',
+    # determine if non-redundant gene clusters are taxon-specific
+    cluster_taxa = mapped_genes_contigs_mags_eggNOG.groupby('Cluster ID')['classification'].nunique()
+
+    # Saving gene mapping results to file
+    mapped_genes_contigs_mags_eggNOG.to_csv(out_gene_mapping_file, sep='\t',
                                             index=False, na_rep='NaN')
+    # saving cluster_taxa mapping to file
+    cluster_taxa.to_csv(out_cluster_taxa_file, sep = '\t')
 
 
 if __name__ == "__main__":
