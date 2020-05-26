@@ -97,9 +97,12 @@ workflow MIP_assembly {
         gene_catalogue=cluster_genes.nrFa 
     }
 
-    call annotate_deepfri {
-        input:
-        gene_catalogue=cluster_genes.nrFa 
+    scatter (gene_shard in cluster_genes.nr_split){
+
+        call annotate_deepfri {
+            input:
+            gene_catalogue=cluster_genes.nrFa 
+        }
     }
 
     Array[Pair[File, File]] fileR1R2 = zip(kneadData.fileR1, kneadData.fileR2) 
@@ -195,7 +198,7 @@ task kneadData {
     }
 
     runtime {
-        docker: "gcr.io/microbiome-xavier/metagenomicstools:070318"
+        docker: "gcr.io/microbiome-xavier/metagenomicstools:101419"
         cpu: 4
         memory: "24GB"
         preemptible: 2
@@ -247,11 +250,12 @@ task assemble {
         awk -v var="${sample}" '
             {if($0 ~ /^>/) {contigName=substr($0, 2,length($0))} 
             else {seq=$0; if(length($0) >= 500) {print ">"var"_"contigName"\n"seq}} }' > assemble/${sample}.min500.contigs.fa
-            >>>
+    >>>
+
     output {
         File fileContigs = "assemble/${sample}.min500.contigs.fa"
-    }
-    runtime {
+    
+}   runtime {
         docker: "gcr.io/microbiome-xavier/metagenomicstools:081518"
         cpu: 4
         memory: "15GB"
@@ -265,7 +269,7 @@ task predictgenes {
     File fileContigs
     String sample
 
-    command {
+    command <<<
         mkdir prodigal
         if [[ `wc -l ${fileContigs} | awk '{print $1}'` == "0" ]]; then
             touch prodigal/${sample}.gff
@@ -278,7 +282,7 @@ task predictgenes {
             -a prodigal/${sample}.faa \
             2> prodigal/prodigal.stderr > prodigal/prodigal.out
         fi
-    }
+    >>>
     
     output {
         File fileFNA = "prodigal/${sample}.fna"
@@ -434,7 +438,7 @@ task gtdbtk {
 task cluster_genes {
     Array[File] genepredictions
 
-    command {
+    command <<<
         cat ${sep=' ' genepredictions} > combined_genepredictions.fna
         /app/extract_complete_gene.py combined_genepredictions.fna > combined_genepredictions.complete.fna
 
@@ -452,7 +456,10 @@ task cluster_genes {
 
         bwa index nr.fa
         samtools faidx nr.fa
-    }
+
+        # split nr.fa into files with 10,000 sequences each
+        awk 'BEGIN {n_seq=0;n_file=1} /^>/ {if(n_seq%10000==0){file=sprintf("nr_%d.fa",n_file);n_file++} print >> file; n_seq++; next;} { print >> file; }' < nr.fa
+    >>>
 
     output { 
         File combined_genepredictions = "combined_genepredictions.sorted.fna" 
@@ -464,6 +471,7 @@ task cluster_genes {
         File nrRef3 = "nr.fa.ann"
         File nrRef4 = "nr.fa.amb"
         File nrRef5 = "nr.fa.sa"
+        Array[File] nr_split = glob("nr_*.fa")
     }
 
     runtime {
@@ -521,7 +529,7 @@ task annotate_deepfri {
     runtime {
         docker: "gcr.io/microbiome-xavier/deepfried-api:051920"
         cpu: 2
-        memory: "32GB"
+        memory: "8GB"
         bootDiskSizeGb: 100
         preemptible: 2
         maxRetries: 3
