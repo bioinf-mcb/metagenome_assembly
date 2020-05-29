@@ -210,13 +210,15 @@ def _perform_mapping(genes_file, cluster_file, contigs_file,
                                 drop(columns="centroid_trunc")
 
     # Creating eggNOG annotation dataframe
-    eggNOG_df = pd.read_csv(eggnog_ann_file, sep='\t', comment='#', skiprows=3)
+    eggNOG_df = pd.read_csv(eggnog_ann_file, sep='\t', skiprows=3)
+    # drop last 3 rows with comments
+    eggNOG_df = eggNOG_df[:-3]
 
     # Mapping between genes, contigs, mags and eggNOG annotations
     mapped_genes_contigs_mags_eggNOG = pd.merge(mapped_genes_contigs_mags,
                                                 eggNOG_df,
                                                 left_on='Gene ID',
-                                                right_on='query_name',
+                                                right_on='#query_name',
                                                 how='outer')
 
     # determine if non-redundant gene clusters are taxon-specific
