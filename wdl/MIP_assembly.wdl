@@ -107,12 +107,12 @@ workflow MIP_assembly {
 
     call genes_to_mags_mapping {
         input:
-        contigs=assemble.fileContigs
-        gene_catalogue=cluster_genes.nrFa
-        gene_clusters=cluster_genes.nrClusters
-        eggnog_annotations=annotate_gene_catalogue.eggnog_annotations
-        metabat2_bins=metabat2.bins
-        gatkdb_output=gtdbtk.gtdbtk_summary
+        contigs=assemble.fileContigs,
+        gene_catalogue=cluster_genes.nrFa,
+        gene_clusters=cluster_genes.nrClusters,
+        eggnog_annotations=annotate_gene_catalogue.eggnog_annotations,
+        metabat2_bins=metabat2.bins,
+        gtdbtk_output=gtdbtk.gtdbtk_summary
     }
 
     Array[Pair[File, File]] fileR1R2 = zip(kneadData.fileR1, kneadData.fileR2) 
@@ -614,7 +614,7 @@ task genes_to_mags_mapping {
     Array[File] metabat2_bins
     Array[File] gtdbtk_output
 
-    task {
+    command {
 
         # concatenate contigs together to merged_min500.contigs.fa
         cat ${write_lines(contigs)} > contig_fasta.txt
