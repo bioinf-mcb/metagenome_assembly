@@ -101,8 +101,18 @@ workflow MIP_assembly {
 
         call annotate_deepfri {
             input:
-            gene_catalogue=cluster_genes.nrFa 
+            gene_catalogue=gene_shard 
         }
+    }
+
+    call genes_to_mags_mapping {
+        input:
+        contigs=assemble.fileContigs
+        gene_catalogue=cluster_genes.nrFa
+        gene_clusters=cluster_genes.nrClusters
+        eggnog_annotations=annotate_gene_catalogue.eggnog_annotations
+        metabat2_bins=metabat2.bins
+        gatkdb_output=gtdbtk.gtdbtk_summary
     }
 
     Array[Pair[File, File]] fileR1R2 = zip(kneadData.fileR1, kneadData.fileR2) 
@@ -225,7 +235,7 @@ task kneaddataReadCountTable {
     }
 
     runtime {
-        docker: "gcr.io/microbiome-xavier/metagenomicstools:041419"
+        docker: "gcr.io/microbiome-xavier/metagenomicstools:101419"
         cpu: 1
         memory: "4GB"
         preemptible: 2
@@ -589,6 +599,60 @@ task map_to_gene_clusters {
         docker: "gcr.io/microbiome-xavier/metagenomicstools:082018"
         cpu: 8
         memory: "24GB"
+        preemptible: 2
+        maxRetries: 3
+        bootDiskSizeGb: 50
+        disks: "local-disk 200 SSD"
+    }
+}
+
+task genes_to_mags_mapping {
+    Array[File] contigs
+    File gene_catalogue
+    File gene_clusters
+    File eggnog_annotations
+    Array[File] metabat2_bins
+    Array[File] gtdbtk_output
+
+    task {
+
+        # concatenate contigs together to merged_min500.contigs.fa
+        cat ${write_lines(contigs)} > contig_fasta.txt
+        while read fasta_file; do
+            cat $fasta_file >> merged_min500.contigs.fa
+        done <contig_fasta.txt
+
+        # extract MAGs to directory 'bins'
+        mkdir bins
+        cat ${write_lines(metabat2_bins)} > metabat2_bins.txt
+        while read bin_file; do
+            tar -xf $bin_file -C bins/
+        done <metabat2_bins.txt
+
+        # copy GTDBTk output summaries to directory gtdbtk
+        mkdir gtdbtk
+        cat ${write_lines(gtdbtk_output)} > gtdbtk_2_download.txt
+        cat gtdbtk_2_download.txt | gsutil -m cp -I gtdbtk/
+        
+        python3 genes_MAGS_eggNOG_mapping.py \
+            --genes_file ${gene_catalogue} \
+            --cluster_file ${gene_clusters} \
+            --contigs_file merged_min500.contigs.fa \
+            --eggnog_ann_file ${eggnog_annotations} \
+            --bin_fp bins \
+            --tax_fp gtdbtk \
+            --out_file gene_mapping.tsv
+
+    }
+    
+    output {
+        File file_gene_mag_mappings = "gene_mapping.tsv"
+    }
+    
+    runtime {
+        docker: "gcr.io/microbiome-xavier/gene-mapper:052820"
+        cpu: 2
+        memory: "8GB"
         preemptible: 2
         maxRetries: 3
         bootDiskSizeGb: 50
