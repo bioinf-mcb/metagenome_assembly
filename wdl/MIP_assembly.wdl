@@ -663,7 +663,7 @@ task genes_to_mags_mapping {
     }
     
     runtime {
-        docker: "gcr.io/microbiome-xavier/gene-mapper:052820"
+        docker: "gcr.io/microbiome-xavier/gene-mapper:060220"
         cpu: 2
         memory: "8GB"
         preemptible: 2
