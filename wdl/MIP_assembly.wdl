@@ -108,6 +108,7 @@ workflow MIP_assembly {
     call genes_to_mags_mapping {
         input:
         contigs=assemble.fileContigs,
+        deepfri_output=annotate_deepfri.deepfri_out,
         gene_catalogue=cluster_genes.nrFa,
         gene_clusters=cluster_genes.nrClusters,
         eggnog_annotations=annotate_gene_catalogue.eggnog_annotations,
@@ -608,6 +609,7 @@ task map_to_gene_clusters {
 
 task genes_to_mags_mapping {
     Array[File] contigs
+    Array[File] deepfri_output
     File gene_catalogue
     File gene_clusters
     File eggnog_annotations
@@ -622,6 +624,12 @@ task genes_to_mags_mapping {
             cat $fasta_file >> merged_min500.contigs.fa
         done <contig_fasta.txt
 
+        # concatenate DeepFrier outpus into one file
+        cat ${write_lines(deepfri_output)} > deepfri_output.txt
+        while read deepfri_file; do
+            cat $deepfri_file >> merged_deepfri_output.csv
+        done <deepfri_output.txt
+
         # extract MAGs to directory 'bins'
         mkdir bins
         cat ${write_lines(metabat2_bins)} > metabat2_bins.txt
@@ -632,21 +640,26 @@ task genes_to_mags_mapping {
         # copy GTDBTk output summaries to directory gtdbtk
         mkdir gtdbtk
         cat ${write_lines(gtdbtk_output)} > gtdbtk_2_download.txt
-        cat gtdbtk_2_download.txt | gsutil -m cp -I gtdbtk/
-        
-        python3 genes_MAGS_eggNOG_mapping.py \
+        while read gtdbtk_file; do
+            cp $gtdbtk_file gtdbtk/
+        done <gtdbtk_2_download.txt
+
+        python3 /app/genes_MAGS_eggNOG_mapping.py \
             --genes_file ${gene_catalogue} \
             --cluster_file ${gene_clusters} \
             --contigs_file merged_min500.contigs.fa \
             --eggnog_ann_file ${eggnog_annotations} \
             --bin_fp bins \
             --tax_fp gtdbtk \
-            --out_file gene_mapping.tsv
+            --out_gene_mapping_file gene_mapping.tsv \
+            --out_cluster_taxa_file gene_clusters_taxa.tsv
 
     }
     
     output {
-        File file_gene_mag_mappings = "gene_mapping.tsv"
+        File gene_mag_mappings = "gene_mapping.tsv"
+        File gene_cluster_taxa_mappings = "gene_clusters_taxa.tsv"
+        File merged_deepfri_out = "merged_deepfri_output.csv"
     }
     
     runtime {
