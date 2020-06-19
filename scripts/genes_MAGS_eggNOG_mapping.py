@@ -65,7 +65,7 @@ def load_fasta_ids(path):
   """
   fasta_ids = [seq.metadata['id'] for seq in io.read(path, format='fasta')]
   return fasta_ids
-
+  
 def load_mags_contigs_taxonomies_for_sample(sample_dir, taxonomy_path):
     """
     Extract MAG, contig and taxonomy information for specific sample.
@@ -81,22 +81,27 @@ def load_mags_contigs_taxonomies_for_sample(sample_dir, taxonomy_path):
     -------
     Pandas dataframe containing MAGS, contigs and taxonomies
     """
-    mag_root = os.path.basename(sample_dir).rsplit("_")[0]
+    
+    mags, bins, contigs = [], [], []
+    # Run through bin .fa files
+    for i, bin_file in enumerate(glob.glob(os.path.join(sample_dir, "*.fa"))):
+        bin_name = os.path.splitext(os.path.basename(bin_file))[0]
+        bin_contigs = load_fasta_ids(bin_file)
+        # extract sample identifier from the first bin file
+        if i == 0:
+            mag_root = bin_contigs[0].rsplit("_")[0]
+        mag_name = f"{mag_root}_{bin_name}"
+        mags.extend([mag_name]*len(bin_contigs))
+        bins.extend([bin_name]*len(bin_contigs))
+        contigs.extend(bin_contigs)
+   
+   # load taxonomy files 
     taxonomy_files = glob.glob(os.path.join(taxonomy_path, f"{mag_root}*.tsv"))
     assert len(taxonomy_files) == 1, "Warning: multiple taxonomy files!"
     taxonomies_df = pd.read_csv(taxonomy_files[0], sep='\t',
                                 usecols=["user_genome",
                                          "classification",
                                          "fastani_reference"])
-    mags, bins, contigs = [], [], []
-    # Run through all bin .fa files
-    for bin_file in glob.glob(os.path.join(sample_dir, "*.fa")):
-        bin_name = os.path.splitext(os.path.basename(bin_file))[0]
-        mag_name = f"{mag_root}_{bin_name}"
-        bin_contigs = load_fasta_ids(bin_file)
-        mags.extend([mag_name]*len(bin_contigs))
-        bins.extend([bin_name]*len(bin_contigs))
-        contigs.extend(bin_contigs)
     # Construct dataframe
     raw_df = pd.DataFrame({"MAGS" : mags, "bins" : bins, "contigs" : contigs})
     # Add taxonomy information
@@ -127,6 +132,7 @@ def load_mags_contigs_taxonomies(bin_path, taxonomy_path):
                       for bin_dir in bin_dirs],
                       ignore_index=True)
     return concatenated_df
+
 
 @click.command()
 @click.option('--cluster_file', '-r', required=True,
