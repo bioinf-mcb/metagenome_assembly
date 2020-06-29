@@ -65,6 +65,7 @@ def load_fasta_ids(path):
   """
   fasta_ids = [seq.metadata['id'] for seq in io.read(path, format='fasta')]
   return fasta_ids
+  
 
 def load_mags_contigs_taxonomies_for_sample(sample_dir, taxonomy_path):
     """
@@ -81,7 +82,8 @@ def load_mags_contigs_taxonomies_for_sample(sample_dir, taxonomy_path):
     -------
     Pandas dataframe containing MAGS, contigs and taxonomies
     """
-    mag_root = os.path.basename(sample_dir).rsplit("_")[0]
+    sample_dir_name = os.path.basename(sample_dir)
+    mag_root = sample_dir_name[:sample_dir_name.rfind("_bins")]
     taxonomy_files = glob.glob(os.path.join(taxonomy_path, f"{mag_root}*.tsv"))
     assert len(taxonomy_files) == 1, "Warning: multiple taxonomy files!"
     taxonomies_df = pd.read_csv(taxonomy_files[0], sep='\t',
@@ -102,6 +104,7 @@ def load_mags_contigs_taxonomies_for_sample(sample_dir, taxonomy_path):
     # Add taxonomy information
     merged_df = raw_df.join(taxonomies_df.set_index('user_genome'), on='bins', how='left')
     return merged_df
+
 
 def load_mags_contigs_taxonomies(bin_path, taxonomy_path):
     """
@@ -127,6 +130,7 @@ def load_mags_contigs_taxonomies(bin_path, taxonomy_path):
                       for bin_dir in bin_dirs],
                       ignore_index=True)
     return concatenated_df
+
 
 @click.command()
 @click.option('--cluster_file', '-r', required=True,
