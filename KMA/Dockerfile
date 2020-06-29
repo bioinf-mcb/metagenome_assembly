@@ -13,16 +13,23 @@ RUN mkdir /app
 WORKDIR /app
 
 # install dependencies
-RUN apt-get update -y && apt-get install -y \
+RUN apt-get update -y && apt-get upgrade -y && apt-get install -y \
 	gcc \
 	libz-dev \
 	make \
-	git
+	git \
+	python3 \
+	python3-pip
+
+RUN python3 -m pip install click numpy pandas
 
 RUN git clone https://bitbucket.org/genomicepidemiology/kma.git && \
 	cd kma && \
 	make
 
 ENV PATH="$PATH:/app/kma"
+
+# copy normalization script to the container
+COPY Normalize_kma_output.py /app 
 
 CMD ["bash"]
