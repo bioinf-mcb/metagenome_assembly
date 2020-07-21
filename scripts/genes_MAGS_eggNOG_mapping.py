@@ -6,7 +6,8 @@ import click
 import numpy as np
 import pandas as pd
 from skbio import io
-
+import re
+pd.options.mode.chained_assignment = None
 
 """
 Script for mapping genes to contigs, MAGS and eggNOG annotations
@@ -67,9 +68,32 @@ def load_fasta_ids(path):
   return fasta_ids
   
 
-def load_mags_contigs_taxonomies_for_sample(sample_dir, taxonomy_path):
+def load_checkm_files(file):
+
+  """
+  Reads CHECKM txt file and extracts specified columns
+  Parameters
+  ----------
+  input_file : str
+      txt file containing CHECKM report
+
+  Returns
+  ------
+  A CHECKM dataframe
+  """
+  CHECKM = []
+  checkm_f = open(file, 'r')
+  for line in checkm_f:
+    contents = (re.sub('\-+', '', line.strip()))
+    if contents:
+      contents = re.sub('\s\s+', '\t', contents)
+      CHECKM.append(contents.split('\t'))    
+  return pd.DataFrame(data=CHECKM[1:], columns=CHECKM[0])[["Bin Id", "Marker lineage", "# genomes", "# markers", "Completeness",
+                                                            "Contamination", "Strain heterogeneity"]]
+
+def load_mags_contigs_taxonomies_for_sample(sample_dir, taxonomy_path, checkm_path):
     """
-    Extract MAG, contig and taxonomy information for specific sample.
+    Extract MAG, contig taxonomy and CHECKM information for specific sample.
 
     Parameters
     ----------
@@ -77,10 +101,12 @@ def load_mags_contigs_taxonomies_for_sample(sample_dir, taxonomy_path):
         directory where to look for specific sample
     taxonomy_path: str
         path with taxonomy files
+    checkm_path: str
+        path to CHECKM files
 
     Returns
     -------
-    Pandas dataframe containing MAGS, contigs and taxonomies
+    Pandas dataframe containing MAGS, contigs taxonomies and CHECKM information
     """
     sample_dir_name = os.path.basename(sample_dir)
     mag_root = sample_dir_name[:sample_dir_name.rfind("_bins")]
@@ -90,6 +116,15 @@ def load_mags_contigs_taxonomies_for_sample(sample_dir, taxonomy_path):
                                 usecols=["user_genome",
                                          "classification",
                                          "fastani_reference"])
+    
+    # runs through per-sample CHECKM files and creates a dataframe
+    colnames = ["Bin Id", "Marker lineage", "# genomes","# markers", 
+                "Completeness", "Contamination", "Strain heterogeneity"]
+    checkm_df = pd.DataFrame(columns=colnames)
+    for file in glob.glob(os.path.join(checkm_path, f"{mag_root}*.txt")):
+        checkm_df=checkm_df.append(load_checkm_files(file)[colnames])
+        
+    
     mags, bins, contigs = [], [], []
     # Run through all bin .fa files
     for bin_file in glob.glob(os.path.join(sample_dir, "*.fa")):
@@ -101,14 +136,15 @@ def load_mags_contigs_taxonomies_for_sample(sample_dir, taxonomy_path):
         contigs.extend(bin_contigs)
     # Construct dataframe
     raw_df = pd.DataFrame({"MAGS" : mags, "bins" : bins, "contigs" : contigs})
-    # Add taxonomy information
-    merged_df = raw_df.join(taxonomies_df.set_index('user_genome'), on='bins', how='left')
+    # Add taxonomy and CHECKM information 
+    merged_df = raw_df.join(taxonomies_df.set_index('user_genome'), on='bins', how='left').\
+    join(checkm_df.set_index('Bin Id'), on='bins', how='left')
     return merged_df
 
 
-def load_mags_contigs_taxonomies(bin_path, taxonomy_path):
+def load_mags_contigs_taxonomies(bin_path, taxonomy_path, checkm_path):
     """
-    # extract MAG, contig and taxonomy information for all samples.
+    # extract MAG, contig, taxonomy and CHECKM information for all samples.
 
     Parameters
     ----------
@@ -116,6 +152,8 @@ def load_mags_contigs_taxonomies(bin_path, taxonomy_path):
         path with samples
     taxonomy_path: str
         path with taxonomy files
+    checkm_path: str
+        path with CHECKM files
 
     Returns
     -------
@@ -126,7 +164,7 @@ def load_mags_contigs_taxonomies(bin_path, taxonomy_path):
     bin_dirs = [f for f in os.scandir(bin_path) if f.is_dir()]
 
     # Return concatenated dataframe
-    concatenated_df = pd.concat([load_mags_contigs_taxonomies_for_sample(bin_dir, taxonomy_path)
+    concatenated_df = pd.concat([load_mags_contigs_taxonomies_for_sample(bin_dir, taxonomy_path, checkm_path)
                       for bin_dir in bin_dirs],
                       ignore_index=True)
     return concatenated_df
@@ -148,6 +186,9 @@ def load_mags_contigs_taxonomies(bin_path, taxonomy_path):
 @click.option('--tax_fp', '-t', required=True,
               type=click.Path(resolve_path=True, readable=True, exists=True),
               help='Input path to taxonomy folder.')
+@click.option('--checkm_fp', '-m', required=True,
+              type=click.Path(resolve_path=True, readable=True, exists=True),
+              help='Input path to checkm folder.')
 @click.option('--eggnog_ann_file', '-e', required=True,
               type=click.Path(resolve_path=True, readable=True, exists=True),
               help='Input path to eggnog .annotations file.')
@@ -157,8 +198,9 @@ def load_mags_contigs_taxonomies(bin_path, taxonomy_path):
 @click.option('--out_cluster_taxa_file', '-f', required=True,
               type=click.Path(resolve_path=True, readable=True, exists=False),
               help='Output .tsv file.')
+
 def _perform_mapping(genes_file, cluster_file, contigs_file,
-                     eggnog_ann_file, bin_fp, tax_fp, out_gene_mapping_file, out_cluster_taxa_file):
+                     eggnog_ann_file, bin_fp, tax_fp, checkm_fp, out_gene_mapping_file, out_cluster_taxa_file):
 
     # load cluster file
     cluster_df = tabulate_cluster_info(cluster_file)
@@ -187,6 +229,10 @@ def _perform_mapping(genes_file, cluster_file, contigs_file,
                                     right_on='Cluster ID',
                                     how='outer')
 
+    # add sample ID column
+    mapped_cluster_genes['sample_ID'] = mapped_cluster_genes['Gene ID'].\
+    apply(lambda x: x.split("_k")[0])
+
     # Create column with truncated centroid ids
     mapped_cluster_genes['centroid_trunc'] = mapped_cluster_genes['centroid'].\
     apply(lambda x: x.rsplit('_', 1)[0])
@@ -201,7 +247,7 @@ def _perform_mapping(genes_file, cluster_file, contigs_file,
                                     how='left')
 
     # MAGS and Taxonomy mapping
-    MAGS_df = load_mags_contigs_taxonomies(bin_fp, tax_fp)
+    MAGS_df = load_mags_contigs_taxonomies(bin_fp, tax_fp, checkm_fp)
 
     # Mapping between genes, contigs and mags
     mapped_genes_contigs_mags = pd.merge(mapped_genes_contigs, MAGS_df,
