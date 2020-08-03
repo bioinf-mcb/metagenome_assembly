@@ -88,12 +88,12 @@ def load_checkm_files(file):
     if contents:
       contents = re.sub('\s\s+', '\t', contents)
       CHECKM.append(contents.split('\t'))    
-  return pd.DataFrame(data=CHECKM[1:], columns=CHECKM[0])[["Bin Id", "Marker lineage", "# genomes", "# markers", "Completeness",
+  return pd.DataFrame(data=CHECKM[1:], columns=CHECKM[0])[["Bin Id", "# genomes", "# markers", "Completeness",
                                                             "Contamination", "Strain heterogeneity"]]
 
 def load_mags_contigs_taxonomies_for_sample(sample_dir, taxonomy_path, checkm_path):
     """
-    Extract MAG, contig taxonomy and CHECKM information for specific sample.
+    Extract MAG, contig, taxonomy and CHECKM information for specific sample.
 
     Parameters
     ----------
@@ -106,7 +106,7 @@ def load_mags_contigs_taxonomies_for_sample(sample_dir, taxonomy_path, checkm_pa
 
     Returns
     -------
-    Pandas dataframe containing MAGS, contigs taxonomies and CHECKM information
+    Pandas dataframe containing MAGS, contigs, taxonomies and CHECKM information
     """
     sample_dir_name = os.path.basename(sample_dir)
     mag_root = sample_dir_name[:sample_dir_name.rfind("_bins")]
@@ -118,7 +118,7 @@ def load_mags_contigs_taxonomies_for_sample(sample_dir, taxonomy_path, checkm_pa
                                          "fastani_reference"])
     
     # runs through per-sample CHECKM files and creates a dataframe
-    colnames = ["Bin Id", "Marker lineage", "# genomes","# markers", 
+    colnames = ["Bin Id", "# genomes","# markers", 
                 "Completeness", "Contamination", "Strain heterogeneity"]
     checkm_df = pd.DataFrame(columns=colnames)
     for file in glob.glob(os.path.join(checkm_path, f"{mag_root}*.txt")):
@@ -228,10 +228,6 @@ def _perform_mapping(genes_file, cluster_file, contigs_file,
                                     left_on='Cluster ID',
                                     right_on='Cluster ID',
                                     how='outer')
-
-    # add sample ID column
-    mapped_cluster_genes['sample_ID'] = mapped_cluster_genes['Gene ID'].\
-    apply(lambda x: x.split("_k")[0])
 
     # Create column with truncated centroid ids
     mapped_cluster_genes['centroid_trunc'] = mapped_cluster_genes['centroid'].\
