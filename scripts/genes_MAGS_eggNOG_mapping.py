@@ -110,8 +110,7 @@ def load_mags_contigs_taxonomies_for_sample(sample_dir, taxonomy_path, checkm_pa
     """
     sample_dir_name = os.path.basename(sample_dir)
     mag_root = sample_dir_name[:sample_dir_name.rfind("_bins")]
-    taxonomy_files = glob.glob(os.path.join(taxonomy_path, f"{mag_root}*.tsv"))
-    assert len(taxonomy_files) == 1, "Warning: multiple taxonomy files!"
+    taxonomy_files = glob.glob(os.path.join(taxonomy_path, f"{mag_root}.bac120.summary.tsv"))
     taxonomies_df = pd.read_csv(taxonomy_files[0], sep='\t',
                                 usecols=["user_genome",
                                          "classification",
@@ -121,7 +120,7 @@ def load_mags_contigs_taxonomies_for_sample(sample_dir, taxonomy_path, checkm_pa
     colnames = ["Bin Id", "# genomes","# markers", 
                 "Completeness", "Contamination", "Strain heterogeneity"]
     checkm_df = pd.DataFrame(columns=colnames)
-    for file in glob.glob(os.path.join(checkm_path, f"{mag_root}*.txt")):
+    for file in glob.glob(os.path.join(checkm_path, f"{mag_root}_checkm.txt")):
         checkm_df=checkm_df.append(load_checkm_files(file)[colnames])
         
     
@@ -256,7 +255,7 @@ def _perform_mapping(genes_file, cluster_file, contigs_file,
                                 drop(columns="centroid_trunc")
 
     # Creating eggNOG annotation dataframe
-    eggNOG_df = pd.read_csv(eggnog_ann_file, sep='\t', skiprows=3)
+    eggNOG_df = pd.read_csv(eggnog_ann_file, sep='\t', skiprows=2)
     # drop last 3 rows with comments
     eggNOG_df = eggNOG_df[:-3]
 
