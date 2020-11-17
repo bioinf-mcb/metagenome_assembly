@@ -88,7 +88,7 @@ def load_checkm_files(file):
     if contents:
       contents = re.sub('\s\s+', '\t', contents)
       CHECKM.append(contents.split('\t'))    
-  return pd.DataFrame(data=CHECKM[1:], columns=CHECKM[0])[["Bin Id", "# genomes", "# markers", "Completeness",
+  return pd.DataFrame(data=CHECKM[1:], columns=CHECKM[0])[["Bin Id", "Marker lineage", "# genomes", "# markers", "Completeness",
                                                             "Contamination", "Strain heterogeneity"]]
 
 def load_mags_contigs_taxonomies_for_sample(sample_dir, taxonomy_path, checkm_path):
@@ -110,22 +110,23 @@ def load_mags_contigs_taxonomies_for_sample(sample_dir, taxonomy_path, checkm_pa
     """
     sample_dir_name = os.path.basename(sample_dir)
     mag_root = sample_dir_name[:sample_dir_name.rfind("_bins")]
-    taxonomy_files = glob.glob(os.path.join(taxonomy_path, f"{mag_root}.bac120.summary.tsv"))
-    taxonomies_df = pd.read_csv(taxonomy_files[0], sep='\t',
-                                usecols=["user_genome",
-                                         "classification",
-                                         "fastani_reference"])
-    
-    # runs through per-sample CHECKM files and creates a dataframe
-    colnames = ["Bin Id", "# genomes","# markers", 
+
+
+    # runs through per-sample Checkm files and creates a dataframe
+    colnames = ["Bin Id","Marker lineage", "# genomes","# markers",
                 "Completeness", "Contamination", "Strain heterogeneity"]
     checkm_df = pd.DataFrame(columns=colnames)
-    for file in glob.glob(os.path.join(checkm_path, f"{mag_root}_checkm.txt")):
-        checkm_df=checkm_df.append(load_checkm_files(file)[colnames])
-        
-    
-    mags, bins, contigs = [], [], []
+    checkm_file = os.path.join(checkm_path, f"{mag_root}_checkm.txt")
+    try:
+        f = open(checkm_file, "r")
+    except IOError:
+        print('There is no checkM file available:', checkm_file)  
+    else:
+        checkm_df=checkm_df.append(load_checkm_files(checkm_file)[colnames])
+
+
     # Run through all bin .fa files
+    mags, bins, contigs = [], [], []
     for bin_file in glob.glob(os.path.join(sample_dir, "*.fa")):
         bin_name = os.path.splitext(os.path.basename(bin_file))[0]
         mag_name = f"{mag_root}_{bin_name}"
@@ -133,11 +134,26 @@ def load_mags_contigs_taxonomies_for_sample(sample_dir, taxonomy_path, checkm_pa
         mags.extend([mag_name]*len(bin_contigs))
         bins.extend([bin_name]*len(bin_contigs))
         contigs.extend(bin_contigs)
+
     # Construct dataframe
     raw_df = pd.DataFrame({"MAGS" : mags, "bins" : bins, "contigs" : contigs})
-    # Add taxonomy and CHECKM information 
-    merged_df = raw_df.join(taxonomies_df.set_index('user_genome'), on='bins', how='left').\
-    join(checkm_df.set_index('Bin Id'), on='bins', how='left')
+    
+    # Add taxonomy information
+    taxonomy_file = os.path.join(taxonomy_path, f"{mag_root}.bac120.summary.tsv")
+    taxonomy_cols = ["user_genome", "classification", "fastani_reference"]
+    try:
+        f = open(taxonomy_file, "r")
+    except IOError:
+        print(f'There is no taxonomy file: {taxonomy_file}')
+        print('Adding empty taxonomy columns...')
+        merged_df = raw_df.join(raw_df.reindex(columns=taxonomy_cols[1:]))
+    else:
+        taxonomies_df = pd.read_csv(f, sep='\t', usecols=taxonomy_cols)
+        merged_df = raw_df.join(taxonomies_df.set_index(taxonomy_cols[0]), on='bins', how='left')
+
+    # Add checkM information
+    merged_df = merged_df.join(checkm_df.set_index('Bin Id'), on='bins', how='left')
+    
     return merged_df
 
 
@@ -249,6 +265,8 @@ def _perform_mapping(genes_file, cluster_file, contigs_file,
                                          left_on='contigs_ID',
                                          right_on='contigs',
                                          how='outer')
+    # remove partial genes
+    mapped_genes_contigs_mags = mapped_genes_contigs_mags[mapped_genes_contigs_mags['Gene ID'].notna()]
 
     # Drop centroid_trunc column
     mapped_genes_contigs_mags = mapped_genes_contigs_mags.\
