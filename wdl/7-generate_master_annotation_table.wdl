@@ -36,7 +36,7 @@ task merge_eggnog_outputs {
     }
 
     runtime {
-        docker: "gcr.io/microbiome-xavier/gene-mapper:063020"
+        docker: "gcr.io/microbiome-xavier/gene-mapper:111920"
         cpu: 2
         memory: "4GB"
         preemptible: num_preemptible
@@ -64,7 +64,7 @@ task merge_deepfri_outputs {
     }
 
     runtime {
-        docker: "gcr.io/microbiome-xavier/gene-mapper:063020"
+        docker: "gcr.io/microbiome-xavier/gene-mapper:111920"
         cpu: 2
         memory: "4GB"
         preemptible: num_preemptible
@@ -134,7 +134,7 @@ task genes_to_mags_mapping {
     }
     
     runtime {
-        docker: "gcr.io/microbiome-xavier/gene-mapper:111820"
+        docker: "gcr.io/microbiome-xavier/gene-mapper:111920"
         cpu: 2
         memory: gene_mapper_memory_gb + "GB"
         preemptible: num_preemptible
