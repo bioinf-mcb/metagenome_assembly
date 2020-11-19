@@ -119,10 +119,9 @@ def load_mags_contigs_taxonomies_for_sample(sample_dir, taxonomy_path, checkm_pa
     checkm_file = os.path.join(checkm_path, f"{mag_root}_checkm.txt")
     try:
         f = open(checkm_file, "r")
-    except IOError:
-        print('There is no checkM file available:', checkm_file)  
-    else:
         checkm_df=checkm_df.append(load_checkm_files(checkm_file)[colnames])
+    except:
+        print('Missing or empty checkM output file:', checkm_file)  
 
 
     # Run through all bin .fa files
@@ -143,13 +142,12 @@ def load_mags_contigs_taxonomies_for_sample(sample_dir, taxonomy_path, checkm_pa
     taxonomy_cols = ["user_genome", "classification", "fastani_reference"]
     try:
         f = open(taxonomy_file, "r")
-    except IOError:
-        print(f'There is no taxonomy file: {taxonomy_file}')
-        print('Adding empty taxonomy columns...')
-        merged_df = raw_df.join(raw_df.reindex(columns=taxonomy_cols[1:]))
-    else:
         taxonomies_df = pd.read_csv(f, sep='\t', usecols=taxonomy_cols)
         merged_df = raw_df.join(taxonomies_df.set_index(taxonomy_cols[0]), on='bins', how='left')
+    except:
+        print(f'Missing or empty taxonomy file: {taxonomy_file}')
+        print('Adding empty taxonomy columns...')
+        merged_df = raw_df.join(raw_df.reindex(columns=taxonomy_cols[1:]))
 
     # Add checkM information
     merged_df = merged_df.join(checkm_df.set_index('Bin Id'), on='bins', how='left')
