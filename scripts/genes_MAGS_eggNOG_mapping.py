@@ -123,7 +123,6 @@ def load_mags_contigs_taxonomies_for_sample(sample_dir, taxonomy_path, checkm_pa
     except:
         print('Missing or empty checkM output file:', checkm_file)
 
-
     # Run through all bin .fa files
     mags, bins, contigs = [], [], []
     for bin_file in glob.glob(os.path.join(sample_dir, "*.fa")):
