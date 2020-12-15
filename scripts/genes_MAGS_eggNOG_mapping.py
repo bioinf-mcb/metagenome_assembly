@@ -121,8 +121,7 @@ def load_mags_contigs_taxonomies_for_sample(sample_dir, taxonomy_path, checkm_pa
         f = open(checkm_file, "r")
         checkm_df=checkm_df.append(load_checkm_files(checkm_file)[colnames])
     except:
-        print('Missing or empty checkM output file:', checkm_file)  
-
+        print('Missing or empty checkM output file:', checkm_file)
 
     # Run through all bin .fa files
     mags, bins, contigs = [], [], []
@@ -242,8 +241,8 @@ def _perform_mapping(genes_file, cluster_file, contigs_file,
                                     right_on='Cluster ID',
                                     how='outer')
 
-    # Create column with truncated centroid ids
-    mapped_cluster_genes['centroid_trunc'] = mapped_cluster_genes['centroid'].\
+    # Create column with truncated gene ids
+    mapped_cluster_genes['Gene_trunc'] = mapped_cluster_genes['Gene ID'].\
     apply(lambda x: x.rsplit('_', 1)[0])
 
     # Change data type to string
@@ -251,7 +250,7 @@ def _perform_mapping(genes_file, cluster_file, contigs_file,
 
     # Map cluster genes to contigs
     mapped_genes_contigs = pd.merge(mapped_cluster_genes, contigs_df,
-                                    left_on='centroid_trunc',
+                                    left_on='Gene_trunc',
                                     right_on='contigs_ID',
                                     how='left')
 
@@ -266,9 +265,9 @@ def _perform_mapping(genes_file, cluster_file, contigs_file,
     # remove partial genes
     mapped_genes_contigs_mags = mapped_genes_contigs_mags[mapped_genes_contigs_mags['Gene ID'].notna()]
 
-    # Drop centroid_trunc column
+    # Drop 'Gene_trunc' column
     mapped_genes_contigs_mags = mapped_genes_contigs_mags.\
-                                drop(columns="centroid_trunc")
+                                drop(columns="Gene_trunc")
 
     # Creating eggNOG annotation dataframe
     eggNOG_df = pd.read_csv(eggnog_ann_file, sep='\t', skiprows=2)
