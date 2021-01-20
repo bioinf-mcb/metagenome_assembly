@@ -85,6 +85,7 @@ task genes_to_mags_mapping {
     Array[File] checkm_output
     Int num_preemptible
     Int gene_mapper_memory_gb
+    Int gene_mapper_disk_gb
 
     command {
 
@@ -134,12 +135,12 @@ task genes_to_mags_mapping {
     }
     
     runtime {
-        docker: "gcr.io/microbiome-xavier/gene-mapper:111920"
+        docker: "gcr.io/microbiome-xavier/gene-mapper:121520"
         cpu: 2
         memory: gene_mapper_memory_gb + "GB"
         preemptible: num_preemptible
         maxRetries: num_preemptible + 1
         bootDiskSizeGb: 50
-        disks: "local-disk 200 HDD"
+        disks: "local disk " + gene_mapper_disk_gb + " HDD"
     }
 }

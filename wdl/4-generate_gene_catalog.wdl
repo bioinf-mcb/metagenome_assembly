@@ -49,6 +49,7 @@ task cluster_genes {
 
 task kma_index {
     File nr
+    Int kma_memory_gb
 
     command {
 
@@ -65,7 +66,7 @@ task kma_index {
     runtime {
         docker: "gcr.io/microbiome-xavier/kma:v1.2.27"
         cpu: 4
-        memory: "120GB"
+        memory: kma_memory_gb + "GB"
         preemptible: 2
         maxRetries: 3
         disks: "local-disk 200 SSD"
