@@ -1,0 +1,40 @@
+	# GTDB-Tk and CheckM output may be missing if the sample does not have any high quality MAGs 
+	# consider the information missing
+
+def load_mags_contigs_taxonomies_for_sample(sample_dir, taxonomy_path, checkm_path):
+	"""
+	input:
+	(a) sample_dir: str
+        directory containing bins
+    (b) taxonomy_path: str
+        path with gtdb taxonomy files
+    (c) checkm_path: str
+        path to CHECKM files
+
+    Output
+    Dataframe mapping bins, contigs, taxonomy and checkM information
+    """
+    pass
+
+
+    
+ def load_fasta_ids(path):
+ 	"""
+ 	input:
+ 	fasta file (str)
+    files containing contigs and gene identifiers
+
+    Output
+  	List of fasta identifiers
+
+  	# incase the gene or contigs file are missing; code should exit with an error
+	"""
+	pass
+
+
+ 	# Creating eggNOG annotation dataframe
+ 	# eggNOG file contains some comments at the beginning and end of the file
+ 	# comments change depending on the eggNOG tool version
+
+    pd.read_csv(eggnog_ann_file, sep='\t', skiprows=2)
+    
