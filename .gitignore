@@ -1,2 +1,6 @@
 .DS_Store
 */.DS_Store
+
+scripts/tests/.pytest_cache
+scripts/tests/data/generated
+scripts/__pycache__/
