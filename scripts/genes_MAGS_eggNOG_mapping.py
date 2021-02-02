@@ -3,28 +3,15 @@
 import os
 import glob
 import click
-import numpy as np
 import pandas as pd
 from skbio import io
 import re
+
 pd.options.mode.chained_assignment = None
 
-"""
-Script for mapping genes to contigs, MAGS and eggNOG annotations
-input files required:
-1) clustering file with cluster ID and gene ID
-2) Non-redundant gene catalogue (fasta)
-3) Contig files (fasta)
-4) binned contigs (MAGS)
-5) taxonomy files (tsv)
-6) EggNOG annotation file (tsv)
-The script outputs two files:
-Tsv file that links the non-redundant gene catalogue back to contigs, and then back to MAGs with eggNOG annotations
-Tsv file that maps gene families to taxonomy and generate counts
-"""
 
 def tabulate_cluster_info(path):
-  """
+    """
   transforming raw cluster file
   Reads cluster file from CD-HIT 
   transforms it into two-column format (cluster centroid ID and gene ID)
@@ -37,22 +24,22 @@ def tabulate_cluster_info(path):
     -------
   Pandas dataframe containing cluster IDS and gene IDS
   """
-  clusters, genes = [], []
-  with open(path, 'r') as file:
-      for line in file:
-          if line.startswith(">"):
-              cluster_id = line.rstrip().replace(">", "")
-          else:
-              gene_id = line.split(">")[1].split("...")[0]
-              clusters.append(cluster_id)
-              genes.append(gene_id)
-  gene_cluster_df = pd.DataFrame(list(zip(clusters, genes)), 
-             columns=['Cluster ID', 'Gene ID']) 
-  return gene_cluster_df
-  
+    clusters, genes = [], []
+    with open(path, 'r') as file:
+        for line in file:
+            if line.startswith(">"):
+                cluster_id = line.rstrip().replace(">", "")
+            else:
+                gene_id = line.split(">")[1].split("...")[0]
+                clusters.append(cluster_id)
+                genes.append(gene_id)
+    gene_cluster_df = pd.DataFrame(list(zip(clusters, genes)),
+                                   columns=['Cluster ID', 'Gene ID'])
+    return gene_cluster_df
+
 
 def load_fasta_ids(path):
-  """
+    """
   Reads sequences from a fasta file and extracts identifiers.
 
     Parameters
@@ -64,13 +51,12 @@ def load_fasta_ids(path):
     -------
   List of fasta identifiers
   """
-  fasta_ids = [seq.metadata['id'] for seq in io.read(path, format='fasta')]
-  return fasta_ids
-  
+    fasta_ids = [seq.metadata['id'] for seq in io.read(path, format='fasta')]
+    return fasta_ids
+
 
 def load_checkm_files(file):
-
-  """
+    """
   Reads CHECKM txt file and extracts specified columns
   Parameters
   ----------
@@ -81,17 +67,20 @@ def load_checkm_files(file):
   ------
   A CHECKM dataframe
   """
-  CHECKM = []
-  checkm_f = open(file, 'r')
-  for line in checkm_f:
-    contents = (re.sub('\-+', '', line.strip()))
-    if contents:
-      contents = re.sub('\s\s+', '\t', contents)
-      CHECKM.append(contents.split('\t'))    
-  return pd.DataFrame(data=CHECKM[1:], columns=CHECKM[0])[["Bin Id", "Marker lineage", "# genomes", "# markers", "Completeness",
-                                                            "Contamination", "Strain heterogeneity"]]
+    CHECKM = []
+    checkm_f = open(file, 'r')
+    for line in checkm_f:
+        contents = (re.sub('\-+', '', line.strip()))
+        if contents:
+            contents = re.sub('\s\s+', '\t', contents)
+            CHECKM.append(contents.split('\t'))
+    return pd.DataFrame(data=CHECKM[1:], columns=CHECKM[0])[
+        ["Bin Id", "Marker lineage", "# genomes", "# markers", "Completeness",
+         "Contamination", "Strain heterogeneity"]]
 
-def load_mags_contigs_taxonomies_for_sample(sample_dir, taxonomy_path, checkm_path):
+
+def load_mags_contigs_taxonomies_for_sample(sample_dir, taxonomy_path,
+                                            checkm_path):
     """
     Extract MAG, contig, taxonomy and CHECKM information for specific sample.
 
@@ -106,20 +95,20 @@ def load_mags_contigs_taxonomies_for_sample(sample_dir, taxonomy_path, checkm_pa
 
     Returns
     -------
-    Pandas dataframe containing MAGS, contigs, taxonomies and CHECKM information
+    Pandas dataframe containing MAGS, contigs, taxonomies
+    and CHECKM information
     """
     sample_dir_name = os.path.basename(sample_dir)
     mag_root = sample_dir_name[:sample_dir_name.rfind("_bins")]
 
-
     # runs through per-sample Checkm files and creates a dataframe
-    colnames = ["Bin Id","Marker lineage", "# genomes","# markers",
+    colnames = ["Bin Id", "Marker lineage", "# genomes", "# markers",
                 "Completeness", "Contamination", "Strain heterogeneity"]
     checkm_df = pd.DataFrame(columns=colnames)
     checkm_file = os.path.join(checkm_path, f"{mag_root}_checkm.txt")
     try:
         f = open(checkm_file, "r")
-        checkm_df=checkm_df.append(load_checkm_files(checkm_file)[colnames])
+        checkm_df = checkm_df.append(load_checkm_files(checkm_file)[colnames])
     except:
         print('Missing or empty checkM output file:', checkm_file)
 
@@ -129,28 +118,31 @@ def load_mags_contigs_taxonomies_for_sample(sample_dir, taxonomy_path, checkm_pa
         bin_name = os.path.splitext(os.path.basename(bin_file))[0]
         mag_name = f"{mag_root}_{bin_name}"
         bin_contigs = load_fasta_ids(bin_file)
-        mags.extend([mag_name]*len(bin_contigs))
-        bins.extend([bin_name]*len(bin_contigs))
+        mags.extend([mag_name] * len(bin_contigs))
+        bins.extend([bin_name] * len(bin_contigs))
         contigs.extend(bin_contigs)
 
     # Construct dataframe
-    raw_df = pd.DataFrame({"MAGS" : mags, "bins" : bins, "contigs" : contigs})
-    
+    raw_df = pd.DataFrame({"MAGS": mags, "bins": bins, "contigs": contigs})
+
     # Add taxonomy information
-    taxonomy_file = os.path.join(taxonomy_path, f"{mag_root}.bac120.summary.tsv")
+    taxonomy_file = os.path.join(taxonomy_path,
+                                 f"{mag_root}.bac120.summary.tsv")
     taxonomy_cols = ["user_genome", "classification", "fastani_reference"]
     try:
         f = open(taxonomy_file, "r")
         taxonomies_df = pd.read_csv(f, sep='\t', usecols=taxonomy_cols)
-        merged_df = raw_df.join(taxonomies_df.set_index(taxonomy_cols[0]), on='bins', how='left')
+        merged_df = raw_df.join(taxonomies_df.set_index(taxonomy_cols[0]),
+                                on='bins', how='left')
     except:
         print(f'Missing or empty taxonomy file: {taxonomy_file}')
         print('Adding empty taxonomy columns...')
         merged_df = raw_df.join(raw_df.reindex(columns=taxonomy_cols[1:]))
 
     # Add checkM information
-    merged_df = merged_df.join(checkm_df.set_index('Bin Id'), on='bins', how='left')
-    
+    merged_df = merged_df.join(checkm_df.set_index('Bin Id'), on='bins',
+                               how='left')
+
     return merged_df
 
 
@@ -176,9 +168,10 @@ def load_mags_contigs_taxonomies(bin_path, taxonomy_path, checkm_path):
     bin_dirs = [f for f in os.scandir(bin_path) if f.is_dir()]
 
     # Return concatenated dataframe
-    concatenated_df = pd.concat([load_mags_contigs_taxonomies_for_sample(bin_dir, taxonomy_path, checkm_path)
-                      for bin_dir in bin_dirs],
-                      ignore_index=True)
+    concatenated_df = pd.concat([load_mags_contigs_taxonomies_for_sample(
+        bin_dir, taxonomy_path, checkm_path)
+                                 for bin_dir in bin_dirs],
+                                ignore_index=True)
     return concatenated_df
 
 
@@ -191,16 +184,16 @@ def load_mags_contigs_taxonomies(bin_path, taxonomy_path, checkm_path):
               help='Input path to genes .fa file.')
 @click.option('--contigs_file', '-c', required=True,
               type=click.Path(resolve_path=True, readable=True, exists=True),
-              help='Input path to contigs .fa file.')
+              help='Input path to merged contigs fasta file.')
 @click.option('--bin_fp', '-b', required=True,
               type=click.Path(resolve_path=True, readable=True, exists=True),
               help='Input path to bin folder.')
 @click.option('--tax_fp', '-t', required=True,
               type=click.Path(resolve_path=True, readable=True, exists=True),
-              help='Input path to taxonomy folder.')
+              help='Input path to taxonomy folder (can be empty).')
 @click.option('--checkm_fp', '-m', required=True,
               type=click.Path(resolve_path=True, readable=True, exists=True),
-              help='Input path to checkm folder.')
+              help='Input path to checkm folder  (can be empty).')
 @click.option('--eggnog_ann_file', '-e', required=True,
               type=click.Path(resolve_path=True, readable=True, exists=True),
               help='Input path to eggnog .annotations file.')
@@ -210,9 +203,23 @@ def load_mags_contigs_taxonomies(bin_path, taxonomy_path, checkm_path):
 @click.option('--out_cluster_taxa_file', '-f', required=True,
               type=click.Path(resolve_path=True, readable=True, exists=False),
               help='Output .tsv file.')
-
-def _perform_mapping(genes_file, cluster_file, contigs_file,
-                     eggnog_ann_file, bin_fp, tax_fp, checkm_fp, out_gene_mapping_file, out_cluster_taxa_file):
+def _perform_mapping(cluster_file, genes_file, contigs_file,
+                     eggnog_ann_file, bin_fp, tax_fp, checkm_fp,
+                     out_gene_mapping_file, out_cluster_taxa_file):
+    """
+    Script for mapping genes to contigs, MAGS and eggNOG annotations
+    input files required:
+    1) clustering file with cluster ID and gene ID
+    2) Non-redundant gene catalogue (fasta)
+    3) Contig files (fasta)
+    4) binned contigs (MAGS)
+    5) taxonomy files (tsv)
+    6) EggNOG annotation file (tsv)
+    The script outputs two files:
+    Tsv file that links the non-redundant gene catalogue back to contigs,
+    and then back to MAGs with eggNOG annotations
+    Tsv file that maps gene families to taxonomy and generate counts
+    """
 
     # load cluster file
     cluster_df = tabulate_cluster_info(cluster_file)
@@ -242,8 +249,8 @@ def _perform_mapping(genes_file, cluster_file, contigs_file,
                                     how='outer')
 
     # Create column with truncated gene ids
-    mapped_cluster_genes['Gene_trunc'] = mapped_cluster_genes['Gene ID'].\
-    apply(lambda x: x.rsplit('_', 1)[0])
+    mapped_cluster_genes['Gene_trunc'] = mapped_cluster_genes['Gene ID']. \
+        apply(lambda x: x.rsplit('_', 1)[0])
 
     # Change data type to string
     mapped_cluster_genes = mapped_cluster_genes.astype(str)
@@ -263,11 +270,12 @@ def _perform_mapping(genes_file, cluster_file, contigs_file,
                                          right_on='contigs',
                                          how='outer')
     # remove partial genes
-    mapped_genes_contigs_mags = mapped_genes_contigs_mags[mapped_genes_contigs_mags['Gene ID'].notna()]
+    mapped_genes_contigs_mags = mapped_genes_contigs_mags[
+        mapped_genes_contigs_mags['Gene ID'].notna()]
 
     # Drop 'Gene_trunc' column
-    mapped_genes_contigs_mags = mapped_genes_contigs_mags.\
-                                drop(columns="Gene_trunc")
+    mapped_genes_contigs_mags = mapped_genes_contigs_mags. \
+        drop(columns="Gene_trunc")
 
     # Creating eggNOG annotation dataframe
     eggNOG_df = pd.read_csv(eggnog_ann_file, sep='\t', skiprows=2)
@@ -282,13 +290,14 @@ def _perform_mapping(genes_file, cluster_file, contigs_file,
                                                 how='outer')
 
     # determine if non-redundant gene clusters are taxon-specific
-    cluster_taxa = mapped_genes_contigs_mags_eggNOG.groupby('Cluster ID')['classification'].nunique()
+    cluster_taxa = mapped_genes_contigs_mags_eggNOG.groupby('Cluster ID')[
+        'classification'].nunique()
 
     # Saving gene mapping results to file
     mapped_genes_contigs_mags_eggNOG.to_csv(out_gene_mapping_file, sep='\t',
                                             index=False, na_rep='NaN')
     # saving cluster_taxa mapping to file
-    cluster_taxa.to_csv(out_cluster_taxa_file, sep = '\t')
+    cluster_taxa.to_csv(out_cluster_taxa_file, sep='\t', header=True)
 
 
 if __name__ == "__main__":
