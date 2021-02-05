@@ -1,5 +1,25 @@
 #! /usr/bin/env python
 
+"""
+Script for mapping genes to contigs, MAGS and eggNOG annotations.
+
+Input files required:
+1) clustering file with cluster ID and gene ID
+2) Non-redundant gene catalogue (fasta)
+3) Contig files (fasta)
+4) binned contigs (MAGS)
+5) taxonomy files (tsv)
+6) EggNOG annotation file (tsv)
+
+The script outputs two files:
+1) Tsv file that links the non-redundant gene catalogue back to contigs,
+and then back to MAGs with eggNOG annotations
+2) Tsv file that maps gene families to taxonomy and generate counts
+
+Detailed help:
+python scripts/genes_MAGS_eggNOG_mapping.py --help
+"""
+
 import os
 import glob
 import click
@@ -170,9 +190,34 @@ def load_mags_contigs_taxonomies(bin_path, taxonomy_path, checkm_path):
     # Return concatenated dataframe
     concatenated_df = pd.concat([load_mags_contigs_taxonomies_for_sample(
         bin_dir, taxonomy_path, checkm_path)
-                                 for bin_dir in bin_dirs],
-                                ignore_index=True)
+        for bin_dir in bin_dirs],
+        ignore_index=True)
     return concatenated_df
+
+
+def load_eggNOG_file(eggnog_ann_file):
+    """
+    Load EggNOG annotations skipping commented lines i.e. '#\\s'
+
+    Parameters
+    ----------
+    eggnog_ann_file: str
+        path to EggNOG annotation file (tsv)
+
+    Returns
+    -------
+    Pandas dataframe
+    """
+    # Fetch header from file (should be somewhere at the beginning)
+    header = None
+    with open(eggnog_ann_file, 'r') as f:
+        for line in f:
+            if line.startswith('#query_name'):
+                header = line
+                break
+    header = [el.strip() for el in header.split('\t')]
+    # Create & return Pandas DataFrame
+    return pd.read_csv(eggnog_ann_file, sep='\t', names=header, comment='#')
 
 
 @click.command()
@@ -206,20 +251,6 @@ def load_mags_contigs_taxonomies(bin_path, taxonomy_path, checkm_path):
 def _perform_mapping(cluster_file, genes_file, contigs_file,
                      eggnog_ann_file, bin_fp, tax_fp, checkm_fp,
                      out_gene_mapping_file, out_cluster_taxa_file):
-    """
-    Script for mapping genes to contigs, MAGS and eggNOG annotations
-    input files required:
-    1) clustering file with cluster ID and gene ID
-    2) Non-redundant gene catalogue (fasta)
-    3) Contig files (fasta)
-    4) binned contigs (MAGS)
-    5) taxonomy files (tsv)
-    6) EggNOG annotation file (tsv)
-    The script outputs two files:
-    Tsv file that links the non-redundant gene catalogue back to contigs,
-    and then back to MAGs with eggNOG annotations
-    Tsv file that maps gene families to taxonomy and generate counts
-    """
 
     # load cluster file
     cluster_df = tabulate_cluster_info(cluster_file)
@@ -277,10 +308,8 @@ def _perform_mapping(cluster_file, genes_file, contigs_file,
     mapped_genes_contigs_mags = mapped_genes_contigs_mags. \
         drop(columns="Gene_trunc")
 
-    # Creating eggNOG annotation dataframe
-    eggNOG_df = pd.read_csv(eggnog_ann_file, sep='\t', skiprows=2)
-    # drop last 3 rows with comments
-    eggNOG_df = eggNOG_df[:-3]
+    # # Creating eggNOG annotation dataframe
+    eggNOG_df = load_eggNOG_file(eggnog_ann_file)
 
     # Mapping between genes, contigs, mags and eggNOG annotations
     mapped_genes_contigs_mags_eggNOG = pd.merge(mapped_genes_contigs_mags,
