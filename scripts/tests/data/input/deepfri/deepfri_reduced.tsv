@@ -1,0 +1,228 @@
+G78953_k105_10784_19,GO:0043167,cnn_mf,1.0,ion binding
+G78953_k105_10784_19,GO:0043169,cnn_mf,0.99998,cation binding
+G78953_k105_10784_19,GO:0046872,cnn_mf,0.99997,metal ion binding
+G78953_k105_10784_19,GO:0036094,cnn_mf,0.99447,small molecule binding
+G78953_k105_10784_19,GO:1901363,cnn_mf,0.98324,heterocyclic compound binding
+G78953_k105_10784_19,GO:0097159,cnn_mf,0.9826,organic cyclic compound binding
+G78953_k105_10784_19,GO:0043168,cnn_mf,0.95975,anion binding
+G78953_k105_10784_19,GO:0048037,cnn_mf,0.94182,cofactor binding
+G78953_k105_10784_19,GO:1901265,cnn_mf,0.91698,nucleoside phosphate binding
+G78953_k105_10784_19,GO:0000166,cnn_mf,0.91696,nucleotide binding
+G78953_k105_10784_19,GO:0097367,cnn_mf,0.15983,carbohydrate derivative binding
+G78953_k105_10784_19,GO:0008144,cnn_mf,0.11915,drug binding
+G78953_k105_10784_19,GO:0044281,cnn_bp,0.99998,small molecule metabolic process
+G78953_k105_10784_19,GO:0071704,cnn_bp,0.99991,organic substance metabolic process
+G78953_k105_10784_19,GO:0044237,cnn_bp,0.99965,cellular metabolic process
+G78953_k105_10784_19,GO:1901564,cnn_bp,0.99822,organonitrogen compound metabolic process
+G78953_k105_10784_19,GO:0006082,cnn_bp,0.99521,organic acid metabolic process
+G78953_k105_10784_19,GO:0043436,cnn_bp,0.9936,oxoacid metabolic process
+G78953_k105_10784_19,GO:0019752,cnn_bp,0.99306,carboxylic acid metabolic process
+G78953_k105_10784_19,GO:0009058,cnn_bp,0.99168,biosynthetic process
+G78953_k105_10784_19,GO:1901576,cnn_bp,0.99088,organic substance biosynthetic process
+G78953_k105_10784_19,GO:0044238,cnn_bp,0.98284,primary metabolic process
+G78953_k105_10784_19,GO:0044249,cnn_bp,0.97848,cellular biosynthetic process
+G78953_k105_10784_19,GO:1901566,cnn_bp,0.96693,organonitrogen compound biosynthetic process
+G78953_k105_10784_19,GO:0006807,cnn_bp,0.95658,nitrogen compound metabolic process
+G78953_k105_10784_19,GO:0044283,cnn_bp,0.94143,small molecule biosynthetic process
+G78953_k105_10784_19,GO:1901135,cnn_bp,0.88035,carbohydrate derivative metabolic process
+G78953_k105_10784_19,GO:0017144,cnn_bp,0.86158,drug metabolic process
+G78953_k105_10784_19,GO:0006520,cnn_bp,0.77124,cellular amino acid metabolic process
+G78953_k105_10784_19,GO:1901605,cnn_bp,0.73853,alpha-amino acid metabolic process
+G78953_k105_10784_19,GO:0019637,cnn_bp,0.72357,organophosphate metabolic process
+G78953_k105_10784_19,GO:0006793,cnn_bp,0.65634,phosphorus metabolic process
+G78953_k105_10784_19,GO:0046394,cnn_bp,0.54713,carboxylic acid biosynthetic process
+G78953_k105_10784_19,GO:0006796,cnn_bp,0.53929,phosphate-containing compound metabolic process
+G78953_k105_10784_19,GO:0016053,cnn_bp,0.5182,organic acid biosynthetic process
+G78953_k105_10784_19,GO:0016052,cnn_bp,0.46526,carbohydrate catabolic process
+G69286_k105_5949_9,GO:0043167,cnn_mf,1.0,ion binding
+G69286_k105_5949_9,GO:0043169,cnn_mf,0.99982,cation binding
+G69286_k105_5949_9,GO:0046872,cnn_mf,0.99977,metal ion binding
+G69286_k105_5949_9,GO:0048037,cnn_mf,0.97983,cofactor binding
+G69286_k105_5949_9,GO:0036094,cnn_mf,0.93126,small molecule binding
+G69286_k105_5949_9,GO:1901363,cnn_mf,0.82109,heterocyclic compound binding
+G69286_k105_5949_9,GO:0097159,cnn_mf,0.82037,organic cyclic compound binding
+G69286_k105_5949_9,GO:0043168,cnn_mf,0.72165,anion binding
+G69286_k105_5949_9,GO:1901265,cnn_mf,0.55548,nucleoside phosphate binding
+G69286_k105_5949_9,GO:0000166,cnn_mf,0.55526,nucleotide binding
+G69286_k105_5949_9,GO:0051539,cnn_mf,0.09399,"4 iron, 4 sulfur cluster binding"
+G69286_k105_5949_9,GO:0051536,cnn_mf,0.08702,iron-sulfur cluster binding
+G69286_k105_5949_9,GO:0051540,cnn_mf,0.08287,metal cluster binding
+G69286_k105_5949_9,GO:0044281,cnn_bp,0.9977,small molecule metabolic process
+G69286_k105_5949_9,GO:0071704,cnn_bp,0.9943,organic substance metabolic process
+G69286_k105_5949_9,GO:0044237,cnn_bp,0.98162,cellular metabolic process
+G69286_k105_5949_9,GO:1901564,cnn_bp,0.95812,organonitrogen compound metabolic process
+G69286_k105_5949_9,GO:0006082,cnn_bp,0.86065,organic acid metabolic process
+G69286_k105_5949_9,GO:0044238,cnn_bp,0.85237,primary metabolic process
+G69286_k105_5949_9,GO:0009058,cnn_bp,0.846,biosynthetic process
+G69286_k105_5949_9,GO:0043436,cnn_bp,0.83265,oxoacid metabolic process
+G69286_k105_5949_9,GO:1901576,cnn_bp,0.82551,organic substance biosynthetic process
+G69286_k105_5949_9,GO:0019752,cnn_bp,0.81713,carboxylic acid metabolic process
+G69286_k105_5949_9,GO:0044249,cnn_bp,0.7344,cellular biosynthetic process
+G69286_k105_5949_9,GO:0017144,cnn_bp,0.68903,drug metabolic process
+G69286_k105_5949_9,GO:0009056,cnn_bp,0.56814,catabolic process
+G78953_k105_10784_19,GO:0044242,cnn_bp,0.05862,cellular lipid catabolic process
+G78953_k105_10784_19,GO:0046031,cnn_bp,0.05791,ADP metabolic process
+G78953_k105_10784_19,GO:0006163,cnn_bp,0.0545,purine nucleotide metabolic process
+G78953_k105_10784_19,GO:0043648,cnn_bp,0.05432,dicarboxylic acid metabolic process
+G78953_k105_10784_19,GO:0006022,cnn_bp,0.05384,aminoglycan metabolic process
+G78953_k105_10784_19,GO:0042135,cnn_bp,0.05208,neurotransmitter catabolic process
+G78903_k105_377_5,GO:0008144,cnn_mf,0.06813,drug binding
+G78903_k105_377_5,GO:0044281,cnn_bp,0.99679,small molecule metabolic process
+G78903_k105_377_5,GO:0071704,cnn_bp,0.99575,organic substance metabolic process
+G78903_k105_377_5,GO:0044237,cnn_bp,0.9827,cellular metabolic process
+G78903_k105_377_5,GO:1901564,cnn_bp,0.9512,organonitrogen compound metabolic process
+G78903_k105_377_5,GO:0009056,cnn_bp,0.88655,catabolic process
+G78903_k105_377_5,GO:0006082,cnn_bp,0.87902,organic acid metabolic process
+G78903_k105_377_5,GO:0044238,cnn_bp,0.86463,primary metabolic process
+G78903_k105_377_5,GO:0043436,cnn_bp,0.85302,oxoacid metabolic process
+G78903_k105_377_5,GO:1901575,cnn_bp,0.84996,organic substance catabolic process
+G78903_k105_377_5,GO:0019752,cnn_bp,0.8328,carboxylic acid metabolic process
+G78903_k105_377_5,GO:0055114,cnn_bp,0.65618,oxidation-reduction process
+G78903_k105_377_5,GO:1901135,cnn_bp,0.6358,carbohydrate derivative metabolic process
+G78903_k105_377_5,GO:0016052,cnn_bp,0.63516,carbohydrate catabolic process
+G78903_k105_377_5,GO:0005975,cnn_bp,0.62555,carbohydrate metabolic process
+G78903_k105_377_5,GO:0009058,cnn_bp,0.54217,biosynthetic process
+G78903_k105_377_5,GO:0017144,cnn_bp,0.53127,drug metabolic process
+G78903_k105_377_5,GO:0006807,cnn_bp,0.52151,nitrogen compound metabolic process
+G78903_k105_377_5,GO:1901576,cnn_bp,0.51715,organic substance biosynthetic process
+G78903_k105_377_5,GO:0006793,cnn_bp,0.51394,phosphorus metabolic process
+G78903_k105_377_5,GO:0006796,cnn_bp,0.45446,phosphate-containing compound metabolic process
+G78903_k105_377_5,GO:0044283,cnn_bp,0.41806,small molecule biosynthetic process
+G78903_k105_377_5,GO:0042737,cnn_bp,0.36527,drug catabolic process
+G78903_k105_377_5,GO:0019637,cnn_bp,0.33278,organophosphate metabolic process
+G78903_k105_377_5,GO:0000272,cnn_bp,0.33127,polysaccharide catabolic process
+G78903_k105_377_5,GO:0044249,cnn_bp,0.32416,cellular biosynthetic process
+G78903_k105_377_5,GO:0044248,cnn_bp,0.2652,cellular catabolic process
+G78903_k105_377_5,GO:0016042,cnn_bp,0.21693,lipid catabolic process
+G78903_k105_377_5,GO:0044275,cnn_bp,0.19981,cellular carbohydrate catabolic process
+G78903_k105_377_5,GO:0006520,cnn_bp,0.19472,cellular amino acid metabolic process
+G78903_k105_377_5,GO:0044282,cnn_bp,0.16218,small molecule catabolic process
+G78903_k105_377_5,GO:1901605,cnn_bp,0.15633,alpha-amino acid metabolic process
+G78903_k105_377_5,GO:0006091,cnn_bp,0.11638,generation of precursor metabolites and energy
+G78903_k105_377_5,GO:0065008,cnn_bp,0.11471,regulation of biological quality
+G78903_k105_377_5,GO:0009251,cnn_bp,0.11424,glucan catabolic process
+G80357_k105_58946_10,GO:0051540,cnn_mf,0.25698,metal cluster binding
+G80357_k105_58946_10,GO:0051539,cnn_mf,0.23529,"4 iron, 4 sulfur cluster binding"
+G80357_k105_58946_10,GO:0097367,cnn_mf,0.20413,carbohydrate derivative binding
+G80357_k105_58946_10,GO:0008144,cnn_mf,0.19961,drug binding
+G80357_k105_58946_10,GO:0044281,cnn_bp,0.99959,small molecule metabolic process
+G80357_k105_58946_10,GO:0071704,cnn_bp,0.99771,organic substance metabolic process
+G80357_k105_58946_10,GO:0044237,cnn_bp,0.98839,cellular metabolic process
+G80357_k105_58946_10,GO:1901564,cnn_bp,0.97896,organonitrogen compound metabolic process
+G80357_k105_58946_10,GO:0006082,cnn_bp,0.96631,organic acid metabolic process
+G80357_k105_58946_10,GO:0043436,cnn_bp,0.9563,oxoacid metabolic process
+G80357_k105_58946_10,GO:0019752,cnn_bp,0.9505,carboxylic acid metabolic process
+G80357_k105_58946_10,GO:0009058,cnn_bp,0.90994,biosynthetic process
+G80357_k105_58946_10,GO:0044238,cnn_bp,0.90791,primary metabolic process
+G80357_k105_58946_10,GO:1901576,cnn_bp,0.89793,organic substance biosynthetic process
+G80357_k105_58946_10,GO:1901135,cnn_bp,0.80003,carbohydrate derivative metabolic process
+G80357_k105_58946_10,GO:0044283,cnn_bp,0.78286,small molecule biosynthetic process
+G80357_k105_58946_10,GO:0044249,cnn_bp,0.78043,cellular biosynthetic process
+G80357_k105_58946_10,GO:0009056,cnn_bp,0.69628,catabolic process
+G80357_k105_58946_10,GO:1901575,cnn_bp,0.66209,organic substance catabolic process
+G80357_k105_58946_10,GO:0006793,cnn_bp,0.65836,phosphorus metabolic process
+G80357_k105_58946_10,GO:0005975,cnn_bp,0.64771,carbohydrate metabolic process
+G80357_k105_58946_10,GO:0017144,cnn_bp,0.63439,drug metabolic process
+G80357_k105_58946_10,GO:0016052,cnn_bp,0.62043,carbohydrate catabolic process
+G80357_k105_58946_10,GO:0019637,cnn_bp,0.6042,organophosphate metabolic process
+G80357_k105_58946_10,GO:0055114,cnn_bp,0.58291,oxidation-reduction process
+G80357_k105_58946_10,GO:0006807,cnn_bp,0.58003,nitrogen compound metabolic process
+G80357_k105_58946_10,GO:0006796,cnn_bp,0.57464,phosphate-containing compound metabolic process
+G80357_k105_58946_10,GO:1901566,cnn_bp,0.39959,organonitrogen compound biosynthetic process
+G80357_k105_58946_10,GO:1901605,cnn_bp,0.29161,alpha-amino acid metabolic process
+G80357_k105_58946_10,GO:0006520,cnn_bp,0.28743,cellular amino acid metabolic process
+G80357_k105_58946_10,GO:0042737,cnn_bp,0.26129,drug catabolic process
+G80357_k105_58946_10,GO:0000272,cnn_bp,0.23864,polysaccharide catabolic process
+G80357_k105_58946_10,GO:0032787,cnn_bp,0.23857,monocarboxylic acid metabolic process
+G80357_k105_58946_10,GO:0044275,cnn_bp,0.19972,cellular carbohydrate catabolic process
+G80357_k105_58946_10,GO:0046394,cnn_bp,0.19571,carboxylic acid biosynthetic process
+G80357_k105_58946_10,GO:0016053,cnn_bp,0.18268,organic acid biosynthetic process
+G80357_k105_58946_10,GO:0044272,cnn_bp,0.16484,sulfur compound biosynthetic process
+G80357_k105_58946_10,GO:0006790,cnn_bp,0.16234,sulfur compound metabolic process
+G80357_k105_58946_10,GO:0006629,cnn_bp,0.15352,lipid metabolic process
+G80357_k105_58946_10,GO:0044282,cnn_bp,0.14227,small molecule catabolic process
+G80357_k105_58946_10,GO:0044255,cnn_bp,0.14042,cellular lipid metabolic process
+G80120_k105_14132_7,GO:0043167,cnn_mf,1.0,ion binding
+G80120_k105_14132_7,GO:0043169,cnn_mf,0.99995,cation binding
+G80120_k105_14132_7,GO:0046872,cnn_mf,0.99994,metal ion binding
+G80120_k105_14132_7,GO:0048037,cnn_mf,0.99192,cofactor binding
+G80120_k105_14132_7,GO:0036094,cnn_mf,0.97831,small molecule binding
+G80120_k105_14132_7,GO:0043168,cnn_mf,0.95806,anion binding
+G80120_k105_14132_7,GO:1901363,cnn_mf,0.87085,heterocyclic compound binding
+G80120_k105_14132_7,GO:0097159,cnn_mf,0.87006,organic cyclic compound binding
+G80120_k105_14132_7,GO:1901265,cnn_mf,0.83812,nucleoside phosphate binding
+G80120_k105_14132_7,GO:0000166,cnn_mf,0.83777,nucleotide binding
+G80120_k105_14132_7,GO:0097367,cnn_mf,0.19298,carbohydrate derivative binding
+G80120_k105_14132_7,GO:0051536,cnn_mf,0.15587,iron-sulfur cluster binding
+G80120_k105_14132_7,GO:0051539,cnn_mf,0.15043,"4 iron, 4 sulfur cluster binding"
+G80120_k105_14132_7,GO:0051540,cnn_mf,0.14888,metal cluster binding
+G80120_k105_14132_7,GO:0008144,cnn_mf,0.05541,drug binding
+G80120_k105_14132_7,GO:0044281,cnn_bp,0.99913,small molecule metabolic process
+G80120_k105_14132_7,GO:0071704,cnn_bp,0.99692,organic substance metabolic process
+G80120_k105_14132_7,GO:0044237,cnn_bp,0.98329,cellular metabolic process
+G80120_k105_14132_7,GO:1901564,cnn_bp,0.96237,organonitrogen compound metabolic process
+G80120_k105_14132_7,GO:0006082,cnn_bp,0.95573,organic acid metabolic process
+G80120_k105_14132_7,GO:0043436,cnn_bp,0.94204,oxoacid metabolic process
+G80120_k105_14132_7,GO:0019752,cnn_bp,0.93486,carboxylic acid metabolic process
+G80120_k105_14132_7,GO:0044238,cnn_bp,0.88535,primary metabolic process
+G80120_k105_14132_7,GO:0009058,cnn_bp,0.84182,biosynthetic process
+G80120_k105_14132_7,GO:1901576,cnn_bp,0.82885,organic substance biosynthetic process
+G80120_k105_14132_7,GO:0044283,cnn_bp,0.70855,small molecule biosynthetic process
+G80120_k105_14132_7,GO:0044249,cnn_bp,0.70162,cellular biosynthetic process
+G80120_k105_14132_7,GO:1901135,cnn_bp,0.65592,carbohydrate derivative metabolic process
+G80150_k105_7787_82,GO:0005576,cnn_cc,0.99944,extracellular region
+G80150_k105_7787_82,GO:0016020,cnn_cc,0.45146,membrane
+G80150_k105_7787_82,GO:0005615,cnn_cc,0.17701,extracellular space
+G80150_k105_7787_82,GO:0071944,cnn_cc,0.15081,cell periphery
+G80150_k105_7787_82,GO:0009986,cnn_cc,0.07599,cell surface
+G80150_k105_7787_82,GO:0005886,cnn_cc,0.06308,plasma membrane
+G80346_k105_15051_14,GO:0043167,cnn_mf,1.0,ion binding
+G80346_k105_15051_14,GO:0043169,cnn_mf,0.99998,cation binding
+G80346_k105_15051_14,GO:0046872,cnn_mf,0.99997,metal ion binding
+G80346_k105_15051_14,GO:0048037,cnn_mf,0.98919,cofactor binding
+G80346_k105_15051_14,GO:0036094,cnn_mf,0.96071,small molecule binding
+G80346_k105_15051_14,GO:0043168,cnn_mf,0.90367,anion binding
+G80346_k105_15051_14,GO:1901363,cnn_mf,0.88186,heterocyclic compound binding
+G80346_k105_15051_14,GO:0097159,cnn_mf,0.88071,organic cyclic compound binding
+G80346_k105_15051_14,GO:1901265,cnn_mf,0.70825,nucleoside phosphate binding
+G80346_k105_15051_14,GO:0000166,cnn_mf,0.70822,nucleotide binding
+G80346_k105_15051_14,GO:0051536,cnn_mf,0.23109,iron-sulfur cluster binding
+G80346_k105_15051_14,GO:0051540,cnn_mf,0.22199,metal cluster binding
+G80346_k105_15051_14,GO:0051539,cnn_mf,0.19565,"4 iron, 4 sulfur cluster binding"
+G80346_k105_15051_14,GO:0097367,cnn_mf,0.0988,carbohydrate derivative binding
+G80346_k105_15051_14,GO:0008144,cnn_mf,0.09812,drug binding
+G80346_k105_15051_14,GO:0044281,cnn_bp,0.99946,small molecule metabolic process
+G80346_k105_15051_14,GO:0071704,cnn_bp,0.99781,organic substance metabolic process
+G80346_k105_15051_14,GO:0044237,cnn_bp,0.99201,cellular metabolic process
+G80346_k105_15051_14,GO:1901564,cnn_bp,0.97827,organonitrogen compound metabolic process
+G80346_k105_15051_14,GO:0006082,cnn_bp,0.97299,organic acid metabolic process
+G80346_k105_15051_14,GO:0043436,cnn_bp,0.96535,oxoacid metabolic process
+G80346_k105_15051_14,GO:0019752,cnn_bp,0.96128,carboxylic acid metabolic process
+G80346_k105_15051_14,GO:0009058,cnn_bp,0.92547,biosynthetic process
+G80346_k105_15051_14,GO:1901576,cnn_bp,0.91518,organic substance biosynthetic process
+G80346_k105_15051_14,GO:0044238,cnn_bp,0.86804,primary metabolic process
+G80346_k105_15051_14,GO:0044249,cnn_bp,0.8144,cellular biosynthetic process
+G80346_k105_15051_14,GO:0044283,cnn_bp,0.76597,small molecule biosynthetic process
+G80158_k105_24402_1,GO:0051539,cnn_mf,0.57912,"4 iron, 4 sulfur cluster binding"
+G69286_k105_5949_8,GO:0051536,cnn_mf,0.63197,iron-sulfur cluster binding
+G69286_k105_5949_8,GO:0051540,cnn_mf,0.62207,metal cluster binding
+G80402_k105_4811_10,GO:0051536,cnn_mf,0.99884,iron-sulfur cluster binding
+G80318_k105_41119_1,GO:0051539,cnn_mf,0.77185,"4 iron, 4 sulfur cluster binding"
+G80402_k105_24742_10,GO:0051536,cnn_mf,0.95051,iron-sulfur cluster binding
+G80402_k105_29742_14,GO:0051536,cnn_mf,0.86049,iron-sulfur cluster binding
+G45060_k105_7758_8,GO:0051539,cnn_mf,0.81248,"4 iron, 4 sulfur cluster binding"
+G80402_k105_29742_14,GO:0051540,cnn_mf,0.85598,metal cluster binding
+G78903_k105_377_5,GO:0051539,cnn_mf,0.42899,"4 iron, 4 sulfur cluster binding"
+G80415_k105_24008_5,GO:0051539,cnn_mf,0.37586,"4 iron, 4 sulfur cluster binding"
+G80158_k105_24402_1,GO:0051539,cnn_mf,0.57912,"4 iron, 4 sulfur cluster binding"
+G69154_k105_6376_4,GO:0051539,cnn_mf,0.35277,"4 iron, 4 sulfur cluster binding"
+G45228_k105_43583_16,GO:0051539,cnn_mf,0.21424,"4 iron, 4 sulfur cluster binding"
+G78609_k105_11129_11,GO:0051539,cnn_mf,0.63891,"4 iron, 4 sulfur cluster binding"
+G78488_k105_8859_34,GO:0051539,cnn_mf,0.40326,"4 iron, 4 sulfur cluster binding"
+G69194_k105_11893_17,GO:0051539,cnn_mf,0.4164,"4 iron, 4 sulfur cluster binding"
+G78950_k105_13429_29,GO:0051539,cnn_mf,0.44831,"4 iron, 4 sulfur cluster binding"
+G45070_k105_8008_18,GO:0051540,cnn_mf,0.37682,metal cluster binding
+G45070_k105_8008_18,GO:0051539,cnn_mf,0.35474,"4 iron, 4 sulfur cluster binding"
+G45070_k105_8008_18,GO:1901363,cnn_mf,0.21455,heterocyclic compound binding
+G45070_k105_8008_18,GO:0097159,cnn_mf,0.21295,organic cyclic compound binding
+G45070_k105_8008_18,GO:1901265,cnn_mf,0.1648,nucleoside phosphate binding
