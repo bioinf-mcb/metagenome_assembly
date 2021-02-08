@@ -1,25 +1,5 @@
 #! /usr/bin/env python
 
-"""
-Script for mapping genes to contigs, MAGS and eggNOG annotations.
-
-Input files required:
-1) clustering file with cluster ID and gene ID
-2) Non-redundant gene catalogue (fasta)
-3) Contig files (fasta)
-4) binned contigs (MAGS)
-5) taxonomy files (tsv)
-6) EggNOG annotation file (tsv)
-
-The script outputs two files:
-1) Tsv file that links the non-redundant gene catalogue back to contigs,
-and then back to MAGs with eggNOG annotations
-2) Tsv file that maps gene families to taxonomy and generate counts
-
-Detailed help:
-python scripts/genes_MAGS_eggNOG_mapping.py --help
-"""
-
 import os
 import glob
 import click
@@ -32,18 +12,18 @@ pd.options.mode.chained_assignment = None
 
 def tabulate_cluster_info(path):
     """
-  transforming raw cluster file
-  Reads cluster file from CD-HIT 
-  transforms it into two-column format (cluster centroid ID and gene ID)
-  Parameters
+    transforming raw cluster file
+    Reads cluster file from CD-HIT
+    transforms it into two-column format (cluster centroid ID and gene ID)
+    Parameters
     ----------
-  input_file : str
+    input_file : str
         clustering file containing cluster centroids and gene IDS
 
     Returns
     -------
-  Pandas dataframe containing cluster IDS and gene IDS
-  """
+    Pandas dataframe containing cluster IDS and gene IDS
+    """
     clusters, genes = [], []
     with open(path, 'r') as file:
         for line in file:
@@ -60,33 +40,33 @@ def tabulate_cluster_info(path):
 
 def load_fasta_ids(path):
     """
-  Reads sequences from a fasta file and extracts identifiers.
+    Reads sequences from a fasta file and extracts identifiers.
 
     Parameters
     ----------
-  input_file : str
+    input_file : str
         fasta file containing contigs and gene identifiers
 
     Returns
     -------
-  List of fasta identifiers
-  """
+    List of fasta identifiers
+    """
     fasta_ids = [seq.metadata['id'] for seq in io.read(path, format='fasta')]
     return fasta_ids
 
 
 def load_checkm_files(file):
     """
-  Reads CHECKM txt file and extracts specified columns
-  Parameters
-  ----------
-  input_file : str
+    Reads CHECKM txt file and extracts specified columns
+    Parameters
+    ----------
+    input_file : str
       txt file containing CHECKM report
 
-  Returns
-  ------
-  A CHECKM dataframe
-  """
+    Returns
+    ------
+    A CHECKM dataframe
+    """
     CHECKM = []
     checkm_f = open(file, 'r')
     for line in checkm_f:
@@ -251,6 +231,25 @@ def load_eggNOG_file(eggnog_ann_file):
 def _perform_mapping(cluster_file, genes_file, contigs_file,
                      eggnog_ann_file, bin_fp, tax_fp, checkm_fp,
                      out_gene_mapping_file, out_cluster_taxa_file):
+    """
+    Script for mapping genes to contigs, MAGS and eggNOG annotations
+
+    input files required:
+    1) clustering file with cluster ID and gene ID
+    2) Non-redundant gene catalogue (fasta)
+    3) Contig files (fasta)
+    4) binned contigs (MAGS)
+    5) taxonomy files (tsv)
+    6) taxonomy files (tsv)
+    7) EggNOG annotation file (tsv)
+    8) Name of output file with gene mappings
+    9) Name of output file with cluster counts
+
+    The script outputs two files:
+    1) Tsv file that links the non-redundant gene catalogue back to contigs,
+    and then back to MAGs with eggNOG annotations
+    2) Tsv file that maps gene families to taxonomy and generate counts
+    """
 
     # load cluster file
     cluster_df = tabulate_cluster_info(cluster_file)
