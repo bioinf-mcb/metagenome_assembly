@@ -18,6 +18,8 @@ OUTPATH = join(os.getcwd(), "data/generated/deepfri")
 @pytest.fixture(scope="session", autouse=True)
 def clean_generated_files():
     print("\nRemoving old generated files...")
+    if not os.path.exists(OUTPATH):
+        os.makedirs(OUTPATH)
     for f in glob.glob(join(OUTPATH, '*')):
         os.remove(f)
     assert glob.glob(join(OUTPATH, '*')) == []

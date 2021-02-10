@@ -13,12 +13,14 @@ runner = CliRunner()
 
 INPATH = join(os.getcwd(), "data/input")
 EXPPATH = join(os.getcwd(), "data/expected")
-OUTPATH = join(os.getcwd(), "data/generated")
+OUTPATH = join(os.getcwd(), "data/generated/genes_mags_eggnog")
 
 
 @pytest.fixture(scope="session", autouse=True)
 def clean_generated_files():
     print("\nRemoving old generated files...")
+    if not os.path.exists(OUTPATH):
+        os.makedirs(OUTPATH)
     for f in glob.glob(join(OUTPATH, '*')):
         os.remove(f)
     assert glob.glob(join(OUTPATH, '*')) == []
