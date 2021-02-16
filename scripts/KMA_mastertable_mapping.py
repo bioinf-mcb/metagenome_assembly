@@ -52,16 +52,16 @@ def load_genemapper_table(path):
               help='Output .tsv file.')
 def _perform_summing_up_CPM(kma_file, gene_mapper_file, out_file):
     """
-    Script for summing up CPMs per Go term
-    This script takes normalized KMA depths, gene mapper table and sums up
-    CPMs per GO terms.
+    The script takes normalized KMA depths, gene mapper
+    table and sums up CPMs per GO terms.
+
     Input files required:
     1) Normalized KMA depths
     2) gene mapper table
-    This script outputs:
-    TSV file of CPMs per GO term
-    """
 
+    Outputs:
+    1) TSV file of CPMs per GO term
+    """
     # load kma dataframe
     kma_df = load_normalized_kma_file(kma_file)
 

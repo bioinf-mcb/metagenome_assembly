@@ -12,18 +12,18 @@ pd.options.mode.chained_assignment = None
 
 def tabulate_cluster_info(path):
     """
-  transforming raw cluster file
-  Reads cluster file from CD-HIT 
-  transforms it into two-column format (cluster centroid ID and gene ID)
-  Parameters
+    transforming raw cluster file
+    Reads cluster file from CD-HIT
+    transforms it into two-column format (cluster centroid ID and gene ID)
+    Parameters
     ----------
-  input_file : str
+    input_file : str
         clustering file containing cluster centroids and gene IDS
 
     Returns
     -------
-  Pandas dataframe containing cluster IDS and gene IDS
-  """
+    Pandas dataframe containing cluster IDS and gene IDS
+    """
     clusters, genes = [], []
     with open(path, 'r') as file:
         for line in file:
@@ -40,33 +40,33 @@ def tabulate_cluster_info(path):
 
 def load_fasta_ids(path):
     """
-  Reads sequences from a fasta file and extracts identifiers.
+    Reads sequences from a fasta file and extracts identifiers.
 
     Parameters
     ----------
-  input_file : str
+    input_file : str
         fasta file containing contigs and gene identifiers
 
     Returns
     -------
-  List of fasta identifiers
-  """
+    List of fasta identifiers
+    """
     fasta_ids = [seq.metadata['id'] for seq in io.read(path, format='fasta')]
     return fasta_ids
 
 
 def load_checkm_files(file):
     """
-  Reads CHECKM txt file and extracts specified columns
-  Parameters
-  ----------
-  input_file : str
+    Reads CHECKM txt file and extracts specified columns
+    Parameters
+    ----------
+    input_file : str
       txt file containing CHECKM report
 
-  Returns
-  ------
-  A CHECKM dataframe
-  """
+    Returns
+    ------
+    A CHECKM dataframe
+    """
     CHECKM = []
     checkm_f = open(file, 'r')
     for line in checkm_f:
@@ -170,9 +170,34 @@ def load_mags_contigs_taxonomies(bin_path, taxonomy_path, checkm_path):
     # Return concatenated dataframe
     concatenated_df = pd.concat([load_mags_contigs_taxonomies_for_sample(
         bin_dir, taxonomy_path, checkm_path)
-                                 for bin_dir in bin_dirs],
-                                ignore_index=True)
+        for bin_dir in bin_dirs],
+        ignore_index=True)
     return concatenated_df
+
+
+def load_eggNOG_file(eggnog_ann_file):
+    """
+    Load EggNOG annotations skipping commented lines i.e. '#\\s'
+
+    Parameters
+    ----------
+    eggnog_ann_file: str
+        path to EggNOG annotation file (tsv)
+
+    Returns
+    -------
+    Pandas dataframe
+    """
+    # Fetch header from file (should be somewhere at the beginning)
+    header = None
+    with open(eggnog_ann_file, 'r') as f:
+        for line in f:
+            if line.startswith('#query_name'):
+                header = line
+                break
+    header = [el.strip() for el in header.split('\t')]
+    # Create & return Pandas DataFrame
+    return pd.read_csv(eggnog_ann_file, sep='\t', names=header, comment='#')
 
 
 @click.command()
@@ -208,17 +233,22 @@ def _perform_mapping(cluster_file, genes_file, contigs_file,
                      out_gene_mapping_file, out_cluster_taxa_file):
     """
     Script for mapping genes to contigs, MAGS and eggNOG annotations
+
     input files required:
     1) clustering file with cluster ID and gene ID
     2) Non-redundant gene catalogue (fasta)
     3) Contig files (fasta)
     4) binned contigs (MAGS)
     5) taxonomy files (tsv)
-    6) EggNOG annotation file (tsv)
+    6) taxonomy files (tsv)
+    7) EggNOG annotation file (tsv)
+    8) Name of output file with gene mappings
+    9) Name of output file with cluster counts
+
     The script outputs two files:
-    Tsv file that links the non-redundant gene catalogue back to contigs,
+    1) Tsv file that links the non-redundant gene catalogue back to contigs,
     and then back to MAGs with eggNOG annotations
-    Tsv file that maps gene families to taxonomy and generate counts
+    2) Tsv file that maps gene families to taxonomy and generate counts
     """
 
     # load cluster file
@@ -277,10 +307,8 @@ def _perform_mapping(cluster_file, genes_file, contigs_file,
     mapped_genes_contigs_mags = mapped_genes_contigs_mags. \
         drop(columns="Gene_trunc")
 
-    # Creating eggNOG annotation dataframe
-    eggNOG_df = pd.read_csv(eggnog_ann_file, sep='\t', skiprows=2)
-    # drop last 3 rows with comments
-    eggNOG_df = eggNOG_df[:-3]
+    # # Creating eggNOG annotation dataframe
+    eggNOG_df = load_eggNOG_file(eggnog_ann_file)
 
     # Mapping between genes, contigs, mags and eggNOG annotations
     mapped_genes_contigs_mags_eggNOG = pd.merge(mapped_genes_contigs_mags,

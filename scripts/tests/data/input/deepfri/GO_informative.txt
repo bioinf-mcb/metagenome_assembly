@@ -1,0 +1,614 @@
+GO:0000287|MF|05|magnesium ion binding
+GO:0018106|BP|07|peptidyl-histidine phosphorylation
+GO:0018108|BP|07|peptidyl-tyrosine phosphorylation
+GO:0017016|MF|06|Ras GTPase binding
+GO:0046677|BP|04|response to antibiotic
+GO:0005739|CC|04|mitochondrion
+GO:0006914|BP|04|autophagy
+GO:0006915|BP|05|apoptotic process
+GO:0006913|BP|06|nucleocytoplasmic transport
+GO:1903046|BP|04|meiotic cell cycle process
+GO:0009579|CC|03|thylakoid
+GO:0071805|BP|04|potassium ion transmembrane transport
+GO:0003951|MF|05|NAD+ kinase activity
+GO:0042803|MF|04|protein homodimerization activity
+GO:0019288|BP|05|isopentenyl diphosphate biosynthetic process, methylerythritol 4-phosphate pathway
+GO:0098687|CC|04|chromosomal region
+GO:0008061|MF|03|chitin binding
+GO:0032321|BP|08|positive regulation of Rho GTPase activity
+GO:0006511|BP|07|ubiquitin-dependent protein catabolic process
+GO:0003743|MF|06|translation initiation factor activity
+GO:0004003|MF|09|ATP-dependent DNA helicase activity
+GO:0007267|BP|03|cell-cell signaling
+GO:0007264|BP|05|small GTPase mediated signal transduction
+GO:0016055|BP|05|Wnt signaling pathway
+GO:0016877|MF|03|ligase activity, forming carbon-sulfur bonds
+GO:0019031|CC|03|viral envelope
+GO:1901990|BP|06|regulation of mitotic cell cycle phase transition
+GO:0018024|MF|07|histone-lysine N-methyltransferase activity
+GO:0016790|MF|04|thiolester hydrolase activity
+GO:0009289|CC|03|pilus
+GO:0009288|CC|03|bacterial-type flagellum
+GO:0032775|BP|05|DNA methylation on adenine
+GO:0032776|BP|05|DNA methylation on cytosine
+GO:0004549|MF|06|tRNA-specific ribonuclease activity
+GO:0005737|CC|03|cytoplasm
+GO:0005730|CC|04|nucleolus
+GO:0019200|MF|05|carbohydrate kinase activity
+GO:0019201|MF|06|nucleotide kinase activity
+GO:0007156|BP|05|homophilic cell adhesion via plasma membrane adhesion molecules
+GO:0035821|BP|02|modification of morphology or physiology of other organism
+GO:0010340|MF|06|carboxyl-O-methyltransferase activity
+GO:0006278|BP|06|RNA-dependent DNA replication
+GO:0030288|CC|03|outer membrane-bounded periplasmic space
+GO:0030286|CC|04|dynein complex
+GO:0045491|BP|07|xylan metabolic process
+GO:0042157|BP|04|lipoprotein metabolic process
+GO:0006821|BP|06|chloride transport
+GO:0000502|CC|03|proteasome complex
+GO:0005840|CC|03|ribosome
+GO:0043565|MF|05|sequence-specific DNA binding
+GO:0005783|CC|04|endoplasmic reticulum
+GO:0005789|CC|02|endoplasmic reticulum membrane
+GO:0006783|BP|04|heme biosynthetic process
+GO:0004129|MF|02|cytochrome-c oxidase activity
+GO:0015979|BP|03|photosynthesis
+GO:0065002|BP|04|intracellular protein transmembrane transport
+GO:0065004|BP|05|protein-DNA complex assembly
+GO:0045597|BP|05|positive regulation of cell differentiation
+GO:0045596|BP|05|negative regulation of cell differentiation
+GO:0016458|BP|03|gene silencing
+GO:0016459|CC|03|myosin complex
+GO:0019825|MF|02|oxygen binding
+GO:0035335|BP|07|peptidyl-tyrosine dephosphorylation
+GO:0015343|MF|03|siderophore transmembrane transporter activity
+GO:0009435|BP|08|NAD biosynthetic process
+GO:0009432|BP|04|SOS response
+GO:0044455|CC|02|mitochondrial membrane part
+GO:0044454|CC|04|nuclear chromosome part
+GO:0044456|CC|01|synapse part
+GO:0019321|BP|05|pentose metabolic process
+GO:0007059|BP|03|chromosome segregation
+GO:0006099|BP|03|tricarboxylic acid cycle
+GO:0006096|BP|03|glycolytic process
+GO:0006094|BP|07|gluconeogenesis
+GO:0005549|MF|02|odorant binding
+GO:0051240|BP|04|positive regulation of multicellular organismal process
+GO:0051241|BP|04|negative regulation of multicellular organismal process
+GO:0030435|BP|03|sporulation resulting in formation of a cellular spore
+GO:0016987|MF|04|sigma factor activity
+GO:0020037|MF|04|heme binding
+GO:0006352|BP|06|DNA-templated transcription, initiation
+GO:0004867|MF|05|serine-type endopeptidase inhibitor activity
+GO:0008028|MF|06|monocarboxylic acid transmembrane transporter activity
+GO:0071345|BP|05|cellular response to cytokine stimulus
+GO:0008889|MF|06|glycerophosphodiester phosphodiesterase activity
+GO:0006546|BP|07|glycine catabolic process
+GO:0006541|BP|06|glutamine metabolic process
+GO:0005097|MF|05|Rab GTPase activator activity
+GO:0000786|CC|03|nucleosome
+GO:0016838|MF|04|carbon-oxygen lyase activity, acting on phosphates
+GO:0016831|MF|04|carboxy-lyase activity
+GO:0097264|BP|05|self proteolysis
+GO:0015035|MF|05|protein disulfide oxidoreductase activity
+GO:0044550|BP|04|secondary metabolite biosynthetic process
+GO:0030170|MF|03|pyridoxal phosphate binding
+GO:0043021|MF|02|ribonucleoprotein complex binding
+GO:0006730|BP|03|one-carbon metabolic process
+GO:0016901|MF|04|oxidoreductase activity, acting on the CH-OH group of donors, quinone or similar compound as acceptor
+GO:0009507|CC|05|chloroplast
+GO:0032784|BP|07|regulation of DNA-templated transcription, elongation
+GO:0005622|CC|02|intracellular
+GO:0003924|MF|07|GTPase activity
+GO:0080135|BP|04|regulation of cellular response to stress
+GO:0060284|BP|05|regulation of cell development
+GO:0016567|BP|08|protein ubiquitination
+GO:1902533|BP|06|positive regulation of intracellular signal transduction
+GO:0003697|MF|06|single-stranded DNA binding
+GO:0015238|MF|03|drug transmembrane transporter activity
+GO:0016763|MF|04|transferase activity, transferring pentosyl groups
+GO:0009236|BP|04|cobalamin biosynthetic process
+GO:0009231|BP|04|riboflavin biosynthetic process
+GO:0015171|MF|06|amino acid transmembrane transporter activity
+GO:0030036|BP|04|actin cytoskeleton organization
+GO:0051087|MF|03|chaperone binding
+GO:0051082|MF|03|unfolded protein binding
+GO:0061025|BP|04|membrane fusion
+GO:0009790|BP|03|embryo development
+GO:0046939|BP|06|nucleotide phosphorylation
+GO:0034219|BP|04|carbohydrate transmembrane transport
+GO:0003746|MF|06|translation elongation factor activity
+GO:0006835|BP|05|dicarboxylic acid transport
+GO:0007005|BP|03|mitochondrion organization
+GO:0043531|MF|04|ADP binding
+GO:0006222|BP|08|UMP biosynthetic process
+GO:0015926|MF|05|glucosidase activity
+GO:0015925|MF|05|galactosidase activity
+GO:0006144|BP|05|purine nucleobase metabolic process
+GO:0031347|BP|05|regulation of defense response
+GO:0015833|BP|04|peptide transport
+GO:0005126|MF|04|cytokine receptor binding
+GO:0036459|MF|03|ubiquitinyl hydrolase activity
+GO:0070062|CC|04|extracellular vesicular exosome
+GO:0044718|BP|04|siderophore transmembrane transport
+GO:0009103|BP|05|lipopolysaccharide biosynthetic process
+GO:0003887|MF|06|DNA-directed DNA polymerase activity
+GO:0018298|BP|06|protein-chromophore linkage
+GO:0007205|BP|06|protein kinase C-activating G-protein coupled receptor signaling pathway
+GO:0017038|BP|03|protein import
+GO:0016812|MF|04|hydrolase activity, acting on carbon-nitrogen (but not peptide) bonds, in cyclic amides
+GO:0016813|MF|04|hydrolase activity, acting on carbon-nitrogen (but not peptide) bonds, in linear amidines
+GO:0006935|BP|03|chemotaxis
+GO:0016485|BP|05|protein processing
+GO:0016226|BP|03|iron-sulfur cluster assembly
+GO:0090502|BP|06|RNA phosphodiester bond hydrolysis, endonucleolytic
+GO:0035091|MF|04|phosphatidylinositol binding
+GO:0051701|BP|03|interaction with host
+GO:0008270|MF|06|zinc ion binding
+GO:0070588|BP|05|calcium ion transmembrane transport
+GO:0003729|MF|06|mRNA binding
+GO:1901264|BP|03|carbohydrate derivative transport
+GO:0006887|BP|04|exocytosis
+GO:0016894|MF|06|endonuclease activity, active with either ribo- or deoxyribonucleic acids and producing 3'-phosphomonoesters
+GO:0016895|MF|07|exodeoxyribonuclease activity, producing 5'-phosphomonoesters
+GO:0009062|BP|05|fatty acid catabolic process
+GO:0009060|BP|05|aerobic respiration
+GO:0009065|BP|06|glutamine family amino acid catabolic process
+GO:0019013|CC|02|viral nucleocapsid
+GO:0019012|CC|01|virion
+GO:0070469|CC|02|respiratory chain
+GO:0033648|CC|06|host intracellular membrane-bounded organelle
+GO:0034614|BP|05|cellular response to reactive oxygen species
+GO:0005231|MF|08|excitatory extracellular ligand-gated ion channel activity
+GO:0004725|MF|07|protein tyrosine phosphatase activity
+GO:0003796|MF|05|lysozyme activity
+GO:0015991|BP|07|ATP hydrolysis coupled proton transport
+GO:0004525|MF|07|ribonuclease III activity
+GO:0004523|MF|08|RNA-DNA hybrid ribonuclease activity
+GO:0030261|BP|03|chromosome condensation
+GO:0003707|MF|03|steroid hormone receptor activity
+GO:0042176|BP|05|regulation of protein catabolic process
+GO:0004312|MF|05|fatty acid synthase activity
+GO:0006071|BP|04|glycerol metabolic process
+GO:0010243|BP|03|response to organonitrogen compound
+GO:0005524|MF|05|ATP binding
+GO:0005525|MF|05|GTP binding
+GO:0015628|BP|05|protein secretion by the type II secretion system
+GO:0015627|CC|02|type II protein secretion system complex
+GO:0031419|MF|04|cobalamin binding
+GO:0031418|MF|04|L-ascorbic acid binding
+GO:0006270|BP|05|DNA replication initiation
+GO:0006275|BP|06|regulation of DNA replication
+GO:0008138|MF|07|protein tyrosine/serine/threonine phosphatase activity
+GO:0008137|MF|06|NADH dehydrogenase (ubiquinone) activity
+GO:0008134|MF|03|transcription factor binding
+GO:0045202|CC|01|synapse
+GO:0016477|BP|03|cell migration
+GO:0023014|BP|03|signal transduction by phosphorylation
+GO:0000910|BP|04|cytokinesis
+GO:0000917|BP|05|barrier septum assembly
+GO:0005179|MF|04|hormone activity
+GO:0004803|MF|02|transposase activity
+GO:0010951|BP|07|negative regulation of endopeptidase activity
+GO:0046961|MF|07|proton-transporting ATPase activity, rotational mechanism
+GO:0009847|BP|02|spore germination
+GO:0051050|BP|04|positive regulation of transport
+GO:0034765|BP|05|regulation of ion transmembrane transport
+GO:0006614|BP|05|SRP-dependent cotranslational protein targeting to membrane
+GO:0000723|BP|03|telomere maintenance
+GO:0000724|BP|05|double-strand break repair via homologous recombination
+GO:0004616|MF|05|phosphogluconate dehydrogenase (decarboxylating) activity
+GO:0051260|BP|07|protein homooligomerization
+GO:0017004|BP|07|cytochrome complex assembly
+GO:0009396|BP|06|folic acid-containing compound biosynthetic process
+GO:0005727|CC|03|extrachromosomal circular DNA
+GO:0004181|MF|07|metallocarboxypeptidase activity
+GO:0046854|BP|06|phosphatidylinositol phosphorylation
+GO:0019887|MF|03|protein kinase regulator activity
+GO:0006338|BP|05|chromatin remodeling
+GO:0006486|BP|03|protein glycosylation
+GO:0005681|CC|03|spliceosomal complex
+GO:0004222|MF|06|metalloendopeptidase activity
+GO:0008762|MF|05|UDP-N-acetylmuramate dehydrogenase activity
+GO:0000413|BP|08|protein peptidyl-prolyl isomerization
+GO:0005044|MF|03|scavenger receptor activity
+GO:0006298|BP|04|mismatch repair
+GO:0008202|BP|04|steroid metabolic process
+GO:0042254|BP|04|ribosome biogenesis
+GO:0003779|MF|04|actin binding
+GO:0003777|MF|08|microtubule motor activity
+GO:0005343|MF|05|organic acid:sodium symporter activity
+GO:0007275|BP|03|multicellular organismal development
+GO:0016023|CC|04|cytoplasmic membrane-bounded vesicle
+GO:0048609|BP|02|multicellular organismal reproductive process
+GO:0016846|MF|03|carbon-sulfur lyase activity
+GO:0016840|MF|03|carbon-nitrogen lyase activity
+GO:0016849|MF|03|phosphorus-oxygen lyase activity
+GO:1903530|BP|05|regulation of secretion by cell
+GO:0030151|MF|06|molybdenum ion binding
+GO:0019028|CC|02|viral capsid
+GO:0022412|BP|03|cellular process involved in reproduction in multicellular organism
+GO:0005991|BP|04|trehalose metabolic process
+GO:0000003|BP|01|reproduction
+GO:0004713|MF|06|protein tyrosine kinase activity
+GO:0016783|MF|04|sulfurtransferase activity
+GO:0045087|BP|03|innate immune response
+GO:0009292|BP|03|genetic transfer
+GO:0008658|MF|03|penicillin binding
+GO:0004559|MF|06|alpha-mannosidase activity
+GO:0006402|BP|06|mRNA catabolic process
+GO:0008284|BP|05|positive regulation of cell proliferation
+GO:0008285|BP|05|negative regulation of cell proliferation
+GO:0008283|BP|02|cell proliferation
+GO:0022406|BP|03|membrane docking
+GO:0006563|BP|06|L-serine metabolic process
+GO:0006561|BP|05|proline biosynthetic process
+GO:0006826|BP|07|iron ion transport
+GO:0005856|CC|04|cytoskeleton
+GO:1990204|CC|02|oxidoreductase complex
+GO:0045860|BP|07|positive regulation of protein kinase activity
+GO:0030488|BP|05|tRNA methylation
+GO:0009521|CC|02|photosystem
+GO:0005911|CC|02|cell-cell junction
+GO:0007169|BP|06|transmembrane receptor protein tyrosine kinase signaling pathway
+GO:0005262|MF|07|calcium channel activity
+GO:0016709|MF|04|oxidoreductase activity, acting on paired donors, with incorporation or reduction of molecular oxygen, NAD(P)H as one donor, and incorporation of one atom of oxygen
+GO:0016706|MF|04|oxidoreductase activity, acting on paired donors, with incorporation or reduction of molecular oxygen, 2-oxoglutarate as one donor, and incorporation of one atom each of oxygen into both donors
+GO:0016702|MF|04|oxidoreductase activity, acting on single donors with incorporation of molecular oxygen, incorporation of two atoms of oxygen
+GO:0019706|MF|06|protein-cysteine S-palmitoyltransferase activity
+GO:0015116|MF|04|sulfate transmembrane transporter activity
+GO:0042742|BP|04|defense response to bacterium
+GO:0042773|BP|05|ATP synthesis coupled electron transport
+GO:0006450|BP|03|regulation of translational fidelity
+GO:0006457|BP|05|protein folding
+GO:0000123|CC|04|histone acetyltransferase complex
+GO:0000122|BP|08|negative regulation of transcription from RNA polymerase II promoter
+GO:0010181|MF|04|FMN binding
+GO:0016114|BP|05|terpenoid biosynthetic process
+GO:0031167|BP|05|rRNA methylation
+GO:0009401|BP|04|phosphoenolpyruvate-dependent sugar phosphotransferase system
+GO:0009405|BP|02|pathogenesis
+GO:0009408|BP|03|response to heat
+GO:0003006|BP|02|developmental process involved in reproduction
+GO:0032535|BP|03|regulation of cellular component size
+GO:0030976|MF|03|thiamine pyrophosphate binding
+GO:0044445|CC|04|cytosolic part
+GO:0044441|CC|02|ciliary part
+GO:0044448|CC|04|cell cortex part
+GO:0003333|BP|05|amino acid transmembrane transport
+GO:0007067|BP|04|mitotic nuclear division
+GO:0005576|CC|01|extracellular region
+GO:0005578|CC|02|proteinaceous extracellular matrix
+GO:0004620|MF|05|phospholipase activity
+GO:0015671|BP|04|oxygen transport
+GO:0031461|CC|04|cullin-RING ubiquitin ligase complex
+GO:0044247|BP|05|cellular polysaccharide catabolic process
+GO:0005773|CC|04|vacuole
+GO:0005777|CC|05|peroxisome
+GO:0005774|CC|03|vacuolar membrane
+GO:0007608|BP|07|sensory perception of smell
+GO:0006954|BP|04|inflammatory response
+GO:0051960|BP|05|regulation of nervous system development
+GO:0034968|BP|05|histone lysine methylation
+GO:0007389|BP|03|pattern specification process
+GO:0008528|MF|04|G-protein coupled peptide receptor activity
+GO:0015197|MF|03|peptide transporter activity
+GO:0006366|BP|06|transcription from RNA polymerase II promoter
+GO:0016628|MF|04|oxidoreductase activity, acting on the CH-CH group of donors, NAD or NADP as acceptor
+GO:0016620|MF|04|oxidoreductase activity, acting on the aldehyde or oxo group of donors, NAD or NADP as acceptor
+GO:0010927|BP|03|cellular component assembly involved in morphogenesis
+GO:0097458|CC|02|neuron part
+GO:0009162|BP|06|deoxyribonucleoside monophosphate metabolic process
+GO:0070566|MF|05|adenylyltransferase activity
+GO:0070567|MF|05|cytidylyltransferase activity
+GO:0070569|MF|05|uridylyltransferase activity
+GO:0006662|BP|04|glycerol ether metabolic process
+GO:0006665|BP|04|sphingolipid metabolic process
+GO:0005319|MF|03|lipid transporter activity
+GO:0005310|MF|06|dicarboxylic acid transmembrane transporter activity
+GO:0051181|BP|03|cofactor transport
+GO:0051180|BP|03|vitamin transport
+GO:0051183|MF|02|vitamin transporter activity
+GO:0051235|BP|02|maintenance of location
+GO:0007229|BP|05|integrin-mediated signaling pathway
+GO:0009360|CC|04|DNA polymerase III complex
+GO:0016836|MF|04|hydro-lyase activity
+GO:0016832|MF|04|aldehyde-lyase activity
+GO:0016833|MF|04|oxo-acid-lyase activity
+GO:1902358|BP|05|sulfate transmembrane transport
+GO:0005634|CC|04|nucleus
+GO:0009986|CC|02|cell surface
+GO:0009982|MF|04|pseudouridine synthase activity
+GO:0003917|MF|04|DNA topoisomerase type I activity
+GO:0003918|MF|05|DNA topoisomerase type II (ATP-hydrolyzing) activity
+GO:1901505|MF|02|carbohydrate derivative transporter activity
+GO:0006526|BP|07|arginine biosynthetic process
+GO:0006869|BP|03|lipid transport
+GO:0045226|BP|05|extracellular polysaccharide biosynthetic process
+GO:0046982|MF|04|protein heterodimerization activity
+GO:0030983|MF|07|mismatched DNA binding
+GO:0055072|BP|09|iron ion homeostasis
+GO:0071555|BP|03|cell wall organization
+GO:0008017|MF|04|microtubule binding
+GO:0044070|BP|06|regulation of anion transport
+GO:0009007|MF|06|site-specific DNA-methyltransferase (adenine-specific) activity
+GO:0009002|MF|07|serine-type D-Ala-D-Ala carboxypeptidase activity
+GO:0070403|MF|04|NAD+ binding
+GO:0005929|CC|02|cilium
+GO:0006749|BP|04|glutathione metabolic process
+GO:0006744|BP|06|ubiquinone biosynthetic process
+GO:0016755|MF|04|transferase activity, transferring amino-acyl groups
+GO:0060590|MF|03|ATPase regulator activity
+GO:0009245|BP|05|lipid A biosynthetic process
+GO:0008199|MF|07|ferric iron binding
+GO:0045261|CC|03|proton-transporting ATP synthase complex, catalytic core F(1)
+GO:0045263|CC|03|proton-transporting ATP synthase complex, coupling factor F(o)
+GO:0051920|MF|02|peroxiredoxin activity
+GO:0048193|BP|04|Golgi vesicle transport
+GO:0042777|BP|08|plasma membrane ATP synthesis coupled proton transport
+GO:0003995|MF|04|acyl-CoA dehydrogenase activity
+GO:0003993|MF|06|acid phosphatase activity
+GO:0000155|MF|03|phosphorelay sensor kinase activity
+GO:0000150|MF|02|recombinase activity
+GO:0030243|BP|07|cellulose metabolic process
+GO:0030247|MF|03|polysaccharide binding
+GO:0048731|BP|03|system development
+GO:0016592|CC|03|mediator complex
+GO:0032508|BP|07|DNA duplex unwinding
+GO:0005887|CC|03|integral component of plasma membrane
+GO:0005886|CC|02|plasma membrane
+GO:0007015|BP|05|actin filament organization
+GO:0007018|BP|04|microtubule-based movement
+GO:0005509|MF|05|calcium ion binding
+GO:0005507|MF|06|copper ion binding
+GO:0009089|BP|05|lysine biosynthetic process via diaminopimelate
+GO:0009086|BP|06|methionine biosynthetic process
+GO:0009082|BP|05|branched-chain amino acid biosynthetic process
+GO:0042302|MF|02|structural constituent of cuticle
+GO:0050778|BP|05|positive regulation of immune response
+GO:0005743|CC|04|mitochondrial inner membrane
+GO:0015932|MF|04|nucleobase-containing compound transmembrane transporter activity
+GO:0015934|CC|04|large ribosomal subunit
+GO:0015935|CC|04|small ribosomal subunit
+GO:0015937|BP|06|coenzyme A biosynthetic process
+GO:0015939|BP|05|pantothenate metabolic process
+GO:0032956|BP|05|regulation of actin cytoskeleton organization
+GO:0071897|BP|05|DNA biosynthetic process
+GO:0042537|BP|04|benzene-containing compound metabolic process
+GO:0045454|BP|04|cell redox homeostasis
+GO:0009132|BP|05|nucleoside diphosphate metabolic process
+GO:0003896|MF|07|DNA primase activity
+GO:0034703|CC|03|cation channel complex
+GO:0006633|BP|05|fatty acid biosynthetic process
+GO:0006637|BP|04|acyl-CoA metabolic process
+GO:0005581|CC|01|collagen trimer
+GO:0008745|MF|05|N-acetylmuramoyl-L-alanine amidase activity
+GO:0004984|MF|04|olfactory receptor activity
+GO:0004674|MF|06|protein serine/threonine kinase activity
+GO:0007218|BP|06|neuropeptide signaling pathway
+GO:0042602|MF|05|riboflavin reductase (NADPH) activity
+GO:0048513|BP|03|organ development
+GO:0043401|BP|05|steroid hormone mediated signaling pathway
+GO:0046835|BP|04|carbohydrate phosphorylation
+GO:0016744|MF|03|transferase activity, transferring aldehyde or ketonic groups
+GO:0006313|BP|03|transposition, DNA-mediated
+GO:0031967|CC|03|organelle envelope
+GO:0003968|MF|06|RNA-directed RNA polymerase activity
+GO:0003964|MF|06|RNA-directed DNA polymerase activity
+GO:0019901|MF|05|protein kinase binding
+GO:0019904|MF|03|protein domain specific binding
+GO:0035438|MF|04|cyclic-di-GMP binding
+GO:0003755|MF|04|peptidyl-prolyl cis-trans isomerase activity
+GO:0006506|BP|06|GPI anchor biosynthetic process
+GO:0016868|MF|04|intramolecular transferase activity, phosphotransferases
+GO:0016861|MF|04|intramolecular oxidoreductase activity, interconverting aldoses and ketoses
+GO:0015074|BP|05|DNA integration
+GO:0006098|BP|05|pentose-phosphate shunt
+GO:0043066|BP|07|negative regulation of apoptotic process
+GO:0043068|BP|06|positive regulation of programmed cell death
+GO:0009070|BP|06|serine family amino acid biosynthetic process
+GO:0032101|BP|04|regulation of response to external stimulus
+GO:0005977|BP|04|glycogen metabolic process
+GO:0006777|BP|04|Mo-molybdopterin cofactor biosynthetic process
+GO:0000398|BP|07|mRNA splicing, via spliceosome
+GO:0004733|MF|05|pyridoxamine-phosphate oxidase activity
+GO:0001817|BP|04|regulation of cytokine production
+GO:0030334|BP|05|regulation of cell migration
+GO:0035023|BP|08|regulation of Rho protein signal transduction
+GO:0009279|CC|03|cell outer membrane
+GO:0022618|BP|05|ribonucleoprotein complex assembly
+GO:0005654|CC|04|nucleoplasm
+GO:0008408|MF|06|3'-5' exonuclease activity
+GO:0046112|BP|04|nucleobase biosynthetic process
+GO:0019239|MF|02|deaminase activity
+GO:0000981|MF|03|sequence-specific DNA binding RNA polymerase II transcription factor activity
+GO:0005871|CC|04|kinesin complex
+GO:0005874|CC|03|microtubule
+GO:0006265|BP|06|DNA topological change
+GO:0006266|BP|05|DNA ligation
+GO:0006261|BP|06|DNA-dependent DNA replication
+GO:0006269|BP|05|DNA replication, synthesis of RNA primer
+GO:0005794|CC|04|Golgi apparatus
+GO:0005249|MF|08|voltage-gated potassium channel activity
+GO:0005247|MF|08|voltage-gated chloride channel activity
+GO:0004112|MF|06|cyclic-nucleotide phosphodiesterase activity
+GO:0008982|MF|04|protein-N(PI)-phosphohistidine-sugar phosphotransferase activity
+GO:0016725|MF|03|oxidoreductase activity, acting on CH or CH2 groups
+GO:0008146|MF|04|sulfotransferase activity
+GO:0008360|BP|03|regulation of cell shape
+GO:0031301|CC|02|integral component of organelle membrane
+GO:0019835|BP|02|cytolysis
+GO:0000105|BP|05|histidine biosynthetic process
+GO:0009423|BP|07|chorismate biosynthetic process
+GO:0009425|CC|03|bacterial-type flagellum basal body
+GO:0009424|CC|03|bacterial-type flagellum hook
+GO:1990391|CC|03|DNA repair complex
+GO:0008483|MF|04|transaminase activity
+GO:0008484|MF|04|sulfuric ester hydrolase activity
+GO:0048598|BP|03|embryonic morphogenesis
+GO:0046933|MF|07|proton-transporting ATP synthase activity, rotational mechanism
+GO:0007049|BP|03|cell cycle
+GO:0000738|BP|06|DNA catabolic process, exonucleolytic
+GO:0000737|BP|06|DNA catabolic process, endonucleolytic
+GO:0004601|MF|02|peroxidase activity
+GO:0046916|BP|08|cellular transition metal ion homeostasis
+GO:0046653|BP|06|tetrahydrofolate metabolic process
+GO:0048038|MF|03|quinone binding
+GO:0004197|MF|06|cysteine-type endopeptidase activity
+GO:0004190|MF|06|aspartic-type endopeptidase activity
+GO:0090575|CC|05|RNA polymerase II transcription factor complex
+GO:0016999|BP|04|antibiotic metabolic process
+GO:0016998|BP|04|cell wall macromolecule catabolic process
+GO:0015718|BP|05|monocarboxylic acid transport
+GO:0047661|MF|06|amino-acid racemase activity
+GO:0050661|MF|04|NADP binding
+GO:0050660|MF|04|flavin adenine dinucleotide binding
+GO:0005694|CC|04|chromosome
+GO:0004252|MF|05|serine-type endopeptidase activity
+GO:0042823|BP|05|pyridoxal phosphate biosynthetic process
+GO:0045936|BP|07|negative regulation of phosphate metabolic process
+GO:0043190|CC|03|ATP-binding cassette (ABC) transporter complex
+GO:0009148|BP|06|pyrimidine nucleoside triphosphate biosynthetic process
+GO:0006534|BP|05|cysteine metabolic process
+GO:0008897|MF|05|holo-[acyl-carrier-protein] synthase activity
+GO:0001172|BP|07|transcription, RNA-templated
+GO:0005089|MF|03|Rho guanyl-nucleotide exchange factor activity
+GO:0000226|BP|04|microtubule cytoskeleton organization
+GO:0016032|BP|03|viral process
+GO:0009307|BP|05|DNA restriction-modification system
+GO:0016857|MF|04|racemase and epimerase activity, acting on carbohydrates and derivatives
+GO:0002161|MF|05|aminoacyl-tRNA editing activity
+GO:0030145|MF|06|manganese ion binding
+GO:0042651|CC|03|thylakoid membrane
+GO:0006189|BP|09|'de novo' IMP biosynthetic process
+GO:0006184|BP|07|GTP catabolic process
+GO:0000075|BP|04|cell cycle checkpoint
+GO:0000079|BP|05|regulation of cyclin-dependent protein serine/threonine kinase activity
+GO:0008649|MF|06|rRNA methyltransferase activity
+GO:0051205|BP|05|protein insertion into membrane
+GO:0005615|CC|02|extracellular space
+GO:0005618|CC|03|cell wall
+GO:0004568|MF|05|chitinase activity
+GO:0015450|MF|05|P-P-bond-hydrolysis-driven protein transmembrane transporter activity
+GO:0051129|BP|04|negative regulation of cellular component organization
+GO:0004066|MF|05|asparagine synthase (glutamine-hydrolyzing) activity
+GO:0005829|CC|04|cytosol
+GO:0006032|BP|06|chitin catabolic process
+GO:0016573|BP|04|histone acetylation
+GO:0043094|BP|04|cellular metabolic compound salvage
+GO:0008374|MF|05|O-acyltransferase activity
+GO:0008375|MF|05|acetylglucosaminyltransferase activity
+GO:0003682|MF|02|chromatin binding
+GO:0003684|MF|05|damaged DNA binding
+GO:0010638|BP|05|positive regulation of organelle organization
+GO:0016778|MF|04|diphosphotransferase activity
+GO:0016776|MF|04|phosphotransferase activity, phosphate group as acceptor
+GO:0016774|MF|04|phosphotransferase activity, carboxyl group as acceptor
+GO:0009229|BP|05|thiamine diphosphate biosynthetic process
+GO:0009228|BP|05|thiamine biosynthetic process
+GO:0009226|BP|05|nucleotide-sugar biosynthetic process
+GO:0009221|BP|07|pyrimidine deoxyribonucleotide biosynthetic process
+GO:0008172|MF|05|S-methyltransferase activity
+GO:0008175|MF|06|tRNA methyltransferase activity
+GO:0048468|BP|03|cell development
+GO:0038032|BP|07|termination of G-protein coupled receptor signaling pathway
+GO:0019843|MF|05|rRNA binding
+GO:0000139|CC|03|Golgi membrane
+GO:0019104|MF|05|DNA N-glycosylase activity
+GO:0031177|MF|03|phosphopantetheine binding
+GO:0009416|BP|04|response to light stimulus
+GO:0070013|CC|03|intracellular organelle lumen
+GO:0045786|BP|05|negative regulation of cell cycle
+GO:0044780|BP|05|bacterial-type flagellum assembly
+GO:0044433|CC|03|cytoplasmic vesicle part
+GO:0044434|CC|04|chloroplast part
+GO:0009887|BP|03|organ morphogenesis
+GO:0009888|BP|03|tissue development
+GO:0015662|MF|06|ATPase activity, coupled to transmembrane movement of ions, phosphorylative mechanism
+GO:0015666|MF|07|restriction endodeoxyribonuclease activity
+GO:0044212|MF|06|transcription regulatory region DNA binding
+GO:0044218|CC|04|other organism cell membrane
+GO:0005768|CC|04|endosome
+GO:0007610|BP|02|behavior
+GO:0004143|MF|05|diacylglycerol kinase activity
+GO:0004842|MF|03|ubiquitin-protein transferase activity
+GO:0050658|BP|04|RNA transport
+GO:0019184|BP|06|nonribosomal peptide biosynthetic process
+GO:0006855|BP|04|drug transmembrane transport
+GO:0043408|BP|06|regulation of MAPK cascade
+GO:0044702|BP|02|single organism reproductive process
+GO:0001104|MF|04|RNA polymerase II transcription cofactor activity
+GO:0001101|BP|03|response to acid chemical
+GO:0004659|MF|04|prenyltransferase activity
+GO:0051223|BP|05|regulation of protein transport
+GO:0008083|MF|04|growth factor activity
+GO:0008080|MF|06|N-acetyltransferase activity
+GO:0016805|MF|06|dipeptidase activity
+GO:0030117|CC|02|membrane coat
+GO:0000049|MF|05|tRNA binding
+GO:0015296|MF|06|anion:cation symporter activity
+GO:0015299|MF|07|solute:proton antiporter activity
+GO:0015748|BP|03|organophosphate ester transport
+GO:0030684|CC|03|preribosome
+GO:0005643|CC|03|nuclear pore
+GO:0002697|BP|04|regulation of immune effector process
+GO:0003906|MF|04|DNA-(apurinic or apyrimidinic site) lyase activity
+GO:0003909|MF|04|DNA ligase activity
+GO:0006836|BP|03|neurotransmitter transport
+GO:0043254|BP|04|regulation of protein complex assembly
+GO:0045944|BP|08|positive regulation of transcription from RNA polymerase II promoter
+GO:0009190|BP|06|cyclic nucleotide biosynthetic process
+GO:0006529|BP|06|asparagine biosynthetic process
+GO:0003735|MF|02|structural constituent of ribosome
+GO:0051119|MF|04|sugar transmembrane transporter activity
+GO:0010038|BP|04|response to metal ion
+GO:0006898|BP|06|receptor-mediated endocytosis
+GO:0005813|CC|04|centrosome
+GO:0006414|BP|05|translational elongation
+GO:0046527|MF|05|glucosyltransferase activity
+GO:0016881|MF|04|acid-amino acid ligase activity
+GO:0016888|MF|07|endodeoxyribonuclease activity, producing 5'-phosphomonoesters
+GO:0040007|BP|01|growth
+GO:0040008|BP|03|regulation of growth
+GO:0006284|BP|04|base-excision repair
+GO:0006289|BP|04|nucleotide-excision repair
+GO:0051302|BP|04|regulation of cell division
+GO:0051301|BP|03|cell division
+GO:0016742|MF|04|hydroxymethyl-, formyl- and related transferase activity
+GO:0009250|BP|05|glucan biosynthetic process
+GO:0009251|BP|06|glucan catabolic process
+GO:0009252|BP|03|peptidoglycan biosynthetic process
+GO:0009253|BP|07|peptidoglycan catabolic process
+GO:0016668|MF|04|oxidoreductase activity, acting on a sulfur group of donors, NAD(P) as acceptor
+GO:0043624|BP|06|cellular protein complex disassembly
+GO:0019238|MF|05|cyclohydrolase activity
+GO:0000160|BP|05|phosphorelay signal transduction system
+GO:0000162|BP|06|tryptophan biosynthetic process
+GO:0051539|MF|04|4 iron, 4 sulfur cluster binding
+GO:0051537|MF|04|2 iron, 2 sulfur cluster binding
+GO:0016151|MF|06|nickel cation binding
+GO:0030259|BP|05|lipid glycosylation
+GO:0046912|MF|04|transferase activity, transferring acyl groups, acyl groups converted into alkyl on transfer
+GO:0071973|BP|05|bacterial-type flagellum-dependent cell motility
+GO:0032851|BP|08|positive regulation of Rab GTPase activity
+GO:0035725|BP|05|sodium ion transmembrane transport
+GO:0050911|BP|05|detection of chemical stimulus involved in sensory perception of smell
+GO:0006817|BP|06|phosphate ion transport
+GO:1901677|MF|03|phosphate transmembrane transporter activity
+GO:0006206|BP|05|pyrimidine nucleobase metabolic process
+GO:0006200|BP|07|ATP catabolic process
+GO:0004176|MF|05|ATP-dependent peptidase activity
+GO:0004177|MF|06|aminopeptidase activity
+GO:0001522|BP|06|pseudouridine synthesis
+GO:0051607|BP|03|defense response to virus
+GO:0000902|BP|04|cell morphogenesis
+GO:0006418|BP|06|tRNA aminoacylation for protein translation
+GO:0006413|BP|03|translational initiation
+GO:0006412|BP|05|translation
+GO:0004812|MF|05|aminoacyl-tRNA ligase activity
+GO:0010498|BP|05|proteasomal protein catabolic process
+GO:0016661|MF|03|oxidoreductase activity, acting on other nitrogenous compounds as donors
+GO:0031123|BP|06|RNA 3'-end processing
+GO:0043900|BP|03|regulation of multi-organism process
+GO:0006801|BP|04|superoxide metabolic process
+GO:0070526|BP|07|threonylcarbamoyladenosine biosynthetic process
