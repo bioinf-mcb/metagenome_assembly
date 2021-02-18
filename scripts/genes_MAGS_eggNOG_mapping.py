@@ -34,7 +34,7 @@ def tabulate_cluster_info(path):
                 clusters.append(cluster_id)
                 genes.append(gene_id)
     gene_cluster_df = pd.DataFrame(list(zip(clusters, genes)),
-                                   columns=['Cluster ID', 'Gene ID'])
+                                   columns=['Cluster_ID', 'Gene_ID'])
     return gene_cluster_df
 
 
@@ -55,13 +55,16 @@ def load_fasta_ids(path):
     return fasta_ids
 
 
-def load_checkm_files(file):
+def load_checkm_files(file, colnames):
     """
-    Reads CHECKM txt file and extracts specified columns
+    Reads CHECKM txt file and extracts specified columns.
+
     Parameters
     ----------
     input_file : str
       txt file containing CHECKM report
+    colnames : list of str
+        column names
 
     Returns
     ------
@@ -74,9 +77,7 @@ def load_checkm_files(file):
         if contents:
             contents = re.sub('\s\s+', '\t', contents)
             CHECKM.append(contents.split('\t'))
-    return pd.DataFrame(data=CHECKM[1:], columns=CHECKM[0])[
-        ["Bin Id", "Marker lineage", "# genomes", "# markers", "Completeness",
-         "Contamination", "Strain heterogeneity"]]
+    return pd.DataFrame(data=CHECKM[1:], columns=CHECKM[0])[colnames]
 
 
 def load_mags_contigs_taxonomies_for_sample(sample_dir, taxonomy_path,
@@ -108,9 +109,11 @@ def load_mags_contigs_taxonomies_for_sample(sample_dir, taxonomy_path,
     checkm_file = os.path.join(checkm_path, f"{mag_root}_checkm.txt")
     try:
         f = open(checkm_file, "r")
-        checkm_df = checkm_df.append(load_checkm_files(checkm_file)[colnames])
+        checkm_df = checkm_df.append(load_checkm_files(checkm_file, colnames))
     except:
         print('Missing or empty checkM output file:', checkm_file)
+    checkm_df.rename({"Bin Id": "Bin_ID", "# genomes": "n_genomes",
+                      "# markers": "n_markers"}, axis=1, inplace=True)
 
     # Run through all bin .fa files
     mags, bins, contigs = [], [], []
@@ -123,7 +126,7 @@ def load_mags_contigs_taxonomies_for_sample(sample_dir, taxonomy_path,
         contigs.extend(bin_contigs)
 
     # Construct dataframe
-    raw_df = pd.DataFrame({"MAGS": mags, "bins": bins, "contigs": contigs})
+    raw_df = pd.DataFrame({"MAG_ID": mags, "Bin_ID": bins, "contigs": contigs})
 
     # Add taxonomy information
     taxonomy_file = os.path.join(taxonomy_path,
@@ -133,14 +136,14 @@ def load_mags_contigs_taxonomies_for_sample(sample_dir, taxonomy_path,
         f = open(taxonomy_file, "r")
         taxonomies_df = pd.read_csv(f, sep='\t', usecols=taxonomy_cols)
         merged_df = raw_df.join(taxonomies_df.set_index(taxonomy_cols[0]),
-                                on='bins', how='left')
+                                on='Bin_ID', how='left')
     except:
         print(f'Missing or empty taxonomy file: {taxonomy_file}')
         print('Adding empty taxonomy columns...')
         merged_df = raw_df.join(raw_df.reindex(columns=taxonomy_cols[1:]))
 
     # Add checkM information
-    merged_df = merged_df.join(checkm_df.set_index('Bin Id'), on='bins',
+    merged_df = merged_df.join(checkm_df.set_index('Bin_ID'), on='Bin_ID',
                                how='left')
 
     return merged_df
@@ -225,12 +228,9 @@ def load_eggNOG_file(eggnog_ann_file):
 @click.option('--out_gene_mapping_file', '-o', required=True,
               type=click.Path(resolve_path=True, readable=True, exists=False),
               help='Output .tsv file.')
-@click.option('--out_cluster_taxa_file', '-f', required=True,
-              type=click.Path(resolve_path=True, readable=True, exists=False),
-              help='Output .tsv file.')
 def _perform_mapping(cluster_file, genes_file, contigs_file,
                      eggnog_ann_file, bin_fp, tax_fp, checkm_fp,
-                     out_gene_mapping_file, out_cluster_taxa_file):
+                     out_gene_mapping_file):
     """
     Script for mapping genes to contigs, MAGS and eggNOG annotations
 
@@ -243,90 +243,84 @@ def _perform_mapping(cluster_file, genes_file, contigs_file,
     6) taxonomy files (tsv)
     7) EggNOG annotation file (tsv)
     8) Name of output file with gene mappings
-    9) Name of output file with cluster counts
 
-    The script outputs two files:
+    The script outputs:
     1) Tsv file that links the non-redundant gene catalogue back to contigs,
     and then back to MAGs with eggNOG annotations
-    2) Tsv file that maps gene families to taxonomy and generate counts
     """
 
     # load cluster file
     cluster_df = tabulate_cluster_info(cluster_file)
 
-    # Load contig and gene IDs
+    # load contig and gene IDs
     contigs = load_fasta_ids(contigs_file)
     genes = load_fasta_ids(genes_file)
 
-    # Create gene catalogue dataframe
+    # create gene catalogue dataframe
     genes_df = pd.DataFrame({'centroid': genes})
     genes_df = genes_df.astype(str)
 
-    # Create contigs dataframe
-    contigs_df = pd.DataFrame({'contigs_ID': contigs})
+    # create contigs dataframe
+    contigs_df = pd.DataFrame({'Contig_ID': contigs})
     contigs_df = contigs_df.astype(str)
 
     # map cluster and NR genes
     mapped_centroid_genes = pd.merge(cluster_df, genes_df,
-                                     left_on='Gene ID',
+                                     left_on='Gene_ID',
                                      right_on='centroid',
-                                     how='inner')[['Cluster ID', 'centroid']]
+                                     how='inner')[['Cluster_ID', 'centroid']]
 
     # mapped cluster genes
     mapped_cluster_genes = pd.merge(cluster_df, mapped_centroid_genes,
-                                    left_on='Cluster ID',
-                                    right_on='Cluster ID',
+                                    left_on='Cluster_ID',
+                                    right_on='Cluster_ID',
                                     how='outer')
 
-    # Create column with truncated gene ids
-    mapped_cluster_genes['Gene_trunc'] = mapped_cluster_genes['Gene ID']. \
+    # create column with truncated gene ids
+    mapped_cluster_genes['Gene_trunc'] = mapped_cluster_genes['Gene_ID']. \
         apply(lambda x: x.rsplit('_', 1)[0])
 
-    # Change data type to string
+    # change data type to string
     mapped_cluster_genes = mapped_cluster_genes.astype(str)
 
-    # Map cluster genes to contigs
+    # map cluster genes to contigs
     mapped_genes_contigs = pd.merge(mapped_cluster_genes, contigs_df,
                                     left_on='Gene_trunc',
-                                    right_on='contigs_ID',
+                                    right_on='Contig_ID',
                                     how='left')
 
     # MAGS and Taxonomy mapping
     MAGS_df = load_mags_contigs_taxonomies(bin_fp, tax_fp, checkm_fp)
 
-    # Mapping between genes, contigs and mags
+    # mapping between genes, contigs and mags
     mapped_genes_contigs_mags = pd.merge(mapped_genes_contigs, MAGS_df,
-                                         left_on='contigs_ID',
+                                         left_on='Contig_ID',
                                          right_on='contigs',
                                          how='outer')
     # remove partial genes
     mapped_genes_contigs_mags = mapped_genes_contigs_mags[
-        mapped_genes_contigs_mags['Gene ID'].notna()]
+        mapped_genes_contigs_mags['Gene_ID'].notna()]
 
-    # Drop 'Gene_trunc' column
-    mapped_genes_contigs_mags = mapped_genes_contigs_mags. \
-        drop(columns="Gene_trunc")
-
-    # # Creating eggNOG annotation dataframe
+    # create eggNOG annotation dataframe
     eggNOG_df = load_eggNOG_file(eggnog_ann_file)
 
-    # Mapping between genes, contigs, mags and eggNOG annotations
+    # mapping between genes, contigs, mags and eggNOG annotations
     mapped_genes_contigs_mags_eggNOG = pd.merge(mapped_genes_contigs_mags,
                                                 eggNOG_df,
-                                                left_on='Gene ID',
+                                                left_on='Gene_ID',
                                                 right_on='#query_name',
                                                 how='outer')
 
-    # determine if non-redundant gene clusters are taxon-specific
-    cluster_taxa = mapped_genes_contigs_mags_eggNOG.groupby('Cluster ID')[
-        'classification'].nunique()
-
-    # Saving gene mapping results to file
+    # drop unused columns and replace spaces with tabs in the rest
+    mapped_genes_contigs_mags_eggNOG.\
+        drop(columns=["Gene_trunc", "contigs", "#query_name"], inplace=True)
+    old_cols = mapped_genes_contigs_mags_eggNOG.columns
+    new_cols = ["_".join(col.split(' ')) for col in old_cols]
+    mapped_genes_contigs_mags_eggNOG.rename(dict(zip(old_cols, new_cols)),
+                                            axis=1, inplace=True)
+    # save gene mapping results to file
     mapped_genes_contigs_mags_eggNOG.to_csv(out_gene_mapping_file, sep='\t',
                                             index=False, na_rep='NaN')
-    # saving cluster_taxa mapping to file
-    cluster_taxa.to_csv(out_cluster_taxa_file, sep='\t', header=True)
-
 
 if __name__ == "__main__":
     _perform_mapping()

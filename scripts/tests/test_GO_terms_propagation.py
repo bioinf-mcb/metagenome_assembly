@@ -6,7 +6,7 @@ import pandas.util.testing as pdt
 from os.path import join
 from click.testing import CliRunner
 
-from scripts.go_terms_propagation import _propagate_GO
+from scripts.GO_terms_propagation import _propagate_GO
 from scripts.tests.utils import dict2str, load_df
 runner = CliRunner()
 
