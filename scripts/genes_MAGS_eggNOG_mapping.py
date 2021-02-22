@@ -225,12 +225,12 @@ def load_eggNOG_file(eggnog_ann_file):
 @click.option('--eggnog_ann_file', '-e', required=True,
               type=click.Path(resolve_path=True, readable=True, exists=True),
               help='Input path to eggnog .annotations file.')
-@click.option('--out_gene_mapping_file', '-o', required=True,
-              type=click.Path(resolve_path=True, readable=True, exists=False),
-              help='Output .tsv file.')
+@click.option('--out_folder', '-o', required=True,
+              type=click.Path(resolve_path=True, readable=True, exists=True),
+              help='Output folder.')
 def _perform_mapping(cluster_file, genes_file, contigs_file,
                      eggnog_ann_file, bin_fp, tax_fp, checkm_fp,
-                     out_gene_mapping_file):
+                     out_folder):
     """
     Script for mapping genes to contigs, MAGS and eggNOG annotations
 
@@ -242,11 +242,12 @@ def _perform_mapping(cluster_file, genes_file, contigs_file,
     5) taxonomy files (tsv)
     6) taxonomy files (tsv)
     7) EggNOG annotation file (tsv)
-    8) Name of output file with gene mappings
+    8) Name of output folder with gene mappings
 
-    The script outputs:
-    1) Tsv file that links the non-redundant gene catalogue back to contigs,
-    and then back to MAGs with eggNOG annotations
+    The script outputs three tsv files:
+    1) Gene cluster table
+    2) Individual gene table
+    3) MAG table
     """
 
     # load cluster file
@@ -318,9 +319,26 @@ def _perform_mapping(cluster_file, genes_file, contigs_file,
     new_cols = ["_".join(col.split(' ')) for col in old_cols]
     mapped_genes_contigs_mags_eggNOG.rename(dict(zip(old_cols, new_cols)),
                                             axis=1, inplace=True)
-    # save gene mapping results to file
-    mapped_genes_contigs_mags_eggNOG.to_csv(out_gene_mapping_file, sep='\t',
-                                            index=False, na_rep='NaN')
+
+    # split master table into three and save results
+    gene_clust_cols = ['Cluster_ID', 'centroid', 'seed_eggNOG_ortholog',
+                       'seed_ortholog_evalue', 'seed_ortholog_score',
+                       'best_tax_level', 'Preferred_name', 'GOs', 'EC',
+                       'KEGG_ko', 'KEGG_Pathway', 'KEGG_Module',
+                       'KEGG_Reaction', 'KEGG_rclass', 'BRITE', 'KEGG_TC',
+                       'CAZy', 'BiGG_Reaction', 'taxonomic_scope',
+                       'eggNOG_OGs', 'best_eggNOG_OG', 'COG_Functional_cat.',
+                       'eggNOG_free_text_desc.']
+    gene_table_cols = ['Cluster_ID', 'Gene_ID', 'Contig_ID', 'MAG_ID']
+    mags_table_cols = ['MAG_ID', 'classification', 'fastani_reference',
+                       'Marker_lineage', 'n_genomes', 'n_markers',
+                       'Completeness', 'Contamination', 'Strain_heterogeneity']
+    mapped_genes_contigs_mags_eggNOG[gene_clust_cols].to_csv(os.path.join(
+        out_folder, 'Mapped_genes_cluster.tsv'), sep='\t', na_rep='NaN')
+    mapped_genes_contigs_mags_eggNOG[gene_table_cols].to_csv(os.path.join(
+        out_folder, 'Individual_mapped_genes.tsv'), sep='\t', na_rep='NaN')
+    mapped_genes_contigs_mags_eggNOG[mags_table_cols].to_csv(os.path.join(
+        out_folder, 'MAGS.tsv'), sep='\t', na_rep='NaN')
 
 if __name__ == "__main__":
     _perform_mapping()
