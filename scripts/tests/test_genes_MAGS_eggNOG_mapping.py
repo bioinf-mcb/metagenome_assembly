@@ -40,18 +40,13 @@ def test_basic():
               '-t': join(INPATH, 'gtdbtk/'),
               '-m': join(INPATH, 'checkm/'),
               '-e': join(INPATH, 'eggnog-mapper/eggNOG_reduced.tsv'),
-              '-o': join(OUTPATH, 'mapped_genes.tsv'),
-              '-f': join(OUTPATH, 'clusters.tsv')}
+              '-o': join(OUTPATH)}
     response = runner.invoke(_perform_mapping, f"{dict2str(params)}")
     assert response.exit_code == 0
-    # Compare clusters
-    clstr_out = load_df(os.path.join(OUTPATH, "clusters.tsv"), squeeze=True)
-    clstr_exp = load_df(os.path.join(EXPPATH, "clstr.tsv"), squeeze=True)
-    pdt.assert_series_equal(clstr_out, clstr_exp)
-    # Compare mapped genes
-    genes_out = load_df(os.path.join(OUTPATH, "mapped_genes.tsv"))
-    genes_exp = load_df(os.path.join(EXPPATH, "mapped_genes.tsv"))
-    pdt.assert_frame_equal(genes_out, genes_exp)
+    for name in ['Mapped_genes_cluster', 'Individual_mapped_genes', 'MAGS']:
+        out = load_df(os.path.join(OUTPATH, f"{name}.tsv"))
+        exp = load_df(os.path.join(EXPPATH, f"{name}.tsv"))
+        pdt.assert_frame_equal(out, exp)
 
 
 def test_missing_checkm():
@@ -62,22 +57,13 @@ def test_missing_checkm():
               '-t': join(INPATH, 'gtdbtk/'),
               '-m': join(INPATH, 'empty/'),  # difference wrt basic
               '-e': join(INPATH, 'eggnog-mapper/eggNOG_reduced.tsv'),
-              '-o': join(OUTPATH, 'mapped_genes_missing_checkm.tsv'),
-              '-f': join(OUTPATH, 'clusters_missing_checkm.tsv')}
+              '-o': join(OUTPATH)}
     response = runner.invoke(_perform_mapping, f"{dict2str(params)}")
     assert response.exit_code == 0
-    # Compare clusters
-    clstr_out = load_df(os.path.join(OUTPATH, "clusters_missing_checkm.tsv"),
-                        squeeze=True)
-    clstr_exp = load_df(os.path.join(EXPPATH, "clustr_missing_checkm.tsv"),
-                        squeeze=True)
-    pdt.assert_series_equal(clstr_out, clstr_exp)
-    # Compare mapped genes
-    genes_out = load_df(os.path.join(OUTPATH,
-                                     "mapped_genes_missing_checkm.tsv"))
-    genes_exp = load_df(os.path.join(EXPPATH,
-                                     "mapped_genes_missing_checkm.tsv"))
-    pdt.assert_frame_equal(genes_out, genes_exp)
+    for name in ['Mapped_genes_cluster', 'Individual_mapped_genes', 'MAGS']:
+        out = load_df(os.path.join(OUTPATH, f"{name}.tsv"))
+        exp = load_df(os.path.join(EXPPATH, f"{name}_missing_checkm.tsv"))
+        pdt.assert_frame_equal(out, exp)
 
 
 def test_missing_checkm_and_gtdb():
@@ -88,19 +74,10 @@ def test_missing_checkm_and_gtdb():
               '-t': join(INPATH, 'empty/'),  # difference wrt basic
               '-m': join(INPATH, 'empty/'),  # difference wrt basic
               '-e': join(INPATH, 'eggnog-mapper/eggNOG_reduced.tsv'),
-              '-o': join(OUTPATH, 'mapped_genes_missing_checkm_gtdb.tsv'),
-              '-f': join(OUTPATH, 'clusters_missing_checkm_gtdb.tsv')}
+              '-o': join(OUTPATH)}
     response = runner.invoke(_perform_mapping, f"{dict2str(params)}")
     assert response.exit_code == 0
-    # Compare clusters
-    clstr_out = load_df(os.path.join(OUTPATH,
-                        "clusters_missing_checkm_gtdb.tsv"), squeeze=True)
-    clstr_exp = load_df(os.path.join(EXPPATH,
-                        "clustr_missing_checkm_gtdb.tsv"), squeeze=True)
-    pdt.assert_series_equal(clstr_out, clstr_exp)
-    # Compare mapped genes
-    genes_out = load_df(os.path.join(OUTPATH,
-                                     "mapped_genes_missing_checkm_gtdb.tsv"))
-    genes_exp = load_df(os.path.join(EXPPATH,
-                                     "mapped_genes_missing_checkm_gtdb.tsv"))
-    pdt.assert_frame_equal(genes_out, genes_exp)
+    for name in ['Mapped_genes_cluster', 'Individual_mapped_genes', 'MAGS']:
+        out = load_df(os.path.join(OUTPATH, f"{name}.tsv"))
+        exp = load_df(os.path.join(EXPPATH, f"{name}_missing_checkm_gtdb.tsv"))
+        pdt.assert_frame_equal(out, exp)
