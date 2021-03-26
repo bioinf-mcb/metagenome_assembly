@@ -37,6 +37,6 @@ def test_basic():
               '-o': join(OUTPATH, 'output.tsv')}
     response = runner.invoke(_process_deepfri, f"{dict2str(params)}")
     assert response.exit_code == 0
-    genes_out = load_df(os.path.join(OUTPATH, "output.tsv"))
-    genes_exp = load_df(os.path.join(EXPPATH, "deepfri_out.tsv"))
+    genes_out = load_df(join(OUTPATH, "output.tsv"))
+    genes_exp = load_df(join(EXPPATH, "deepfri_out.tsv"))
     pdt.assert_frame_equal(genes_out, genes_exp)

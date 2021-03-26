@@ -44,8 +44,8 @@ def test_basic():
     response = runner.invoke(_perform_mapping, f"{dict2str(params)}")
     assert response.exit_code == 0
     for name in ['Mapped_genes_cluster', 'Individual_mapped_genes', 'MAGS']:
-        out = load_df(os.path.join(OUTPATH, f"{name}.tsv"))
-        exp = load_df(os.path.join(EXPPATH, f"{name}.tsv"))
+        out = load_df(join(OUTPATH, f"{name}.tsv"))
+        exp = load_df(join(EXPPATH, f"{name}.tsv"))
         pdt.assert_frame_equal(out, exp)
 
 
@@ -61,8 +61,8 @@ def test_missing_checkm():
     response = runner.invoke(_perform_mapping, f"{dict2str(params)}")
     assert response.exit_code == 0
     for name in ['Mapped_genes_cluster', 'Individual_mapped_genes', 'MAGS']:
-        out = load_df(os.path.join(OUTPATH, f"{name}.tsv"))
-        exp = load_df(os.path.join(EXPPATH, f"{name}_missing_checkm.tsv"))
+        out = load_df(join(OUTPATH, f"{name}.tsv"))
+        exp = load_df(join(EXPPATH, f"{name}_missing_checkm.tsv"))
         pdt.assert_frame_equal(out, exp)
 
 
@@ -78,6 +78,6 @@ def test_missing_checkm_and_gtdb():
     response = runner.invoke(_perform_mapping, f"{dict2str(params)}")
     assert response.exit_code == 0
     for name in ['Mapped_genes_cluster', 'Individual_mapped_genes', 'MAGS']:
-        out = load_df(os.path.join(OUTPATH, f"{name}.tsv"))
-        exp = load_df(os.path.join(EXPPATH, f"{name}_missing_checkm_gtdb.tsv"))
+        out = load_df(join(OUTPATH, f"{name}.tsv"))
+        exp = load_df(join(EXPPATH, f"{name}_missing_checkm_gtdb.tsv"))
         pdt.assert_frame_equal(out, exp)
