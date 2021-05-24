@@ -57,7 +57,7 @@ task annotate_deepfri {
     Int num_preemptible
 
     command {
-        /bin/python3 /app/scripts/cromwell_process_fasta.py -i ${gene_catalogue} -o deepfri_annotations.csv -m /app
+        /bin/python3 /app/scripts/cromwell_process_fasta.py -i ${gene_catalogue} -o deepfri_annotations.csv -m /app --translate
     }
 
     output {
@@ -65,7 +65,7 @@ task annotate_deepfri {
     }
 
     runtime {
-        docker: "gcr.io/microbiome-xavier/deepfried-api:111820"
+        docker: "gcr.io/microbiome-xavier/deepfried-api:052221"
         cpu: 2
         memory: deepfri_memory_gb + "GB"
         bootDiskSizeGb: 100
