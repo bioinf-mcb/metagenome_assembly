@@ -124,23 +124,23 @@ task genes_to_mags_mapping {
             --bin_fp bins \
             --tax_fp gtdbtk \
             --checkm_fp checkm \
-            --out_gene_mapping_file gene_mapping.tsv \
-            --out_cluster_taxa_file gene_clusters_taxa.tsv
+            --out_folder .
 
     }
     
     output {
-        File gene_mag_mappings = "gene_mapping.tsv"
-        File gene_cluster_taxa_mappings = "gene_clusters_taxa.tsv"
+        File gene_cluster_info = "Mapped_genes_cluster.tsv"
+        File gene_info = "Individual_mapped_genes.tsv"
+        File MAG_info = "MAGS.tsv"
     }
     
     runtime {
-        docker: "gcr.io/microbiome-xavier/gene-mapper:121520"
+        docker: "gcr.io/microbiome-xavier/gene-mapper:030821"
         cpu: 2
         memory: gene_mapper_memory_gb + "GB"
         preemptible: num_preemptible
         maxRetries: num_preemptible + 1
         bootDiskSizeGb: 50
-        disks: "local disk " + gene_mapper_disk_gb + " HDD"
+        disks: "local-disk " + gene_mapper_disk_gb + " HDD"
     }
 }
