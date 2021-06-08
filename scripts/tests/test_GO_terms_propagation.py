@@ -37,6 +37,6 @@ def test_basic():
               '-o': join(OUTPATH, 'output.tsv')}
     response = runner.invoke(_propagate_GO, f"{dict2str(params)}")
     assert response.exit_code == 0
-    genes_out = load_df(os.path.join(OUTPATH, "output.tsv"))
-    genes_exp = load_df(os.path.join(EXPPATH, "new_tree_propagated_GO.tsv"))
+    genes_out = load_df(join(OUTPATH, "output.tsv"))
+    genes_exp = load_df(join(EXPPATH, "new_tree_propagated_GO.tsv"))
     pdt.assert_frame_equal(genes_out, genes_exp)

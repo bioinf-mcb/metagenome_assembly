@@ -32,6 +32,10 @@ def test_help():
     assert "Script for mapping genes to contigs" in response.output
 
 
+# =========================
+# Do not split master table
+# =========================
+
 def test_basic():
     params = {'-r': join(INPATH, 'cluster_genes/nr.reduced.clstr'),
               '-g': join(INPATH, 'cluster_genes/sample_genes.fa'),
@@ -40,13 +44,13 @@ def test_basic():
               '-t': join(INPATH, 'gtdbtk/'),
               '-m': join(INPATH, 'checkm/'),
               '-e': join(INPATH, 'eggnog-mapper/eggNOG_reduced.tsv'),
-              '-o': join(OUTPATH)}
+              '-p': join(OUTPATH),
+              '-o': 'example_split'}
     response = runner.invoke(_perform_mapping, f"{dict2str(params)}")
     assert response.exit_code == 0
-    for name in ['Mapped_genes_cluster', 'Individual_mapped_genes', 'MAGS']:
-        out = load_df(os.path.join(OUTPATH, f"{name}.tsv"))
-        exp = load_df(os.path.join(EXPPATH, f"{name}.tsv"))
-        pdt.assert_frame_equal(out, exp)
+    out = load_df(join(OUTPATH, f"example_split.tsv"))
+    exp = load_df(join(EXPPATH, f"table.tsv"))
+    pdt.assert_frame_equal(out, exp)
 
 
 def test_missing_checkm():
@@ -57,13 +61,30 @@ def test_missing_checkm():
               '-t': join(INPATH, 'gtdbtk/'),
               '-m': join(INPATH, 'empty/'),  # difference wrt basic
               '-e': join(INPATH, 'eggnog-mapper/eggNOG_reduced.tsv'),
-              '-o': join(OUTPATH)}
+              '-p': join(OUTPATH),
+              '-o': 'example_split'}
     response = runner.invoke(_perform_mapping, f"{dict2str(params)}")
     assert response.exit_code == 0
-    for name in ['Mapped_genes_cluster', 'Individual_mapped_genes', 'MAGS']:
-        out = load_df(os.path.join(OUTPATH, f"{name}.tsv"))
-        exp = load_df(os.path.join(EXPPATH, f"{name}_missing_checkm.tsv"))
-        pdt.assert_frame_equal(out, exp)
+    out = load_df(join(OUTPATH, f"example_split.tsv"))
+    exp = load_df(join(EXPPATH, f"table_missing_checkm.tsv"))
+    pdt.assert_frame_equal(out, exp)
+
+
+def test_missing_gtdb():
+    params = {'-r': join(INPATH, 'cluster_genes/nr.reduced.clstr'),
+              '-g': join(INPATH, 'cluster_genes/sample_genes.fa'),
+              '-c': join(INPATH, 'assemble/merged.min500.contigs.fa'),
+              '-b': join(INPATH, 'metabat2/'),
+              '-t': join(INPATH, 'empty/'),  # difference wrt basic
+              '-m': join(INPATH, 'checkm/'),
+              '-e': join(INPATH, 'eggnog-mapper/eggNOG_reduced.tsv'),
+              '-p': join(OUTPATH),
+              '-o': 'example_split'}
+    response = runner.invoke(_perform_mapping, f"{dict2str(params)}")
+    assert response.exit_code == 0
+    out = load_df(join(OUTPATH, f"example_split.tsv"))
+    exp = load_df(join(EXPPATH, f"table_missing_gtdb.tsv"))
+    pdt.assert_frame_equal(out, exp)
 
 
 def test_missing_checkm_and_gtdb():
@@ -74,10 +95,89 @@ def test_missing_checkm_and_gtdb():
               '-t': join(INPATH, 'empty/'),  # difference wrt basic
               '-m': join(INPATH, 'empty/'),  # difference wrt basic
               '-e': join(INPATH, 'eggnog-mapper/eggNOG_reduced.tsv'),
-              '-o': join(OUTPATH)}
+              '-p': join(OUTPATH),
+              '-o': 'example_split'}
     response = runner.invoke(_perform_mapping, f"{dict2str(params)}")
     assert response.exit_code == 0
-    for name in ['Mapped_genes_cluster', 'Individual_mapped_genes', 'MAGS']:
-        out = load_df(os.path.join(OUTPATH, f"{name}.tsv"))
-        exp = load_df(os.path.join(EXPPATH, f"{name}_missing_checkm_gtdb.tsv"))
+    out = load_df(join(OUTPATH, f"example_split.tsv"))
+    exp = load_df(join(EXPPATH, f"table_missing_checkm_gtdb.tsv"))
+    pdt.assert_frame_equal(out, exp)
+
+# ==================
+# Split master table
+# ==================
+
+def test_basic_split():
+    params = {'-r': join(INPATH, 'cluster_genes/nr.reduced.clstr'),
+              '-g': join(INPATH, 'cluster_genes/sample_genes.fa'),
+              '-c': join(INPATH, 'assemble/merged.min500.contigs.fa'),
+              '-b': join(INPATH, 'metabat2/'),
+              '-t': join(INPATH, 'gtdbtk/'),
+              '-m': join(INPATH, 'checkm/'),
+              '-e': join(INPATH, 'eggnog-mapper/eggNOG_reduced.tsv'),
+              '-s': '',
+              '-p': join(OUTPATH),
+              '-o': 'example_split'}
+    response = runner.invoke(_perform_mapping, f"{dict2str(params)}")
+    assert response.exit_code == 0
+    for name in ['mapped_genes_cluster', 'individual_mapped_genes', 'MAGS']:
+        out = load_df(join(OUTPATH, f"example_split_{name}.tsv"))
+        exp = load_df(join(EXPPATH, f"{name}.tsv"))
+        pdt.assert_frame_equal(out, exp)
+
+
+def test_missing_checkm_split():
+    params = {'-r': join(INPATH, 'cluster_genes/nr.reduced.clstr'),
+              '-g': join(INPATH, 'cluster_genes/sample_genes.fa'),
+              '-c': join(INPATH, 'assemble/merged.min500.contigs.fa'),
+              '-b': join(INPATH, 'metabat2/'),
+              '-t': join(INPATH, 'gtdbtk/'),
+              '-m': join(INPATH, 'empty/'),  # difference wrt basic
+              '-e': join(INPATH, 'eggnog-mapper/eggNOG_reduced.tsv'),
+              '-s': '',
+              '-p': join(OUTPATH),
+              '-o': 'example_split'}
+    response = runner.invoke(_perform_mapping, f"{dict2str(params)}")
+    assert response.exit_code == 0
+    for name in ['mapped_genes_cluster', 'individual_mapped_genes', 'MAGS']:
+        out = load_df(join(OUTPATH, f"example_split_{name}.tsv"))
+        exp = load_df(join(EXPPATH, f"{name}_missing_checkm.tsv"))
+        pdt.assert_frame_equal(out, exp)
+
+
+def test_missing_gtdb_split():
+    params = {'-r': join(INPATH, 'cluster_genes/nr.reduced.clstr'),
+              '-g': join(INPATH, 'cluster_genes/sample_genes.fa'),
+              '-c': join(INPATH, 'assemble/merged.min500.contigs.fa'),
+              '-b': join(INPATH, 'metabat2/'),
+              '-t': join(INPATH, 'empty/'),  # difference wrt basic
+              '-m': join(INPATH, 'checkm/'),
+              '-e': join(INPATH, 'eggnog-mapper/eggNOG_reduced.tsv'),
+              '-s': '',
+              '-p': join(OUTPATH),
+              '-o': 'example_split'}
+    response = runner.invoke(_perform_mapping, f"{dict2str(params)}")
+    assert response.exit_code == 0
+    for name in ['mapped_genes_cluster', 'individual_mapped_genes', 'MAGS']:
+        out = load_df(join(OUTPATH, f"example_split_{name}.tsv"))
+        exp = load_df(join(EXPPATH, f"{name}_missing_gtdb.tsv"))
+        pdt.assert_frame_equal(out, exp)
+
+
+def test_missing_checkm_and_gtdb_split():
+    params = {'-r': join(INPATH, 'cluster_genes/nr.reduced.clstr'),
+              '-g': join(INPATH, 'cluster_genes/sample_genes.fa'),
+              '-c': join(INPATH, 'assemble/merged.min500.contigs.fa'),
+              '-b': join(INPATH, 'metabat2/'),
+              '-t': join(INPATH, 'empty/'),  # difference wrt basic
+              '-m': join(INPATH, 'empty/'),  # difference wrt basic
+              '-e': join(INPATH, 'eggnog-mapper/eggNOG_reduced.tsv'),
+              '-s': '',
+              '-p': join(OUTPATH),
+              '-o': 'example_split'}
+    response = runner.invoke(_perform_mapping, f"{dict2str(params)}")
+    assert response.exit_code == 0
+    for name in ['mapped_genes_cluster', 'individual_mapped_genes', 'MAGS']:
+        out = load_df(join(OUTPATH, f"example_split_{name}.tsv"))
+        exp = load_df(join(EXPPATH, f"{name}_missing_checkm_gtdb.tsv"))
         pdt.assert_frame_equal(out, exp)

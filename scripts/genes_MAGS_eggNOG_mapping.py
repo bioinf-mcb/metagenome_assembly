@@ -3,9 +3,12 @@
 import os
 import glob
 import click
-import pandas as pd
-from skbio import io
 import re
+import pandas as pd
+
+from collections import OrderedDict
+from os.path import join
+from skbio import io
 
 pd.options.mode.chained_assignment = None
 
@@ -106,7 +109,7 @@ def load_mags_contigs_taxonomies_for_sample(sample_dir, taxonomy_path,
     colnames = ["Bin Id", "Marker lineage", "# genomes", "# markers",
                 "Completeness", "Contamination", "Strain heterogeneity"]
     checkm_df = pd.DataFrame(columns=colnames)
-    checkm_file = os.path.join(checkm_path, f"{mag_root}_checkm.txt")
+    checkm_file = join(checkm_path, f"{mag_root}_checkm.txt")
     try:
         f = open(checkm_file, "r")
         checkm_df = checkm_df.append(load_checkm_files(checkm_file, colnames))
@@ -117,7 +120,7 @@ def load_mags_contigs_taxonomies_for_sample(sample_dir, taxonomy_path,
 
     # Run through all bin .fa files
     mags, bins, contigs = [], [], []
-    for bin_file in glob.glob(os.path.join(sample_dir, "*.fa")):
+    for bin_file in glob.glob(join(sample_dir, "*.fa")):
         bin_name = os.path.splitext(os.path.basename(bin_file))[0]
         mag_name = f"{mag_root}_{bin_name}"
         bin_contigs = load_fasta_ids(bin_file)
@@ -126,12 +129,13 @@ def load_mags_contigs_taxonomies_for_sample(sample_dir, taxonomy_path,
         contigs.extend(bin_contigs)
 
     # Construct dataframe
-    raw_df = pd.DataFrame({"MAG_ID": mags, "Bin_ID": bins, "contigs": contigs})
-
+    raw_df = pd.DataFrame(OrderedDict({"MAG_ID": mags, "Bin_ID": bins,
+                                       "contigs": contigs}))
     # Add taxonomy information
-    taxonomy_file = os.path.join(taxonomy_path,
+    taxonomy_file = join(taxonomy_path,
                                  f"{mag_root}.bac120.summary.tsv")
     taxonomy_cols = ["user_genome", "classification", "fastani_reference"]
+
     try:
         f = open(taxonomy_file, "r")
         taxonomies_df = pd.read_csv(f, sep='\t', usecols=taxonomy_cols)
@@ -141,7 +145,6 @@ def load_mags_contigs_taxonomies_for_sample(sample_dir, taxonomy_path,
         print(f'Missing or empty taxonomy file: {taxonomy_file}')
         print('Adding empty taxonomy columns...')
         merged_df = raw_df.join(raw_df.reindex(columns=taxonomy_cols[1:]))
-
     # Add checkM information
     merged_df = merged_df.join(checkm_df.set_index('Bin_ID'), on='Bin_ID',
                                how='left')
@@ -225,16 +228,22 @@ def load_eggNOG_file(eggnog_ann_file):
 @click.option('--eggnog_ann_file', '-e', required=True,
               type=click.Path(resolve_path=True, readable=True, exists=True),
               help='Input path to eggnog .annotations file.')
-@click.option('--out_folder', '-o', required=True,
+@click.option('--split-output', '-s', is_flag=True, default=False,
+              help='Split master table into three tables: gene cluster table, '
+                   'individual gene table, MAG table.')
+@click.option('--out_path', '-p', required=True,
               type=click.Path(resolve_path=True, readable=True, exists=True),
-              help='Output folder.')
+              help='Path to the output folder.')
+@click.option('--out_name', '-o', required=True,
+              help='Output name for master table or core output name for three'
+                   ' output tables.')
 def _perform_mapping(cluster_file, genes_file, contigs_file,
-                     eggnog_ann_file, bin_fp, tax_fp, checkm_fp,
-                     out_folder):
+                     eggnog_ann_file, bin_fp, tax_fp, checkm_fp, split_output,
+                     out_path, out_name):
     """
     Script for mapping genes to contigs, MAGS and eggNOG annotations
 
-    input files required:
+    inputs:
     1) clustering file with cluster ID and gene ID
     2) Non-redundant gene catalogue (fasta)
     3) Contig files (fasta)
@@ -242,12 +251,16 @@ def _perform_mapping(cluster_file, genes_file, contigs_file,
     5) taxonomy files (tsv)
     6) taxonomy files (tsv)
     7) EggNOG annotation file (tsv)
-    8) Name of output folder with gene mappings
-
-    The script outputs three tsv files:
-    1) Gene cluster table
-    2) Individual gene table
-    3) MAG table
+    8) (optional) Split the output table into three tables:
+        a) Gene cluster table
+        b) Individual gene table
+        c) MAG table
+    9) Path to the output folder.
+    10) Name for output table(s). Example:
+       - if equal `table` and --split-output is True we would get `table.tsv`
+       - if equal `table` and --split-output is False we would get
+        `table_mapped_genes_cluster.tsv`, `table_individual_mapped_genes.tsv`,
+        `table_MAGS.tsv`
     """
 
     # load cluster file
@@ -298,6 +311,7 @@ def _perform_mapping(cluster_file, genes_file, contigs_file,
                                          left_on='Contig_ID',
                                          right_on='contigs',
                                          how='outer')
+
     # remove partial genes
     mapped_genes_contigs_mags = mapped_genes_contigs_mags[
         mapped_genes_contigs_mags['Gene_ID'].notna()]
@@ -320,25 +334,30 @@ def _perform_mapping(cluster_file, genes_file, contigs_file,
     mapped_genes_contigs_mags_eggNOG.rename(dict(zip(old_cols, new_cols)),
                                             axis=1, inplace=True)
 
-    # split master table into three and save results
-    gene_clust_cols = ['Cluster_ID', 'centroid', 'seed_eggNOG_ortholog',
-                       'seed_ortholog_evalue', 'seed_ortholog_score',
-                       'best_tax_level', 'Preferred_name', 'GOs', 'EC',
-                       'KEGG_ko', 'KEGG_Pathway', 'KEGG_Module',
-                       'KEGG_Reaction', 'KEGG_rclass', 'BRITE', 'KEGG_TC',
-                       'CAZy', 'BiGG_Reaction', 'taxonomic_scope',
-                       'eggNOG_OGs', 'best_eggNOG_OG', 'COG_Functional_cat.',
-                       'eggNOG_free_text_desc.']
-    gene_table_cols = ['Cluster_ID', 'Gene_ID', 'Contig_ID', 'MAG_ID']
-    mags_table_cols = ['MAG_ID', 'classification', 'fastani_reference',
-                       'Marker_lineage', 'n_genomes', 'n_markers',
-                       'Completeness', 'Contamination', 'Strain_heterogeneity']
-    mapped_genes_contigs_mags_eggNOG[gene_clust_cols].to_csv(os.path.join(
-        out_folder, 'Mapped_genes_cluster.tsv'), sep='\t', na_rep='NaN')
-    mapped_genes_contigs_mags_eggNOG[gene_table_cols].to_csv(os.path.join(
-        out_folder, 'Individual_mapped_genes.tsv'), sep='\t', na_rep='NaN')
-    mapped_genes_contigs_mags_eggNOG[mags_table_cols].to_csv(os.path.join(
-        out_folder, 'MAGS.tsv'), sep='\t', na_rep='NaN')
+    if split_output:
+        # split master table into three and save results
+        gene_clust_cols = ['Cluster_ID', 'centroid', 'seed_eggNOG_ortholog',
+                           'seed_ortholog_evalue', 'seed_ortholog_score',
+                           'best_tax_level', 'Preferred_name', 'GOs', 'EC',
+                           'KEGG_ko', 'KEGG_Pathway', 'KEGG_Module',
+                           'KEGG_Reaction', 'KEGG_rclass', 'BRITE', 'KEGG_TC',
+                           'CAZy', 'BiGG_Reaction', 'taxonomic_scope',
+                           'eggNOG_OGs', 'best_eggNOG_OG',
+                           'COG_Functional_cat.', 'eggNOG_free_text_desc.']
+        gene_table_cols = ['Cluster_ID', 'Gene_ID', 'Contig_ID', 'MAG_ID']
+        mapped_genes_contigs_mags_eggNOG[gene_clust_cols].to_csv(join(out_path,
+            f'{out_name}_mapped_genes_cluster.tsv'), sep='\t', na_rep='NaN')
+        mapped_genes_contigs_mags_eggNOG[gene_table_cols].to_csv(join(out_path,
+            f'{out_name}_individual_mapped_genes.tsv'), sep='\t', na_rep='NaN')
+        # Drop unnecessary columns and sort by MAG ID column
+        MAGS_df = MAGS_df.drop(columns=['Bin_ID', 'contigs']).\
+            sort_values('MAG_ID').reset_index(drop=True)
+        MAGS_df.to_csv(join(out_path, f'{out_name}_MAGS.tsv'), sep='\t',
+                       na_rep='NaN')
+    else:
+        mapped_genes_contigs_mags_eggNOG.to_csv(join(out_path,
+            f'{out_name}.tsv'), sep='\t', na_rep='NaN')
+
 
 if __name__ == "__main__":
     _perform_mapping()
