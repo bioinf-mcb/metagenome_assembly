@@ -24,7 +24,7 @@ task kneaddataReadCountTable {
     }
 
     runtime {
-        docker: "gcr.io/microbiome-xavier/metagenomicstools:101419"
+        docker: "gcr.io/microbiome-xavier/metagenomicstools:101419" # use kneaddata docker 
         cpu: 1
         memory: "4GB"
         preemptible: 2

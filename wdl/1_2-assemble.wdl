@@ -1,10 +1,10 @@
-workflow qc_and_assemble {
+workflow assemble {
 
-    call assemble 
+    call assemble_megahit 
 
 }
 
-task assemble {
+task assemble_megahit {
     File r1
     File r2
     File s1
@@ -24,7 +24,7 @@ task assemble {
         File fileContigs = "assemble/${sample}.min500.contigs.fa"
     
 }   runtime {
-        docker: "gcr.io/microbiome-xavier/metagenomicstools:081518"
+        docker: "gcr.io/microbiome-xavier/metagenomicstools:081518" # develop a docker image with megahit
         cpu: 4
         memory: "15GB"
         preemptible: 2

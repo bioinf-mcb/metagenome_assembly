@@ -46,7 +46,7 @@ task predictgenes {
     }
 
     runtime {
-        docker: "gcr.io/microbiome-xavier/metagenomicstools:081518"
+        docker: "gcr.io/microbiome-xavier/metagenomicstools:081518" # docker with prodigal needed
         cpu: 1
         memory: "7GB"
         preemptible: 2
@@ -80,7 +80,7 @@ task map_to_contigs {
     }
     
     runtime {
-        docker: "gcr.io/microbiome-xavier/metagenomicstools:082018"
+        docker: "gcr.io/microbiome-xavier/metagenomicstools:082018" # docker with bwa and samtools needed
         cpu: 8
         memory: "24GB"
         preemptible: 2
@@ -113,7 +113,7 @@ task metabat2 {
     }
     
     runtime {
-        docker: "gcr.io/microbiome-xavier/metabat2:021420"
+        docker: "gcr.io/microbiome-xavier/metabat2:021420" 
         cpu: 8
         memory: "12GB"
         preemptible: 2
@@ -146,7 +146,7 @@ task checkm {
     }
 
     runtime {
-        docker: "gcr.io/microbiome-xavier/checkm:v1.1.2"
+        docker: "gcr.io/microbiome-xavier/checkm:v1.1.2" # we have checkm docker but I could not find the dockerfile - worth checking if this is simple to write anew.
         cpu: 4
         memory: "100GB"
         preemptible: 2

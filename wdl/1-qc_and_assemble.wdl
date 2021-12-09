@@ -1,12 +1,16 @@
 workflow qc_and_assemble {
+    String sample_id
 
-    call qcAdapters
+    call qcAdapters {
+        input: 
+        sample_id=sample_id
+    }
 
     call kneadData {
         input: 
         file1=qcAdapters.fileR1, 
-        file2=qcAdapters.fileR2
-    }
+        file2=qcAdapters.fileR2,
+        sample_id=sample_id
 
     call assemble {
         input: 
@@ -30,28 +34,28 @@ workflow qc_and_assemble {
 task qcAdapters {
     File file1
     File file2
-    String sample
+    String sample_id
 
     command {
 
         # move file into name that fits with the sample naming strategy
-        mv ${file1} ${sample}.1.fq.gz
-        mv ${file2} ${sample}.2.fq.gz
+        mv ${file1} ${sample_id}.1.fq.gz
+        mv ${file2} ${sample_id}.2.fq.gz
 
         trim_galore --paired --phred33 --quality 0 --stringency 5 --length 10 \
-        ${sample}.1.fq.gz ${sample}.2.fq.gz
+        ${sample_id}.1.fq.gz ${sample_id}.2.fq.gz
 
-        mv ${sample}.1_val_1.fq.gz ${sample}.adapterTrimmed.1.fq.gz
-        mv ${sample}.2_val_2.fq.gz ${sample}.adapterTrimmed.2.fq.gz
+        mv ${sample_id}.1_val_1.fq.gz ${sample_id}.adapterTrimmed.1.fq.gz
+        mv ${sample_id}.2_val_2.fq.gz ${sample_id}.adapterTrimmed.2.fq.gz
     }
     
     output {
-        File fileR1 = "${sample}.adapterTrimmed.1.fq.gz"
-        File fileR2 = "${sample}.adapterTrimmed.2.fq.gz"
+        File fileR1 = "${sample_id}.adapterTrimmed.1.fq.gz"
+        File fileR2 = "${sample_id}.adapterTrimmed.2.fq.gz"
     }
 
     runtime {
-        docker: "gcr.io/microbiome-xavier/metagenomicstools:070318"
+        docker: "gcr.io/microbiome-xavier/metagenomicstools:070318" # docker with trim galore needed
         cpu: 1
         memory: "1GB"
         preemptible: 2
@@ -62,39 +66,41 @@ task qcAdapters {
 
 
 task kneadData {
-    File file1
-    File file2
-    String sample
-    File ref_homo_sapiens
+    File file_r1
+    File file_r2
+    String sample_id
 
     command {
-        mkdir ref_homo_sapiens
-        tar -xf ${ref_homo_sapiens} -C ref_homo_sapiens/
+        kneaddata --input ${file_r1} \
+                  --input ${file_r2} \
+                  -o . \
+                  --output-prefix ${sample_id} \
+                  -db /hg37 \
+                  --trimmomatic-options "HEADCROP:15 SLIDINGWINDOW:4:15 MINLEN:50" \
+                  -t 4 \
+                  --reorder \
+                  --remove-intermediate-output \
+                  --trimmomatic /opt/conda/share/trimmomatic \
+                  --log ${sample_id}.log
 
-        kneaddata --input ${file1} --input ${file2} -o . \
-          -db ref_homo_sapiens \
-          --trimmomatic-options "HEADCROP:15 SLIDINGWINDOW:4:15 MINLEN:50" \
-          -t 4 \
-          --log ${sample}.log \
-          --reorder
-        
-        gzip ${sample}.adapterTrimmed.1_kneaddata_paired_1.fastq
-        gzip ${sample}.adapterTrimmed.1_kneaddata_paired_2.fastq
-        gzip ${sample}.adapterTrimmed.1_kneaddata_unmatched_1.fastq
-        gzip ${sample}.adapterTrimmed.1_kneaddata_unmatched_2.fastq
+        rm *bowtie2*
 
+        gzip ${sample_id}_paired_1.fastq
+        gzip ${sample_id}_paired_2.fastq
+        gzip ${sample_id}_unmatched_1.fastq
+        gzip ${sample_id}_unmatched_2.fastq
     }
     
     output {
-        File fileR1 = "${sample}.adapterTrimmed.1_kneaddata_paired_1.fastq.gz"
-        File fileR2 = "${sample}.adapterTrimmed.1_kneaddata_paired_2.fastq.gz"
-        File fileS1 = "${sample}.adapterTrimmed.1_kneaddata_unmatched_1.fastq.gz"
-        File fileS2 = "${sample}.adapterTrimmed.1_kneaddata_unmatched_2.fastq.gz"
-        File log_file = "${sample}.log"
+        File fileR1 = "${sample_id}.adapterTrimmed.1_kneaddata_paired_1.fastq.gz"
+        File fileR2 = "${sample_id}.adapterTrimmed.1_kneaddata_paired_2.fastq.gz"
+        File fileS1 = "${sample_id}.adapterTrimmed.1_kneaddata_unmatched_1.fastq.gz"
+        File fileS2 = "${sample_id}.adapterTrimmed.1_kneaddata_unmatched_2.fastq.gz"
+        File log_file = "${sample_id}.log"
     }
 
     runtime {
-        docker: "gcr.io/microbiome-xavier/metagenomicstools:101419"
+        docker: "gcr.io/microbiome-xavier/metagenomicstools:101419" # use kneaddata docker here
         cpu: 4
         memory: "24GB"
         preemptible: 2
@@ -124,7 +130,7 @@ task assemble {
         File fileContigs = "assemble/${sample}.min500.contigs.fa"
     
 }   runtime {
-        docker: "gcr.io/microbiome-xavier/metagenomicstools:081518"
+        docker: "gcr.io/microbiome-xavier/metagenomicstools:081518" # metahit docker as in 1_2-assemble.wdl
         cpu: 4
         memory: "15GB"
         preemptible: 2

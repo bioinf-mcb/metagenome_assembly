@@ -37,7 +37,7 @@ task cluster_genes {
     }
 
     runtime {
-        docker: "gcr.io/microbiome-xavier/metagenomicstools:032819"
+        docker: "gcr.io/microbiome-xavier/metagenomicstools:032819" # use docker gene_clustering
         cpu: 32
         memory: "120GB"
         bootDiskSizeGb: 50
