@@ -1,15 +1,8 @@
 workflow qc_and_assemble {
     String sample_id
 
-    call qcAdapters {
-        input: 
-        sample_id=sample_id
-    }
-
     call kneadData {
         input: 
-        file1=qcAdapters.fileR1, 
-        file2=qcAdapters.fileR2,
         sample_id=sample_id
 
     call assemble {
@@ -17,7 +10,8 @@ workflow qc_and_assemble {
         r1=kneadData.fileR1, 
         r2=kneadData.fileR2, 
         s1=kneadData.fileS1, 
-        s2=kneadData.fileS2
+        s2=kneadData.fileS2,
+        sample_id=sample_id
     }
 
     output {
@@ -29,39 +23,6 @@ workflow qc_and_assemble {
         File assembled_contigs = assemble.fileContigs
     }
 
-}
-
-task qcAdapters {
-    File file1
-    File file2
-    String sample_id
-
-    command {
-
-        # move file into name that fits with the sample naming strategy
-        mv ${file1} ${sample_id}.1.fq.gz
-        mv ${file2} ${sample_id}.2.fq.gz
-
-        trim_galore --paired --phred33 --quality 0 --stringency 5 --length 10 \
-        ${sample_id}.1.fq.gz ${sample_id}.2.fq.gz
-
-        mv ${sample_id}.1_val_1.fq.gz ${sample_id}.adapterTrimmed.1.fq.gz
-        mv ${sample_id}.2_val_2.fq.gz ${sample_id}.adapterTrimmed.2.fq.gz
-    }
-    
-    output {
-        File fileR1 = "${sample_id}.adapterTrimmed.1.fq.gz"
-        File fileR2 = "${sample_id}.adapterTrimmed.2.fq.gz"
-    }
-
-    runtime {
-        docker: "gcr.io/microbiome-xavier/metagenomicstools:070318" # docker with trim galore needed
-        cpu: 1
-        memory: "1GB"
-        preemptible: 2
-        maxRetries: 3
-        disks: "local-disk 40 SSD"
-    }
 }
 
 
@@ -115,22 +76,21 @@ task assemble {
     File r2
     File s1
     File s2
-    String sample
+    String sample_id
 
     command <<<
-        rm -f assemble
         megahit -1 ${r1} -2 ${r2} -r ${s1},${s2} -t 4 -m 15000000000 -o assemble
         cat assemble/final.contigs.fa | \
-        awk -v var="${sample}" '
+        awk -v var="${sample_id}" '
             {if($0 ~ /^>/) {contigName=substr($0, 2,length($0))} 
-            else {seq=$0; if(length($0) >= 500) {print ">"var"_"contigName"\n"seq}} }' > assemble/${sample}.min500.contigs.fa
+            else {seq=$0; if(length($0) >= 500) {print ">"var"_"contigName"\n"seq}} }' > assemble/${sample_id}.min500.contigs.fa
     >>>
 
     output {
-        File fileContigs = "assemble/${sample}.min500.contigs.fa"
+        File fileContigs = "assemble/${sample_id}.min500.contigs.fa"
     
 }   runtime {
-        docker: "gcr.io/microbiome-xavier/metagenomicstools:081518" # metahit docker as in 1_2-assemble.wdl
+        docker: "gcr.io/microbiome-xavier/metagenomicstools:081518" # develop megahit docker as in 1_2-assemble.wdl
         cpu: 4
         memory: "15GB"
         preemptible: 2
