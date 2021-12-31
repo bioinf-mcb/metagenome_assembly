@@ -4,7 +4,8 @@ workflow qc_and_assemble {
     call kneadData {
         input: 
         sample_id=sample_id
-
+    }
+    
     call assemble {
         input: 
         r1=kneadData.fileR1, 
