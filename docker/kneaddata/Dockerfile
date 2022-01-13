@@ -1,40 +1,33 @@
-# $ docker build . -t gene_clustering:v1.0
-# $ docker run --rm -it -v `pwd`:/data gene_clustering:latest /bin/bash
+FROM ubuntu:18.04
 
-FROM biopython/biopython
+ENV PATH /opt/conda/bin:$PATH
 
-RUN mkdir /app && mkdir /appdownload
+RUN apt-get update --fix-missing && apt-get install -y wget bzip2 ca-certificates \
+    libglib2.0-0 libxext6 libsm6 libxrender1 \
+    git mercurial subversion
 
-WORKDIR /appdownload
+# install conda
+RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-py37_4.10.3-Linux-x86_64.sh -O ~/miniconda.sh && \
+    /bin/bash ~/miniconda.sh -b -p /opt/conda && \
+    rm ~/miniconda.sh && \
+    ln -s /opt/conda/etc/profile.d/conda.sh /etc/profile.d/conda.sh && \
+    echo ". /opt/conda/etc/profile.d/conda.sh" >> ~/.bashrc && \
+    echo "conda activate base" >> ~/.bashrc
 
-COPY usearch8.1.1861_i86linux64 /app
-COPY extract_complete_gene.py /app
+# Make RUN commands use `bash --login` (instead of '/bin/sh -c'):
+SHELL ["/bin/bash", "--login", "-c"]
 
-RUN apt-get update && apt-get install -y \
-  curl \
-  git \
-  wget \
-  mercurial \
-  unzip \
-  bzip2 \
-  make \
-  gcc \
-  g++ \
-  libncurses5-dev \
-  zlib1g-dev \
-  liblzma-dev \
-  libtbb-dev \
-  pigz \
-  cmake
+RUN conda init bash
+RUN conda config --add channels defaults
+RUN conda config --add channels bioconda
+RUN conda config --add channels conda-forge
+RUN conda config --add channels biobakery
+RUN conda install kneaddata -c biobakery
 
-RUN git clone https://github.com/weizhongli/cdhit.git \
-   && cd cdhit \
-   && make \
-   && ln -s /appdownload/cdhit/cd-hit /app/cd-hit \
-   && ln -s /appdownload/cdhit/cd-hit-est /app/cd-hit-est \
-   && ln -s /appdownload/cdhit/cd-hit-est-2d /app/cd-hit-est-2d \
-   && ln -s /appdownload/cdhit/cd-hit-2d /app/cd-hit-2d
-
-ENV PATH /app:$PATH
-RUN chmod 755 /app/*
-
+RUN mkdir /hg37
+COPY hg37dec_v0.1.1.bt2 /hg37/
+COPY hg37dec_v0.1.2.bt2 /hg37/
+COPY hg37dec_v0.1.3.bt2 /hg37/
+COPY hg37dec_v0.1.4.bt2 /hg37/
+COPY hg37dec_v0.1.rev.1.bt2 /hg37/
+COPY hg37dec_v0.1.rev.2.bt2 /hg37/
