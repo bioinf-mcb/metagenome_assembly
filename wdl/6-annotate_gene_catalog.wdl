@@ -12,10 +12,9 @@ workflow annotate_gene_catalogue {
 
         call annotate_deepfri {
             input:
-            gene_catalogue=gene_shard,
             num_preemptible=preemptible_tries,
+            gene_catalogue=gene_shard
         }
-
     }
 }
 

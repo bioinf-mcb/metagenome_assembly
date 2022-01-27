@@ -1,18 +1,14 @@
-# $ docker build . -t gene_clustering:v1.0
-# $ docker run --rm -it -v `pwd`:/data gene_clustering:latest /bin/bash
+FROM ubuntu:20.04
+# tzdata installation
+ARG DEBIAN_FRONTEND=noninteractive
 
-FROM biopython/biopython
+ENV APPS_HOME=/app APPS_DOWN=/appdownload TRIMMOMATIC_V=0.39 BOWTIE_V=2.4.5 TZ=Europe
 
-RUN mkdir /app && mkdir /appdownload
-
-WORKDIR /appdownload
-
-COPY usearch8.1.1861_i86linux64 /app
-COPY extract_complete_gene.py /app
+RUN mkdir $APPS_HOME && mkdir $APPS_DOWN && cd $APPS_DOWN
 
 RUN apt-get update && apt-get install -y \
+  default-jre \
   curl \
-  git \
   wget \
   mercurial \
   unzip \
@@ -25,16 +21,39 @@ RUN apt-get update && apt-get install -y \
   liblzma-dev \
   libtbb-dev \
   pigz \
-  cmake
+  python3.9 \
+  libtbb2 \
+  python3-pip\
+  && apt-get clean && apt-get purge
+  
+# install kneaddata and dependencies
+RUN pip3 install kneaddata==0.10.0 
 
-RUN git clone https://github.com/weizhongli/cdhit.git \
-   && cd cdhit \
-   && make \
-   && ln -s /appdownload/cdhit/cd-hit /app/cd-hit \
-   && ln -s /appdownload/cdhit/cd-hit-est /app/cd-hit-est \
-   && ln -s /appdownload/cdhit/cd-hit-est-2d /app/cd-hit-est-2d \
-   && ln -s /appdownload/cdhit/cd-hit-2d /app/cd-hit-2d
+# install trimmomatic == 0.39
+RUN wget http://www.usadellab.org/cms/uploads/supplementary/Trimmomatic/Trimmomatic-$TRIMMOMATIC_V.zip \
+  && unzip Trimmomatic-$TRIMMOMATIC_V.zip \
+  && rm Trimmomatic-$TRIMMOMATIC_V.zip \
+  && mkdir -p $APPS_HOME/Trimmomatic \
+  && mv Trimmomatic-$TRIMMOMATIC_V $APPS_HOME/Trimmomatic/$TRIMMOMATIC_V \
+  && printf '#!/bin/bash\njava -Xmx6g -jar ' > trimmomatic \
+  && echo $APPS_HOME/Trimmomatic/$TRIMMOMATIC_V/trimmomatic-$TRIMMOMATIC_V.jar' $*' >> trimmomatic \
+  && chmod +x trimmomatic \
+  && mv trimmomatic /bin
+
+# install bowtie2 == 2.4.5
+RUN wget -O $APPS_DOWN/bowtie2-$BOWTIE_V.zip https://github.com/BenLangmead/bowtie2/releases/download/v$BOWTIE_V/bowtie2-$BOWTIE_V-linux-x86_64.zip \
+    && cd $APPS_DOWN \
+    && unzip bowtie2-$BOWTIE_V.zip \
+    && cd bowtie2-$BOWTIE_V-linux-x86_64 \
+    && mv bowtie2* /bin \
+    && cd $APPS_DOWN 
+
+# install TRF==4.09.1
+RUN wget -O trf https://github.com/Benson-Genomics-Lab/TRF/releases/download/v4.09.1/trf409.linux64 \ 
+    && chmod +x trf \
+    && mv trf /bin \
+    && chmod 755 /app/* 
 
 ENV PATH /app:$PATH
-RUN chmod 755 /app/*
+
 

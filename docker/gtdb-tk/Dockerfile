@@ -11,7 +11,8 @@
             cython3 \
             zlib1g-dev \
             libbz2-dev \
-            liblzma-dev
+            liblzma-dev \
+            libjpeg-dev
 
 
     # prodigal

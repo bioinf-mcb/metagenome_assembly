@@ -46,7 +46,7 @@ task predictgenes {
     }
 
     runtime {
-        docker: "gcr.io/microbiome-xavier/metagenomicstools:081518" # docker with prodigal needed
+        docker: "crusher083/metabat2@sha256:sha256:f5a6a59608c3a77a30eac2887d694e1b6cfef904bec361cd18e500188dfc848e" # docker with prodigal needed
         cpu: 1
         memory: "7GB"
         preemptible: 2
@@ -80,7 +80,7 @@ task map_to_contigs {
     }
     
     runtime {
-        docker: "gcr.io/microbiome-xavier/metagenomicstools:082018" # docker with bwa and samtools needed
+        docker: "crusher083/metabat2@sha256:sha256:f5a6a59608c3a77a30eac2887d694e1b6cfef904bec361cd18e500188dfc848e" # docker with bwa and samtools needed
         cpu: 8
         memory: "24GB"
         preemptible: 2
@@ -113,7 +113,7 @@ task metabat2 {
     }
     
     runtime {
-        docker: "gcr.io/microbiome-xavier/metabat2:021420" 
+        docker: "crusher083/metabat2@sha256:sha256:f5a6a59608c3a77a30eac2887d694e1b6cfef904bec361cd18e500188dfc848e" 
         cpu: 8
         memory: "12GB"
         preemptible: 2
@@ -146,7 +146,7 @@ task checkm {
     }
 
     runtime {
-        docker: "gcr.io/microbiome-xavier/checkm:v1.1.2" # we have checkm docker but I could not find the dockerfile - worth checking if this is simple to write anew.
+        docker: "crusher083/metabat2@sha256:sha256:f5a6a59608c3a77a30eac2887d694e1b6cfef904bec361cd18e500188dfc848e" 
         cpu: 4
         memory: "100GB"
         preemptible: 2
@@ -163,7 +163,6 @@ task gtdbtk {
 
     command {
 
-        tar -xf ${gtdb_reference} -C /gtdbtk-data/
         export GTDBTK_DATA_PATH=/gtdbtk-data/${gtdb_release}/
         tar -xf ${bins}
         gtdbtk classify_wf --genome_dir ${sample}_bins/ -x fa --cpus 4 --out_dir ${sample}_gtdb
