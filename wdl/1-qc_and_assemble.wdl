@@ -1,6 +1,7 @@
 version 1.0 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 import "structs.wdl" alias PairedSample as SampleInfo
 
 workflow qc_and_assemble {
@@ -23,18 +24,24 @@ workflow qc_and_assemble {
         sample_id=sample_id
     }
 
+=======
+>>>>>>> ac70c742b1668b7d2d9929cf90bb5bac9e030754
     call kneadData {
         input: 
-        file1=qcAdapters.fileR1, 
-        file2=qcAdapters.fileR2,
         sample_id=sample_id
+<<<<<<< HEAD
 >>>>>>> parent of 91dfb98... Remove trim-galore from QC
 
+=======
+    }
+    
+>>>>>>> ac70c742b1668b7d2d9929cf90bb5bac9e030754
     call assemble {
         input:
         r1=kneadData.fileR1, 
         r2=kneadData.fileR2, 
         s1=kneadData.fileS1, 
+<<<<<<< HEAD
 <<<<<<< HEAD
         s2=kneadData.fileS2,
         sample_id=sub(basename(info.file_r1), "_1.fastq.gz", ""),
@@ -43,6 +50,10 @@ workflow qc_and_assemble {
 =======
         s2=kneadData.fileS2
 >>>>>>> parent of 91dfb98... Remove trim-galore from QC
+=======
+        s2=kneadData.fileS2,
+        sample_id=sample_id
+>>>>>>> ac70c742b1668b7d2d9929cf90bb5bac9e030754
     }
     output {
         Array[File] R1_paired_postqc = kneadData.fileR1
@@ -51,39 +62,6 @@ workflow qc_and_assemble {
         Array[File] S2_unpaired_postqc = kneadData.fileS2
         Array[File] kneaddata_log = kneadData.log_file
         Array[File] assembled_contigs = assemble.fileContigs
-    }
-}
-
-task qcAdapters {
-    File file1
-    File file2
-    String sample_id
-
-    command {
-
-        # move file into name that fits with the sample naming strategy
-        mv ${file1} ${sample_id}.1.fq.gz
-        mv ${file2} ${sample_id}.2.fq.gz
-
-        trim_galore --paired --phred33 --quality 0 --stringency 5 --length 10 \
-        ${sample_id}.1.fq.gz ${sample_id}.2.fq.gz
-
-        mv ${sample_id}.1_val_1.fq.gz ${sample_id}.adapterTrimmed.1.fq.gz
-        mv ${sample_id}.2_val_2.fq.gz ${sample_id}.adapterTrimmed.2.fq.gz
-    }
-    
-    output {
-        File fileR1 = "${sample_id}.adapterTrimmed.1.fq.gz"
-        File fileR2 = "${sample_id}.adapterTrimmed.2.fq.gz"
-    }
-
-    runtime {
-        docker: "gcr.io/microbiome-xavier/metagenomicstools:070318" # docker with trim galore needed
-        cpu: 1
-        memory: "1GB"
-        preemptible: 2
-        maxRetries: 3
-        disks: "local-disk 40 SSD"
     }
 }
 
@@ -140,6 +118,7 @@ task assemble {
     File s1 
     File s2
 <<<<<<< HEAD
+<<<<<<< HEAD
     # sample id 
     String sample_id
     # parameter
@@ -164,21 +143,23 @@ task assemble {
         maxRetries: 1
 =======
     String sample
+=======
+    String sample_id
+>>>>>>> ac70c742b1668b7d2d9929cf90bb5bac9e030754
 
     command <<<
-        rm -f assemble
         megahit -1 ${r1} -2 ${r2} -r ${s1},${s2} -t 4 -m 15000000000 -o assemble
         cat assemble/final.contigs.fa | \
-        awk -v var="${sample}" '
+        awk -v var="${sample_id}" '
             {if($0 ~ /^>/) {contigName=substr($0, 2,length($0))} 
-            else {seq=$0; if(length($0) >= 500) {print ">"var"_"contigName"\n"seq}} }' > assemble/${sample}.min500.contigs.fa
+            else {seq=$0; if(length($0) >= 500) {print ">"var"_"contigName"\n"seq}} }' > assemble/${sample_id}.min500.contigs.fa
     >>>
 
     output {
-        File fileContigs = "assemble/${sample}.min500.contigs.fa"
+        File fileContigs = "assemble/${sample_id}.min500.contigs.fa"
     
 }   runtime {
-        docker: "gcr.io/microbiome-xavier/metagenomicstools:081518" # metahit docker as in 1_2-assemble.wdl
+        docker: "gcr.io/microbiome-xavier/metagenomicstools:081518" # develop megahit docker as in 1_2-assemble.wdl
         cpu: 4
         memory: "15GB"
         preemptible: 2
