@@ -29,7 +29,7 @@ java -jar womtool.jar inputs workflow.wdl > inputs.json
 ### Locally:
 The pipeline can be run using [Cromwell](https://cromwell.readthedocs.io/en/stable/)
 
-java -jar cromwell.jar run workflow.wdl -i inputs.json 
+java -Dconfig.file=cromwell-configs/kneaddata.conf -jar cromwell-74.jar run ./wdl/1-qc_and_assemble.wdl -o output-options.json -i inputs.json
 
 
 # Outputs
