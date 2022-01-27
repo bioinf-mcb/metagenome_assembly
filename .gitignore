@@ -6,7 +6,4 @@ scripts/tests/data/generated
 scripts/__pycache__/
 databases/*
 cromwell/*
-log.txt
-kneaddata.conf
-kneaddata-options.json
 .ipynb_checkpoints
