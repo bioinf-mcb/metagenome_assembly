@@ -5,7 +5,7 @@ Python script to generate mapping between non-redundant gene catalogue and MAGS
 
 # Introduction to WDL workflow
 ### This pipeline will perform;
-* Pre-processing of reads with Trim Galore and Kneaddata
+* Pre-processing of reads with Kneaddata
 * Metagenomics assembly with Megahit
 * Gene prediction
 * Mapping of reads against the contigs 
@@ -18,12 +18,12 @@ Python script to generate mapping between non-redundant gene catalogue and MAGS
 # Usage 
 ## Requirements
 
-This pipeline uses docker images
+This pipeline uses Docker images
 
 # Input parameters 
 All the inputs needed by the workflow are provided through a JSON file and can be generated using [Womtool](https://cromwell.readthedocs.io/en/stable/WOMtool/) with the following command  
 
-java -jar womtool.jar inputs workflow.wdl > inputs.json
+java -jar womtool.jar inputs workflow-74.wdl > inputs.json
 
 # Running the pipeline
 ### Locally:
