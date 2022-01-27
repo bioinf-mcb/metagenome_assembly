@@ -18,7 +18,7 @@ Python script to generate mapping between non-redundant gene catalogue and MAGS
 # Usage 
 ## Requirements
 
-This pipeline uses docker image 
+This pipeline uses docker images
 
 # Input parameters 
 All the inputs needed by the workflow are provided through a JSON file and can be generated using [Womtool](https://cromwell.readthedocs.io/en/stable/WOMtool/) with the following command  
