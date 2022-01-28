@@ -21,12 +21,12 @@ workflow predict_mags {
 }
 
 task predictgenes {
-    File fileContigs
+    File contigs
     String sample
 
     command <<<
         mkdir prodigal
-        if [[ `wc -l ${fileContigs} | awk '{print $1}'` == "0" ]]; then
+        if [[ `wc -l ${contigs} | awk '{print $1}'` == "0" ]]; then
             touch prodigal/${sample}.gff
             touch prodigal/${sample}.fna
             touch prodigal/${sample}.faa
@@ -47,11 +47,8 @@ task predictgenes {
 
     runtime {
         docker: "crusher083/metabat2@sha256:sha256:f5a6a59608c3a77a30eac2887d694e1b6cfef904bec361cd18e500188dfc848e" # docker with prodigal needed
-        cpu: 1
-        memory: "7GB"
         preemptible: 2
         maxRetries: 3
-        disks: "local-disk 100 SSD"
     }
 }
 
@@ -68,7 +65,7 @@ task map_to_contigs {
 
         bwa mem -t 8 -M ${contigs} ${fileR1} ${fileR2} | \
         samtools view - -h -Su -F 2308 -q 0 | \
-    # sorting BAM file with Samtools
+        # sorting BAM file with Samtools
         samtools sort -@ 8 -m 2G -O bam -o ${sample}.sort.bam 
 
     }

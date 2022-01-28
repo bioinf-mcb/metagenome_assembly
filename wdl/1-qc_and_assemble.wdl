@@ -49,8 +49,8 @@ task kneadData {
     }
     
     command {
-        kneaddata --input ${file_r1} \
-                  --input ${file_r2} \
+        kneaddata -i1 ${file_r1} \
+                  -i2 ${file_r2} \
                   -o . \
                   --output-prefix ${sample_id} \
                   -db /GRCh38 \
@@ -60,6 +60,7 @@ task kneadData {
                   --bowtie2 /bin \
                   --trf /bin \
                   --reorder \
+                  --remove-intermediate-output \
                   --log ${sample_id}.log
 
         pigz -p ${thread} ${sample_id}_paired_1.fastq
@@ -77,7 +78,7 @@ task kneadData {
     }
 
     runtime {
-        docker: "crusher083/kneaddata@sha256:79af69ef6fa899c97e4e075599e75a85b299af1c6301143ca21f9025041fb68f" # use kneaddata docker here
+        docker: "crusher083/kneaddata@sha256:db19f5146938b1bf806722df7a68594b1536cb25612a941be1556205abffb9f6" # use kneaddata docker here
         maxRetries: 1
     }
 }

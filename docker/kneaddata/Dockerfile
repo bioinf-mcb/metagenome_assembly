@@ -8,26 +8,25 @@ RUN mkdir $APPS_HOME && mkdir $APPS_DOWN && cd $APPS_DOWN
 
 RUN apt-get update && apt-get install -y \
   default-jre \
-  curl \
   wget \
-  mercurial \
   unzip \
-  bzip2 \
-  make \
-  gcc \
-  g++ \
+  pigz \
   libncurses5-dev \
   zlib1g-dev \
   liblzma-dev \
   libtbb-dev \
-  pigz \
   python3.9 \
+  python3-setuptools \
   libtbb2 \
-  python3-pip\
+  git \
   && apt-get clean && apt-get purge
   
-# install kneaddata and dependencies
-RUN pip3 install kneaddata==0.10.0 
+# install kneaddata development version for paired input processing from SRA - the only possible option for the momemnt
+RUN git clone https://github.com/biobakery/kneaddata.git \
+    && cd kneaddata \ 
+    && python3 setup.py install --bypass-dependencies-install \ 
+    && cd .. \ 
+    && rm -rf kneaddata
 
 # install trimmomatic == 0.39
 RUN wget http://www.usadellab.org/cms/uploads/supplementary/Trimmomatic/Trimmomatic-$TRIMMOMATIC_V.zip \
@@ -46,7 +45,8 @@ RUN wget -O $APPS_DOWN/bowtie2-$BOWTIE_V.zip https://github.com/BenLangmead/bowt
     && unzip bowtie2-$BOWTIE_V.zip \
     && cd bowtie2-$BOWTIE_V-linux-x86_64 \
     && mv bowtie2* /bin \
-    && cd $APPS_DOWN 
+    && cd $APPS_DOWN \
+    && rm -rf bowtie2-$BOWTIE_V-linux-x86_64
 
 # install TRF==4.09.1
 RUN wget -O trf https://github.com/Benson-Genomics-Lab/TRF/releases/download/v4.09.1/trf409.linux64 \ 
