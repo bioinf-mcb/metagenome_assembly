@@ -22,15 +22,19 @@ This pipeline uses Docker images
 
 # Input parameters 
 All the inputs needed by the workflow are provided through a JSON file and can be generated using [Womtool](https://cromwell.readthedocs.io/en/stable/WOMtool/) with the following command  
-
+```
 java -jar womtool.jar inputs workflow-74.wdl > inputs.json
-
+```
 # Running the pipeline
 ### Locally:
 The pipeline can be run using [Cromwell](https://cromwell.readthedocs.io/en/stable/)
-
-java -Dconfig.file=cromwell-configs/kneaddata.conf -jar cromwell-74.jar run ./wdl/1-qc_and_assemble.wdl -o output-options.json -i inputs.json
-
+```
+java \
+-Dconfig.file=cromwell-configs/kneaddata.conf \
+-jar cromwell-74.jar run ./wdl/1-qc_and_assemble.wdl \
+-o output-options.json \
+-i inputs.json
+```
 
 # Outputs
 This pipeline will produce a number of directories and files
