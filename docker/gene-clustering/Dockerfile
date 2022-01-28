@@ -103,21 +103,19 @@
     <script crossorigin="anonymous" defer="defer" integrity="sha512-6yI/t7GcFRajrquWdg5NqQdrvgI4rWRWcuZhNmAHH/T2aw2iB0uAco9nNYoETW3zzJ+tmnC7qqfArrHaYmk1oQ==" type="application/javascript" data-module-id="./chunk-voting.js" data-src="https://github.githubassets.com/assets/chunk-voting-eb223fb7.js"></script>
     <script crossorigin="anonymous" defer="defer" integrity="sha512-q34Q0/s/exmYECvsCRWCxp+22UY2cZK8MPrKv3LjI3bNU5AD3Fzv+JhN0Lgfvd2mgju3llixlQ4z2RvkTIw2oA==" type="application/javascript" data-module-id="./chunk-webgl-warp.js" data-src="https://github.githubassets.com/assets/chunk-webgl-warp-ab7e10d3.js"></script>
   
-  <script crossorigin="anonymous" defer="defer" integrity="sha512-UNN2x/Z3QBOwzu0rguMWtj0IvJtOCDUqGgh+Mr9HuYvQFbJN4EM+GAcURd57jB+ult2mpkhxt8j/+nqJCZfd9A==" type="application/javascript" src="https://github.githubassets.com/assets/codespaces-50d376c7.js"></script>
-<script crossorigin="anonymous" defer="defer" integrity="sha512-/0RIBpc3SGPdy2FUtE8GWnfB5MHqTm4kKGgm9oVmVZTq+PAqzhmfYRTb5w/Y9jEEoNW+4OhNZVDYQV988IQWaw==" type="application/javascript" src="https://github.githubassets.com/assets/repositories-ff444806.js"></script>
-<script crossorigin="anonymous" defer="defer" integrity="sha512-5VS9txZOv3EOORFwDsEW5xPehMoVpb3tjrCYKqB6a0uAXGb8ZEa7AO2m0SLYFWh29wlXJyIHrMdi9YKaKpN2vw==" type="application/javascript" src="https://github.githubassets.com/assets/topic-suggestions-e554bdb7.js"></script>
-<script crossorigin="anonymous" defer="defer" integrity="sha512-Y9QCffkHDk3/KAoYUMhKeokbNlXWgpO+53XrccRwhUWzMTxEmhnp1ce7OVWP3vOzhCfWaxxnKWW9eVjjny8nRA==" type="application/javascript" src="https://github.githubassets.com/assets/code-menu-63d4027d.js"></script>
+  <script crossorigin="anonymous" defer="defer" integrity="sha512-/0RIBpc3SGPdy2FUtE8GWnfB5MHqTm4kKGgm9oVmVZTq+PAqzhmfYRTb5w/Y9jEEoNW+4OhNZVDYQV988IQWaw==" type="application/javascript" src="https://github.githubassets.com/assets/repositories-ff444806.js"></script>
+<script crossorigin="anonymous" defer="defer" integrity="sha512-1iflGS3Mh/iMA0y2NlgAVoCVAHVTw1YTX/fOe7W/AzYwpIXRwTPP1CUIFAzJ78o6Gb9YtbaYL3qCi8eXRtqYlw==" type="application/javascript" src="https://github.githubassets.com/assets/diffs-d627e519.js"></script>
 
   <meta name="viewport" content="width=device-width">
   
-  <title>metagenomome_assembly/docker/gene-clustering at master · microbiome-immunity-project/metagenomome_assembly · GitHub</title>
+  <title>metagenomome_assembly/Dockerfile at master · microbiome-immunity-project/metagenomome_assembly · GitHub</title>
     <meta name="description" content="WDL Workflow for metagenome assembly. Contribute to microbiome-immunity-project/metagenomome_assembly development by creating an account on GitHub.">
     <link rel="search" type="application/opensearchdescription+xml" href="/opensearch.xml" title="GitHub">
   <link rel="fluid-icon" href="https://github.com/fluidicon.png" title="GitHub">
   <meta property="fb:app_id" content="1401488693436528">
   <meta name="apple-itunes-app" content="app-id=1477376905" />
-    <meta name="twitter:image:src" content="https://opengraph.githubassets.com/52a7d9ed5df3bf19ae73769e89b989992e6d34d5a4e6ff1e180062f91208729b/microbiome-immunity-project/metagenomome_assembly" /><meta name="twitter:site" content="@github" /><meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content="metagenomome_assembly/docker/gene-clustering at master · microbiome-immunity-project/metagenomome_assembly" /><meta name="twitter:description" content="WDL Workflow for metagenome assembly. Contribute to microbiome-immunity-project/metagenomome_assembly development by creating an account on GitHub." />
-    <meta property="og:image" content="https://opengraph.githubassets.com/52a7d9ed5df3bf19ae73769e89b989992e6d34d5a4e6ff1e180062f91208729b/microbiome-immunity-project/metagenomome_assembly" /><meta property="og:image:alt" content="WDL Workflow for metagenome assembly. Contribute to microbiome-immunity-project/metagenomome_assembly development by creating an account on GitHub." /><meta property="og:image:width" content="1200" /><meta property="og:image:height" content="600" /><meta property="og:site_name" content="GitHub" /><meta property="og:type" content="object" /><meta property="og:title" content="metagenomome_assembly/docker/gene-clustering at master · microbiome-immunity-project/metagenomome_assembly" /><meta property="og:url" content="https://github.com/microbiome-immunity-project/metagenomome_assembly" /><meta property="og:description" content="WDL Workflow for metagenome assembly. Contribute to microbiome-immunity-project/metagenomome_assembly development by creating an account on GitHub." />
+    <meta name="twitter:image:src" content="https://opengraph.githubassets.com/52a7d9ed5df3bf19ae73769e89b989992e6d34d5a4e6ff1e180062f91208729b/microbiome-immunity-project/metagenomome_assembly" /><meta name="twitter:site" content="@github" /><meta name="twitter:card" content="summary_large_image" /><meta name="twitter:title" content="metagenomome_assembly/Dockerfile at master · microbiome-immunity-project/metagenomome_assembly" /><meta name="twitter:description" content="WDL Workflow for metagenome assembly. Contribute to microbiome-immunity-project/metagenomome_assembly development by creating an account on GitHub." />
+    <meta property="og:image" content="https://opengraph.githubassets.com/52a7d9ed5df3bf19ae73769e89b989992e6d34d5a4e6ff1e180062f91208729b/microbiome-immunity-project/metagenomome_assembly" /><meta property="og:image:alt" content="WDL Workflow for metagenome assembly. Contribute to microbiome-immunity-project/metagenomome_assembly development by creating an account on GitHub." /><meta property="og:image:width" content="1200" /><meta property="og:image:height" content="600" /><meta property="og:site_name" content="GitHub" /><meta property="og:type" content="object" /><meta property="og:title" content="metagenomome_assembly/Dockerfile at master · microbiome-immunity-project/metagenomome_assembly" /><meta property="og:url" content="https://github.com/microbiome-immunity-project/metagenomome_assembly" /><meta property="og:description" content="WDL Workflow for metagenome assembly. Contribute to microbiome-immunity-project/metagenomome_assembly development by creating an account on GitHub." />
     
 
 
@@ -127,7 +125,7 @@
   <link rel="assets" href="https://github.githubassets.com/">
   
 
-  <meta name="request-id" content="186E:1164E:F411E5:1014D63:61F3A5DD" data-pjax-transient="true"/><meta name="html-safe-nonce" content="c5d7ad4ff01af74aadc0e536886402a391fd5682b8b2fb4f112e3a4c6a70a491" data-pjax-transient="true"/><meta name="visitor-payload" content="eyJyZWZlcnJlciI6IiIsInJlcXVlc3RfaWQiOiIxODZFOjExNjRFOkY0MTFFNToxMDE0RDYzOjYxRjNBNUREIiwidmlzaXRvcl9pZCI6IjU1ODY2ODQ5NzM5Nzc2NzUyMjkiLCJyZWdpb25fZWRnZSI6ImZyYSIsInJlZ2lvbl9yZW5kZXIiOiJmcmEifQ==" data-pjax-transient="true"/><meta name="visitor-hmac" content="b402e2feaef79ffe7ccf76d61dafb16f87e6d24d004a3c2dd6d6275d3fd59eed" data-pjax-transient="true"/>
+  <meta name="request-id" content="1870:11649:427A9D:4DE26A:61F3ACA1" data-pjax-transient="true"/><meta name="html-safe-nonce" content="02fc2fa82b6c8792d936ff3c46b26cba5a3324314334ca27af31f300c18d1320" data-pjax-transient="true"/><meta name="visitor-payload" content="eyJyZWZlcnJlciI6IiIsInJlcXVlc3RfaWQiOiIxODcwOjExNjQ5OjQyN0E5RDo0REUyNkE6NjFGM0FDQTEiLCJ2aXNpdG9yX2lkIjoiODM4MjA3Mzk0NzYzNjg3MDMwNSIsInJlZ2lvbl9lZGdlIjoiZnJhIiwicmVnaW9uX3JlbmRlciI6ImZyYSJ9" data-pjax-transient="true"/><meta name="visitor-hmac" content="11ba30f63ef39661bea9de7fd6315faa9fac9287ef4a54ff4d4c0608123d06bb" data-pjax-transient="true"/>
 
     <meta name="hovercard-subject-tag" content="repository:248378753" data-pjax-transient>
 
@@ -145,12 +143,16 @@
 
 <meta name="octolytics-url" content="https://collector.githubapp.com/github/collect" />
 
-  <meta name="analytics-location" content="/&lt;user-name&gt;/&lt;repo-name&gt;/files/disambiguate" data-pjax-transient="true" />
+  <meta name="analytics-location" content="/&lt;user-name&gt;/&lt;repo-name&gt;/blob/show" data-pjax-transient="true" />
 
   
 
 
 
+  <meta name="optimizely-datafile" content="{&quot;version&quot;: &quot;4&quot;, &quot;rollouts&quot;: [], &quot;typedAudiences&quot;: [], &quot;anonymizeIP&quot;: true, &quot;projectId&quot;: &quot;16737760170&quot;, &quot;variables&quot;: [], &quot;featureFlags&quot;: [], &quot;experiments&quot;: [{&quot;status&quot;: &quot;Running&quot;, &quot;audienceIds&quot;: [], &quot;variations&quot;: [{&quot;variables&quot;: [], &quot;id&quot;: &quot;20438636352&quot;, &quot;key&quot;: &quot;control&quot;}, {&quot;variables&quot;: [], &quot;id&quot;: &quot;20484957397&quot;, &quot;key&quot;: &quot;treatment&quot;}], &quot;id&quot;: &quot;20479227424&quot;, &quot;key&quot;: &quot;growth_ghec_onboarding_experience&quot;, &quot;layerId&quot;: &quot;20467848595&quot;, &quot;trafficAllocation&quot;: [{&quot;entityId&quot;: &quot;20484957397&quot;, &quot;endOfRange&quot;: 1000}, {&quot;entityId&quot;: &quot;20484957397&quot;, &quot;endOfRange&quot;: 3000}, {&quot;entityId&quot;: &quot;20484957397&quot;, &quot;endOfRange&quot;: 5000}, {&quot;entityId&quot;: &quot;20484957397&quot;, &quot;endOfRange&quot;: 6000}, {&quot;entityId&quot;: &quot;20484957397&quot;, &quot;endOfRange&quot;: 8000}, {&quot;entityId&quot;: &quot;20484957397&quot;, &quot;endOfRange&quot;: 10000}], &quot;forcedVariations&quot;: {&quot;85e2238ce2b9074907d7a3d91d6feeae&quot;: &quot;control&quot;}}, {&quot;status&quot;: &quot;Running&quot;, &quot;audienceIds&quot;: [], &quot;variations&quot;: [{&quot;variables&quot;: [], &quot;id&quot;: &quot;20667381018&quot;, &quot;key&quot;: &quot;control&quot;}, {&quot;variables&quot;: [], &quot;id&quot;: &quot;20680930759&quot;, &quot;key&quot;: &quot;treatment&quot;}], &quot;id&quot;: &quot;20652570897&quot;, &quot;key&quot;: &quot;project_genesis&quot;, &quot;layerId&quot;: &quot;20672300363&quot;, &quot;trafficAllocation&quot;: [{&quot;entityId&quot;: &quot;20667381018&quot;, &quot;endOfRange&quot;: 5000}, {&quot;entityId&quot;: &quot;20680930759&quot;, &quot;endOfRange&quot;: 10000}], &quot;forcedVariations&quot;: {&quot;83356e17066d336d1803024138ecb683&quot;: &quot;treatment&quot;, &quot;18e31c8a9b2271332466133162a4aa0d&quot;: &quot;treatment&quot;, &quot;10f8ab3fbc5ebe989a36a05f79d48f32&quot;: &quot;treatment&quot;, &quot;1686089f6d540cd2deeaec60ee43ecf7&quot;: &quot;treatment&quot;}}, {&quot;status&quot;: &quot;Running&quot;, &quot;audienceIds&quot;: [], &quot;variations&quot;: [{&quot;variables&quot;: [], &quot;id&quot;: &quot;20898546114&quot;, &quot;key&quot;: &quot;control&quot;}, {&quot;variables&quot;: [], &quot;id&quot;: &quot;20923036705&quot;, &quot;key&quot;: &quot;treatment_a&quot;}, {&quot;variables&quot;: [], &quot;id&quot;: &quot;20965581308&quot;, &quot;key&quot;: &quot;treatment_b&quot;}], &quot;id&quot;: &quot;20902325119&quot;, &quot;key&quot;: &quot;contact_sales_page_optimizations&quot;, &quot;layerId&quot;: &quot;20969031091&quot;, &quot;trafficAllocation&quot;: [{&quot;entityId&quot;: &quot;20965581308&quot;, &quot;endOfRange&quot;: 3330}, {&quot;entityId&quot;: &quot;20898546114&quot;, &quot;endOfRange&quot;: 5000}, {&quot;entityId&quot;: &quot;20898546114&quot;, &quot;endOfRange&quot;: 6670}, {&quot;entityId&quot;: &quot;20923036705&quot;, &quot;endOfRange&quot;: 10000}], &quot;forcedVariations&quot;: {}}], &quot;audiences&quot;: [{&quot;conditions&quot;: &quot;[\&quot;or\&quot;, {\&quot;match\&quot;: \&quot;exact\&quot;, \&quot;name\&quot;: \&quot;$opt_dummy_attribute\&quot;, \&quot;type\&quot;: \&quot;custom_attribute\&quot;, \&quot;value\&quot;: \&quot;$opt_dummy_value\&quot;}]&quot;, &quot;id&quot;: &quot;$opt_dummy_audience&quot;, &quot;name&quot;: &quot;Optimizely-Generated Audience for Backwards Compatibility&quot;}], &quot;groups&quot;: [], &quot;sdkKey&quot;: &quot;WTc6awnGuYDdG98CYRban&quot;, &quot;environmentKey&quot;: &quot;production&quot;, &quot;attributes&quot;: [{&quot;id&quot;: &quot;16822470375&quot;, &quot;key&quot;: &quot;user_id&quot;}, {&quot;id&quot;: &quot;17143601254&quot;, &quot;key&quot;: &quot;spammy&quot;}, {&quot;id&quot;: &quot;18175660309&quot;, &quot;key&quot;: &quot;organization_plan&quot;}, {&quot;id&quot;: &quot;18813001570&quot;, &quot;key&quot;: &quot;is_logged_in&quot;}, {&quot;id&quot;: &quot;19073851829&quot;, &quot;key&quot;: &quot;geo&quot;}, {&quot;id&quot;: &quot;20175462351&quot;, &quot;key&quot;: &quot;requestedCurrency&quot;}, {&quot;id&quot;: &quot;20785470195&quot;, &quot;key&quot;: &quot;country_code&quot;}], &quot;botFiltering&quot;: false, &quot;accountId&quot;: &quot;16737760170&quot;, &quot;events&quot;: [{&quot;experimentIds&quot;: [], &quot;id&quot;: &quot;17911811441&quot;, &quot;key&quot;: &quot;hydro_click.dashboard.teacher_toolbox_cta&quot;}, {&quot;experimentIds&quot;: [], &quot;id&quot;: &quot;18124116703&quot;, &quot;key&quot;: &quot;submit.organizations.complete_sign_up&quot;}, {&quot;experimentIds&quot;: [], &quot;id&quot;: &quot;18145892387&quot;, &quot;key&quot;: &quot;no_metric.tracked_outside_of_optimizely&quot;}, {&quot;experimentIds&quot;: [], &quot;id&quot;: &quot;18178755568&quot;, &quot;key&quot;: &quot;click.org_onboarding_checklist.add_repo&quot;}, {&quot;experimentIds&quot;: [], &quot;id&quot;: &quot;18180553241&quot;, &quot;key&quot;: &quot;submit.repository_imports.create&quot;}, {&quot;experimentIds&quot;: [], &quot;id&quot;: &quot;18186103728&quot;, &quot;key&quot;: &quot;click.help.learn_more_about_repository_creation&quot;}, {&quot;experimentIds&quot;: [], &quot;id&quot;: &quot;18188530140&quot;, &quot;key&quot;: &quot;test_event.do_not_use_in_production&quot;}, {&quot;experimentIds&quot;: [], &quot;id&quot;: &quot;18191963644&quot;, &quot;key&quot;: &quot;click.empty_org_repo_cta.transfer_repository&quot;}, {&quot;experimentIds&quot;: [], &quot;id&quot;: &quot;18195612788&quot;, &quot;key&quot;: &quot;click.empty_org_repo_cta.import_repository&quot;}, {&quot;experimentIds&quot;: [], &quot;id&quot;: &quot;18210945499&quot;, &quot;key&quot;: &quot;click.org_onboarding_checklist.invite_members&quot;}, {&quot;experimentIds&quot;: [], &quot;id&quot;: &quot;18211063248&quot;, &quot;key&quot;: &quot;click.empty_org_repo_cta.create_repository&quot;}, {&quot;experimentIds&quot;: [], &quot;id&quot;: &quot;18215721889&quot;, &quot;key&quot;: &quot;click.org_onboarding_checklist.update_profile&quot;}, {&quot;experimentIds&quot;: [], &quot;id&quot;: &quot;18224360785&quot;, &quot;key&quot;: &quot;click.org_onboarding_checklist.dismiss&quot;}, {&quot;experimentIds&quot;: [], &quot;id&quot;: &quot;18234832286&quot;, &quot;key&quot;: &quot;submit.organization_activation.complete&quot;}, {&quot;experimentIds&quot;: [], &quot;id&quot;: &quot;18252392383&quot;, &quot;key&quot;: &quot;submit.org_repository.create&quot;}, {&quot;experimentIds&quot;: [], &quot;id&quot;: &quot;18257551537&quot;, &quot;key&quot;: &quot;submit.org_member_invitation.create&quot;}, {&quot;experimentIds&quot;: [], &quot;id&quot;: &quot;18259522260&quot;, &quot;key&quot;: &quot;submit.organization_profile.update&quot;}, {&quot;experimentIds&quot;: [], &quot;id&quot;: &quot;18564603625&quot;, &quot;key&quot;: &quot;view.classroom_select_organization&quot;}, {&quot;experimentIds&quot;: [], &quot;id&quot;: &quot;18568612016&quot;, &quot;key&quot;: &quot;click.classroom_sign_in_click&quot;}, {&quot;experimentIds&quot;: [], &quot;id&quot;: &quot;18572592540&quot;, &quot;key&quot;: &quot;view.classroom_name&quot;}, {&quot;experimentIds&quot;: [], &quot;id&quot;: &quot;18574203855&quot;, &quot;key&quot;: &quot;click.classroom_create_organization&quot;}, {&quot;experimentIds&quot;: [], &quot;id&quot;: &quot;18582053415&quot;, &quot;key&quot;: &quot;click.classroom_select_organization&quot;}, {&quot;experimentIds&quot;: [], &quot;id&quot;: &quot;18589463420&quot;, &quot;key&quot;: &quot;click.classroom_create_classroom&quot;}, {&quot;experimentIds&quot;: [], &quot;id&quot;: &quot;18591323364&quot;, &quot;key&quot;: &quot;click.classroom_create_first_classroom&quot;}, {&quot;experimentIds&quot;: [], &quot;id&quot;: &quot;18591652321&quot;, &quot;key&quot;: &quot;click.classroom_grant_access&quot;}, {&quot;experimentIds&quot;: [], &quot;id&quot;: &quot;18607131425&quot;, &quot;key&quot;: &quot;view.classroom_creation&quot;}, {&quot;experimentIds&quot;: [&quot;20479227424&quot;], &quot;id&quot;: &quot;18831680583&quot;, &quot;key&quot;: &quot;upgrade_account_plan&quot;}, {&quot;experimentIds&quot;: [], &quot;id&quot;: &quot;19064064515&quot;, &quot;key&quot;: &quot;click.signup&quot;}, {&quot;experimentIds&quot;: [], &quot;id&quot;: &quot;19075373687&quot;, &quot;key&quot;: &quot;click.view_account_billing_page&quot;}, {&quot;experimentIds&quot;: [], &quot;id&quot;: &quot;19077355841&quot;, &quot;key&quot;: &quot;click.dismiss_signup_prompt&quot;}, {&quot;experimentIds&quot;: [], &quot;id&quot;: &quot;19079713938&quot;, &quot;key&quot;: &quot;click.contact_sales&quot;}, {&quot;experimentIds&quot;: [], &quot;id&quot;: &quot;19120963070&quot;, &quot;key&quot;: &quot;click.compare_account_plans&quot;}, {&quot;experimentIds&quot;: [], &quot;id&quot;: &quot;19151690317&quot;, &quot;key&quot;: &quot;click.upgrade_account_cta&quot;}, {&quot;experimentIds&quot;: [], &quot;id&quot;: &quot;19424193129&quot;, &quot;key&quot;: &quot;click.open_account_switcher&quot;}, {&quot;experimentIds&quot;: [], &quot;id&quot;: &quot;19520330825&quot;, &quot;key&quot;: &quot;click.visit_account_profile&quot;}, {&quot;experimentIds&quot;: [], &quot;id&quot;: &quot;19540970635&quot;, &quot;key&quot;: &quot;click.switch_account_context&quot;}, {&quot;experimentIds&quot;: [], &quot;id&quot;: &quot;19730198868&quot;, &quot;key&quot;: &quot;submit.homepage_signup&quot;}, {&quot;experimentIds&quot;: [], &quot;id&quot;: &quot;19820830627&quot;, &quot;key&quot;: &quot;click.homepage_signup&quot;}, {&quot;experimentIds&quot;: [], &quot;id&quot;: &quot;19988571001&quot;, &quot;key&quot;: &quot;click.create_enterprise_trial&quot;}, {&quot;experimentIds&quot;: [], &quot;id&quot;: &quot;20036538294&quot;, &quot;key&quot;: &quot;click.create_organization_team&quot;}, {&quot;experimentIds&quot;: [], &quot;id&quot;: &quot;20040653299&quot;, &quot;key&quot;: &quot;click.input_enterprise_trial_form&quot;}, {&quot;experimentIds&quot;: [], &quot;id&quot;: &quot;20062030003&quot;, &quot;key&quot;: &quot;click.continue_with_team&quot;}, {&quot;experimentIds&quot;: [], &quot;id&quot;: &quot;20068947153&quot;, &quot;key&quot;: &quot;click.create_organization_free&quot;}, {&quot;experimentIds&quot;: [], &quot;id&quot;: &quot;20086636658&quot;, &quot;key&quot;: &quot;click.signup_continue.username&quot;}, {&quot;experimentIds&quot;: [], &quot;id&quot;: &quot;20091648988&quot;, &quot;key&quot;: &quot;click.signup_continue.create_account&quot;}, {&quot;experimentIds&quot;: [], &quot;id&quot;: &quot;20103637615&quot;, &quot;key&quot;: &quot;click.signup_continue.email&quot;}, {&quot;experimentIds&quot;: [], &quot;id&quot;: &quot;20111574253&quot;, &quot;key&quot;: &quot;click.signup_continue.password&quot;}, {&quot;experimentIds&quot;: [], &quot;id&quot;: &quot;20120044111&quot;, &quot;key&quot;: &quot;view.pricing_page&quot;}, {&quot;experimentIds&quot;: [], &quot;id&quot;: &quot;20152062109&quot;, &quot;key&quot;: &quot;submit.create_account&quot;}, {&quot;experimentIds&quot;: [], &quot;id&quot;: &quot;20165800992&quot;, &quot;key&quot;: &quot;submit.upgrade_payment_form&quot;}, {&quot;experimentIds&quot;: [], &quot;id&quot;: &quot;20171520319&quot;, &quot;key&quot;: &quot;submit.create_organization&quot;}, {&quot;experimentIds&quot;: [], &quot;id&quot;: &quot;20222645674&quot;, &quot;key&quot;: &quot;click.recommended_plan_in_signup.discuss_your_needs&quot;}, {&quot;experimentIds&quot;: [], &quot;id&quot;: &quot;20227443657&quot;, &quot;key&quot;: &quot;submit.verify_primary_user_email&quot;}, {&quot;experimentIds&quot;: [], &quot;id&quot;: &quot;20234607160&quot;, &quot;key&quot;: &quot;click.recommended_plan_in_signup.try_enterprise&quot;}, {&quot;experimentIds&quot;: [], &quot;id&quot;: &quot;20238175784&quot;, &quot;key&quot;: &quot;click.recommended_plan_in_signup.team&quot;}, {&quot;experimentIds&quot;: [], &quot;id&quot;: &quot;20239847212&quot;, &quot;key&quot;: &quot;click.recommended_plan_in_signup.continue_free&quot;}, {&quot;experimentIds&quot;: [], &quot;id&quot;: &quot;20251097193&quot;, &quot;key&quot;: &quot;recommended_plan&quot;}, {&quot;experimentIds&quot;: [], &quot;id&quot;: &quot;20438619534&quot;, &quot;key&quot;: &quot;click.pricing_calculator.1_member&quot;}, {&quot;experimentIds&quot;: [], &quot;id&quot;: &quot;20456699683&quot;, &quot;key&quot;: &quot;click.pricing_calculator.15_members&quot;}, {&quot;experimentIds&quot;: [], &quot;id&quot;: &quot;20467868331&quot;, &quot;key&quot;: &quot;click.pricing_calculator.10_members&quot;}, {&quot;experimentIds&quot;: [], &quot;id&quot;: &quot;20476267432&quot;, &quot;key&quot;: &quot;click.trial_days_remaining&quot;}, {&quot;experimentIds&quot;: [&quot;20479227424&quot;], &quot;id&quot;: &quot;20476357660&quot;, &quot;key&quot;: &quot;click.discover_feature&quot;}, {&quot;experimentIds&quot;: [], &quot;id&quot;: &quot;20479287901&quot;, &quot;key&quot;: &quot;click.pricing_calculator.custom_members&quot;}, {&quot;experimentIds&quot;: [], &quot;id&quot;: &quot;20481107083&quot;, &quot;key&quot;: &quot;click.recommended_plan_in_signup.apply_teacher_benefits&quot;}, {&quot;experimentIds&quot;: [], &quot;id&quot;: &quot;20483089392&quot;, &quot;key&quot;: &quot;click.pricing_calculator.5_members&quot;}, {&quot;experimentIds&quot;: [&quot;20479227424&quot;, &quot;20652570897&quot;], &quot;id&quot;: &quot;20484283944&quot;, &quot;key&quot;: &quot;click.onboarding_task&quot;}, {&quot;experimentIds&quot;: [], &quot;id&quot;: &quot;20484996281&quot;, &quot;key&quot;: &quot;click.recommended_plan_in_signup.apply_student_benefits&quot;}, {&quot;experimentIds&quot;: [&quot;20479227424&quot;], &quot;id&quot;: &quot;20486713726&quot;, &quot;key&quot;: &quot;click.onboarding_task_breadcrumb&quot;}, {&quot;experimentIds&quot;: [&quot;20479227424&quot;], &quot;id&quot;: &quot;20490791319&quot;, &quot;key&quot;: &quot;click.upgrade_to_enterprise&quot;}, {&quot;experimentIds&quot;: [&quot;20479227424&quot;], &quot;id&quot;: &quot;20491786766&quot;, &quot;key&quot;: &quot;click.talk_to_us&quot;}, {&quot;experimentIds&quot;: [&quot;20479227424&quot;], &quot;id&quot;: &quot;20494144087&quot;, &quot;key&quot;: &quot;click.dismiss_enterprise_trial&quot;}, {&quot;experimentIds&quot;: [&quot;20479227424&quot;, &quot;20652570897&quot;], &quot;id&quot;: &quot;20499722759&quot;, &quot;key&quot;: &quot;completed_all_tasks&quot;}, {&quot;experimentIds&quot;: [&quot;20479227424&quot;, &quot;20652570897&quot;], &quot;id&quot;: &quot;20500710104&quot;, &quot;key&quot;: &quot;completed_onboarding_tasks&quot;}, {&quot;experimentIds&quot;: [&quot;20479227424&quot;], &quot;id&quot;: &quot;20513160672&quot;, &quot;key&quot;: &quot;click.read_doc&quot;}, {&quot;experimentIds&quot;: [&quot;20652570897&quot;], &quot;id&quot;: &quot;20516196762&quot;, &quot;key&quot;: &quot;actions_enabled&quot;}, {&quot;experimentIds&quot;: [&quot;20479227424&quot;], &quot;id&quot;: &quot;20518980986&quot;, &quot;key&quot;: &quot;click.dismiss_trial_banner&quot;}, {&quot;experimentIds&quot;: [], &quot;id&quot;: &quot;20535446721&quot;, &quot;key&quot;: &quot;click.issue_actions_prompt.dismiss_prompt&quot;}, {&quot;experimentIds&quot;: [], &quot;id&quot;: &quot;20557002247&quot;, &quot;key&quot;: &quot;click.issue_actions_prompt.setup_workflow&quot;}, {&quot;experimentIds&quot;: [], &quot;id&quot;: &quot;20595070227&quot;, &quot;key&quot;: &quot;click.pull_request_setup_workflow&quot;}, {&quot;experimentIds&quot;: [], &quot;id&quot;: &quot;20626600314&quot;, &quot;key&quot;: &quot;click.seats_input&quot;}, {&quot;experimentIds&quot;: [], &quot;id&quot;: &quot;20642310305&quot;, &quot;key&quot;: &quot;click.decrease_seats_number&quot;}, {&quot;experimentIds&quot;: [], &quot;id&quot;: &quot;20662990045&quot;, &quot;key&quot;: &quot;click.increase_seats_number&quot;}, {&quot;experimentIds&quot;: [], &quot;id&quot;: &quot;20679620969&quot;, &quot;key&quot;: &quot;click.public_product_roadmap&quot;}, {&quot;experimentIds&quot;: [&quot;20479227424&quot;], &quot;id&quot;: &quot;20761240940&quot;, &quot;key&quot;: &quot;click.dismiss_survey_banner&quot;}, {&quot;experimentIds&quot;: [&quot;20479227424&quot;], &quot;id&quot;: &quot;20767210721&quot;, &quot;key&quot;: &quot;click.take_survey&quot;}, {&quot;experimentIds&quot;: [&quot;20652570897&quot;], &quot;id&quot;: &quot;20795281201&quot;, &quot;key&quot;: &quot;click.archive_list&quot;}, {&quot;experimentIds&quot;: [&quot;20902325119&quot;], &quot;id&quot;: &quot;20966790249&quot;, &quot;key&quot;: &quot;contact_sales.submit&quot;}, {&quot;experimentIds&quot;: [&quot;20902325119&quot;], &quot;id&quot;: &quot;20996500333&quot;, &quot;key&quot;: &quot;contact_sales.existing_customer&quot;}, {&quot;experimentIds&quot;: [&quot;20902325119&quot;], &quot;id&quot;: &quot;20996890162&quot;, &quot;key&quot;: &quot;contact_sales.blank_message_field&quot;}, {&quot;experimentIds&quot;: [&quot;20902325119&quot;], &quot;id&quot;: &quot;21000470317&quot;, &quot;key&quot;: &quot;contact_sales.personal_email&quot;}, {&quot;experimentIds&quot;: [&quot;20902325119&quot;], &quot;id&quot;: &quot;21002790172&quot;, &quot;key&quot;: &quot;contact_sales.blank_phone_field&quot;}], &quot;revision&quot;: &quot;1040&quot;}" />
+  <!-- To prevent page flashing, the optimizely JS needs to be loaded in the
+    <head> tag before the DOM renders -->
+  <script crossorigin="anonymous" defer="defer" integrity="sha512-vMFEXzNkwSH209UPGY/WHYspQK2Yp8bM5Gni8x2XcNAvcO8oWKfeiY0DypdZBoKYTvBQOMZFnTIJxU7wyEEXfg==" type="application/javascript" src="https://github.githubassets.com/assets/optimizely-bcc1445f.js"></script>
 
 
 
@@ -179,7 +181,7 @@
 
 
 
-    <link rel="canonical" href="https://github.com/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering" data-pjax-transient>
+    <link rel="canonical" href="https://github.com/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile" data-pjax-transient>
 
 
   <meta name="browser-stats-url" content="https://api.github.com/_private/browser/stats">
@@ -200,7 +202,7 @@
 
   </head>
 
-  <body class="logged-out env-production page-responsive" style="word-wrap: break-word;">
+  <body class="logged-out env-production page-responsive page-blob" style="word-wrap: break-word;">
     
 
     <div class="position-relative js-header-wrapper ">
@@ -228,9 +230,9 @@
         </div>
 
       <div class="d-flex flex-items-center">
-            <a href="/signup?ref_cta=Sign+up&amp;ref_loc=header+logged+out&amp;ref_page=%2F%3Cuser-name%3E%2F%3Crepo-name%3E%2Ffiles%2Fdisambiguate&amp;source=header-repo"
+            <a href="/signup?ref_cta=Sign+up&amp;ref_loc=header+logged+out&amp;ref_page=%2F%3Cuser-name%3E%2F%3Crepo-name%3E%2Fblob%2Fshow&amp;source=header-repo"
               class="d-inline-block d-lg-none f5 no-underline border color-border-default rounded-2 px-2 py-1 mr-3 mr-sm-5 color-fg-inherit"
-              data-hydro-click="{&quot;event_type&quot;:&quot;authentication.click&quot;,&quot;payload&quot;:{&quot;location_in_page&quot;:&quot;site header&quot;,&quot;repository_id&quot;:null,&quot;auth_type&quot;:&quot;SIGN_UP&quot;,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="b654e4f278e81bcfc0a39126407d0767710b27bac1cf8b819e512b072e5b9329"
+              data-hydro-click="{&quot;event_type&quot;:&quot;authentication.click&quot;,&quot;payload&quot;:{&quot;location_in_page&quot;:&quot;site header&quot;,&quot;repository_id&quot;:null,&quot;auth_type&quot;:&quot;SIGN_UP&quot;,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="09998d5a749047315a708ea9168c48226ee31a13943b6ca6665a800d045626dd"
             >
               Sign&nbsp;up
             </a>
@@ -259,57 +261,57 @@
       <div class="dropdown-menu flex-auto rounded px-0 mt-0 pb-4 p-lg-4 position-relative position-lg-absolute left-0 left-lg-n4">
         <ul class="list-style-none f5 pb-1">
               <li>
-    <a class="lh-condensed-ultra d-block no-underline position-relative Link--primary text-bold py-2" data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Header dropdown (logged out), Why GitHub?&quot;,&quot;action&quot;:&quot;click to go to Features&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering;ref_cta:Features;&quot;,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="fc9bb4bf1fc83cefeecc658a0ef29bc3edd8ea084acafa00c7c866dc19367db6" data-analytics-event="{&quot;category&quot;:&quot;Header dropdown (logged out), Why GitHub?&quot;,&quot;action&quot;:&quot;click to go to Features&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering;ref_cta:Features;&quot;}" href="/features">
+    <a class="lh-condensed-ultra d-block no-underline position-relative Link--primary text-bold py-2" data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Header dropdown (logged out), Why GitHub?&quot;,&quot;action&quot;:&quot;click to go to Features&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile;ref_cta:Features;&quot;,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="ffc368f79d5e6306cd5daf7a6cd8de724e6fa6f70be2481eaef20133c4976eaf" data-analytics-event="{&quot;category&quot;:&quot;Header dropdown (logged out), Why GitHub?&quot;,&quot;action&quot;:&quot;click to go to Features&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile;ref_cta:Features;&quot;}" href="/features">
       Features
 </a>  </li>
 
               <li>
-    <a class="lh-condensed-ultra d-block no-underline position-relative Link--secondary py-2" data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Header dropdown (logged out), Why GitHub?&quot;,&quot;action&quot;:&quot;click to go to Mobile&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering;ref_cta:Mobile;&quot;,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="509684699948470e6429c53feee077083bde76af170da54b6aaf7ef5081ec602" data-analytics-event="{&quot;category&quot;:&quot;Header dropdown (logged out), Why GitHub?&quot;,&quot;action&quot;:&quot;click to go to Mobile&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering;ref_cta:Mobile;&quot;}" href="/mobile">
+    <a class="lh-condensed-ultra d-block no-underline position-relative Link--secondary py-2" data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Header dropdown (logged out), Why GitHub?&quot;,&quot;action&quot;:&quot;click to go to Mobile&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile;ref_cta:Mobile;&quot;,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="2209a0871120f53b5602ae9d39c9bea9ce398428355d81dd4789ac2653916195" data-analytics-event="{&quot;category&quot;:&quot;Header dropdown (logged out), Why GitHub?&quot;,&quot;action&quot;:&quot;click to go to Mobile&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile;ref_cta:Mobile;&quot;}" href="/mobile">
       Mobile
 </a>  </li>
 
               <li>
-    <a class="lh-condensed-ultra d-block no-underline position-relative Link--secondary py-2" data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Header dropdown (logged out), Why GitHub?&quot;,&quot;action&quot;:&quot;click to go to Actions&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering;ref_cta:Actions;&quot;,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="ac6fea19e0877e9b8099e599af5693bfe0aaaaf57bd36cc508438aa18982df2b" data-analytics-event="{&quot;category&quot;:&quot;Header dropdown (logged out), Why GitHub?&quot;,&quot;action&quot;:&quot;click to go to Actions&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering;ref_cta:Actions;&quot;}" href="/features/actions">
+    <a class="lh-condensed-ultra d-block no-underline position-relative Link--secondary py-2" data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Header dropdown (logged out), Why GitHub?&quot;,&quot;action&quot;:&quot;click to go to Actions&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile;ref_cta:Actions;&quot;,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="a8d516736eb9771376c307feca2260ec8581185a0a0a1190b9300f028f225047" data-analytics-event="{&quot;category&quot;:&quot;Header dropdown (logged out), Why GitHub?&quot;,&quot;action&quot;:&quot;click to go to Actions&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile;ref_cta:Actions;&quot;}" href="/features/actions">
       Actions
 </a>  </li>
 
               <li>
-    <a class="lh-condensed-ultra d-block no-underline position-relative Link--secondary py-2" data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Header dropdown (logged out), Why GitHub?&quot;,&quot;action&quot;:&quot;click to go to Codespaces&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering;ref_cta:Codespaces;&quot;,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="c9ae7b9a925340ae72fa1fd333a4cc2787c5f2351b9b487e56f3ebe03e3df458" data-analytics-event="{&quot;category&quot;:&quot;Header dropdown (logged out), Why GitHub?&quot;,&quot;action&quot;:&quot;click to go to Codespaces&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering;ref_cta:Codespaces;&quot;}" href="/features/codespaces">
+    <a class="lh-condensed-ultra d-block no-underline position-relative Link--secondary py-2" data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Header dropdown (logged out), Why GitHub?&quot;,&quot;action&quot;:&quot;click to go to Codespaces&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile;ref_cta:Codespaces;&quot;,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="00a399c0145d4b393d4954c21b99a90612c6b0c4ad49f2a41d8fdd19a4840de6" data-analytics-event="{&quot;category&quot;:&quot;Header dropdown (logged out), Why GitHub?&quot;,&quot;action&quot;:&quot;click to go to Codespaces&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile;ref_cta:Codespaces;&quot;}" href="/features/codespaces">
       Codespaces
 </a>  </li>
 
               <li>
-    <a class="lh-condensed-ultra d-block no-underline position-relative Link--secondary py-2" data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Header dropdown (logged out), Why GitHub?&quot;,&quot;action&quot;:&quot;click to go to Packages&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering;ref_cta:Packages;&quot;,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="1ca1d2150c2899d225d3b62bf5f4ec51d9e3b2288f80278664b9f1a72fae6a97" data-analytics-event="{&quot;category&quot;:&quot;Header dropdown (logged out), Why GitHub?&quot;,&quot;action&quot;:&quot;click to go to Packages&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering;ref_cta:Packages;&quot;}" href="/features/packages">
+    <a class="lh-condensed-ultra d-block no-underline position-relative Link--secondary py-2" data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Header dropdown (logged out), Why GitHub?&quot;,&quot;action&quot;:&quot;click to go to Packages&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile;ref_cta:Packages;&quot;,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="accf96727527d7c5bd3bf491281b97d961319e415e4c511de23403700b507845" data-analytics-event="{&quot;category&quot;:&quot;Header dropdown (logged out), Why GitHub?&quot;,&quot;action&quot;:&quot;click to go to Packages&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile;ref_cta:Packages;&quot;}" href="/features/packages">
       Packages
 </a>  </li>
 
               <li>
-    <a class="lh-condensed-ultra d-block no-underline position-relative Link--secondary py-2" data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Header dropdown (logged out), Why GitHub?&quot;,&quot;action&quot;:&quot;click to go to Security&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering;ref_cta:Security;&quot;,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="e0fbebceff034811d0c93ae9b6a60f59d34e15efb0ed653b02126ccefb37afc7" data-analytics-event="{&quot;category&quot;:&quot;Header dropdown (logged out), Why GitHub?&quot;,&quot;action&quot;:&quot;click to go to Security&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering;ref_cta:Security;&quot;}" href="/features/security">
+    <a class="lh-condensed-ultra d-block no-underline position-relative Link--secondary py-2" data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Header dropdown (logged out), Why GitHub?&quot;,&quot;action&quot;:&quot;click to go to Security&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile;ref_cta:Security;&quot;,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="8498676e64d3a78c336ffc6255f22705e5ce3b3e5cd4c7af6676ee15d37b9640" data-analytics-event="{&quot;category&quot;:&quot;Header dropdown (logged out), Why GitHub?&quot;,&quot;action&quot;:&quot;click to go to Security&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile;ref_cta:Security;&quot;}" href="/features/security">
       Security
 </a>  </li>
 
               <li>
-    <a class="lh-condensed-ultra d-block no-underline position-relative Link--secondary py-2" data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Header dropdown (logged out), Why GitHub?&quot;,&quot;action&quot;:&quot;click to go to Code review&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering;ref_cta:Code review;&quot;,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="61d6447e76aa27bdc7e6e5559b8f1b55b5050b2f90e30b5b9276763572701d72" data-analytics-event="{&quot;category&quot;:&quot;Header dropdown (logged out), Why GitHub?&quot;,&quot;action&quot;:&quot;click to go to Code review&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering;ref_cta:Code review;&quot;}" href="/features/code-review">
+    <a class="lh-condensed-ultra d-block no-underline position-relative Link--secondary py-2" data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Header dropdown (logged out), Why GitHub?&quot;,&quot;action&quot;:&quot;click to go to Code review&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile;ref_cta:Code review;&quot;,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="e87c942d5318dbee72871b04a00dba9011983626acc5f711377a7da098c5e3de" data-analytics-event="{&quot;category&quot;:&quot;Header dropdown (logged out), Why GitHub?&quot;,&quot;action&quot;:&quot;click to go to Code review&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile;ref_cta:Code review;&quot;}" href="/features/code-review">
       Code review
 </a>  </li>
 
               <li>
-    <a class="lh-condensed-ultra d-block no-underline position-relative Link--secondary py-2" data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Header dropdown (logged out), Why GitHub?&quot;,&quot;action&quot;:&quot;click to go to Issues&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering;ref_cta:Issues;&quot;,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="42789c22b76fa7b4b31b7e8b37f3825438016e6a5042c2111a25bbfdf8434878" data-analytics-event="{&quot;category&quot;:&quot;Header dropdown (logged out), Why GitHub?&quot;,&quot;action&quot;:&quot;click to go to Issues&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering;ref_cta:Issues;&quot;}" href="/features/issues">
+    <a class="lh-condensed-ultra d-block no-underline position-relative Link--secondary py-2" data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Header dropdown (logged out), Why GitHub?&quot;,&quot;action&quot;:&quot;click to go to Issues&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile;ref_cta:Issues;&quot;,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="08fca0bf0c4f02da3964dacb3f4e6ea529db5eabf29e1426c43b04a92c34521c" data-analytics-event="{&quot;category&quot;:&quot;Header dropdown (logged out), Why GitHub?&quot;,&quot;action&quot;:&quot;click to go to Issues&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile;ref_cta:Issues;&quot;}" href="/features/issues">
       Issues
 </a>  </li>
 
               <li>
-    <a class="lh-condensed-ultra d-block no-underline position-relative Link--secondary py-2" data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Header dropdown (logged out), Why GitHub?&quot;,&quot;action&quot;:&quot;click to go to Integrations&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering;ref_cta:Integrations;&quot;,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="6f38e934e6021e0e43908ac227794e1a4550562c2333d0e347a56d8d0aca355b" data-analytics-event="{&quot;category&quot;:&quot;Header dropdown (logged out), Why GitHub?&quot;,&quot;action&quot;:&quot;click to go to Integrations&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering;ref_cta:Integrations;&quot;}" href="/features/integrations">
+    <a class="lh-condensed-ultra d-block no-underline position-relative Link--secondary py-2" data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Header dropdown (logged out), Why GitHub?&quot;,&quot;action&quot;:&quot;click to go to Integrations&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile;ref_cta:Integrations;&quot;,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="da409a08a70b5394a5db616c42b3949423972eb4479283ee7e4ee0bc008e82b8" data-analytics-event="{&quot;category&quot;:&quot;Header dropdown (logged out), Why GitHub?&quot;,&quot;action&quot;:&quot;click to go to Integrations&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile;ref_cta:Integrations;&quot;}" href="/features/integrations">
       Integrations
 </a>  </li>
 
               <li>
-    <a class="lh-condensed-ultra d-block no-underline position-relative Link--primary text-bold border-top pt-4 pb-2 mt-3" data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Header dropdown (logged out), Why GitHub?&quot;,&quot;action&quot;:&quot;click to go to GitHub Sponsors&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering;ref_cta:GitHub Sponsors;&quot;,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="74a87fa383d2a0a2fabd41298086500d91dad6d421cd6425e203f3d94eccdeb7" data-analytics-event="{&quot;category&quot;:&quot;Header dropdown (logged out), Why GitHub?&quot;,&quot;action&quot;:&quot;click to go to GitHub Sponsors&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering;ref_cta:GitHub Sponsors;&quot;}" href="/sponsors">
+    <a class="lh-condensed-ultra d-block no-underline position-relative Link--primary text-bold border-top pt-4 pb-2 mt-3" data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Header dropdown (logged out), Why GitHub?&quot;,&quot;action&quot;:&quot;click to go to GitHub Sponsors&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile;ref_cta:GitHub Sponsors;&quot;,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="b9d3451d5be338493a54cdca66788ee128fe7663c911c51a9b4ff46670690297" data-analytics-event="{&quot;category&quot;:&quot;Header dropdown (logged out), Why GitHub?&quot;,&quot;action&quot;:&quot;click to go to GitHub Sponsors&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile;ref_cta:GitHub Sponsors;&quot;}" href="/sponsors">
       GitHub Sponsors
 </a>  </li>
 
               <li>
-    <a class="lh-condensed-ultra d-block no-underline position-relative Link--primary text-bold py-2" data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Header dropdown (logged out), Why GitHub?&quot;,&quot;action&quot;:&quot;click to go to Customer stories&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering;ref_cta:Customer stories;&quot;,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="dec553d7ac4ca1a40b9a5aa106676de6277baf8515f1166f60f84465e9694b7d" data-analytics-event="{&quot;category&quot;:&quot;Header dropdown (logged out), Why GitHub?&quot;,&quot;action&quot;:&quot;click to go to Customer stories&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering;ref_cta:Customer stories;&quot;}" href="/customer-stories">
+    <a class="lh-condensed-ultra d-block no-underline position-relative Link--primary text-bold py-2" data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Header dropdown (logged out), Why GitHub?&quot;,&quot;action&quot;:&quot;click to go to Customer stories&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile;ref_cta:Customer stories;&quot;,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="034c7d63ac3f8dd6bfb4c2022465ed53f3208afc2f5e96f949e0c2cdf737c682" data-analytics-event="{&quot;category&quot;:&quot;Header dropdown (logged out), Why GitHub?&quot;,&quot;action&quot;:&quot;click to go to Customer stories&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile;ref_cta:Customer stories;&quot;}" href="/customer-stories">
       Customer stories
 </a>  </li>
 
@@ -320,11 +322,11 @@
 
 
               <li class="mr-0 mr-lg-3 position-relative flex-wrap flex-justify-between flex-items-center border-bottom border-lg-bottom-0 d-block d-lg-flex flex-lg-nowrap flex-lg-items-center">
-    <a class="HeaderMenu-link no-underline py-3 d-block d-lg-inline-block" data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Header menu top item (logged out)&quot;,&quot;action&quot;:&quot;click to go to Team&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering;ref_cta:Team;&quot;,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="64626fdaf4b55aed36feb08ee46fc3955ea2762b3138b81b063bc6ae48c84453" data-analytics-event="{&quot;category&quot;:&quot;Header menu top item (logged out)&quot;,&quot;action&quot;:&quot;click to go to Team&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering;ref_cta:Team;&quot;}" href="/team">Team</a>
+    <a class="HeaderMenu-link no-underline py-3 d-block d-lg-inline-block" data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Header menu top item (logged out)&quot;,&quot;action&quot;:&quot;click to go to Team&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile;ref_cta:Team;&quot;,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="a8cab388f6796ddbb74ff8dfe2daf8602461a19ace4643a10d5d9f3cd68559a3" data-analytics-event="{&quot;category&quot;:&quot;Header menu top item (logged out)&quot;,&quot;action&quot;:&quot;click to go to Team&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile;ref_cta:Team;&quot;}" href="/team">Team</a>
 </li>
 
               <li class="mr-0 mr-lg-3 position-relative flex-wrap flex-justify-between flex-items-center border-bottom border-lg-bottom-0 d-block d-lg-flex flex-lg-nowrap flex-lg-items-center">
-    <a class="HeaderMenu-link no-underline py-3 d-block d-lg-inline-block" data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Header menu top item (logged out)&quot;,&quot;action&quot;:&quot;click to go to Enterprise&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering;ref_cta:Enterprise;&quot;,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="24aa064162f6c2808774f9a99e2b6a573963c583838443e7845d08660dfebccd" data-analytics-event="{&quot;category&quot;:&quot;Header menu top item (logged out)&quot;,&quot;action&quot;:&quot;click to go to Enterprise&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering;ref_cta:Enterprise;&quot;}" href="/enterprise">Enterprise</a>
+    <a class="HeaderMenu-link no-underline py-3 d-block d-lg-inline-block" data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Header menu top item (logged out)&quot;,&quot;action&quot;:&quot;click to go to Enterprise&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile;ref_cta:Enterprise;&quot;,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="4a7275be376a4c4b38d58f36446ad2ceca0fea1487f6f75490b19ed5d4aa012f" data-analytics-event="{&quot;category&quot;:&quot;Header menu top item (logged out)&quot;,&quot;action&quot;:&quot;click to go to Enterprise&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile;ref_cta:Enterprise;&quot;}" href="/enterprise">Enterprise</a>
 </li>
 
 
@@ -337,61 +339,61 @@
       <div class="dropdown-menu flex-auto rounded px-0 mt-0 pb-4 p-lg-4 position-relative position-lg-absolute left-0 left-lg-n4">
         <ul class="list-style-none f5 pb-1">
               <li>
-    <a class="lh-condensed-ultra d-block no-underline position-relative Link--primary text-bold py-2" data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Header dropdown (logged out), Explore&quot;,&quot;action&quot;:&quot;click to go to Explore GitHub&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering;ref_cta:Explore GitHub;&quot;,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="fba2d150801e3ffdc680535a22a6ff0835c53114e2d845126f1b16301aec8297" data-analytics-event="{&quot;category&quot;:&quot;Header dropdown (logged out), Explore&quot;,&quot;action&quot;:&quot;click to go to Explore GitHub&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering;ref_cta:Explore GitHub;&quot;}" href="/explore">
+    <a class="lh-condensed-ultra d-block no-underline position-relative Link--primary text-bold py-2" data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Header dropdown (logged out), Explore&quot;,&quot;action&quot;:&quot;click to go to Explore GitHub&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile;ref_cta:Explore GitHub;&quot;,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="d3c3e7210e723f8abab9f5f0562cf4a8ec06d20f6127cc0c2fd80b748b2afc46" data-analytics-event="{&quot;category&quot;:&quot;Header dropdown (logged out), Explore&quot;,&quot;action&quot;:&quot;click to go to Explore GitHub&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile;ref_cta:Explore GitHub;&quot;}" href="/explore">
       Explore GitHub
 </a>  </li>
 
               <li class="color-fg-muted text-normal f6 text-mono mb-1 border-top pt-3 mt-3 mb-1">Learn and contribute</li>
 
               <li>
-    <a class="lh-condensed-ultra d-block no-underline position-relative Link--secondary py-2" data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Header dropdown (logged out), Explore&quot;,&quot;action&quot;:&quot;click to go to Topics&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering;ref_cta:Topics;&quot;,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="23d6d72e9d6f787cf808fd5df6057a1f2b68e48fe00a6251e7ab628110df9029" data-analytics-event="{&quot;category&quot;:&quot;Header dropdown (logged out), Explore&quot;,&quot;action&quot;:&quot;click to go to Topics&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering;ref_cta:Topics;&quot;}" href="/topics">
+    <a class="lh-condensed-ultra d-block no-underline position-relative Link--secondary py-2" data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Header dropdown (logged out), Explore&quot;,&quot;action&quot;:&quot;click to go to Topics&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile;ref_cta:Topics;&quot;,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="ada2a4648ba9215d6bcdd8ef0ac0df44b2f64e1422969e6a4ea3342b38e53b5b" data-analytics-event="{&quot;category&quot;:&quot;Header dropdown (logged out), Explore&quot;,&quot;action&quot;:&quot;click to go to Topics&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile;ref_cta:Topics;&quot;}" href="/topics">
       Topics
 </a>  </li>
 
               <li>
-    <a class="lh-condensed-ultra d-block no-underline position-relative Link--secondary py-2" data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Header dropdown (logged out), Explore&quot;,&quot;action&quot;:&quot;click to go to Collections&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering;ref_cta:Collections;&quot;,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="f70ff5da1f6e074e7f512721f3e7b1170872b0919fdc35d257ca09d45d218846" data-analytics-event="{&quot;category&quot;:&quot;Header dropdown (logged out), Explore&quot;,&quot;action&quot;:&quot;click to go to Collections&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering;ref_cta:Collections;&quot;}" href="/collections">
+    <a class="lh-condensed-ultra d-block no-underline position-relative Link--secondary py-2" data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Header dropdown (logged out), Explore&quot;,&quot;action&quot;:&quot;click to go to Collections&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile;ref_cta:Collections;&quot;,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="d5cfbf63062b3ecabe8375c82838dba17025b0bddbce59b71143a56603250d23" data-analytics-event="{&quot;category&quot;:&quot;Header dropdown (logged out), Explore&quot;,&quot;action&quot;:&quot;click to go to Collections&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile;ref_cta:Collections;&quot;}" href="/collections">
       Collections
 </a>  </li>
 
               <li>
-    <a class="lh-condensed-ultra d-block no-underline position-relative Link--secondary py-2" data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Header dropdown (logged out), Explore&quot;,&quot;action&quot;:&quot;click to go to Trending&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering;ref_cta:Trending;&quot;,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="8aed197a813dfdc1aef67f58f8640ce5377eced3dd8157761a7926821f745b05" data-analytics-event="{&quot;category&quot;:&quot;Header dropdown (logged out), Explore&quot;,&quot;action&quot;:&quot;click to go to Trending&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering;ref_cta:Trending;&quot;}" href="/trending">
+    <a class="lh-condensed-ultra d-block no-underline position-relative Link--secondary py-2" data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Header dropdown (logged out), Explore&quot;,&quot;action&quot;:&quot;click to go to Trending&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile;ref_cta:Trending;&quot;,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="7c7d21324b8776bafd22ebad09cf6ec2938ab316561b2304e1c447e6cc7e3574" data-analytics-event="{&quot;category&quot;:&quot;Header dropdown (logged out), Explore&quot;,&quot;action&quot;:&quot;click to go to Trending&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile;ref_cta:Trending;&quot;}" href="/trending">
       Trending
 </a>  </li>
 
               <li>
-    <a class="lh-condensed-ultra d-block no-underline position-relative Link--secondary py-2" data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Header dropdown (logged out), Explore&quot;,&quot;action&quot;:&quot;click to go to Learning Lab&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering;ref_cta:Learning Lab;&quot;,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="26994c47fce7ee112bcb8a507979c020b341fbb5a26ba65fa3fe8533662e43df" data-analytics-event="{&quot;category&quot;:&quot;Header dropdown (logged out), Explore&quot;,&quot;action&quot;:&quot;click to go to Learning Lab&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering;ref_cta:Learning Lab;&quot;}" href="https://lab.github.com/">
+    <a class="lh-condensed-ultra d-block no-underline position-relative Link--secondary py-2" data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Header dropdown (logged out), Explore&quot;,&quot;action&quot;:&quot;click to go to Learning Lab&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile;ref_cta:Learning Lab;&quot;,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="abd07371f4683e7b615e96fe7f5afee2506ec72d7ad9de429105ffe62724094e" data-analytics-event="{&quot;category&quot;:&quot;Header dropdown (logged out), Explore&quot;,&quot;action&quot;:&quot;click to go to Learning Lab&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile;ref_cta:Learning Lab;&quot;}" href="https://lab.github.com/">
       Learning Lab
 </a>  </li>
 
               <li>
-    <a class="lh-condensed-ultra d-block no-underline position-relative Link--secondary py-2" data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Header dropdown (logged out), Explore&quot;,&quot;action&quot;:&quot;click to go to Open source guides&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering;ref_cta:Open source guides;&quot;,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="f7a40b9b3a67f5937af960667c179fc366019186bc1ddb662fc4bccf58f80e83" data-analytics-event="{&quot;category&quot;:&quot;Header dropdown (logged out), Explore&quot;,&quot;action&quot;:&quot;click to go to Open source guides&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering;ref_cta:Open source guides;&quot;}" href="https://opensource.guide">
+    <a class="lh-condensed-ultra d-block no-underline position-relative Link--secondary py-2" data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Header dropdown (logged out), Explore&quot;,&quot;action&quot;:&quot;click to go to Open source guides&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile;ref_cta:Open source guides;&quot;,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="7f5c71616d8f6ab6e0205674c92ffec3c12c74bbead7073ff9e137b925f4c64e" data-analytics-event="{&quot;category&quot;:&quot;Header dropdown (logged out), Explore&quot;,&quot;action&quot;:&quot;click to go to Open source guides&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile;ref_cta:Open source guides;&quot;}" href="https://opensource.guide">
       Open source guides
 </a>  </li>
 
               <li class="color-fg-muted text-normal f6 text-mono mb-1 border-top pt-3 mt-3 mb-1">Connect with others</li>
 
               <li>
-    <a class="lh-condensed-ultra d-block no-underline position-relative Link--secondary py-2" data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Header dropdown (logged out), Explore&quot;,&quot;action&quot;:&quot;click to go to The ReadME Project&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering;ref_cta:The ReadME Project;&quot;,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="f8b7cccb59f37eef41dcbdfac78fd34f6bddf56de27bfb789a0965697b325039" data-analytics-event="{&quot;category&quot;:&quot;Header dropdown (logged out), Explore&quot;,&quot;action&quot;:&quot;click to go to The ReadME Project&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering;ref_cta:The ReadME Project;&quot;}" href="/readme">
+    <a class="lh-condensed-ultra d-block no-underline position-relative Link--secondary py-2" data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Header dropdown (logged out), Explore&quot;,&quot;action&quot;:&quot;click to go to The ReadME Project&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile;ref_cta:The ReadME Project;&quot;,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="6eeff6bc1893f6a85439b19d6b960152d94245981e6eb074120b6519336dc844" data-analytics-event="{&quot;category&quot;:&quot;Header dropdown (logged out), Explore&quot;,&quot;action&quot;:&quot;click to go to The ReadME Project&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile;ref_cta:The ReadME Project;&quot;}" href="/readme">
       The ReadME Project
 </a>  </li>
 
               <li>
-    <a class="lh-condensed-ultra d-block no-underline position-relative Link--secondary py-2" data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Header dropdown (logged out), Explore&quot;,&quot;action&quot;:&quot;click to go to Events&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering;ref_cta:Events;&quot;,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="0f2c03fc2519e81780e7889ac5a6087a0338bea5e735ef20f9949a596c2758e6" data-analytics-event="{&quot;category&quot;:&quot;Header dropdown (logged out), Explore&quot;,&quot;action&quot;:&quot;click to go to Events&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering;ref_cta:Events;&quot;}" href="/events">
+    <a class="lh-condensed-ultra d-block no-underline position-relative Link--secondary py-2" data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Header dropdown (logged out), Explore&quot;,&quot;action&quot;:&quot;click to go to Events&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile;ref_cta:Events;&quot;,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="dd6b562c83fb8b425ec149e54cfa7df8cf1c288c6a190ecd70f01114700abb8a" data-analytics-event="{&quot;category&quot;:&quot;Header dropdown (logged out), Explore&quot;,&quot;action&quot;:&quot;click to go to Events&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile;ref_cta:Events;&quot;}" href="/events">
       Events
 </a>  </li>
 
               <li>
-    <a class="lh-condensed-ultra d-block no-underline position-relative Link--secondary py-2" data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Header dropdown (logged out), Explore&quot;,&quot;action&quot;:&quot;click to go to Community forum&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering;ref_cta:Community forum;&quot;,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="ca3f02ce0ed99e6eae510946cc99ce2b4d5a028f311080aa0a56915703eaa68c" data-analytics-event="{&quot;category&quot;:&quot;Header dropdown (logged out), Explore&quot;,&quot;action&quot;:&quot;click to go to Community forum&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering;ref_cta:Community forum;&quot;}" href="https://github.community">
+    <a class="lh-condensed-ultra d-block no-underline position-relative Link--secondary py-2" data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Header dropdown (logged out), Explore&quot;,&quot;action&quot;:&quot;click to go to Community forum&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile;ref_cta:Community forum;&quot;,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="0a81d26baffe6a3c7ab809ee42444020ede2f6052f8ea1e0f2d1a7a10c24d3ea" data-analytics-event="{&quot;category&quot;:&quot;Header dropdown (logged out), Explore&quot;,&quot;action&quot;:&quot;click to go to Community forum&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile;ref_cta:Community forum;&quot;}" href="https://github.community">
       Community forum
 </a>  </li>
 
               <li>
-    <a class="lh-condensed-ultra d-block no-underline position-relative Link--secondary py-2" data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Header dropdown (logged out), Explore&quot;,&quot;action&quot;:&quot;click to go to GitHub Education&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering;ref_cta:GitHub Education;&quot;,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="243d070bd51413e7e0a11a2fc6109efa2e77649b2c9412c4c7211cec73a0b0ae" data-analytics-event="{&quot;category&quot;:&quot;Header dropdown (logged out), Explore&quot;,&quot;action&quot;:&quot;click to go to GitHub Education&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering;ref_cta:GitHub Education;&quot;}" href="https://education.github.com">
+    <a class="lh-condensed-ultra d-block no-underline position-relative Link--secondary py-2" data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Header dropdown (logged out), Explore&quot;,&quot;action&quot;:&quot;click to go to GitHub Education&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile;ref_cta:GitHub Education;&quot;,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="387de7d41e36166fb27811a1ab6a009a66237550c945ccb4fb26c0676fc33a4d" data-analytics-event="{&quot;category&quot;:&quot;Header dropdown (logged out), Explore&quot;,&quot;action&quot;:&quot;click to go to GitHub Education&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile;ref_cta:GitHub Education;&quot;}" href="https://education.github.com">
       GitHub Education
 </a>  </li>
 
               <li>
-    <a class="lh-condensed-ultra d-block no-underline position-relative Link--secondary py-2" data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Header dropdown (logged out), Explore&quot;,&quot;action&quot;:&quot;click to go to GitHub Stars program&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering;ref_cta:GitHub Stars program;&quot;,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="8c78078a83634219bb140614a7aab03346c4749f5ec59c50ac26f4f57c6c2cfa" data-analytics-event="{&quot;category&quot;:&quot;Header dropdown (logged out), Explore&quot;,&quot;action&quot;:&quot;click to go to GitHub Stars program&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering;ref_cta:GitHub Stars program;&quot;}" href="https://stars.github.com">
+    <a class="lh-condensed-ultra d-block no-underline position-relative Link--secondary py-2" data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Header dropdown (logged out), Explore&quot;,&quot;action&quot;:&quot;click to go to GitHub Stars program&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile;ref_cta:GitHub Stars program;&quot;,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="35f5facdf3c91ed6be59068b8d2721d272de095c96031a131699e3319c1c691e" data-analytics-event="{&quot;category&quot;:&quot;Header dropdown (logged out), Explore&quot;,&quot;action&quot;:&quot;click to go to GitHub Stars program&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile;ref_cta:GitHub Stars program;&quot;}" href="https://stars.github.com">
       GitHub Stars program
 </a>  </li>
 
@@ -402,7 +404,7 @@
 
 
             <li class="mr-0 mr-lg-3 position-relative flex-wrap flex-justify-between flex-items-center border-bottom border-lg-bottom-0 d-block d-lg-flex flex-lg-nowrap flex-lg-items-center">
-    <a class="HeaderMenu-link no-underline py-3 d-block d-lg-inline-block" data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Header menu top item (logged out)&quot;,&quot;action&quot;:&quot;click to go to Marketplace&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering;ref_cta:Marketplace;&quot;,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="7b15669ddf22f17a37d15540c3563fb53265d5a67e0476d4428b8dc4a00a8447" data-analytics-event="{&quot;category&quot;:&quot;Header menu top item (logged out)&quot;,&quot;action&quot;:&quot;click to go to Marketplace&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering;ref_cta:Marketplace;&quot;}" href="/marketplace">Marketplace</a>
+    <a class="HeaderMenu-link no-underline py-3 d-block d-lg-inline-block" data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Header menu top item (logged out)&quot;,&quot;action&quot;:&quot;click to go to Marketplace&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile;ref_cta:Marketplace;&quot;,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="1ce5f82bfda7ad6cb0863cb7f5879f2ce0a710f8b311e8c1b2968d7233dd6b6f" data-analytics-event="{&quot;category&quot;:&quot;Header menu top item (logged out)&quot;,&quot;action&quot;:&quot;click to go to Marketplace&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile;ref_cta:Marketplace;&quot;}" href="/marketplace">Marketplace</a>
 </li>
 
 
@@ -415,22 +417,22 @@
       <div class="dropdown-menu flex-auto rounded px-0 mt-0 pb-4 p-lg-4 position-relative position-lg-absolute left-0 left-lg-n4">
         <ul class="list-style-none f5 pb-1">
               <li>
-    <a class="lh-condensed-ultra d-block no-underline position-relative Link--primary text-bold py-2" data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Header dropdown (logged out), Pricing&quot;,&quot;action&quot;:&quot;click to go to Plans&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering;ref_cta:Plans;&quot;,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="555f49a8a14b5e9e0912f1b61c7f9e6afa0eef99e2f038038c28e244397da2eb" data-analytics-event="{&quot;category&quot;:&quot;Header dropdown (logged out), Pricing&quot;,&quot;action&quot;:&quot;click to go to Plans&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering;ref_cta:Plans;&quot;}" href="/pricing">
+    <a class="lh-condensed-ultra d-block no-underline position-relative Link--primary text-bold py-2" data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Header dropdown (logged out), Pricing&quot;,&quot;action&quot;:&quot;click to go to Plans&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile;ref_cta:Plans;&quot;,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="bace6115f37ef09d6dca2279f1216cd085ec34417e5895bda57617f3b60be1c9" data-analytics-event="{&quot;category&quot;:&quot;Header dropdown (logged out), Pricing&quot;,&quot;action&quot;:&quot;click to go to Plans&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile;ref_cta:Plans;&quot;}" href="/pricing">
       Plans
 </a>  </li>
 
               <li>
-    <a class="lh-condensed-ultra d-block no-underline position-relative Link--secondary py-2" data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Header dropdown (logged out), Pricing&quot;,&quot;action&quot;:&quot;click to go to Compare plans&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering;ref_cta:Compare plans;&quot;,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="df2aee69042d5a7e862f12a7354c40b90d48f3ab693789f40161995cf98998e6" data-analytics-event="{&quot;category&quot;:&quot;Header dropdown (logged out), Pricing&quot;,&quot;action&quot;:&quot;click to go to Compare plans&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering;ref_cta:Compare plans;&quot;}" href="/pricing#compare-features">
+    <a class="lh-condensed-ultra d-block no-underline position-relative Link--secondary py-2" data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Header dropdown (logged out), Pricing&quot;,&quot;action&quot;:&quot;click to go to Compare plans&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile;ref_cta:Compare plans;&quot;,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="d4a44dd0a23690d5ab6b6b2d44a86ffc15c0c3d20fa5b74132de45d931a79b9d" data-analytics-event="{&quot;category&quot;:&quot;Header dropdown (logged out), Pricing&quot;,&quot;action&quot;:&quot;click to go to Compare plans&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile;ref_cta:Compare plans;&quot;}" href="/pricing#compare-features">
       Compare plans
 </a>  </li>
 
               <li>
-    <a class="lh-condensed-ultra d-block no-underline position-relative Link--secondary py-2" data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Header dropdown (logged out), Pricing&quot;,&quot;action&quot;:&quot;click to go to Contact Sales&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering;ref_cta:Contact Sales;&quot;,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="d58d42a1100daa9704623495fdf2dc19d72533b9957d3046215ed77c02370e35" data-analytics-event="{&quot;category&quot;:&quot;Header dropdown (logged out), Pricing&quot;,&quot;action&quot;:&quot;click to go to Contact Sales&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering;ref_cta:Contact Sales;&quot;}" href="https://github.com/enterprise/contact">
+    <a class="lh-condensed-ultra d-block no-underline position-relative Link--secondary py-2" data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Header dropdown (logged out), Pricing&quot;,&quot;action&quot;:&quot;click to go to Contact Sales&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile;ref_cta:Contact Sales;&quot;,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="e852018e717aae1bf48eac07a476c1393509d37e5597c3d03ae917bbed418189" data-analytics-event="{&quot;category&quot;:&quot;Header dropdown (logged out), Pricing&quot;,&quot;action&quot;:&quot;click to go to Contact Sales&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile;ref_cta:Contact Sales;&quot;}" href="https://github.com/enterprise/contact">
       Contact Sales
 </a>  </li>
 
               <li>
-    <a class="lh-condensed-ultra d-block no-underline position-relative Link--primary text-bold border-top pt-4 pb-2 mt-3" data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Header dropdown (logged out), Pricing&quot;,&quot;action&quot;:&quot;click to go to Education&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering;ref_cta:Education;&quot;,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="b558511d5143b821f8734163685db5ed1ad02a6d10435fa80484de7a0dd45d2d" data-analytics-event="{&quot;category&quot;:&quot;Header dropdown (logged out), Pricing&quot;,&quot;action&quot;:&quot;click to go to Education&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering;ref_cta:Education;&quot;}" href="https://education.github.com">
+    <a class="lh-condensed-ultra d-block no-underline position-relative Link--primary text-bold border-top pt-4 pb-2 mt-3" data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Header dropdown (logged out), Pricing&quot;,&quot;action&quot;:&quot;click to go to Education&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile;ref_cta:Education;&quot;,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="d3f2be0125c458f539f7d7895af1917a6048d82d1394846dd7e35bfeab0c8290" data-analytics-event="{&quot;category&quot;:&quot;Header dropdown (logged out), Pricing&quot;,&quot;action&quot;:&quot;click to go to Education&quot;,&quot;label&quot;:&quot;ref_page:/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile;ref_cta:Education;&quot;}" href="https://education.github.com">
       Education
 </a>  </li>
 
@@ -472,7 +474,7 @@
           spellcheck="false"
           autocomplete="off"
         >
-        <input type="hidden" data-csrf="true" class="js-data-jump-to-suggestions-path-csrf" value="4mYMuOawtg/fpqcVm/DTg5FAMXixISx9ZKywfi4kPj47gK7M+y49idYRCUPR6+41LD6hKvM5H49duo3Ykgootw==" />
+        <input type="hidden" data-csrf="true" class="js-data-jump-to-suggestions-path-csrf" value="SpXSu5ngHPpYA47bQaW1jPvXvqJsG7D473WCBBGWkht+Q9rdZ55zksenpkfE/aRQuGiZS/kq5pCd3WYguoJjmw==" />
         <input type="hidden" class="js-site-search-type-field" name="type" >
             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="20" aria-hidden="true" class="mr-1 header-search-key-slash"><path fill="none" stroke="#979A9C" opacity=".4" d="M3.5.5h12c1.7 0 3 1.3 3 3v13c0 1.7-1.3 3-3 3h-12c-1.7 0-3-1.3-3-3v-13c0-1.7 1.3-3 3-3z"></path><path fill="#979A9C" d="M11.8 6L8 15.1h-.9L10.8 6h1z"></path></svg>
 
@@ -652,18 +654,18 @@
           </div>
 
         <div class="position-relative mr-3 mb-4 mb-lg-0 d-inline-block">
-          <a href="/login?return_to=https%3A%2F%2Fgithub.com%2Fmicrobiome-immunity-project%2Fmetagenomome_assembly%2Ftree%2Fmaster%2Fdocker%2Fgene-clustering"
+          <a href="/login?return_to=https%3A%2F%2Fgithub.com%2Fmicrobiome-immunity-project%2Fmetagenomome_assembly%2Fblob%2Fmaster%2Fdocker%2Fgene-clustering%2FDockerfile"
             class="HeaderMenu-link flex-shrink-0 no-underline"
-            data-hydro-click="{&quot;event_type&quot;:&quot;authentication.click&quot;,&quot;payload&quot;:{&quot;location_in_page&quot;:&quot;site header menu&quot;,&quot;repository_id&quot;:null,&quot;auth_type&quot;:&quot;SIGN_UP&quot;,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="4e92630aa7a9239dc0105ac6d2b528c1f1e0acbb0faa29b531275c0c2478f2f5"
+            data-hydro-click="{&quot;event_type&quot;:&quot;authentication.click&quot;,&quot;payload&quot;:{&quot;location_in_page&quot;:&quot;site header menu&quot;,&quot;repository_id&quot;:null,&quot;auth_type&quot;:&quot;SIGN_UP&quot;,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="ec7aae0d82cc4c39abf199d2d042f15a096d4232d6ba87ffb3b8339cdf8c4adb"
             data-ga-click="(Logged out) Header, clicked Sign in, text:sign-in">
             Sign in
           </a>
         </div>
 
-          <a href="/signup?ref_cta=Sign+up&amp;ref_loc=header+logged+out&amp;ref_page=%2F%3Cuser-name%3E%2F%3Crepo-name%3E%2Ffiles%2Fdisambiguate&amp;source=header-repo&amp;source_repo=microbiome-immunity-project%2Fmetagenomome_assembly"
+          <a href="/signup?ref_cta=Sign+up&amp;ref_loc=header+logged+out&amp;ref_page=%2F%3Cuser-name%3E%2F%3Crepo-name%3E%2Fblob%2Fshow&amp;source=header-repo&amp;source_repo=microbiome-immunity-project%2Fmetagenomome_assembly"
             class="HeaderMenu-link flex-shrink-0 d-inline-block no-underline border color-border-default rounded px-2 py-1"
-            data-hydro-click="{&quot;event_type&quot;:&quot;authentication.click&quot;,&quot;payload&quot;:{&quot;location_in_page&quot;:&quot;site header menu&quot;,&quot;repository_id&quot;:null,&quot;auth_type&quot;:&quot;SIGN_UP&quot;,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="4e92630aa7a9239dc0105ac6d2b528c1f1e0acbb0faa29b531275c0c2478f2f5"
-            data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Sign up&quot;,&quot;action&quot;:&quot;click to sign up for account&quot;,&quot;label&quot;:&quot;ref_page:/&lt;user-name&gt;/&lt;repo-name&gt;/files/disambiguate;ref_cta:Sign up;ref_loc:header logged out&quot;,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="463cf67d01fb3e7dda7a6f34535b64bf415b2d6c0460c58926bdd8c3c868bb6a" data-analytics-event="{&quot;category&quot;:&quot;Sign up&quot;,&quot;action&quot;:&quot;click to sign up for account&quot;,&quot;label&quot;:&quot;ref_page:/&lt;user-name&gt;/&lt;repo-name&gt;/files/disambiguate;ref_cta:Sign up;ref_loc:header logged out&quot;}"
+            data-hydro-click="{&quot;event_type&quot;:&quot;authentication.click&quot;,&quot;payload&quot;:{&quot;location_in_page&quot;:&quot;site header menu&quot;,&quot;repository_id&quot;:null,&quot;auth_type&quot;:&quot;SIGN_UP&quot;,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="ec7aae0d82cc4c39abf199d2d042f15a096d4232d6ba87ffb3b8339cdf8c4adb"
+            data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Sign up&quot;,&quot;action&quot;:&quot;click to sign up for account&quot;,&quot;label&quot;:&quot;ref_page:/&lt;user-name&gt;/&lt;repo-name&gt;/blob/show;ref_cta:Sign up;ref_loc:header logged out&quot;,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="4fd74b385edea811ee177fd938cd0238c81ed815d8512578ea807c75cd379462" data-analytics-event="{&quot;category&quot;:&quot;Sign up&quot;,&quot;action&quot;:&quot;click to sign up for account&quot;,&quot;label&quot;:&quot;ref_page:/&lt;user-name&gt;/&lt;repo-name&gt;/blob/show;ref_cta:Sign up;ref_loc:header logged out&quot;}"
           >
             Sign up
           </a>
@@ -719,6 +721,7 @@
         <div itemscope itemtype="http://schema.org/SoftwareSourceCode" class="">
     <main id="js-repo-pjax-container" data-pjax-container >
       
+
     
     
 
@@ -756,14 +759,14 @@
   
 
   <li>
-      <a href="/login?return_to=%2Fmicrobiome-immunity-project%2Fmetagenomome_assembly" rel="nofollow" data-hydro-click="{&quot;event_type&quot;:&quot;authentication.click&quot;,&quot;payload&quot;:{&quot;location_in_page&quot;:&quot;notification subscription menu watch&quot;,&quot;repository_id&quot;:null,&quot;auth_type&quot;:&quot;LOG_IN&quot;,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="ec1c6cc4b30454e6368cc78503ef4e09ef325e18ce659591e0fbde538cfc486d" aria-label="You must be signed in to change notification settings" data-view-component="true" class="tooltipped tooltipped-s btn-sm btn">  <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-bell mr-2">
+      <a href="/login?return_to=%2Fmicrobiome-immunity-project%2Fmetagenomome_assembly" rel="nofollow" data-hydro-click="{&quot;event_type&quot;:&quot;authentication.click&quot;,&quot;payload&quot;:{&quot;location_in_page&quot;:&quot;notification subscription menu watch&quot;,&quot;repository_id&quot;:null,&quot;auth_type&quot;:&quot;LOG_IN&quot;,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="720dc2a166cc386f2cceb61a52575b59e29c08b96d803605a9191f32e4a14893" aria-label="You must be signed in to change notification settings" data-view-component="true" class="tooltipped tooltipped-s btn-sm btn">  <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-bell mr-2">
     <path d="M8 16a2 2 0 001.985-1.75c.017-.137-.097-.25-.235-.25h-3.5c-.138 0-.252.113-.235.25A2 2 0 008 16z"></path><path fill-rule="evenodd" d="M8 1.5A3.5 3.5 0 004.5 5v2.947c0 .346-.102.683-.294.97l-1.703 2.556a.018.018 0 00-.003.01l.001.006c0 .002.002.004.004.006a.017.017 0 00.006.004l.007.001h10.964l.007-.001a.016.016 0 00.006-.004.016.016 0 00.004-.006l.001-.007a.017.017 0 00-.003-.01l-1.703-2.554a1.75 1.75 0 01-.294-.97V5A3.5 3.5 0 008 1.5zM3 5a5 5 0 0110 0v2.947c0 .05.015.098.042.139l1.703 2.555A1.518 1.518 0 0113.482 13H2.518a1.518 1.518 0 01-1.263-2.36l1.703-2.554A.25.25 0 003 7.947V5z"></path>
 </svg>Notifications
 </a>
   </li>
 
   <li>
-        <a href="/login?return_to=%2Fmicrobiome-immunity-project%2Fmetagenomome_assembly" rel="nofollow" data-hydro-click="{&quot;event_type&quot;:&quot;authentication.click&quot;,&quot;payload&quot;:{&quot;location_in_page&quot;:&quot;repo details fork button&quot;,&quot;repository_id&quot;:248378753,&quot;auth_type&quot;:&quot;LOG_IN&quot;,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="d9481872628050e89410c4e638e37c179febaa5e57a707a7f380bb7a412e4b7c" aria-label="You must be signed in to fork a repository" data-view-component="true" class="tooltipped tooltipped-s btn-sm btn">  <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-repo-forked mr-2">
+        <a href="/login?return_to=%2Fmicrobiome-immunity-project%2Fmetagenomome_assembly" rel="nofollow" data-hydro-click="{&quot;event_type&quot;:&quot;authentication.click&quot;,&quot;payload&quot;:{&quot;location_in_page&quot;:&quot;repo details fork button&quot;,&quot;repository_id&quot;:248378753,&quot;auth_type&quot;:&quot;LOG_IN&quot;,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="b07b1521f936a9ca7e047a1dae5305832e40ed5333a188901883a25d85bcf592" aria-label="You must be signed in to fork a repository" data-view-component="true" class="tooltipped tooltipped-s btn-sm btn">  <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-repo-forked mr-2">
     <path fill-rule="evenodd" d="M5 3.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm0 2.122a2.25 2.25 0 10-1.5 0v.878A2.25 2.25 0 005.75 8.5h1.5v2.128a2.251 2.251 0 101.5 0V8.5h1.5a2.25 2.25 0 002.25-2.25v-.878a2.25 2.25 0 10-1.5 0v.878a.75.75 0 01-.75.75h-4.5A.75.75 0 015 6.25v-.878zm3.75 7.378a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm3-8.75a.75.75 0 100-1.5.75.75 0 000 1.5z"></path>
 </svg>Fork
     <span id="repo-network-counter" data-pjax-replace="true" title="3" data-view-component="true" class="Counter">3</span>
@@ -772,7 +775,7 @@
 
   <li>
         <div data-view-component="true" class="BtnGroup d-flex">
-      <a href="/login?return_to=%2Fmicrobiome-immunity-project%2Fmetagenomome_assembly" rel="nofollow" data-hydro-click="{&quot;event_type&quot;:&quot;authentication.click&quot;,&quot;payload&quot;:{&quot;location_in_page&quot;:&quot;star button&quot;,&quot;repository_id&quot;:248378753,&quot;auth_type&quot;:&quot;LOG_IN&quot;,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="f479759f4be16fc35f95458eb08aaf77ab2c99dc93d0c59e7b8d386c190b6dc1" aria-label="You must be signed in to star a repository" data-view-component="true" class="tooltipped tooltipped-s btn-sm btn BtnGroup-item">  <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-star v-align-text-bottom d-inline-block mr-2">
+      <a href="/login?return_to=%2Fmicrobiome-immunity-project%2Fmetagenomome_assembly" rel="nofollow" data-hydro-click="{&quot;event_type&quot;:&quot;authentication.click&quot;,&quot;payload&quot;:{&quot;location_in_page&quot;:&quot;star button&quot;,&quot;repository_id&quot;:248378753,&quot;auth_type&quot;:&quot;LOG_IN&quot;,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="87dfdb033ab61ec62114998bcdb3d36ef93f8a45b0baa77f9beee6416092c005" aria-label="You must be signed in to star a repository" data-view-component="true" class="tooltipped tooltipped-s btn-sm btn BtnGroup-item">  <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-star v-align-text-bottom d-inline-block mr-2">
     <path fill-rule="evenodd" d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25zm0 2.445L6.615 5.5a.75.75 0 01-.564.41l-3.097.45 2.24 2.184a.75.75 0 01.216.664l-.528 3.084 2.769-1.456a.75.75 0 01.698 0l2.77 1.456-.53-3.084a.75.75 0 01.216-.664l2.24-2.183-3.096-.45a.75.75 0 01-.564-.41L8 2.694v.001z"></path>
 </svg><span data-view-component="true" class="d-inline">
           Star
@@ -955,9 +958,18 @@
 
     
       
-  <div>
-  <div class="file-navigation mb-3 d-flex flex-items-start">
-    
+  
+  
+<div>
+  
+
+
+
+    <a class="d-none js-permalink-shortcut" data-hotkey="y" href="/microbiome-immunity-project/metagenomome_assembly/blob/f832a8689256e65ac540e38ab6af3efc1e875bec/docker/gene-clustering/Dockerfile">Permalink</a>
+
+
+    <div class="d-flex flex-items-start flex-shrink-0 pb-3 flex-wrap flex-md-nowrap flex-justify-between flex-md-justify-start">
+      
 <div class="position-relative">
   <details class="details-reset details-overlay mr-0 mb-0 " id="branch-select-menu">
     <summary class="btn css-truncate"
@@ -1039,7 +1051,7 @@
             </div>
 
               <template data-target="ref-selector.itemTemplate">
-  <a href="https://github.com/microbiome-immunity-project/metagenomome_assembly/tree/{{ urlEncodedRefName }}/docker/gene-clustering" class="SelectMenu-item" role="menuitemradio" rel="nofollow" aria-checked="{{ isCurrent }}" data-index="{{ index }}">
+  <a href="https://github.com/microbiome-immunity-project/metagenomome_assembly/blob/{{ urlEncodedRefName }}/docker/gene-clustering/Dockerfile" class="SelectMenu-item" role="menuitemradio" rel="nofollow" aria-checked="{{ isCurrent }}" data-index="{{ index }}">
     <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-check SelectMenu-icon SelectMenu-icon--check">
     <path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path>
 </svg>
@@ -1079,7 +1091,7 @@
             </template>
 
               <template data-target="ref-selector.itemTemplate">
-  <a href="https://github.com/microbiome-immunity-project/metagenomome_assembly/tree/{{ urlEncodedRefName }}/docker/gene-clustering" class="SelectMenu-item" role="menuitemradio" rel="nofollow" aria-checked="{{ isCurrent }}" data-index="{{ index }}">
+  <a href="https://github.com/microbiome-immunity-project/metagenomome_assembly/blob/{{ urlEncodedRefName }}/docker/gene-clustering/Dockerfile" class="SelectMenu-item" role="menuitemradio" rel="nofollow" aria-checked="{{ isCurrent }}" data-index="{{ index }}">
     <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-check SelectMenu-icon SelectMenu-icon--check">
     <path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z"></path>
 </svg>
@@ -1109,131 +1121,407 @@
 
 </div>
 
-
-    <div class="flex-1 mx-2 flex-self-center f4">
-      <div class="d-none d-sm-block">
-        <span class="js-repo-root text-bold"><span class="js-path-segment d-inline-block wb-break-all"><a data-pjax="#repo-content-pjax-container" href="/microbiome-immunity-project/metagenomome_assembly"><span>metagenomome_assembly</span></a></span></span><span class="mx-1">/</span><span class="js-path-segment d-inline-block wb-break-all"><a data-pjax="#repo-content-pjax-container" href="/microbiome-immunity-project/metagenomome_assembly/tree/master/docker"><span>docker</span></a></span><span class="mx-1">/</span><strong class="final-path">gene-clustering</strong><span class="mx-1">/</span>
-      </div>
-    </div>
-
-    <div class="d-flex">
-      <a class="btn mr-2 d-none d-md-block" data-hydro-click="{&quot;event_type&quot;:&quot;repository.click&quot;,&quot;payload&quot;:{&quot;target&quot;:&quot;FIND_FILE_BUTTON&quot;,&quot;repository_id&quot;:248378753,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="fc694544d5c24b29b47a0d97496a9bee9fb8a31ceb4674312e26bca35d0d8f52" data-ga-click="Repository, find file, location:repo overview" data-hotkey="t" data-pjax="true" href="/microbiome-immunity-project/metagenomome_assembly/find/master">
+      <h2 id="blob-path" class="breadcrumb flex-auto flex-self-center min-width-0 text-normal mx-2 width-full width-md-auto flex-order-1 flex-md-order-none mt-3 mt-md-0">
+        <span class="js-repo-root text-bold"><span class="js-path-segment d-inline-block wb-break-all"><a data-pjax="#repo-content-pjax-container" href="/microbiome-immunity-project/metagenomome_assembly"><span>metagenomome_assembly</span></a></span></span><span class="separator">/</span><span class="js-path-segment d-inline-block wb-break-all"><a data-pjax="#repo-content-pjax-container" href="/microbiome-immunity-project/metagenomome_assembly/tree/master/docker"><span>docker</span></a></span><span class="separator">/</span><span class="js-path-segment d-inline-block wb-break-all"><a data-pjax="#repo-content-pjax-container" href="/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering"><span>gene-clustering</span></a></span><span class="separator">/</span><strong class="final-path">Dockerfile</strong>
+      </h2>
+      <a href="/microbiome-immunity-project/metagenomome_assembly/find/master"
+            class="js-pjax-capture-input btn mr-2 d-none d-md-block"
+            data-pjax
+            data-hotkey="t">
         Go to file
-</a>
-    </div>
-  </div>
+      </a>
 
-  <div class="f4 mt-3 mb-3 d-sm-none"><span class="js-repo-root text-bold"><span class="js-path-segment d-inline-block wb-break-all"><a data-pjax="true" href="/microbiome-immunity-project/metagenomome_assembly"><span>metagenomome_assembly</span></a></span></span><span class="mx-1">/</span><span class="js-path-segment d-inline-block wb-break-all"><a data-pjax="true" href="/microbiome-immunity-project/metagenomome_assembly/tree/master/docker"><span>docker</span></a></span><span class="mx-1">/</span><strong class="final-path">gene-clustering</strong><span class="separator mx-1">/</span></div>
+      <details id="blob-more-options-details" data-view-component="true" class="details-overlay details-reset position-relative">
+  <summary role="button" data-view-component="true" class="btn">  <svg aria-label="More options" role="img" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-kebab-horizontal">
+    <path d="M8 9a1.5 1.5 0 100-3 1.5 1.5 0 000 3zM1.5 9a1.5 1.5 0 100-3 1.5 1.5 0 000 3zm13 0a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"></path>
+</svg>
+</summary>
+  <div data-view-component="true">          <ul class="dropdown-menu dropdown-menu-sw">
+            <li class="d-block d-md-none">
+              <a class="dropdown-item d-flex flex-items-baseline" data-hydro-click="{&quot;event_type&quot;:&quot;repository.click&quot;,&quot;payload&quot;:{&quot;target&quot;:&quot;FIND_FILE_BUTTON&quot;,&quot;repository_id&quot;:248378753,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="fdca4a62e6f5ca51a646f523b686b276cce5bc890850653ae93b5d4ab62ef8eb" data-ga-click="Repository, find file, location:repo overview" data-hotkey="t" data-pjax="true" href="/microbiome-immunity-project/metagenomome_assembly/find/master">
+                <span class="flex-auto">Go to file</span>
+                <span class="text-small color-fg-muted" aria-hidden="true">T</span>
+</a>            </li>
+            <li data-toggle-for="blob-more-options-details">
+              <button data-toggle-for="jumpto-line-details-dialog" type="button" data-view-component="true" class="dropdown-item btn-link">  <span class="d-flex flex-items-baseline">
+                  <span class="flex-auto">Go to line</span>
+                  <span class="text-small color-fg-muted" aria-hidden="true">L</span>
+                </span>
+</button>            </li>
+            <li class="dropdown-divider" role="none"></li>
+            <li>
+              <clipboard-copy data-toggle-for="blob-more-options-details" aria-label="Copy path" value="docker/gene-clustering/Dockerfile" data-view-component="true" class="dropdown-item cursor-pointer">
+    
+                Copy path
+
+</clipboard-copy>            </li>
+            <li>
+              <clipboard-copy data-toggle-for="blob-more-options-details" aria-label="Copy permalink" value="https://github.com/microbiome-immunity-project/metagenomome_assembly/blob/f832a8689256e65ac540e38ab6af3efc1e875bec/docker/gene-clustering/Dockerfile" data-view-component="true" class="dropdown-item cursor-pointer">
+    
+                <span class="d-flex flex-items-baseline">
+                  <span class="flex-auto">Copy permalink</span>
+                </span>
+
+</clipboard-copy>            </li>
+          </ul>
+</div>
+</details>    </div>
+
+
+
+
+    <div class="Box d-flex flex-column flex-shrink-0 mb-3">
+      <include-fragment src="/microbiome-immunity-project/metagenomome_assembly/contributors/master/docker/gene-clustering/Dockerfile" class="commit-loader">
+        <div class="Box-header d-flex flex-items-center">
+          <div class="Skeleton avatar avatar-user flex-shrink-0 ml-n1 mr-n1 mt-n1 mb-n1" style="width:24px;height:24px;"></div>
+          <div class="Skeleton Skeleton--text col-5 ml-2">&nbsp;</div>
+        </div>
+
+        <div class="Box-body d-flex flex-items-center" >
+          <div class="Skeleton Skeleton--text col-1">&nbsp;</div>
+          <span class="color-fg-danger h6 loader-error">Cannot retrieve contributors at this time</span>
+        </div>
+</include-fragment>    </div>
+
+
+
+
+
 
   
+    <div data-target="readme-toc.content" class="Box mt-3 position-relative">
+      
+  <div
+    class="Box-header js-blob-header py-2 pr-2 d-flex flex-shrink-0 flex-md-row flex-items-center"
+    
+  >
 
 
-<div class="Box mb-3">
-  <div class="Box-header position-relative">
-    <h2 class="sr-only">Latest commit</h2>
-    <div class="js-details-container Details d-flex rounded-top-1 flex-items-center flex-wrap" data-issue-and-pr-hovercards-enabled>
-      <include-fragment src="/microbiome-immunity-project/metagenomome_assembly/tree-commit/f832a8689256e65ac540e38ab6af3efc1e875bec/docker/gene-clustering" class="d-flex flex-auto flex-items-center" aria-busy="true" aria-label="Loading latest commit">
-        <div class="Skeleton avatar avatar-user flex-shrink-0 ml-n1 mr-n1 mt-n1 mb-n1" style="width:24px;height:24px;"></div>
-        <div class="Skeleton Skeleton--text col-5 ml-3">&nbsp;</div>
-</include-fragment>      <div class="flex-shrink-0">
-        <h2 class="sr-only">Git stats</h2>
-        <ul class="list-style-none d-flex">
-          <li class="ml-0 ml-md-3">
-            <a data-pjax="#repo-content-pjax-container" href="/microbiome-immunity-project/metagenomome_assembly/commits/master/docker/gene-clustering" class="pl-3 pr-3 py-3 p-md-0 mt-n3 mb-n3 mr-n3 m-md-0 Link--primary no-underline no-wrap">
-              <svg text="gray" aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-history">
-    <path fill-rule="evenodd" d="M1.643 3.143L.427 1.927A.25.25 0 000 2.104V5.75c0 .138.112.25.25.25h3.646a.25.25 0 00.177-.427L2.715 4.215a6.5 6.5 0 11-1.18 4.458.75.75 0 10-1.493.154 8.001 8.001 0 101.6-5.684zM7.75 4a.75.75 0 01.75.75v2.992l2.028.812a.75.75 0 01-.557 1.392l-2.5-1A.75.75 0 017 8.25v-3.5A.75.75 0 017.75 4z"></path>
+  <div class="text-mono f6 flex-auto pr-3 flex-order-2 flex-md-order-1">
+
+      40 lines (32 sloc)
+      <span class="file-info-divider"></span>
+    850 Bytes
+  </div>
+
+  <div class="d-flex py-1 py-md-0 flex-auto flex-order-1 flex-md-order-2 flex-sm-grow-0 flex-justify-between hide-sm hide-md">
+      
+
+    <div class="BtnGroup">
+      <a href="/microbiome-immunity-project/metagenomome_assembly/raw/master/docker/gene-clustering/Dockerfile" id="raw-url" data-view-component="true" class="btn-sm btn BtnGroup-item">  Raw
+</a>
+        <a href="/microbiome-immunity-project/metagenomome_assembly/blame/master/docker/gene-clustering/Dockerfile" data-hotkey="b" data-view-component="true" class="js-update-url-with-hash btn-sm btn BtnGroup-item">  Blame
+</a>
+    </div>
+
+    <div>
+          <a class="btn-octicon tooltipped tooltipped-nw js-remove-unless-platform"
+             data-platforms="windows,mac"
+             href="https://desktop.github.com"
+             aria-label="Open this file in GitHub Desktop"
+             data-ga-click="Repository, open with desktop">
+              <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-device-desktop">
+    <path fill-rule="evenodd" d="M1.75 2.5h12.5a.25.25 0 01.25.25v7.5a.25.25 0 01-.25.25H1.75a.25.25 0 01-.25-.25v-7.5a.25.25 0 01.25-.25zM14.25 1H1.75A1.75 1.75 0 000 2.75v7.5C0 11.216.784 12 1.75 12h3.727c-.1 1.041-.52 1.872-1.292 2.757A.75.75 0 004.75 16h6.5a.75.75 0 00.565-1.243c-.772-.885-1.193-1.716-1.292-2.757h3.727A1.75 1.75 0 0016 10.25v-7.5A1.75 1.75 0 0014.25 1zM9.018 12H6.982a5.72 5.72 0 01-.765 2.5h3.566a5.72 5.72 0 01-.765-2.5z"></path>
 </svg>
-              <span class="d-none d-sm-inline">
-                  <strong>History</strong>
-              </span>
-            </a>
-          </li>
-        </ul>
-      </div>
+          </a>
+
+        
+          <a href="/login?return_to=https%3A%2F%2Fgithub.com%2Fmicrobiome-immunity-project%2Fmetagenomome_assembly%2Fblob%2Fmaster%2Fdocker%2Fgene-clustering%2FDockerfile" class="btn-octicon disabled tooltipped tooltipped-nw"
+            aria-label="You must be signed in to make or propose changes">
+            <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-pencil">
+    <path fill-rule="evenodd" d="M11.013 1.427a1.75 1.75 0 012.474 0l1.086 1.086a1.75 1.75 0 010 2.474l-8.61 8.61c-.21.21-.47.364-.756.445l-3.251.93a.75.75 0 01-.927-.928l.929-3.25a1.75 1.75 0 01.445-.758l8.61-8.61zm1.414 1.06a.25.25 0 00-.354 0L10.811 3.75l1.439 1.44 1.263-1.263a.25.25 0 000-.354l-1.086-1.086zM11.189 6.25L9.75 4.81l-6.286 6.287a.25.25 0 00-.064.108l-.558 1.953 1.953-.558a.249.249 0 00.108-.064l6.286-6.286z"></path>
+</svg>
+          </a>
+          <a href="/login?return_to=https%3A%2F%2Fgithub.com%2Fmicrobiome-immunity-project%2Fmetagenomome_assembly%2Fblob%2Fmaster%2Fdocker%2Fgene-clustering%2FDockerfile" class="btn-octicon btn-octicon-danger disabled tooltipped tooltipped-nw"
+            aria-label="You must be signed in to make or propose changes">
+            <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-trash">
+    <path fill-rule="evenodd" d="M6.5 1.75a.25.25 0 01.25-.25h2.5a.25.25 0 01.25.25V3h-3V1.75zm4.5 0V3h2.25a.75.75 0 010 1.5H2.75a.75.75 0 010-1.5H5V1.75C5 .784 5.784 0 6.75 0h2.5C10.216 0 11 .784 11 1.75zM4.496 6.675a.75.75 0 10-1.492.15l.66 6.6A1.75 1.75 0 005.405 15h5.19c.9 0 1.652-.681 1.741-1.576l.66-6.6a.75.75 0 00-1.492-.149l-.66 6.6a.25.25 0 01-.249.225h-5.19a.25.25 0 01-.249-.225l-.66-6.6z"></path>
+</svg>
+          </a>
     </div>
   </div>
-    <h2 id="files"  class="sr-only">Files</h2>
-    
+
+    <div class="d-flex hide-lg hide-xl flex-order-2 flex-grow-0">
+      <details class="dropdown details-reset details-overlay d-inline-block">
+        <summary class="btn-octicon" aria-haspopup="true" aria-label="possible actions">
+          <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-kebab-horizontal">
+    <path d="M8 9a1.5 1.5 0 100-3 1.5 1.5 0 000 3zM1.5 9a1.5 1.5 0 100-3 1.5 1.5 0 000 3zm13 0a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"></path>
+</svg>
+        </summary>
+
+        <ul class="dropdown-menu dropdown-menu-sw" style="width: 175px">
+            <li>
+                <a class="dropdown-item tooltipped tooltipped-nw js-remove-unless-platform"
+                   data-platforms="windows,mac"
+                   href="https://desktop.github.com"
+                   data-ga-click="Repository, open with desktop">
+                  Open with Desktop
+                </a>
+            </li>
+          <li>
+            <a class="dropdown-item" href="/microbiome-immunity-project/metagenomome_assembly/raw/master/docker/gene-clustering/Dockerfile">
+              View raw
+            </a>
+          </li>
+            <li>
+                          </li>
+            <li>
+              <a class="dropdown-item" href="/microbiome-immunity-project/metagenomome_assembly/blame/master/docker/gene-clustering/Dockerfile">
+                View blame
+              </a>
+            </li>
+
+        </ul>
+      </details>
+    </div>
+</div>
 
 
-  <include-fragment src="/microbiome-immunity-project/metagenomome_assembly/file-list/master/docker/gene-clustering">
-      <a class="d-none js-permalink-shortcut" data-hotkey="y" href="/microbiome-immunity-project/metagenomome_assembly/tree/f832a8689256e65ac540e38ab6af3efc1e875bec/docker/gene-clustering">Permalink</a>
+      
+  <div itemprop="text" class="Box-body p-0 blob-wrapper data type-dockerfile  gist-border-0">
 
-  <div data-view-component="true" class="include-fragment-error flash flash-error flash-full py-2">
+      
+<div class="js-check-bidi js-blob-code-container blob-code-content">
+
+  <template class="js-file-alert-template">
+  <div data-view-component="true" class="flash flash-warn flash-full d-flex flex-items-center">
   <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-alert">
     <path fill-rule="evenodd" d="M8.22 1.754a.25.25 0 00-.44 0L1.698 13.132a.25.25 0 00.22.368h12.164a.25.25 0 00.22-.368L8.22 1.754zm-1.763-.707c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0114.082 15H1.918a1.75 1.75 0 01-1.543-2.575L6.457 1.047zM9 11a1 1 0 11-2 0 1 1 0 012 0zm-.25-5.25a.75.75 0 00-1.5 0v2.5a.75.75 0 001.5 0v-2.5z"></path>
 </svg>
   
-    Failed to load latest commit information.
+    <span>
+      This file contains bidirectional Unicode text that may be interpreted or compiled differently than what appears below. To review, open the file in an editor that reveals hidden Unicode characters.
+      <a href="https://github.co/hiddenchars" target="_blank">Learn more about bidirectional Unicode characters</a>
+    </span>
 
 
-  
-</div>  <div class="js-details-container Details">
-    <div role="grid" aria-labelledby="files" class="Details-content--hidden-not-important js-navigation-container js-active-navigation-container d-block" data-pjax>
-      <div class="sr-only" role="row">
-        <div role="columnheader">Type</div>
-        <div role="columnheader">Name</div>
-        <div role="columnheader" class="d-none d-md-block">Latest commit message</div>
-        <div role="columnheader">Commit time</div>
-      </div>
-        <div role="row" class="Box-row Box-row--focus-gray p-0 d-flex js-navigation-item" >
-          <div role="rowheader" class="flex-auto min-width-0 col-md-2">
-            <a rel="nofollow" title="Go to parent directory" class="js-navigation-open d-block py-2 px-3" href="/microbiome-immunity-project/metagenomome_assembly/tree/master/docker">
-              <span class="text-bold text-center d-inline-block" style="min-width: 16px;">. .</span>
-</a>          </div>
-          <div role="gridcell" class="d-none d-md-block"></div>
-          <div role="gridcell"></div>
-        </div>
-
-        <div role="row" class="Box-row Box-row--focus-gray py-2 d-flex position-relative js-navigation-item ">
-          <div role="gridcell" class="mr-3 flex-shrink-0" style="width: 16px;">
-              <svg aria-label="File" aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-file color-fg-muted">
-    <path fill-rule="evenodd" d="M3.75 1.5a.25.25 0 00-.25.25v11.5c0 .138.112.25.25.25h8.5a.25.25 0 00.25-.25V6H9.75A1.75 1.75 0 018 4.25V1.5H3.75zm5.75.56v2.19c0 .138.112.25.25.25h2.19L9.5 2.06zM2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v8.086A1.75 1.75 0 0112.25 15h-8.5A1.75 1.75 0 012 13.25V1.75z"></path>
+  <div data-view-component="true" class="flash-action">        <a href="{{ revealButtonHref }}" data-view-component="true" class="btn-sm btn">  Show hidden characters
+</a>
+</div>
+</div></template>
+<template class="js-line-alert-template">
+  <span aria-label="This line has hidden Unicode characters" data-view-component="true" class="line-alert tooltipped tooltipped-e">
+    <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-alert">
+    <path fill-rule="evenodd" d="M8.22 1.754a.25.25 0 00-.44 0L1.698 13.132a.25.25 0 00.22.368h12.164a.25.25 0 00.22-.368L8.22 1.754zm-1.763-.707c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0114.082 15H1.918a1.75 1.75 0 01-1.543-2.575L6.457 1.047zM9 11a1 1 0 11-2 0 1 1 0 012 0zm-.25-5.25a.75.75 0 00-1.5 0v2.5a.75.75 0 001.5 0v-2.5z"></path>
 </svg>
-          </div>
+</span></template>
 
-          <div role="rowheader" class="flex-auto min-width-0 col-md-2 mr-3">
-            <span class="css-truncate css-truncate-target d-block width-fit"><a class="js-navigation-open Link--primary" title="Dockerfile" data-pjax="#repo-content-pjax-container" href="/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile">Dockerfile</a></span>
-          </div>
-
-          <div role="gridcell" class="flex-auto min-width-0 d-none d-md-block col-5 mr-3" >
-              <div class="Skeleton Skeleton--text col-7">&nbsp;</div>
-          </div>
-
-          <div role="gridcell" class="color-fg-muted text-right" style="width:100px;">
-              <div class="Skeleton Skeleton--text">&nbsp;</div>
-          </div>
-
-        </div>
-        <div role="row" class="Box-row Box-row--focus-gray py-2 d-flex position-relative js-navigation-item ">
-          <div role="gridcell" class="mr-3 flex-shrink-0" style="width: 16px;">
-              <svg aria-label="File" aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-file color-fg-muted">
-    <path fill-rule="evenodd" d="M3.75 1.5a.25.25 0 00-.25.25v11.5c0 .138.112.25.25.25h8.5a.25.25 0 00.25-.25V6H9.75A1.75 1.75 0 018 4.25V1.5H3.75zm5.75.56v2.19c0 .138.112.25.25.25h2.19L9.5 2.06zM2 1.75C2 .784 2.784 0 3.75 0h5.086c.464 0 .909.184 1.237.513l3.414 3.414c.329.328.513.773.513 1.237v8.086A1.75 1.75 0 0112.25 15h-8.5A1.75 1.75 0 012 13.25V1.75z"></path>
-</svg>
-          </div>
-
-          <div role="rowheader" class="flex-auto min-width-0 col-md-2 mr-3">
-            <span class="css-truncate css-truncate-target d-block width-fit"><a class="js-navigation-open Link--primary" title="extract_complete_gene.py" data-pjax="#repo-content-pjax-container" href="/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/extract_complete_gene.py">extract_complete_gene.py</a></span>
-          </div>
-
-          <div role="gridcell" class="flex-auto min-width-0 d-none d-md-block col-5 mr-3" >
-              <div class="Skeleton Skeleton--text col-7">&nbsp;</div>
-          </div>
-
-          <div role="gridcell" class="color-fg-muted text-right" style="width:100px;">
-              <div class="Skeleton Skeleton--text">&nbsp;</div>
-          </div>
-
-        </div>
-    </div>
-  </div>
-
-</include-fragment>
-
-
+  <table class="highlight tab-size js-file-line-container js-code-nav-container js-tagsearch-file" data-tab-size="8" data-paste-markdown-skip data-tagsearch-lang="Dockerfile" data-tagsearch-path="docker/gene-clustering/Dockerfile">
+        <tr>
+          <td id="L1" class="blob-num js-line-number js-code-nav-line-number" data-line-number="1"></td>
+          <td id="LC1" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">#</span> $ docker build . -t gene_clustering:v1.0</span></td>
+        </tr>
+        <tr>
+          <td id="L2" class="blob-num js-line-number js-code-nav-line-number" data-line-number="2"></td>
+          <td id="LC2" class="blob-code blob-code-inner js-file-line"><span class="pl-c"><span class="pl-c">#</span> $ docker run --rm -it -v `pwd`:/data gene_clustering:latest /bin/bash</span></td>
+        </tr>
+        <tr>
+          <td id="L3" class="blob-num js-line-number js-code-nav-line-number" data-line-number="3"></td>
+          <td id="LC3" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="L4" class="blob-num js-line-number js-code-nav-line-number" data-line-number="4"></td>
+          <td id="LC4" class="blob-code blob-code-inner js-file-line"><span class="pl-k">FROM</span> biopython/biopython</td>
+        </tr>
+        <tr>
+          <td id="L5" class="blob-num js-line-number js-code-nav-line-number" data-line-number="5"></td>
+          <td id="LC5" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="L6" class="blob-num js-line-number js-code-nav-line-number" data-line-number="6"></td>
+          <td id="LC6" class="blob-code blob-code-inner js-file-line"><span class="pl-k">RUN</span> mkdir /app &amp;&amp; mkdir /appdownload</td>
+        </tr>
+        <tr>
+          <td id="L7" class="blob-num js-line-number js-code-nav-line-number" data-line-number="7"></td>
+          <td id="LC7" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="L8" class="blob-num js-line-number js-code-nav-line-number" data-line-number="8"></td>
+          <td id="LC8" class="blob-code blob-code-inner js-file-line"><span class="pl-k">WORKDIR</span> /appdownload</td>
+        </tr>
+        <tr>
+          <td id="L9" class="blob-num js-line-number js-code-nav-line-number" data-line-number="9"></td>
+          <td id="LC9" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="L10" class="blob-num js-line-number js-code-nav-line-number" data-line-number="10"></td>
+          <td id="LC10" class="blob-code blob-code-inner js-file-line"><span class="pl-k">COPY</span> usearch8.1.1861_i86linux64 /app</td>
+        </tr>
+        <tr>
+          <td id="L11" class="blob-num js-line-number js-code-nav-line-number" data-line-number="11"></td>
+          <td id="LC11" class="blob-code blob-code-inner js-file-line"><span class="pl-k">COPY</span> extract_complete_gene.py /app</td>
+        </tr>
+        <tr>
+          <td id="L12" class="blob-num js-line-number js-code-nav-line-number" data-line-number="12"></td>
+          <td id="LC12" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="L13" class="blob-num js-line-number js-code-nav-line-number" data-line-number="13"></td>
+          <td id="LC13" class="blob-code blob-code-inner js-file-line"><span class="pl-k">RUN</span> apt-get update &amp;&amp; apt-get install -y \</td>
+        </tr>
+        <tr>
+          <td id="L14" class="blob-num js-line-number js-code-nav-line-number" data-line-number="14"></td>
+          <td id="LC14" class="blob-code blob-code-inner js-file-line">  curl \</td>
+        </tr>
+        <tr>
+          <td id="L15" class="blob-num js-line-number js-code-nav-line-number" data-line-number="15"></td>
+          <td id="LC15" class="blob-code blob-code-inner js-file-line">  git \</td>
+        </tr>
+        <tr>
+          <td id="L16" class="blob-num js-line-number js-code-nav-line-number" data-line-number="16"></td>
+          <td id="LC16" class="blob-code blob-code-inner js-file-line">  wget \</td>
+        </tr>
+        <tr>
+          <td id="L17" class="blob-num js-line-number js-code-nav-line-number" data-line-number="17"></td>
+          <td id="LC17" class="blob-code blob-code-inner js-file-line">  mercurial \</td>
+        </tr>
+        <tr>
+          <td id="L18" class="blob-num js-line-number js-code-nav-line-number" data-line-number="18"></td>
+          <td id="LC18" class="blob-code blob-code-inner js-file-line">  unzip \</td>
+        </tr>
+        <tr>
+          <td id="L19" class="blob-num js-line-number js-code-nav-line-number" data-line-number="19"></td>
+          <td id="LC19" class="blob-code blob-code-inner js-file-line">  bzip2 \</td>
+        </tr>
+        <tr>
+          <td id="L20" class="blob-num js-line-number js-code-nav-line-number" data-line-number="20"></td>
+          <td id="LC20" class="blob-code blob-code-inner js-file-line">  make \</td>
+        </tr>
+        <tr>
+          <td id="L21" class="blob-num js-line-number js-code-nav-line-number" data-line-number="21"></td>
+          <td id="LC21" class="blob-code blob-code-inner js-file-line">  gcc \</td>
+        </tr>
+        <tr>
+          <td id="L22" class="blob-num js-line-number js-code-nav-line-number" data-line-number="22"></td>
+          <td id="LC22" class="blob-code blob-code-inner js-file-line">  g++ \</td>
+        </tr>
+        <tr>
+          <td id="L23" class="blob-num js-line-number js-code-nav-line-number" data-line-number="23"></td>
+          <td id="LC23" class="blob-code blob-code-inner js-file-line">  libncurses5-dev \</td>
+        </tr>
+        <tr>
+          <td id="L24" class="blob-num js-line-number js-code-nav-line-number" data-line-number="24"></td>
+          <td id="LC24" class="blob-code blob-code-inner js-file-line">  zlib1g-dev \</td>
+        </tr>
+        <tr>
+          <td id="L25" class="blob-num js-line-number js-code-nav-line-number" data-line-number="25"></td>
+          <td id="LC25" class="blob-code blob-code-inner js-file-line">  liblzma-dev \</td>
+        </tr>
+        <tr>
+          <td id="L26" class="blob-num js-line-number js-code-nav-line-number" data-line-number="26"></td>
+          <td id="LC26" class="blob-code blob-code-inner js-file-line">  libtbb-dev \</td>
+        </tr>
+        <tr>
+          <td id="L27" class="blob-num js-line-number js-code-nav-line-number" data-line-number="27"></td>
+          <td id="LC27" class="blob-code blob-code-inner js-file-line">  pigz \</td>
+        </tr>
+        <tr>
+          <td id="L28" class="blob-num js-line-number js-code-nav-line-number" data-line-number="28"></td>
+          <td id="LC28" class="blob-code blob-code-inner js-file-line">  cmake</td>
+        </tr>
+        <tr>
+          <td id="L29" class="blob-num js-line-number js-code-nav-line-number" data-line-number="29"></td>
+          <td id="LC29" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="L30" class="blob-num js-line-number js-code-nav-line-number" data-line-number="30"></td>
+          <td id="LC30" class="blob-code blob-code-inner js-file-line"><span class="pl-k">RUN</span> git clone https://github.com/weizhongli/cdhit.git \</td>
+        </tr>
+        <tr>
+          <td id="L31" class="blob-num js-line-number js-code-nav-line-number" data-line-number="31"></td>
+          <td id="LC31" class="blob-code blob-code-inner js-file-line">   &amp;&amp; cd cdhit \</td>
+        </tr>
+        <tr>
+          <td id="L32" class="blob-num js-line-number js-code-nav-line-number" data-line-number="32"></td>
+          <td id="LC32" class="blob-code blob-code-inner js-file-line">   &amp;&amp; make \</td>
+        </tr>
+        <tr>
+          <td id="L33" class="blob-num js-line-number js-code-nav-line-number" data-line-number="33"></td>
+          <td id="LC33" class="blob-code blob-code-inner js-file-line">   &amp;&amp; ln -s /appdownload/cdhit/cd-hit /app/cd-hit \</td>
+        </tr>
+        <tr>
+          <td id="L34" class="blob-num js-line-number js-code-nav-line-number" data-line-number="34"></td>
+          <td id="LC34" class="blob-code blob-code-inner js-file-line">   &amp;&amp; ln -s /appdownload/cdhit/cd-hit-est /app/cd-hit-est \</td>
+        </tr>
+        <tr>
+          <td id="L35" class="blob-num js-line-number js-code-nav-line-number" data-line-number="35"></td>
+          <td id="LC35" class="blob-code blob-code-inner js-file-line">   &amp;&amp; ln -s /appdownload/cdhit/cd-hit-est-2d /app/cd-hit-est-2d \</td>
+        </tr>
+        <tr>
+          <td id="L36" class="blob-num js-line-number js-code-nav-line-number" data-line-number="36"></td>
+          <td id="LC36" class="blob-code blob-code-inner js-file-line">   &amp;&amp; ln -s /appdownload/cdhit/cd-hit-2d /app/cd-hit-2d</td>
+        </tr>
+        <tr>
+          <td id="L37" class="blob-num js-line-number js-code-nav-line-number" data-line-number="37"></td>
+          <td id="LC37" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+        <tr>
+          <td id="L38" class="blob-num js-line-number js-code-nav-line-number" data-line-number="38"></td>
+          <td id="LC38" class="blob-code blob-code-inner js-file-line"><span class="pl-k">ENV</span> PATH /app:$PATH</td>
+        </tr>
+        <tr>
+          <td id="L39" class="blob-num js-line-number js-code-nav-line-number" data-line-number="39"></td>
+          <td id="LC39" class="blob-code blob-code-inner js-file-line"><span class="pl-k">RUN</span> chmod 755 /app/*</td>
+        </tr>
+        <tr>
+          <td id="L40" class="blob-num js-line-number js-code-nav-line-number" data-line-number="40"></td>
+          <td id="LC40" class="blob-code blob-code-inner js-file-line">
+</td>
+        </tr>
+  </table>
 </div>
 
+  <details class="details-reset details-overlay BlobToolbar position-absolute js-file-line-actions dropdown d-none" aria-hidden="true">
+    <summary class="btn-octicon ml-0 px-2 p-0 color-bg-default border color-border-default rounded-1" aria-label="Inline file action toolbar">
+      <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-kebab-horizontal">
+    <path d="M8 9a1.5 1.5 0 100-3 1.5 1.5 0 000 3zM1.5 9a1.5 1.5 0 100-3 1.5 1.5 0 000 3zm13 0a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"></path>
+</svg>
+    </summary>
+    <details-menu>
+
+      <ul class="BlobToolbar-dropdown dropdown-menu dropdown-menu-se ml-2 mt-2"
+      style="width:185px"
+      >
+        <li>
+          <clipboard-copy role="menuitem" class="dropdown-item" id="js-copy-lines" style="cursor:pointer;" aria-label="Copy lines">
+            Copy lines
+          </clipboard-copy>
+        </li>
+        <li>
+          <clipboard-copy role="menuitem" class="dropdown-item" id="js-copy-permalink" style="cursor:pointer;" aria-label="Copy permalink">
+            Copy permalink
+          </clipboard-copy>
+        </li>
+        <li><a class="dropdown-item js-update-url-with-hash" id="js-view-git-blame" role="menuitem" href="/microbiome-immunity-project/metagenomome_assembly/blame/f832a8689256e65ac540e38ab6af3efc1e875bec/docker/gene-clustering/Dockerfile">View git blame</a></li>
+          <li><a class="dropdown-item" id="js-new-issue" role="menuitem" href="/microbiome-immunity-project/metagenomome_assembly/issues/new">Reference in new issue</a></li>
+      </ul>
+    </details-menu>
+  </details>
+
+  </div>
+
+    </div>
+
+
   
+
+  <details class="details-reset details-overlay details-overlay-dark" id="jumpto-line-details-dialog">
+    <summary data-hotkey="l" aria-label="Jump to line"></summary>
+    <details-dialog class="Box Box--overlay d-flex flex-column anim-fade-in fast linejump" aria-label="Jump to line">
+      <!-- '"` --><!-- </textarea></xmp> --></option></form><form class="js-jump-to-line-form Box-body d-flex" action="" accept-charset="UTF-8" method="get">
+        <input class="form-control flex-auto mr-3 linejump-input js-jump-to-line-field" type="text" placeholder="Jump to line&hellip;" aria-label="Jump to line" autofocus>
+        <button data-close-dialog="" type="submit" data-view-component="true" class="btn">  Go
+</button>
+</form>    </details-dialog>
+  </details>
+
 
 </div>
 
@@ -1263,16 +1551,16 @@
       </li>
     </ul>
     <ul class="list-style-none d-flex flex-wrap col-12 col-lg-8 flex-justify-center flex-lg-justify-between mb-2 mb-lg-0">
-        <li class="mr-3 mr-lg-0"><a href="https://docs.github.com/en/github/site-policy/github-terms-of-service" data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Footer&quot;,&quot;action&quot;:&quot;go to terms&quot;,&quot;label&quot;:&quot;text:terms&quot;,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="8b5d8fb1fbb883239c746692d079583943ac8520d6771e6a611fd2d54262fb6c" data-analytics-event="{&quot;category&quot;:&quot;Footer&quot;,&quot;action&quot;:&quot;go to terms&quot;,&quot;label&quot;:&quot;text:terms&quot;}">Terms</a></li>
-        <li class="mr-3 mr-lg-0"><a href="https://docs.github.com/en/github/site-policy/github-privacy-statement" data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Footer&quot;,&quot;action&quot;:&quot;go to privacy&quot;,&quot;label&quot;:&quot;text:privacy&quot;,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="8760fc7cdc931f97f8cffba78f1ac220a1264d403f7eefcb511eb59e7a4c3634" data-analytics-event="{&quot;category&quot;:&quot;Footer&quot;,&quot;action&quot;:&quot;go to privacy&quot;,&quot;label&quot;:&quot;text:privacy&quot;}">Privacy</a></li>
-        <li class="mr-3 mr-lg-0"><a data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Footer&quot;,&quot;action&quot;:&quot;go to security&quot;,&quot;label&quot;:&quot;text:security&quot;,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="535c4d797b1e4c39e866e8cfb2023d9e26b1797c8f17b1f19836ced09f261bd1" data-analytics-event="{&quot;category&quot;:&quot;Footer&quot;,&quot;action&quot;:&quot;go to security&quot;,&quot;label&quot;:&quot;text:security&quot;}" href="https://github.com/security">Security</a></li>
-        <li class="mr-3 mr-lg-0"><a href="https://www.githubstatus.com/" data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Footer&quot;,&quot;action&quot;:&quot;go to status&quot;,&quot;label&quot;:&quot;text:status&quot;,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="8f32c17721732f00c19378dfd264b3339aee3b5fdc7302524d526520e57abc7b" data-analytics-event="{&quot;category&quot;:&quot;Footer&quot;,&quot;action&quot;:&quot;go to status&quot;,&quot;label&quot;:&quot;text:status&quot;}">Status</a></li>
+        <li class="mr-3 mr-lg-0"><a href="https://docs.github.com/en/github/site-policy/github-terms-of-service" data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Footer&quot;,&quot;action&quot;:&quot;go to terms&quot;,&quot;label&quot;:&quot;text:terms&quot;,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="3350613ff928994d04e7591be972251d74f5d84c5e8167b342902c8d70a0c4e0" data-analytics-event="{&quot;category&quot;:&quot;Footer&quot;,&quot;action&quot;:&quot;go to terms&quot;,&quot;label&quot;:&quot;text:terms&quot;}">Terms</a></li>
+        <li class="mr-3 mr-lg-0"><a href="https://docs.github.com/en/github/site-policy/github-privacy-statement" data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Footer&quot;,&quot;action&quot;:&quot;go to privacy&quot;,&quot;label&quot;:&quot;text:privacy&quot;,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="24a30ae2d97263cca8cd500831df27459429d98d4e165dc534213e7edd3efcf3" data-analytics-event="{&quot;category&quot;:&quot;Footer&quot;,&quot;action&quot;:&quot;go to privacy&quot;,&quot;label&quot;:&quot;text:privacy&quot;}">Privacy</a></li>
+        <li class="mr-3 mr-lg-0"><a data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Footer&quot;,&quot;action&quot;:&quot;go to security&quot;,&quot;label&quot;:&quot;text:security&quot;,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="ba46f29cddc5f9bc393a293c46ef8db91506bbf6d42a45a893fc7816694612ec" data-analytics-event="{&quot;category&quot;:&quot;Footer&quot;,&quot;action&quot;:&quot;go to security&quot;,&quot;label&quot;:&quot;text:security&quot;}" href="https://github.com/security">Security</a></li>
+        <li class="mr-3 mr-lg-0"><a href="https://www.githubstatus.com/" data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Footer&quot;,&quot;action&quot;:&quot;go to status&quot;,&quot;label&quot;:&quot;text:status&quot;,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="3df999e50ddd2765427886f09de5fbb027ab37ce3e908dd25c803bd43974e538" data-analytics-event="{&quot;category&quot;:&quot;Footer&quot;,&quot;action&quot;:&quot;go to status&quot;,&quot;label&quot;:&quot;text:status&quot;}">Status</a></li>
         <li class="mr-3 mr-lg-0"><a data-ga-click="Footer, go to help, text:Docs" href="https://docs.github.com">Docs</a></li>
-        <li class="mr-3 mr-lg-0"><a href="https://support.github.com?tags=dotcom-footer" data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Footer&quot;,&quot;action&quot;:&quot;go to contact&quot;,&quot;label&quot;:&quot;text:contact&quot;,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="a405422e15b02957d4ea78d9fccd98189a6c317aa33277e043ccf04f2b5fab14" data-analytics-event="{&quot;category&quot;:&quot;Footer&quot;,&quot;action&quot;:&quot;go to contact&quot;,&quot;label&quot;:&quot;text:contact&quot;}">Contact GitHub</a></li>
-        <li class="mr-3 mr-lg-0"><a href="https://github.com/pricing" data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Footer&quot;,&quot;action&quot;:&quot;go to Pricing&quot;,&quot;label&quot;:&quot;text:Pricing&quot;,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="912e451d017bfb0fbcee9571e58138075e9be8504e4993e28c79bfec2487fb41" data-analytics-event="{&quot;category&quot;:&quot;Footer&quot;,&quot;action&quot;:&quot;go to Pricing&quot;,&quot;label&quot;:&quot;text:Pricing&quot;}">Pricing</a></li>
-      <li class="mr-3 mr-lg-0"><a href="https://docs.github.com" data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Footer&quot;,&quot;action&quot;:&quot;go to api&quot;,&quot;label&quot;:&quot;text:api&quot;,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="0dc34c966d2412196fd8b8bdad638e77ab92d6aebea673bca60eba6db798f468" data-analytics-event="{&quot;category&quot;:&quot;Footer&quot;,&quot;action&quot;:&quot;go to api&quot;,&quot;label&quot;:&quot;text:api&quot;}">API</a></li>
-      <li class="mr-3 mr-lg-0"><a href="https://services.github.com" data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Footer&quot;,&quot;action&quot;:&quot;go to training&quot;,&quot;label&quot;:&quot;text:training&quot;,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="6371e646f6b7cc6c79d1695558c70a486d078028b26d8ab3d95f27eb02cb4621" data-analytics-event="{&quot;category&quot;:&quot;Footer&quot;,&quot;action&quot;:&quot;go to training&quot;,&quot;label&quot;:&quot;text:training&quot;}">Training</a></li>
-        <li class="mr-3 mr-lg-0"><a href="https://github.blog" data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Footer&quot;,&quot;action&quot;:&quot;go to blog&quot;,&quot;label&quot;:&quot;text:blog&quot;,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/tree/master/docker/gene-clustering&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="2bbe14a1ab88737897f4a7e9e54f00cccbe62292d5d860ab8e111fa1b97c4305" data-analytics-event="{&quot;category&quot;:&quot;Footer&quot;,&quot;action&quot;:&quot;go to blog&quot;,&quot;label&quot;:&quot;text:blog&quot;}">Blog</a></li>
+        <li class="mr-3 mr-lg-0"><a href="https://support.github.com?tags=dotcom-footer" data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Footer&quot;,&quot;action&quot;:&quot;go to contact&quot;,&quot;label&quot;:&quot;text:contact&quot;,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="5ee4a2a085fc408cd8fd05716a1ae183e3bf970f377546e95db5e18632efc4a3" data-analytics-event="{&quot;category&quot;:&quot;Footer&quot;,&quot;action&quot;:&quot;go to contact&quot;,&quot;label&quot;:&quot;text:contact&quot;}">Contact GitHub</a></li>
+        <li class="mr-3 mr-lg-0"><a href="https://github.com/pricing" data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Footer&quot;,&quot;action&quot;:&quot;go to Pricing&quot;,&quot;label&quot;:&quot;text:Pricing&quot;,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="28f4bca4ac8a2dc41f00a28e9e8ec60b521de9fb763945e6ee5d12d1785416e7" data-analytics-event="{&quot;category&quot;:&quot;Footer&quot;,&quot;action&quot;:&quot;go to Pricing&quot;,&quot;label&quot;:&quot;text:Pricing&quot;}">Pricing</a></li>
+      <li class="mr-3 mr-lg-0"><a href="https://docs.github.com" data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Footer&quot;,&quot;action&quot;:&quot;go to api&quot;,&quot;label&quot;:&quot;text:api&quot;,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="f247892e3ee7a932e686606cf8eda2bb6f0b63d777cf31871145acaa7fb63225" data-analytics-event="{&quot;category&quot;:&quot;Footer&quot;,&quot;action&quot;:&quot;go to api&quot;,&quot;label&quot;:&quot;text:api&quot;}">API</a></li>
+      <li class="mr-3 mr-lg-0"><a href="https://services.github.com" data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Footer&quot;,&quot;action&quot;:&quot;go to training&quot;,&quot;label&quot;:&quot;text:training&quot;,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="27581f61b43074ec6eca1ed6718e68a7095f1e2ff03455f729aa7fc7be0afe41" data-analytics-event="{&quot;category&quot;:&quot;Footer&quot;,&quot;action&quot;:&quot;go to training&quot;,&quot;label&quot;:&quot;text:training&quot;}">Training</a></li>
+        <li class="mr-3 mr-lg-0"><a href="https://github.blog" data-hydro-click="{&quot;event_type&quot;:&quot;analytics.event&quot;,&quot;payload&quot;:{&quot;category&quot;:&quot;Footer&quot;,&quot;action&quot;:&quot;go to blog&quot;,&quot;label&quot;:&quot;text:blog&quot;,&quot;originating_url&quot;:&quot;https://github.com/microbiome-immunity-project/metagenomome_assembly/blob/master/docker/gene-clustering/Dockerfile&quot;,&quot;user_id&quot;:null}}" data-hydro-click-hmac="741fa9d03cbfac81b009707affd5b8b1a2b3506932bd00a0985ba70b4863b005" data-analytics-event="{&quot;category&quot;:&quot;Footer&quot;,&quot;action&quot;:&quot;go to blog&quot;,&quot;label&quot;:&quot;text:blog&quot;}">Blog</a></li>
         <li><a data-ga-click="Footer, go to about, text:about" href="https://github.com/about">About</a></li>
     </ul>
   </div>
