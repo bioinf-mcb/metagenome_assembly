@@ -6,6 +6,7 @@ workflow qc_and_assemble {
     input {
     Array[SampleInfo] sampleInfo
     Int thread_num = 4
+    String sample_suffix = "_1.fastq.gz"
     }
     
     scatter (info in sampleInfo) {
@@ -13,7 +14,7 @@ workflow qc_and_assemble {
         input:
         file_r1=info.file_r1,
         file_r2=info.file_r2,
-        sample_id=sub(basename(info.file_r1), "_1.fastq.gz", ""),
+        sample_id=sub(basename(info.file_r1), sample_suffix, ""),
         thread=thread_num
         }
     
@@ -23,7 +24,7 @@ workflow qc_and_assemble {
         r2=kneadData.fileR2, 
         s1=kneadData.fileS1, 
         s2=kneadData.fileS2,
-        sample_id=sub(basename(info.file_r1), "_1.fastq.gz", ""),
+        sample_id=sub(basename(info.file_r1), sample_suffix, ""),
         thread=thread_num
         }
 
