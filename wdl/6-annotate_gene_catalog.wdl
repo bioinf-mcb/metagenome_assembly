@@ -30,7 +30,22 @@ task annotate_eggnog {
         gunzip -c ${eggnog_db} > /app/eggnog-mapper-2.0.1/data/eggnog.db
         gunzip -c ${eggnog_db_diamond} > /app/eggnog-mapper-2.0.1/data/eggnog_proteins.dmnd
 
-        python /app/eggnog-mapper-2.0.1/emapper.py --cpu ${eggnog_num_cores} -i ${gene_catalogue} --output nr-eggnog --output_dir . -m diamond -d none --tax_scope auto --go_evidence non-electronic --target_orthologs all --seed_ortholog_evalue 0.001 --seed_ortholog_score 60 --query-cover 20 --subject-cover 0 --translate --override
+        python /app/eggnog-mapper-2.0.1/emapper.py 
+            --cpu ${eggnog_num_cores} \
+            -i ${gene_catalogue} \
+            --output nr-eggnog \
+            --output_dir . \
+            -m diamond \
+            -d none \
+            --tax_scope auto \
+            --go_evidence non-electronic \
+            --target_orthologs all \
+            --seed_ortholog_evalue 0.001 \
+            --seed_ortholog_score 60 \
+            --query-cover 20 \
+            --subject-cover 0 \
+            --translate \
+            --override
 
     }
 
@@ -41,12 +56,7 @@ task annotate_eggnog {
 
     runtime {
         docker: "gcr.io/microbiome-xavier/eggnog-mapper:v2.0.1"
-        cpu: eggnog_num_cores
-        memory: eggnog_memory_gb + "GB"
-        bootDiskSizeGb: 100
-        preemptible: num_preemptible
-        maxRetries: num_preemptible + 1
-        disks: "local-disk 200 HDD"
+        maxRetries: 1
     }
 }
 
@@ -65,12 +75,7 @@ task annotate_deepfri {
 
     runtime {
         docker: "gcr.io/microbiome-xavier/deepfried-api:052221"
-        cpu: 2
-        memory: deepfri_memory_gb + "GB"
-        bootDiskSizeGb: 100
-        preemptible: num_preemptible
-        maxRetries: num_preemptible + 1
-        disks: "local-disk 200 HDD"
+        maxRetries: 1
     }
 }
 

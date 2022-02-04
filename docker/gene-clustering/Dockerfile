@@ -1,9 +1,9 @@
 # $ docker build . -t gene_clustering:v1.0
 # $ docker run --rm -it -v `pwd`:/data gene_clustering:latest /bin/bash
-
+# TODO: update Bippython to a newest version
 FROM biopython/biopython
 
-COPY extract_complete_gene.py /app
+COPY extract_complete_gene.py /app/extract_complete_gene.py
 
 RUN apt-get update && apt-get install -y \
   curl \
@@ -38,5 +38,5 @@ RUN cd /appdownload \
    && ln -s /appdownload/cdhit/cd-hit-2d /app/cd-hit-2d
 
 ENV PATH /app:$PATH
-sRUN chmod 755 /app/*
+RUN mv /biopython/Bio /app/ && chmod 755 /app/*
 

@@ -32,7 +32,7 @@ workflow predict_mags {
         contigs = info.contigs,
         sample = sub(basename(info.contigs), sample_suffix, "")
         }
-
+    ## TODO: split file right here to prevent GTDB-tk RAM bottleneck
     call checkm {
         input:
         bins=metabat2.bins,
