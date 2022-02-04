@@ -1,19 +1,26 @@
-workflow predict_mags {
+version 1.0
+
+workflow read_table {
+    input {
+	    Array[File] logs
+    }
 
 	call kneaddataReadCountTable {
 	    input:
-	    logFiles=kneadData.log_file
+        logFiles = logs
 	}
 }
 
 task kneaddataReadCountTable {
-    Array[String] logFiles
-
+    input{
+    Array[File] logFiles
+    }
+    
     command {
         
-        cat ${write_lines(logFiles)} > logFiles_2_download.txt
+        cat ${write_lines(logFiles)} > logFiles.txt
         mkdir dir_logfiles
-        cat logFiles_2_download.txt | gsutil -m cp -I dir_logfiles/
+        xargs -a logFiles.txt mv -t dir_logfiles/
         
         kneaddata_read_count_table --input dir_logfiles/ --output kneaddata_read_count_table.tsv
 
@@ -24,11 +31,7 @@ task kneaddataReadCountTable {
     }
 
     runtime {
-        docker: "gcr.io/microbiome-xavier/metagenomicstools:101419" # use kneaddata docker 
-        cpu: 1
-        memory: "4GB"
-        preemptible: 2
-        disks: "local-disk 50 HDD"
-        maxRetries: 2
+        docker: "crusher083/kneaddata@sha256:db19f5146938b1bf806722df7a68594b1536cb25612a941be1556205abffb9f6" # use kneaddata docker 
+        maxRetries: 1
     }
 }

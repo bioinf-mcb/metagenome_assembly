@@ -1,9 +1,9 @@
-FROM ubuntu:18.04
+FROM ubuntu:20.04
 
 # labels
 LABEL ubuntu.version="18.04"
 LABEL software="kma"
-LABEL software.version="1.2.26"
+LABEL software.version="1.3.28"
 LABEL description="K-mer alignment"
 
 ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
@@ -30,6 +30,5 @@ RUN git clone https://bitbucket.org/genomicepidemiology/kma.git && \
 ENV PATH="$PATH:/app/kma"
 
 # copy normalization script to the container
-COPY Normalize_kma_output.py /app 
+COPY Normalize_kma_output.py /app/Normalize_kma_output.py
 
-CMD ["bash"]

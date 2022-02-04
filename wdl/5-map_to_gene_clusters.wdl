@@ -1,32 +1,45 @@
-workflow map_to_gene_clusters {
-    Int preemptible_tries
+version 1.0 
 
+import "structs.wdl" alias PairedSample as SampleInfo
+
+workflow map_to_gene_clusters {
+    input { 
+    Array[SampleInfo] sampleInfo
+    File kma_db_file
+    Int thread_num = 15
+    String sample_suffix = "paired_1.fastq.gz"
+    }
+    
+    scatter (info in sampleInfo) {
     call map_to_gene_clusters_kma {
         input:
-        num_preemtible=preemptible_tries
+        fileR1=info.file_r1,
+        fileR2=info.file_r2,
+        sample=sub(basename(info.file_r1), sample_suffix, ""),
+        kma_db = kma_db_file,
+        threads=thread_num
+        }
     }
-
 }
 
 task map_to_gene_clusters_kma {
+    input {
     File fileR1
     File fileR2
     String sample
     File kma_db
-    Int kma_memory_gb
-    Int kma_cores
-    Int num_preemtible
-
+    Int threads
+    }
+    
     command {
-
+        ## TODO: use pigz for unpacking
         tar -xf ${kma_db}
         kma -ipe ${fileR1} ${fileR2} \
-          -o ${sample}.kma \
+          -o ${sample}.kma  \
           -t_db kma_db/nr_db \
           -1t1 \
           -ef \
-          -tmp kma_tmp \
-          -t ${kma_cores}
+          -t ${threads}
 
         python3 /app/Normalize_kma_output.py --input_file ${sample}.kma.res --out_file ${sample}.geneCPM.txt
     }
@@ -37,11 +50,7 @@ task map_to_gene_clusters_kma {
     }
 
     runtime {
-        docker: "gcr.io/microbiome-xavier/kma:v1.2.27"
-        cpu: kma_cores * 2
-        memory: kma_memory_gb + "GB"
-        preemptible: num_preemtible
-        maxRetries: num_preemtible + 1
-        disks: "local-disk 200 HDD"
+        docker: "crusher083/kma@sha256:917f1889054df58b6a2e631d6187ed9db81d0f415b7a150ed1222d414d68e1c6"
+        maxRetries: 1
     }
 }

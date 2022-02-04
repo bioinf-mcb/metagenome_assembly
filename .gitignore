@@ -4,3 +4,6 @@
 scripts/tests/.pytest_cache
 scripts/tests/data/generated
 scripts/__pycache__/
+databases/*
+cromwell/*
+.ipynb_checkpoints

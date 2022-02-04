@@ -1,33 +1,57 @@
-FROM ubuntu:18.04
+FROM ubuntu:20.04
+# tzdata installation
+ARG DEBIAN_FRONTEND=noninteractive
 
-ENV PATH /opt/conda/bin:$PATH
+ENV APPS_HOME=/app APPS_DOWN=/appdownload TRIMMOMATIC_V=0.39 BOWTIE_V=2.4.5 TZ=Europe
 
-RUN apt-get update --fix-missing && apt-get install -y wget bzip2 ca-certificates \
-    libglib2.0-0 libxext6 libsm6 libxrender1 \
-    git mercurial subversion
+RUN mkdir $APPS_HOME && mkdir $APPS_DOWN && cd $APPS_DOWN
 
-# install conda
-RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-py37_4.10.3-Linux-x86_64.sh -O ~/miniconda.sh && \
-    /bin/bash ~/miniconda.sh -b -p /opt/conda && \
-    rm ~/miniconda.sh && \
-    ln -s /opt/conda/etc/profile.d/conda.sh /etc/profile.d/conda.sh && \
-    echo ". /opt/conda/etc/profile.d/conda.sh" >> ~/.bashrc && \
-    echo "conda activate base" >> ~/.bashrc
+RUN apt-get update && apt-get install -y \
+  default-jre \
+  wget \
+  unzip \
+  pigz \
+  libncurses5-dev \
+  zlib1g-dev \
+  liblzma-dev \
+  libtbb-dev \
+  python3.9 \
+  python3-setuptools \
+  libtbb2 \
+  git \
+  && apt-get clean && apt-get purge
+  
+# install kneaddata development version for paired input processing from SRA - the only possible option for the momemnt
+RUN git clone https://github.com/biobakery/kneaddata.git \
+    && cd kneaddata \ 
+    && python3 setup.py install --bypass-dependencies-install \ 
+    && cd .. \ 
+    && rm -rf kneaddata
 
-# Make RUN commands use `bash --login` (instead of '/bin/sh -c'):
-SHELL ["/bin/bash", "--login", "-c"]
+# install trimmomatic == 0.39
+RUN wget http://www.usadellab.org/cms/uploads/supplementary/Trimmomatic/Trimmomatic-$TRIMMOMATIC_V.zip \
+  && unzip Trimmomatic-$TRIMMOMATIC_V.zip \
+  && rm Trimmomatic-$TRIMMOMATIC_V.zip \
+  && mkdir -p $APPS_HOME/Trimmomatic \
+  && mv Trimmomatic-$TRIMMOMATIC_V $APPS_HOME/Trimmomatic/$TRIMMOMATIC_V \
+  && printf '#!/bin/bash\njava -Xmx6g -jar ' > trimmomatic \
+  && echo $APPS_HOME/Trimmomatic/$TRIMMOMATIC_V/trimmomatic-$TRIMMOMATIC_V.jar' $*' >> trimmomatic \
+  && chmod +x trimmomatic \
+  && mv trimmomatic /bin
 
-RUN conda init bash
-RUN conda config --add channels defaults
-RUN conda config --add channels bioconda
-RUN conda config --add channels conda-forge
-RUN conda config --add channels biobakery
-RUN conda install kneaddata -c biobakery
+# install bowtie2 == 2.4.5
+RUN wget -O $APPS_DOWN/bowtie2-$BOWTIE_V.zip https://github.com/BenLangmead/bowtie2/releases/download/v$BOWTIE_V/bowtie2-$BOWTIE_V-linux-x86_64.zip \
+    && cd $APPS_DOWN \
+    && unzip bowtie2-$BOWTIE_V.zip \
+    && cd bowtie2-$BOWTIE_V-linux-x86_64 \
+    && mv bowtie2* /bin \
+    && cd $APPS_DOWN \
+    && rm -rf bowtie2-$BOWTIE_V-linux-x86_64
 
-RUN mkdir /hg37
-COPY hg37dec_v0.1.1.bt2 /hg37/
-COPY hg37dec_v0.1.2.bt2 /hg37/
-COPY hg37dec_v0.1.3.bt2 /hg37/
-COPY hg37dec_v0.1.4.bt2 /hg37/
-COPY hg37dec_v0.1.rev.1.bt2 /hg37/
-COPY hg37dec_v0.1.rev.2.bt2 /hg37/
+# install TRF==4.09.1
+RUN wget -O trf https://github.com/Benson-Genomics-Lab/TRF/releases/download/v4.09.1/trf409.linux64 \ 
+    && chmod +x trf \
+    && mv trf /bin \
+    && chmod 755 /app/* 
+
+ENV PATH /app:$PATH
