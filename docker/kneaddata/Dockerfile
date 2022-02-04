@@ -55,5 +55,3 @@ RUN wget -O trf https://github.com/Benson-Genomics-Lab/TRF/releases/download/v4.
     && chmod 755 /app/* 
 
 ENV PATH /app:$PATH
-
-
