@@ -1,3 +1,3 @@
-FROM vout/megahit:latest
+FROM vout/megahit
 
-ENTRYPOINT ["bin/bash"]
+ENTRYPOINT ["/bin/bash"]

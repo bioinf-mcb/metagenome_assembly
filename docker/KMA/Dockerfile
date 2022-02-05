@@ -19,6 +19,7 @@ RUN apt-get update -y && apt-get upgrade -y && apt-get install -y \
 	make \
 	git \
 	python3 \
+    pigz \
 	python3-pip
 
 RUN python3 -m pip install click numpy pandas

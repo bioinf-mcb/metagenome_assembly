@@ -1,18 +1,15 @@
 workflow annotate_gene_catalogue {
     Array[File] gene_clusters_split
-    Int preemptible_tries
 
     scatter (gene_shard in gene_clusters_split){
 
         call annotate_eggnog {
             input:
-            num_preemptible=preemptible_tries,
             gene_catalogue=gene_shard 
         }
 
         call annotate_deepfri {
-            input:
-            num_preemptible=preemptible_tries,
+            input:     
             gene_catalogue=gene_shard
         }
     }
@@ -23,14 +20,13 @@ task annotate_eggnog {
     File eggnog_db
     File eggnog_db_diamond
     Int eggnog_memory_gb
-    Int eggnog_num_cores
-    Int num_preemptible
+    Int eggnog_threads
 
     command {
         gunzip -c ${eggnog_db} > /app/eggnog-mapper-2.0.1/data/eggnog.db
         gunzip -c ${eggnog_db_diamond} > /app/eggnog-mapper-2.0.1/data/eggnog_proteins.dmnd
 
-        python /app/eggnog-mapper-2.0.1/emapper.py 
+        python /app/eggnog-mapper-2.1.6/emapper.py 
             --cpu ${eggnog_num_cores} \
             -i ${gene_catalogue} \
             --output nr-eggnog \
@@ -55,7 +51,7 @@ task annotate_eggnog {
     }
 
     runtime {
-        docker: "gcr.io/microbiome-xavier/eggnog-mapper:v2.0.1"
+        docker: "crusher083/eggnog-mapper@sha256:f1c1a34523fa2f625be0ae074ae17b4ff493ead88e6b670e4a9e077d25b53ec9 "
         maxRetries: 1
     }
 }
@@ -63,7 +59,6 @@ task annotate_eggnog {
 task annotate_deepfri {
     File gene_catalogue
     Int deepfri_memory_gb
-    Int num_preemptible
 
     command {
         /bin/python3 /app/scripts/cromwell_process_fasta.py -i ${gene_catalogue} -o deepfri_annotations.csv -m /app --translate
@@ -74,7 +69,7 @@ task annotate_deepfri {
     }
 
     runtime {
-        docker: "gcr.io/microbiome-xavier/deepfried-api:052221"
+        docker: "#DeepFri Docker here"
         maxRetries: 1
     }
 }

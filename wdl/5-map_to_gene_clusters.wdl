@@ -32,8 +32,8 @@ task map_to_gene_clusters_kma {
     }
     
     command {
-        ## TODO: use pigz for unpacking
-        tar -xf ${kma_db}
+        # TODO: mount kma_db as volume to Docker
+        tar -I pigz -xf ${kma_db}
         kma -ipe ${fileR1} ${fileR2} \
           -o ${sample}.kma  \
           -t_db kma_db/nr_db \

@@ -113,7 +113,7 @@ task assemble {
     }   
     
     runtime {
-        docker: "crusher083/megahit@sha256:a37cb37b44c58a09ba122ccfa797cb6dfd0fac54c173abab02ccbf12c62f1f94"
+        docker: "crusher083/megahit@sha256:daf071c004a26f1ce7fe48a7fb0c573ca7eab4475553ab6e03e45492ac220653"
         maxRetries: 1
         }
 }
