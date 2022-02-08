@@ -33,7 +33,7 @@ task map_to_gene_clusters_kma {
     
     command {
         # TODO: mount kma_db as volume to Docker
-        tar -I pigz -xf ${kma_db}
+        tar --use-compress-program=pigz -xf ${kma_db}
         kma -ipe ${fileR1} ${fileR2} \
           -o ${sample}.kma  \
           -t_db kma_db/nr_db \
@@ -50,7 +50,7 @@ task map_to_gene_clusters_kma {
     }
 
     runtime {
-        docker: "crusher083/kma@sha256:917f1889054df58b6a2e631d6187ed9db81d0f415b7a150ed1222d414d68e1c6"
+        docker: "crusher083/kma@sha256:86c5237a5c7a9caf06acff4ce0cd42f913081ecb19853d70bbcf70f4f94de0fd"
         maxRetries: 1
     }
 }

@@ -7,7 +7,7 @@ ENV APPS_HOME=/app APPS_DOWN=/appdownload TRIMMOMATIC_V=0.39 BOWTIE_V=2.4.5 TZ=E
 RUN mkdir $APPS_HOME && mkdir $APPS_DOWN && cd $APPS_DOWN
 
 RUN apt-get update && apt-get install -y \
-  default-jre \
+  default-jre-headless \
   wget \
   unzip \
   pigz \
@@ -19,7 +19,7 @@ RUN apt-get update && apt-get install -y \
   python3-setuptools \
   libtbb2 \
   git \
-  && apt-get clean && apt-get purge
+  && apt-get clean && apt-get purge && rm -rf /var/lib/apt/lists/*
   
 # install kneaddata development version for paired input processing from SRA - the only possible option for the momemnt
 RUN git clone https://github.com/biobakery/kneaddata.git \

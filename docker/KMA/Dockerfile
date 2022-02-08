@@ -1,7 +1,7 @@
 FROM ubuntu:20.04
 
 # labels
-LABEL ubuntu.version="18.04"
+LABEL ubuntu.version="20.04"
 LABEL software="kma"
 LABEL software.version="1.3.28"
 LABEL description="K-mer alignment"
