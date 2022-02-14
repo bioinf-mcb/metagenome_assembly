@@ -3,7 +3,7 @@ WDL Workflow for metagenome assembly
 ![metagenomics-pipeline drawio](https://github.com/crusher083/metagenome_assembly/blob/master/metagenomics-pipeline.drawio.png)
 Python script to generate mapping between non-redundant gene catalogue and MAGS
 
-# Introduction to WDL workflow
+## Introduction to WDL workflow
 ### This pipeline will perform;
 * Pre-processing of reads with Kneaddata
 * Metagenomics assembly with Megahit
@@ -15,17 +15,17 @@ Python script to generate mapping between non-redundant gene catalogue and MAGS
 * Gene clustering with CD-HIT-EST
 * Mapping of reads to gene clusters and computing gene counts
 
-# Usage 
-## Requirements
+## Usage 
+### Requirements
 
 This pipeline uses Docker images
 
-# Input parameters 
+## Input parameters 
 All the inputs needed by the workflow are provided through a JSON file and can be generated using [Womtool](https://cromwell.readthedocs.io/en/stable/WOMtool/) with the following command  
 ```
 java -jar womtool.jar inputs workflow-74.wdl > inputs.json
 ```
-# Running the pipeline
+## Running the pipeline
 ### Locally:
 The pipeline can be run using [Cromwell](https://cromwell.readthedocs.io/en/stable/)
 ```
@@ -36,7 +36,7 @@ java \
 -i inputs.json
 ```
 
-# Outputs
+## Outputs
 This pipeline will produce a number of directories and files
 * assemble; contains assembled contigs
 * predictgenes; gene coordinates file (GFF), protein translations and nucleotide sequences in fasta format
@@ -46,20 +46,20 @@ This pipeline will produce a number of directories and files
 * cluster_genes; representative sequences and list of clusters
 
 
-# Mapping between gene catalogue, MAGS and eggNOG annotation
+## Mapping between gene catalogue, MAGS and eggNOG annotation
 Python3 script to map non-redundant gene catalogue back to contigs, MAGS and eggNOG annotations 
 
-# Runtime dependencies
+## Runtime dependencies
 The following softwares are required by python script:
 * [Click](https://palletsprojects.com/p/click/)
 * [NumPy](https://numpy.org/)
 * [Pandas](https://pandas.pydata.org/)
 * [scikit-bio](http://scikit-bio.org/)
 
-# Usage
+## Usage
 python genes_MAGS_eggNOG_mapping.py --help
 
-## Input requirements
+### Input requirements
 * clustering file - tab-delimited file with cluster ID and gene ID
 * Non-redundant gene catalogue (fasta)
 * Contig files in fasta
@@ -67,5 +67,5 @@ python genes_MAGS_eggNOG_mapping.py --help
 * taxonomy files (tsv)
 * EggNOG annotation file (tsv)
 
-# Output
+## Output
 mapping table (tsv file) that links the non-redundant gene catalogue back to contigs, MAGs and to eggNOG annotations
