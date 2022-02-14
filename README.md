@@ -18,20 +18,26 @@ Python script to generate mapping between non-redundant gene catalogue and MAGS
 ## Usage 
 ### Requirements
 
-This pipeline uses Docker images
+ - Docker
+ - JRE 9+ (tested on JRE 17)
+    - `apt install openjdk-17-jre`
+ - Cromwell
+    - `wget https://github.com/broadinstitute/cromwell/releases/download/75/cromwell-75.jar -O cromwell.jar`
+    - `wget https://github.com/broadinstitute/cromwell/releases/download/75/womtool-75.jar -O womtool.jar`
 
 ## Input parameters 
 All the inputs needed by the workflow are provided through a JSON file and can be generated using [Womtool](https://cromwell.readthedocs.io/en/stable/WOMtool/) with the following command  
 ```
 java -jar womtool.jar inputs workflow-74.wdl > inputs.json
 ```
+
 ## Running the pipeline
 ### Locally:
 The pipeline can be run using [Cromwell](https://cromwell.readthedocs.io/en/stable/)
 ```
 java \
 -Dconfig.file=cromwell-configs/kneaddata.conf \
--jar cromwell-74.jar run ./wdl/1-qc_and_assemble.wdl \
+-jar cromwell.jar run ./wdl/1-qc_and_assemble.wdl \
 -o output-options.json \
 -i inputs.json
 ```
