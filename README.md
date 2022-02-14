@@ -73,5 +73,19 @@ python genes_MAGS_eggNOG_mapping.py --help
 * taxonomy files (tsv)
 * EggNOG annotation file (tsv)
 
-## Output
+### Output
 mapping table (tsv file) that links the non-redundant gene catalogue back to contigs, MAGs and to eggNOG annotations
+
+## Steps
+### 1. QC and assemble   
+ ```sh
+ # Create inputs configuration
+ python inputs-processing/qc_and_assembly.py [WGS files location]
+
+ # Process the data
+ java \
+   -Dconfig.file=cromwell-configs/kneaddata.conf \
+   -jar cromwell.jar run ./wdl/1-qc_and_assemble.wdl \
+   -o output-options.json \
+   -i inputs_py.json
+ ```
