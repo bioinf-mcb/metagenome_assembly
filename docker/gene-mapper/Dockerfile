@@ -1,7 +1,7 @@
-FROM ubuntu:18.04
+FROM ubuntu:20.04
 
 # labels
-LABEL ubuntu.version="18.04"
+LABEL ubuntu.version="20.04"
 
 ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
 
@@ -21,6 +21,4 @@ RUN python3 -m pip install scikit-bio
 # copy the script to the container
 COPY genes_MAGS_eggNOG_mapping.py /app
 
-CMD ["bash"]
-CMD ["python3"] 
 

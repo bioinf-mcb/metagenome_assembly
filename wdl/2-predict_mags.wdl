@@ -30,8 +30,10 @@ workflow predict_mags {
         input:
         bam=map_to_contigs.fileBAM,
         contigs = info.contigs,
-        sample = sub(basename(info.contigs), sample_suffix, "")
+        sample = sub(basename(info.contigs), sample_suffix, ""),
+        thread = thread_num
         }
+        
     ## TODO: split file right here to prevent GTDB-tk RAM bottleneck
     call checkm {
         input:
@@ -122,11 +124,12 @@ task metabat2 {
     File bam
     String sample
     File contigs
+    Int thread
     }
     
     command {
         
-        runMetaBat.sh ${contigs} ${bam}
+        runMetaBat.sh -t ${thread} ${contigs} ${bam}
         mv ${sample}.min500.contigs.fa.depth.txt ${sample}.depths.txt
         mv ${sample}.min500.contigs.fa*/ ${sample}_bins
         tar -cf ${sample}.bins.tar ${sample}_bins

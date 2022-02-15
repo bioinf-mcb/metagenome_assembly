@@ -1,11 +1,17 @@
-workflow annotate_gene_catalogue {
-    Array[File] gene_clusters_split
+version 1.0
 
-    scatter (gene_shard in gene_clusters_split){
+workflow annotate_gene_catalogue {
+    input{
+        Array[File] gene_clusters_split
+        Int num_threads = 4 
+    }
+    
+    scatter (gene_shard in gene_clusters_split) {
 
         call annotate_eggnog {
             input:
-            gene_catalogue=gene_shard 
+            gene_catalogue=gene_shard,
+            eggnog_threads=num_threads
         }
 
         call annotate_deepfri {
@@ -16,18 +22,18 @@ workflow annotate_gene_catalogue {
 }
 
 task annotate_eggnog {
+    input {
     File gene_catalogue
-    File eggnog_db
-    File eggnog_db_diamond
-    Int eggnog_memory_gb
     Int eggnog_threads
-
+    }
+    
     command {
-        gunzip -c ${eggnog_db} > /app/eggnog-mapper-2.0.1/data/eggnog.db
-        gunzip -c ${eggnog_db_diamond} > /app/eggnog-mapper-2.0.1/data/eggnog_proteins.dmnd
+        # TODO: mount in submit script 
+        
 
-        python /app/eggnog-mapper-2.1.6/emapper.py 
-            --cpu ${eggnog_num_cores} \
+        python3.9 /app/eggnog-mapper-2.1.6/emapper.py \
+            --itype CDS \
+            --cpu ${eggnog_threads} \
             -i ${gene_catalogue} \
             --output nr-eggnog \
             --output_dir . \
@@ -38,8 +44,8 @@ task annotate_eggnog {
             --target_orthologs all \
             --seed_ortholog_evalue 0.001 \
             --seed_ortholog_score 60 \
-            --query-cover 20 \
-            --subject-cover 0 \
+            --query_cover 20 \
+            --subject_cover 0 \
             --translate \
             --override
 
@@ -51,15 +57,16 @@ task annotate_eggnog {
     }
 
     runtime {
-        docker: "crusher083/eggnog-mapper@sha256:f1c1a34523fa2f625be0ae074ae17b4ff493ead88e6b670e4a9e077d25b53ec9 "
+        docker: "crusher083/eggnog-mapper@sha256:79301af19fc7af2b125297976674e88a5b4149e1867977938510704d1198f70f"
         maxRetries: 1
     }
 }
 
 task annotate_deepfri {
+    input {
     File gene_catalogue
-    Int deepfri_memory_gb
-
+    } 
+    
     command {
         /bin/python3 /app/scripts/cromwell_process_fasta.py -i ${gene_catalogue} -o deepfri_annotations.csv -m /app --translate
     }
@@ -69,7 +76,7 @@ task annotate_deepfri {
     }
 
     runtime {
-        docker: "#DeepFri Docker here"
+        docker: "crusher083/deepfri_seq@sha256:7d65c3e0d58a6cc38bd55f703a337910499b3d5d76a7330480a6cc391d09ffb6"
         maxRetries: 1
     }
 }

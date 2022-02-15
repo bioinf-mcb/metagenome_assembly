@@ -29,7 +29,7 @@ def load_kma_file(path):
     -------
 	Pandas dataframe
 	"""
-	kma_results_df = pd.read_csv(path,usecols = ['#Template','Depth'], sep="\t")
+	kma_results_df = pd.read_csv(path, usecols=['#Template', 'Depth'], sep="\t")
 	return kma_results_df
 
 
@@ -39,9 +39,9 @@ def add_normalized_depth(kma_file):
 	Performs normalization of depth to CPM
 
 	"""
-	Total_depth = sum(kma_file['Depth'])
-	kma_file['Depth/Total_depth'] = kma_file['Depth'] / Total_depth
-	kma_file['CPM'] = kma_file['Depth/Total_depth']*1000000
+	Total_depth = kma_file['Depth'].to_numpy().sum()
+	kma_file['Depth/Total_depth'] = kma_file['Depth'].to_numpy() / Total_depth
+	kma_file['CPM'] = kma_file['Depth/Total_depth'].to_numpy() * 1_000_000
     
 
 @click.command()
