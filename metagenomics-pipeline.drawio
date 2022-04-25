@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2022-04-25T20:00:45.992Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36" etag="Lrbg5CHQvMfYt_voaVko" version="17.4.6" type="github">
+<mxfile host="app.diagrams.net" modified="2022-04-25T20:06:09.117Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.127 Safari/537.36" etag="udV_wZHlZvo66ELJk-pi" version="17.4.6" type="github">
   <diagram id="f0N5jgijeRp7pzb3xFi8" name="Page-1">
-    <mxGraphModel dx="2927" dy="1627" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2195" dy="1220" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -232,8 +232,11 @@
         <mxCell id="KQoBbKr8loIZGkBwd2ff-27" value="&lt;b style=&quot;font-size: 22px;&quot;&gt;&lt;font style=&quot;font-size: 22px;&quot;&gt;Contigs &lt;br style=&quot;font-size: 22px;&quot;&gt;(.fa)&lt;/font&gt;&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;fontSize=22;strokeWidth=2;" parent="1" vertex="1">
           <mxGeometry x="340" y="420.00000000000006" width="250" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="Mg3KLqxBVoQr2UurIRqK-1" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://www.docker.com/wp-content/uploads/2022/03/vertical-logo-monochromatic.png;" vertex="1" parent="1">
-          <mxGeometry x="1431.5" y="210" width="186.97" height="160" as="geometry" />
+        <mxCell id="Mg3KLqxBVoQr2UurIRqK-3" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://iconape.com/wp-content/files/fr/370801/svg/docker-icon-logo-icon-png-svg.png;" vertex="1" parent="1">
+          <mxGeometry x="1451.27" y="210.56" width="165.62" height="119.76" as="geometry" />
+        </mxCell>
+        <mxCell id="Mg3KLqxBVoQr2UurIRqK-5" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://1000logos.net/wp-content/uploads/2021/11/Docker-Logo-history.png;clipPath=inset(67.54% 24.67% 20.9% 43.33%);" vertex="1" parent="1">
+          <mxGeometry x="1442.1799999999998" y="330.32" width="183.8" height="59.35" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
