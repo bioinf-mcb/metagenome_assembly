@@ -5,8 +5,13 @@ import "structs.wdl" alias PairedSample as SampleInfo
 workflow qc_and_assemble {
     input {
     Array[SampleInfo] sampleInfo
-    Int thread_num = 4
+    Int thread_num = 8
+    
     String sample_suffix = "_1.fastq.gz"
+    
+    String bowtie2_path = "/bin"
+    String bowtie2_index_path = "/GRCh38"
+    String trf_path = "/bin"
     }
     
     scatter (info in sampleInfo) {
@@ -15,7 +20,10 @@ workflow qc_and_assemble {
         file_r1=info.file_r1,
         file_r2=info.file_r2,
         sample_id=sub(basename(info.file_r1), sample_suffix, ""),
-        thread=thread_num
+        thread=thread_num,
+        bowtie2_path=bowtie2_path,
+        bowtie2_index_path=bowtie2_index_path,
+        trf_path=trf_path
         }
     
     call assemble {
@@ -45,6 +53,10 @@ task kneadData {
     input{
     File file_r1
     File file_r2
+    # paths for dependencies
+    String bowtie2_path
+    String bowtie2_index_path
+    String trf_path
     String sample_id
     Int thread
     }
@@ -54,12 +66,12 @@ task kneadData {
                   -i2 ${file_r2} \
                   -o . \
                   --output-prefix ${sample_id} \
-                  -db /GRCh38 \
+                  -db ${bowtie2_index_path} \
                   --trimmomatic /app/Trimmomatic/0.39 \
                   --trimmomatic-options "HEADCROP:15 SLIDINGWINDOW:4:15 MINLEN:50" \
                   -t ${thread} \
-                  --bowtie2 /bin \
-                  --trf /bin \
+                  --bowtie2 ${bowtie2_path} \
+                  --trf ${trf_path} \
                   --reorder \
                   --remove-intermediate-output \
                   --log ${sample_id}.log

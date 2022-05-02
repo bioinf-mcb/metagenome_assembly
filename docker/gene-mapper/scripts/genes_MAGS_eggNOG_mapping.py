@@ -198,7 +198,7 @@ def load_eggNOG_file(eggnog_ann_file):
     header = None
     with open(eggnog_ann_file, 'r') as f:
         for line in f:
-            if line.startswith('#query_name'):
+            if line.startswith('#query'):
                 header = line
                 break
     header = [el.strip() for el in header.split('\t')]

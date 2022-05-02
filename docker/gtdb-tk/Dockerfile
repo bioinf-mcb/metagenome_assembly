@@ -34,16 +34,20 @@ RUN cd /gtdb-deps && wget https://github.com/matsen/pplacer/releases/download/v1
 RUN cd /gtdb-deps && wget https://github.com/ParBLiSS/FastANI/releases/download/v1.3/fastANI-Linux64-v1.3.zip && \
     unzip fastANI-Linux64-v1.3.zip && \
     mv fastANI /usr/local/bin/
-
+# FastTree
 RUN cd /gtdb-deps && wget http://www.microbesonline.org/fasttree/FastTree && \
     chmod 755 FastTree && \
-    mv FastTree /usr/local/bin/
+    mv FastTree /usr/local/bin/ && \
+    wget http://www.microbesonline.org/fasttree/FastTreeMP && \
+    chmod 755 FastTreeMP && \
+    mv FastTreeMP /usr/local/bin/ 
 
 # GTDB-Tk 
 RUN pip3 install numpy && pip3 install matplotlib && pip3 install pysam && pip3 install gtdbtk
 
 ## GTDB-Tk data 
-RUN mkdir /gtdbtk-data && export GTDBTK_DATA_PATH=/gtdbtk-data/
+RUN mkdir /gtdbtk-data  
+ARG GTDBTK_DATA_PATH=/gtdbtk-data/
 ## This data needs to be obtained before analysis (not included in the docker image)
 # Download data from https://data.ace.uq.edu.au/public/gtdb/data/releases/release89/89.0/gtdbtk_r89_data.tar.gz
 # (or check if there is more recent release)
