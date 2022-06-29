@@ -1,0 +1,7 @@
+{
+  "map_to_gene_clusters.kma_db_file": "File",
+  "map_to_gene_clusters.sampleInfo": [],
+  "map_to_gene_clusters.thread_num": "Int (optional, default = 15)",
+  "map_to_gene_clusters.sample_suffix": "String (optional, default = \"paired_1.fastq.gz\")"
+}
+

@@ -25,7 +25,6 @@ args = vars(parser.parse_args())
 study_path = args["input"]
 output_path = args["output_dir"]
 filename_suffix = args["suffix"]
-n_jobs = args["concurrent_jobs"]
 
 # load json template
 script_dir = os.path.dirname(__file__)
@@ -63,7 +62,7 @@ for path in paths.keys():
     paths[path] = os.path.abspath(os.path.join(script_dir, paths[path]))
 
 paths["output_dir"] = modify_output_config(paths["output_dir"], output_path)
-paths["config_dir"] = modify_concurrency_config(paths["config_dir"], output_path, n_jobs)
+paths["config_dir"] = modify_concurrency_config(paths["config_dir"], output_path, args["concurrent_jobs"])
 
 log_path = os.path.join(output_path, "log.txt")
 # pass everything to a shell command

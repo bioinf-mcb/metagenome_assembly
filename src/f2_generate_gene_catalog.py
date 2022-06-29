@@ -25,7 +25,6 @@ args = vars(parser.parse_args())
 study_path = args["input"]
 output_path = args["output_dir"]
 filename_suffix = args["suffix"]
-threads = args["threads"]
 
 # load json template
 script_dir = os.path.dirname(__file__)
@@ -39,7 +38,7 @@ with open(template_path) as f:
 # collect files from dir
 files =  [os.path.join(study_path, file) for file in sorted(os.listdir(study_path)) if file.endswith(filename_suffix)]
 template["generate_gene_catalog.genepreds"] = files
-template["generate_gene_catalog.thread_num"] = threads 
+template["generate_gene_catalog.thread_num"] = args["threads"]
 
 # writing input json
 os.makedirs(output_path, exist_ok=True)

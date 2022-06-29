@@ -21,10 +21,11 @@ template_path = os.path.join(template_dir, "qc_and_assemble.json")
 with open(template_path) as f:
     template = json.loads(f.read())
 
-    # adding files to json
+# adding files to json
 for r1, r2 in zip(forward, reverse):
     template["qc_and_assemble.sampleInfo"].append({"file_r1": r1, "file_r2": r2})
-# adding threads
+
+    # adding threads
 template['qc_and_assemble.thread_num'] = threads
     
 print("Found samples:")

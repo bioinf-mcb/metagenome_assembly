@@ -12,38 +12,47 @@ import argparse
 parser = argparse.ArgumentParser(description='Qunatify gene abundance mapping genes from catalog to a reference genomes using KMA.', 
                                  formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
-parser.add_argument('-i','--input', help='The directory with contigs in .fna format', required=True)
+parser.add_argument('-i','--input', help='The directory with reads in fastq.gz format.', required=True)
+parser.add_argument('-db','--database', help='Path to KMA database from previous step.', required=True)
 parser.add_argument('-o','--output_dir', help='The directory for the output', required=True)
-parser.add_argument('-s','--suffix', help='Suffix of the filename to be identified in input folder & replaced in the output(i.e. -s .fa  -i ID7.fa -> ID7.fna)', 
-                    type=str, default=".fna")
+parser.add_argument('-s1','--suffix1', help='Suffix of the first of the paired reads', 
+                    type=str, default="_paired_1.fastq.gz", required=False)
+parser.add_argument('-s2','--suffix2', help='Suffix of the second of the paired reads', 
+                    type=str, default="_paired_2.fastq.gz", required=False)
 parser.add_argument('-t','--threads', help='Number of threads to use for clustering', 
                     type=int, default=1, required=False)
 
 
 args = vars(parser.parse_args())
 
-study_path = args["input"]
+reads_path = args["input"]
 output_path = args["output_dir"]
-filename_suffix = args["suffix"]
-threads = args["threads"]
+suffix1, suffix2 = args["suffix1"], args["suffix2"]
 
 # load json template
 script_dir = os.path.dirname(__file__)
 
-# template
+# collect files from dir
+forward, reverse = [os.path.join(reads_path, file) for file in sorted(os.listdir(reads_path)) if file.endswith(suffix1)], \
+                   [os.path.join(reads_path, file) for file in sorted(os.listdir(reads_path)) if file.endswith(suffix2)]
+
+# load template
 template_dir = os.path.abspath(os.path.join(script_dir, "json_templates"))
-template_path = os.path.join(template_dir, "gene_catalogue.json")
+template_path = os.path.join(template_dir, "map_to_gene_clusters.json")
 with open(template_path) as f:
     template = json.loads(f.read())
-    
-# collect files from dir
-files =  [os.path.join(study_path, file) for file in sorted(os.listdir(study_path)) if file.endswith(filename_suffix)]
-template["generate_gene_catalog.genepreds"] = files
-template["generate_gene_catalog.thread_num"] = threads 
+
+# modify template
+for read_1, read_2 in zip(forward, reverse):
+    template["map_to_gene_clusters.sampleInfo"].append({"file_r1": read_1, "file_r2": read_2})
+
+template["map_to_gene_clusters.thread_num"] = args["threads"]
+template["map_to_gene_clusters.kma_db_file"] = args["database"]
+template["map_to_gene_clusters.sample_suffix"] = suffix1
 
 # writing input json
 os.makedirs(output_path, exist_ok=True)
-inputs_path = os.path.join(output_path, 'input_gene_catalogue.json')
+inputs_path = os.path.join(output_path, 'input_map_to_gene_clusters.json')
 
 with open(inputs_path, 'w') as f:
     json.dump(template, f, indent=4, sort_keys=True, ensure_ascii=False)
@@ -53,8 +62,8 @@ script_dir = os.path.dirname(__file__)
 
 paths = {
     "config_dir" : "./cromwell_configs/kneaddata.conf", 
-    "cromwell_dir" : "../cromwell/cromwell-78.jar", 
-    "wdl_dir" : "./wdl/f2_generate_gene_catalog.wdl",
+    "cromwell_dir" : "../cromwell/cromwell-80.jar", 
+    "wdl_dir" : "./wdl/f3_map_to_gene_clusters.wdl",
     "output_dir" : "json_templates/output_options.json"
 }
 
