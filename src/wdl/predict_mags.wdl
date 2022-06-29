@@ -5,17 +5,12 @@ import "structs.wdl" alias QcAndContigs as SampleInfo
 workflow predict_mags {
     input { 
     Array[SampleInfo] sampleInfo
-    Int thread_num = 30
+    Int thread_num = 4
     String sample_suffix = ".min500.contigs.fa"
     String gtdb_release = "release202"
     }
     
     scatter  (info in sampleInfo) {
-    call predictgenes {
-        input:
-        contigs = info.contigs,
-        sample = sub(basename(info.contigs), sample_suffix, "")
-        }
 
     call map_to_contigs {
         input:
@@ -49,40 +44,6 @@ workflow predict_mags {
         sample = sub(basename(info.contigs), sample_suffix, ""),
         thread = thread_num
         }
-    }
-}
-
-
-task predictgenes {
-    input {
-    File contigs
-    String sample
-    }
-    
-    command <<<
-        mkdir prodigal
-        if [[ `wc -l ~{contigs} | awk '{print $1}'` == "0" ]]; then
-            touch prodigal/~{sample}.gff
-            touch prodigal/~{sample}.fna
-            touch prodigal/~{sample}.faa
-        else
-            prodigal -p meta -i ~{contigs} -f gff \
-            -o prodigal/~{sample}.gff \
-            -d prodigal/~{sample}.fna \
-            -a prodigal/~{sample}.faa \
-            2> prodigal/prodigal.stderr > prodigal/prodigal.out
-        fi
-    >>>
-    
-    output {
-        File fileFNA = "prodigal/${sample}.fna"
-        File fileFAA = "prodigal/${sample}.faa"
-        File fileGFF = "prodigal/${sample}.gff"
-    }
-
-    runtime {
-        docker: "crusher083/checkm@sha256:1d5f7508ecf17652dfcaacfe2478c9d330911e44ad4d262a32d1625e9ab2de6b" # docker with prodigal needed
-        maxRetries: 1
     }
 }
 

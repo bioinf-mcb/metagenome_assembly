@@ -1,0 +1,5 @@
+{
+  "predict_mags.sample_suffix": "String (optional, default = \".min500.contigs.fa\")",
+  "predict_mags.contigs": "Array[File]"
+}
+

@@ -7,7 +7,7 @@ from os.path import join
 from click.testing import CliRunner
 
 from scripts.genes_MAGS_eggNOG_mapping import _perform_mapping
-from scripts.tests.utils import dict2str, load_df
+from tests.utils import dict2str, load_df
 
 runner = CliRunner()
 

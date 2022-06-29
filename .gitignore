@@ -7,3 +7,5 @@ scripts/__pycache__/
 databases/*
 cromwell/*
 .ipynb_checkpoints
+docker/gene-mapper/tests/__pycache__/*
+tests/*
