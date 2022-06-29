@@ -1,0 +1,5 @@
+{
+  "generate_gene_catalog.thread_num": "Int (optional, default = 32)",
+  "generate_gene_catalog.genepreds": "Array[File]"
+}
+
