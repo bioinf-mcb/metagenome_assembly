@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup, SoupStrainer
 
 import argparse
 
-from utils import (
+from _utils import (
     aria2c_download_file,
     modify_config_file
 )

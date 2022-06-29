@@ -12,10 +12,10 @@ import argparse
 parser = argparse.ArgumentParser(description='Cluster genes predicted by Prodigal into gene catalog.', 
                                  formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
-parser.add_argument('-i','--input', help='The directory with contigs in .fna format', required=True)
+parser.add_argument('-i','--input', help='The directory with predicted genes in .fna format', required=True)
 parser.add_argument('-o','--output_dir', help='The directory for the output', required=True)
 parser.add_argument('-s','--suffix', help='Suffix of the filename to be identified in input folder & replaced in the output(i.e. -s .fa  -i ID7.fa -> ID7.fna)', 
-                    nargs="?", type=str, default=".fna")
+                    type=str, default=".fna")
 parser.add_argument('-t','--threads', help='Number of threads to use for clustering', 
                     type=int, default=1, required=False)
 
