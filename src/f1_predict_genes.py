@@ -53,7 +53,7 @@ script_dir = os.path.dirname(__file__)
 
 paths = {
     "config_dir" : "./cromwell_configs/kneaddata.conf", 
-    "cromwell_dir" : "../cromwell/cromwell-78.jar", 
+    "cromwell_dir" : "../cromwell/cromwell-80.jar", 
     "wdl_dir" : "./wdl/f1_predict_genes.wdl",
     "output_dir" : "json_templates/output_options.json"
 }
