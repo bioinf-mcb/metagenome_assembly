@@ -5,13 +5,13 @@ workflow read_table {
 	    Array[File] logs
     }
 
-	call kneaddataReadCountTable {
+	call countTable {
 	    input:
         logFiles = logs
 	}
 }
 
-task kneaddataReadCountTable {
+task countTable {
     input{
     Array[File] logFiles
     }

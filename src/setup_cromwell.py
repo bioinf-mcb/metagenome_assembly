@@ -3,8 +3,13 @@ import re
 from urllib.parse import urljoin
 import requests
 from bs4 import BeautifulSoup, SoupStrainer
-import configparser
+
 import argparse
+
+from utils import (
+    aria2c_download_file,
+    modify_config_file
+)
 
 import logging
 logging.basicConfig(level=logging.DEBUG)
@@ -29,56 +34,6 @@ def find_link(url: str) -> str:
     for link in BeautifulSoup(response.content, parse_only=SoupStrainer('a')):
         if link.has_attr('href') and link['href'].endswith(".jar") and "cromwell" in link['href']:
             return urljoin(base, link['href'])
-
-def aria2c_download_file(url: str, save_dir: str) -> str:
-    '''
-    Downloads object from url using aria2c.
-    
-    Parameters:
-    ___________
-    
-    url : str
-        Url to download the file from.
-    save_dir : str
-        Filepath to a folde to save file in. 
-        
-    Returns: 
-    ________
-    filename : str
-        Name of the downloaded file.
-    '''
-    
-    cmd = (
-    f'aria2c -x 16 -j 16 -c {url} -d {save_dir}'
-    )
-    os.system(cmd)
-    
-    # Log download 
-    logging.info(cmd)
-    filename = url.split("/")[-1]
-    logging.info(f"Downloaded the latest release {filename}")
-    
-    return filename 
-
-
-def modify_config_file(filename: str, 
-                       section: str, 
-                       config_name: str,
-                       config_value) -> None:
-
-    config = configparser.ConfigParser()
-    try: 
-        config.read(filename)
-    except FileNotFoundError:
-        pass
-    
-    if not section in config.sections():
-        config.add_section(section)
-    
-    config[section][config_name] = config_value
-    with open(filename, "w") as configfile:
-        config.write(configfile)
-    logging.info(f"{filename} modified - {section}:{config_name} added")
               
 
 def atoi(text):
@@ -108,6 +63,7 @@ def delete_older_releases(folder: str) -> None:
         logging.info(f"Older releases {string_older_releases} removed")
         for item in older_releases:
             os.remove(os.path.join(folder, item))
+    logging.info(f"The latest release: {versions[0]}")
             
 
 def setup_cromwell(url, save_dir):

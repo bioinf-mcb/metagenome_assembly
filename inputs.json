@@ -1,9 +1,0 @@
-{
-  "qc_and_assemble.sample_suffix": "String (optional, default = \".fastq.gz\",
-  "qc_and_assemble.bowtie2_index_path": "GRCh38",
-  "qc_and_assemble.thread_num": "8",
-  "qc_and_assemble.sampleInfo": "Array[WomCompositeType {\n file_r1 -> File\nfile_r2 -> File \n}]",
-  "qc_and_assemble.trf_path": "/bin",
-  "qc_and_assemble.bowtie2_path": "/bin"
-}
-

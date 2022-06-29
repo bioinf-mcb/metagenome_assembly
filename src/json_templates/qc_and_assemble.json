@@ -1,0 +1,6 @@
+{
+  "qc_and_assemble.sample_suffix": "_1.fastq.gz",
+  "qc_and_assemble.thread_num": 4,
+  "qc_and_assemble.sampleInfo": []
+}
+

@@ -1,11 +1,12 @@
 version 1.0 
 
 import "structs.wdl" alias PairedSample as SampleInfo
+import "util_kneaddata.wdl" as utils
 
 workflow qc_and_assemble {
     input {
     Array[SampleInfo] sampleInfo
-    Int thread_num = 8
+    Int thread_num = 4
     
     String sample_suffix = "_1.fastq.gz"
     
@@ -15,6 +16,7 @@ workflow qc_and_assemble {
     }
     
     scatter (info in sampleInfo) {
+    
     call kneadData {
         input:
         file_r1=info.file_r1,
@@ -35,15 +37,20 @@ workflow qc_and_assemble {
         sample_id=sub(basename(info.file_r1), sample_suffix, ""),
         thread=thread_num
         }
-
     }
+    call utils.countTable as generateTable {
+	    input:
+        logFiles = kneadData.log_file
+	}
+    
     output {
-        Array[File] R1_paired_postqc = kneadData.fileR1
-        Array[File] R2_paired_postqc = kneadData.fileR2
-        Array[File] S1_unpaired_postqc = kneadData.fileS1
-        Array[File] S2_unpaired_postqc = kneadData.fileS2
-        Array[File] kneaddata_log = kneadData.log_file
+        Array[File]? R1_paired_postqc = kneadData.fileR1
+        Array[File]? R2_paired_postqc = kneadData.fileR2
+        Array[File]? S1_unpaired_postqc = kneadData.fileS1
+        Array[File]? S2_unpaired_postqc = kneadData.fileS2
+        Array[File]? kneaddata_log = kneadData.log_file
         Array[File] assembled_contigs = assemble.fileContigs
+        File? rc_table = generateTable.kneaddataReadCountTable
     }
 }
 
@@ -53,6 +60,7 @@ task kneadData {
     input{
     File file_r1
     File file_r2
+    
     # paths for dependencies
     String bowtie2_path
     String bowtie2_index_path
@@ -102,8 +110,8 @@ task assemble {
     # input sequences
     File r1
     File r2 
-    File s1 
-    File s2
+    File? s1 
+    File? s2
 
     # sample id 
     String sample_id
