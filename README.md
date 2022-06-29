@@ -16,13 +16,12 @@ Python script to generate mapping between non-redundant gene catalogue and MAGS
 * Mapping of reads to gene clusters and computing gene counts
 
 ## Requirements
- - Docker
- - JRE 9+ (tested on JRE 17)
-    - `apt install openjdk-17-jre`
+ - `Docker`
+ - `conda` for building the envronment 
+    - `conda create -f pipeline.env`
  - Cromwell
     - `wget https://github.com/broadinstitute/cromwell/releases/download/75/cromwell-75.jar -O cromwell.jar`
- - Python (for `input.json` generation)
-   * pandas>=1.2.4
+ - Python 
 
 ## Running the pipeline
 ### 1. QC and assemble  
