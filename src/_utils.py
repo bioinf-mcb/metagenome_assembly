@@ -1,4 +1,5 @@
 import os
+import re
 import json
 import configparser
 
@@ -68,9 +69,27 @@ def modify_output_config(path_to_file : str,
     output_params["final_workflow_outputs_dir"] = output_path
     
     # save new config in the output path
-    out_config_path = os.path.join(output_path, ".output_config.json") 
+    out_config_path = os.path.join(output_path, "output_config.json") 
     with open(out_config_path, "w") as f: 
         json.dump(output_params, f, indent=4, sort_keys=True, ensure_ascii=False)
+    
+    return out_config_path
+
+def modify_concurrency_config(path_to_file : str, 
+                              output_path : str, 
+                              n_jobs: int) -> None: 
+    """Modifies Cromwell's config configuraton .json
+    required running multiple jobs in parallel"""
+    
+    # read initial file 
+    with open(path_to_file, "r") as f: 
+        config = f.read()
+        
+    re.sub(r"(concurrent-job-limit = )(8)",  lambda match: f"%s{n_jobs}" % (match.group(1)), config)
+    out_config_path = os.path.join(output_path, "concurrency_config.conf") 
+    with open(out_config_path, "w") as f:   
+        f.write(config)
+    return out_config_path
     
     
     

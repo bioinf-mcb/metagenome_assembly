@@ -5,14 +5,18 @@ from _utils import (
     modify_output_config
 )
 
-study_path = os.path.abspath(sys.argv[1])
+import argparse
 
-try: 
-    output_path = os.path.abspath(sys.argv[2])
-except IndexError: 
-    output_path = "./output"
+# Command line argyments
+parser = argparse.ArgumentParser(description='Generate read count table post KneadData QC')
+parser.add_argument('-i','--input', help='The directory with KneadData logs', required=True)
+parser.add_argument('-o','--output_dir', help='The directory for the output', required=True)
+args = vars(parser.parse_args())
 
-logs  = [os.path.join(study_path, file) for file in sorted(os.listdir(study_path)) if file.endswith("log")]
+study_path = args["inputs"]
+output_path = args["output_dir"]
+
+logs  = [os.path.join(study_path, file) for file in sorted(os.listdir(study_path)) if file.endswith(".log")]
 
 if not logs:
     raise FileNotFoundError("No .log files found")
@@ -30,8 +34,8 @@ with open(inputs_path, 'w') as f:
 script_dir = os.path.dirname(__file__)
 
 paths = {
-    "config_dir" : "./cromwell-configs/kneaddata.conf", 
-    "cromwell_dir" : "./cromwell/cromwell-78.jar", 
+    "config_dir" : "./cromwell_configs/kneaddata.conf", 
+    "cromwell_dir" : "../cromwell/cromwell-78.jar", 
     "wdl_dir" : "./wdl/util_kneaddata.wdl",
     "output_dir" : "json_templates/output_options.json"
 }
