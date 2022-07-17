@@ -7,3 +7,4 @@ cromwell/*
 .ipynb_checkpoints
 docker/gene-mapper/tests/__pycache__/*
 tests/*
+config.ini

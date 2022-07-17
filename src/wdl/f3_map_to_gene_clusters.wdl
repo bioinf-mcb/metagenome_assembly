@@ -22,10 +22,10 @@ workflow map_to_gene_clusters {
     }
 }
 
-task map_to_gene_clusters_kma {
+task map_to_gene_clusters_paired {
     input {
     File fileR1
-    File fileR2
+    File? fileR2
     String sample
     File kma_db
     Int threads
@@ -34,13 +34,25 @@ task map_to_gene_clusters_kma {
     command {
         # TODO: mount kma_db as volume to Docker
         tar --use-compress-program=pigz -xf ${kma_db}
-        kma -ipe ${fileR1} ${fileR2} \
-          -o ${sample}.kma  \
-          -t_db kma_db/nr_db \
-          -1t1 \
-          -ef \
-          -t ${threads}
+        if [ -z "$" ]; then
 
+            kma -i ${fileR1} \
+              -o ${sample}.kma  \
+              -t_db kma_db/nr_db \
+              -1t1 \if 
+              -ef \
+              -t ${threads}
+            
+        else
+
+            kma -ipe ${fileR1} ${fileR2} \
+              -o ${sample}.kma  \
+              -t_db kma_db/nr_db \
+              -1t1 \
+              -ef \
+              -t ${threads}
+        fi 
+    
         python3 /app/Normalize_kma_output.py --input_file ${sample}.kma.res --out_file ${sample}.geneCPM.txt
     }
 

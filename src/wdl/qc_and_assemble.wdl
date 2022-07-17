@@ -1,4 +1,4 @@
-version 1.0 
+version 1.0
 
 import "structs.wdl" alias PairedSample as SampleInfo
 import "util_kneaddata.wdl" as utils
@@ -7,12 +7,24 @@ workflow qc_and_assemble {
     input {
     Array[SampleInfo] sampleInfo
     Int thread_num = 4
+
+    # Trimmomatic params
+    String trimmomatic_options = "\"HEADCROP:15 SLIDINGWINDOW:4:15 MINLEN:50\""
+    String sequencer_source = "\"NexteraPE\""
+    
+    # bowtie2 params
+    String bowtie2_options = "\"--very-sensitive\""
+    
+    # Trf params
+    Int trf_match = 2
+    Int trf_mismatch = 7
+    Int trf_delta = 7
+    Int trf_pm = 80
+    Int trf_pi = 10
+    Int trf_minscore = 50
+    Int trf_maxperiod = 500
     
     String sample_suffix = "_1.fastq.gz"
-    
-    String bowtie2_path = "/bin"
-    String bowtie2_index_path = "/GRCh38"
-    String trf_path = "/bin"
     }
     
     scatter (info in sampleInfo) {
@@ -23,9 +35,19 @@ workflow qc_and_assemble {
         file_r2=info.file_r2,
         sample_id=sub(basename(info.file_r1), sample_suffix, ""),
         thread=thread_num,
-        bowtie2_path=bowtie2_path,
-        bowtie2_index_path=bowtie2_index_path,
-        trf_path=trf_path
+
+        trimmomatic_options=trimmomatic_options,
+        sequencer_source=sequencer_source,
+        
+        bowtie2_options=bowtie2_options,
+        
+        match=trf_match,
+        mismatch=trf_mismatch,
+        delta=trf_delta,
+        pm=trf_pm,
+        pi=trf_pi,
+        minscore=trf_minscore,
+        maxperiod=trf_maxperiod
         }
     
     call assemble {
@@ -61,12 +83,24 @@ task kneadData {
     File file_r1
     File file_r2
     
-    # paths for dependencies
-    String bowtie2_path
-    String bowtie2_index_path
-    String trf_path
     String sample_id
     Int thread
+
+    # Trimmomatic parameters
+    String trimmomatic_options 
+    String sequencer_source
+    
+    # bowtie2 parameters
+    String bowtie2_options 
+    
+    # Trf params
+    Int match 
+    Int mismatch
+    Int delta 
+    Int pm 
+    Int pi 
+    Int minscore
+    Int maxperiod
     }
     
     command {
@@ -74,15 +108,24 @@ task kneadData {
                   -i2 ${file_r2} \
                   -o . \
                   --output-prefix ${sample_id} \
-                  -db ${bowtie2_index_path} \
-                  --trimmomatic /app/Trimmomatic/0.39 \
-                  --trimmomatic-options "HEADCROP:15 SLIDINGWINDOW:4:15 MINLEN:50" \
-                  -t ${thread} \
-                  --bowtie2 ${bowtie2_path} \
-                  --trf ${trf_path} \
+                  -db "/GRCh38" \
+                  --trimmomatic="/app/Trimmomatic/0.39" \
+                  --trimmomatic-options=${trimmomatic_options} \
+                  --sequencer-source=${sequencer_source} \
+                  --bowtie2 /bin \
+                  --bowtie2-options=${bowtie2_options} \
+                  --trf /bin \
+                  --match ${match} \
+                  --mismatch ${mismatch} \
+                  --delta ${delta} \
+                  --pm ${pm} \
+                  --pi ${pi} \
+                  --minscore ${minscore} \
+                  --maxperiod ${maxperiod} \
                   --reorder \
                   --remove-intermediate-output \
                   --log ${sample_id}.log
+                  -t ${thread} \
 
         pigz -p ${thread} ${sample_id}_paired_1.fastq
         pigz -p ${thread} ${sample_id}_paired_2.fastq

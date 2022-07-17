@@ -85,7 +85,7 @@ def modify_concurrency_config(path_to_file : str,
     with open(path_to_file, "r") as f: 
         config = f.read()
         
-    re.sub(r"(concurrent-job-limit = )(8)",  lambda match: f"%s{n_jobs}" % (match.group(1)), config)
+    config = config.replace("concurrent-job-limit = 8", f"concurrent-job-limit = {n_jobs}")
     out_config_path = os.path.join(output_path, "concurrency_config.conf") 
     with open(out_config_path, "w") as f:   
         f.write(config)
