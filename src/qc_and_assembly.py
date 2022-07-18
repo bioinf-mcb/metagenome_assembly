@@ -80,7 +80,7 @@ for path in paths.keys():
 
 paths["output_dir"] = modify_output_config(paths["output_dir"], system_path)
 paths["config_dir"] = modify_concurrency_config(paths["config_dir"], system_path, 
-                                                args["concurrent_jobs"], args["bowtie2_index"])
+                                                args["concurrent_jobs"], os.path.abspath(args["bowtie2_index"]))
 
 os.system("""java -Dconfig.file={0} -jar {1} run {2} -o {3} -i {4} > {5}""".format(*paths.values(), inputs_path, log_path))
 
