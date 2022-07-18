@@ -20,25 +20,20 @@ Python script to generate mapping between non-redundant gene catalogue and MAGS
  - `conda` for building the envronment 
     - `conda create -f pipeline.env`
  - Cromwell
-    - `wget https://github.com/broadinstitute/cromwell/releases/download/75/cromwell-75.jar -O cromwell.jar`
+    - `python src/setup_cromwell.py --save_path SAVE_PATH --config_path CONFIG_PATH`
  - Python 
 
 ## Running the pipeline
 ### 1. QC and assemble  
  - Requirements
-   - `wgs_files` - path to directory with WGS files and `SraRunTable.txt`
+   - `wgs_files` - path to directory with paired shotgun sequencing files
  - Output
-   - uhhh
+   - quality controlled .fastq files
+   - assembled contigs in `OUTPUT_DIR/assemble`
+   - count table with read counts per sample
  ```sh
- # Generate inputs_py.json
- python inputs-processing/qc_and_assembly.py <wgs_files>
-
  # Process the data
- java \
-   -Dconfig.file=cromwell-configs/kneaddata.conf \
-   -jar cromwell.jar run ./wdl/1-qc_and_assemble.wdl \
-   -o output-options.json \
-   -i inputs_py.json
+ python src/qc_and_assemble.py -i wgs_files -o OUTPUT_DIR -t 8 -c 3 -bt2_index ./GRCh38_bt2
  ```
 
 ### 2. (...)

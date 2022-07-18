@@ -115,9 +115,9 @@ if __name__ == "__main__":
     url = "https://github.com/broadinstitute/cromwell/releases/latest"
 
     parser = argparse.ArgumentParser()
-    parser.add_argument("--save_dir", 
-                        help='Directory to use for Cromwell download.', required=True)
-    parser.add_argument("--config_file",
+    parser.add_argument("--save_path", 
+                        help='Path to save Cromwell.', required=True)
+    parser.add_argument("--config_path",
                         help='Path for saving the config file.', 
                         type=str, default="./")    
 
@@ -126,7 +126,7 @@ if __name__ == "__main__":
     latest_version = cromwell_path.split('/')[-1].split('.')[0]
     logging.info(f"The latest release {latest_version} was installed")
 
-    modify_config_file(os.path.join(args["config_file"], "config.ini"), 
+    modify_config_file(os.path.join(args["config_path"], "config.ini"), 
                        "cromwell", 
                        "cromwell_path", 
                        os.path.abspath(cromwell_path))
