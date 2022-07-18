@@ -22,6 +22,7 @@ parser.add_argument('-t','--threads', help='Number of threads to use', default=1
 parser.add_argument('-o','--output_dir', help='The directory for the output', required=True)
 parser.add_argument('-c','--concurrent_jobs', help='Number of jobs to run in parallel', 
                     type=int, default=1, required=False)
+parser.add_argument('-bt2_index','--bowtie2_index', help='Path to Bowtie2 index', required=True)
 
 args = vars(parser.parse_args())
 
@@ -78,7 +79,8 @@ for path in paths.keys():
     paths[path] = os.path.abspath(os.path.join(script_dir, paths[path]))
 
 paths["output_dir"] = modify_output_config(paths["output_dir"], system_path)
-paths["config_dir"] = modify_concurrency_config(paths["config_dir"], system_path, args["concurrent_jobs"])
+paths["config_dir"] = modify_concurrency_config(paths["config_dir"], system_path, 
+                                                args["concurrent_jobs"], args["bowtie2_index"])
 
 os.system("""java -Dconfig.file={0} -jar {1} run {2} -o {3} -i {4} > {5}""".format(*paths.values(), inputs_path, log_path))
 

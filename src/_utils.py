@@ -77,7 +77,8 @@ def modify_output_config(path_to_file : str,
 
 def modify_concurrency_config(path_to_file : str, 
                               output_path : str, 
-                              n_jobs: int) -> None: 
+                              n_jobs: int, 
+                              bt2_path: str=None) -> None: 
     """Modifies Cromwell's config configuraton .json
     required running multiple jobs in parallel"""
     
@@ -86,6 +87,9 @@ def modify_concurrency_config(path_to_file : str,
         config = f.read()
         
     config = config.replace("concurrent-job-limit = 8", f"concurrent-job-limit = {n_jobs}")
+    if bt2_path is not None: 
+        config = config.replace("/storage/TomaszLab/vbez/metagenomic_gmhi/metagenomome_assembly/databases/GRCh38_bt2", 
+                                f"{bt2_path}")
     out_config_path = os.path.join(output_path, "concurrency_config.conf") 
     with open(out_config_path, "w") as f:   
         f.write(config)
