@@ -1,10 +1,31 @@
 import os
+import sys
 import re
 import json
+import config 
 import configparser
 
 import logging
 logging.basicConfig(level=logging.DEBUG)
+
+
+def check_path_dir(*paths):
+    for path in paths: 
+        if os.path.exists(path):
+            if not os.path.isdir(path):
+                raise OSError(2, "Path is not a directory. Please provide a path to a folder.")
+                
+
+def create_directory(directory):
+    """ Try to create a directory if it does not exist """
+    message = f"Creating output directory: {directory}"
+    logging.debug(message)
+    try:
+        os.makedirs(directory, exist_ok=True)
+    except EnvironmentError:
+        message = f"Unable to create output directory: {directory}"
+        logging.critical(message)
+        sys.exit(message)
 
 
 def aria2c_download_file(url: str, save_dir: str) -> str:
@@ -36,6 +57,7 @@ def aria2c_download_file(url: str, save_dir: str) -> str:
     logging.info(f"Downloaded {filename}")
     
     return filename 
+    
 
 def modify_config_file(filename: str, 
                        section: str, 
@@ -88,12 +110,64 @@ def modify_concurrency_config(path_to_file : str,
         
     config = config.replace("concurrent-job-limit = 8", f"concurrent-job-limit = {n_jobs}")
     if bt2_path is not None: 
-        config = config.replace("/storage/TomaszLab/vbez/metagenomic_gmhi/metagenomome_assembly/databases/GRCh38_bt2", 
+        config = config.replace("bt2_index_path", 
                                 f"{bt2_path}")
     out_config_path = os.path.join(output_path, "concurrency_config.conf") 
     with open(out_config_path, "w") as f:   
         f.write(config)
+        
     return out_config_path
+
+
+def unpack_archive(zip_path, unpack_folder):
+    unpack_path = os.path.abspath(unpack_folder)
+    os.system(f"unzip {zip_path} -d {unpack_folder}")
+    os.remove(zip_path)
+    
+    return unpack_path
+    
+
+def find_database_index(directory, all_extensions):
+    """
+    Search through the directory for Bowtie2 index files
+    """
+    
+    index=""
+        
+    # sort the extensions with the longest first, to test the most specific first
+    # to find the index
+    all_extensions.sort(key=lambda x: len(x), reverse=True)
+    
+    if not os.path.isdir(directory):
+        # check if this is the database index file
+        if os.path.isfile(directory):
+            # check for the database extension
+            for extension in all_extensions:
+                if re.search(extension+"$",directory):
+                    index=directory.replace(extension,"")
+                    break
+        else:
+            # check if this is the basename of the index files
+            # only need to check the first three (to include bowtie2 large index)
+            for extension in all_extensions[:3]:
+                if os.path.isfile(directory+extension):
+                    index=directory
+                    break
+    else:
+        # search through the files to find one with the bowtie2 extension
+        for file in os.listdir(directory):
+            # look for an extension for a standard and large bowtie2 indexed database
+            for extension in all_extensions:
+                if re.search(extension+"$",file):
+                    index=os.path.join(directory,file.replace(extension,""))
+                    break
+            if index:
+                break
+    
+    if not index:
+        logging.info(f"Unable to find Bowtie2 index files in directory: {directory}\n")
+    
+    return index
     
     
     
