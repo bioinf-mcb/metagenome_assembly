@@ -3,8 +3,11 @@ WDL Workflow for metagenome assembly:
 ![metagenomics-pipeline drawio](https://raw.githubusercontent.com/crusher083/metagenome_assembly/master/metagenomics-pipeline.drawio.png)
 Python script to generate mapping between non-redundant gene catalogue and MAGS
 
+## How this works? 
+The wrapper scripts in Python (located in `src`) will prepare files and send them to `Cromwell`. Cromwell executes instructions written in Workflow definition Language (WDL; located in `src/wdl`). To avoid dependency conflicts `Cromwell` runs `Docker` containers with preinstalled software (dockerfiles located in `docker`). 
+
 ## Introduction to WDL workflow
-### This pipeline will perform;
+### This pipeline will perform:
 * Pre-processing of reads with Kneaddata
 * Metagenomics assembly with Megahit
 * Gene prediction
@@ -26,14 +29,15 @@ Python script to generate mapping between non-redundant gene catalogue and MAGS
 ## Running the pipeline
 ### 1. QC and assemble  
  - Requirements
-   - `wgs_files` - path to directory with paired shotgun sequencing files
+   - `input_folder` - path to directory with paired shotgun sequencing files
+   - `bt2_index` - path to a directory with a Bowite2 index. In case folder doesn't contain index, the user would be proposed to download GRCh38 index used for decontamination of metagenomic samples from human DNA.
  - Output
-   - quality controlled .fastq files
+   - quality controlled .fastq.gz files
    - assembled contigs in `OUTPUT_DIR/assemble`
    - count table with read counts per sample
  ```sh
  # Process the data
- python src/qc_and_assemble.py -i wgs_files -o OUTPUT_DIR -t 8 -c 3 -bt2_index ./GRCh38_bt2
+ python src/qc_and_assemble.py -i input_folder -o OUTPUT_DIR -t 8 -c 3 -bt2_index ./GRCh38_bt2
  ```
 
 ### 2. (...)
