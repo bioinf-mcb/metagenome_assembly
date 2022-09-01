@@ -1,7 +1,7 @@
 # Metagenome_assembly
 WDL Workflow for metagenome assembly:
 ![metagenomics-pipeline drawio](https://raw.githubusercontent.com/crusher083/metagenome_assembly/master/metagenomics-pipeline.drawio.png)
-Python script to generate mapping between non-redundant gene catalogue and MAGS
+Python script to generate a mapping between non-redundant gene catalogue and MAGS
 
 ## How this works? 
 The wrapper scripts in Python (located in `src`) will prepare files and send them to `Cromwell`. Cromwell executes instructions written in Workflow definition Language (WDL; located in `src/wdl`). To avoid dependency conflicts `Cromwell` runs `Docker` containers with preinstalled software (dockerfiles located in `docker`). 
@@ -20,7 +20,7 @@ The wrapper scripts in Python (located in `src`) will prepare files and send the
 
 ## Requirements
  - `Docker`
- - `conda` for building the envronment 
+ - `conda` for building the environment 
     - `conda create -f pipeline.yml`
  - Cromwell  
  You may download Cromwell yourself from [here](https://github.com/broadinstitute/cromwell) or use the `setup_cromwell.py` script to download and install it.
@@ -32,7 +32,7 @@ The wrapper scripts in Python (located in `src`) will prepare files and send the
  - Requirements
    - `input_folder` - path to directory with paired shotgun sequencing files
    - `bt2_index` - path to a directory with a Bowite2 index. In case the folder doesn't contain an index, the user would be proposed to download GRCh38 index used for decontamination of metagenomic samples from human DNA.
-    - `output_folder` - path to directory where the results will be saved
+    - `output_folder` - path to a directory where the results will be saved
  - Optional arguments
    - `threads` - number of threads to use (default: 1)
    - `concurrent_jobs` - number of concurrent jobs to run (default: 1)
