@@ -1,12 +1,11 @@
 import os 
 import json 
-import re
-import config 
 
 from rich.console import Console
 console = Console()
 
 from _utils import (
+    read_json_config,
     check_path_dir,
     modify_output_config,
     modify_concurrency_config,
@@ -29,8 +28,9 @@ parser = argparse.ArgumentParser(description='Quality control and assembly of co
 ## TODO add all arguments from wdl script
 parser.add_argument('-i','--input_folder', help='The directory with raw reads in .fastq or fastq.gz\
                     format', required=True)
+
 parser.add_argument('-t','--threads', help='Number of threads to use', default=1, type=int, required=False)
-parser.add_argument('-o','--output_dir', help='The directory for the output', required=True)
+parser.add_argument('-o','--output_folder', help='The directory for saving the output', required=True)
 parser.add_argument('-c','--concurrent_jobs', help='Number of jobs to run in parallel', 
                     type=int, default=1, required=False)
 parser.add_argument('-bt2_index','--bowtie2_index', help='Path to a diretory with Bowtie2 index. If directory does not contain' 
@@ -41,21 +41,24 @@ args = vars(parser.parse_args())
 
 # check if provided path is a dir 
 
+script_dir = os.path.dirname(__file__)
+config = read_json_config(os.path.join(script_dir, "config.json"))
+
 
 study_path = os.path.abspath(args["input_folder"])
 threads = args["threads"]
-output_path = args["output_dir"]
+output_path = args["output_folder"]
 system_path = os.path.join(output_path, "system")
 bowtie2_folder = args["bowtie2_index"]
 check_path_dir(study_path)
-index = find_database_index(bowtie2_folder, config.bowtie2_index_formats)
+index = find_database_index(bowtie2_folder, config["bowtie2_index_formats"])
 
 if not index:
-    zip_filename = aria2c_download_file(config.grch38_url, bowtie2_folder)
+    zip_filename = aria2c_download_file(config["grch38_url"], bowtie2_folder)
     zip_filepath = os.path.join(bowtie2_folder, zip_filename)
     bowtie2_folder = unpack_archive(zip_filepath, bowtie2_folder)
-    message = "GRCh38 database will be downloaded.  It will allow to remove human contaminant DNA from samples."
-              "Downloading GRCh38..."
+    message = "GRCh38 database will be downloaded.  It will allow to remove human contaminant DNA from samples.\n \
+              Downloading GRCh38..."
     logging.info(message)
 
 # getting sorted lists of forward and reverse reads from a folder
@@ -77,39 +80,38 @@ for r1, r2 in zip(forward, reverse):
 
     # adding threads
 template['qc_and_assemble.thread_num'] = threads
-    
-print("Found samples:")
-print(len(template["qc_and_assemble.sampleInfo"]))    
+
+n_samples = len(template["qc_and_assemble.sampleInfo"]) 
+print(f"Found samples: {n_samples}")
 
 # creating output directory
-create_directory(output_path, exist_ok=True)
-create_directory(system_path, exist_ok=True)
+create_directory(output_path)
+create_directory(system_path)
 
 # writing input json
 inputs_path = os.path.join(system_path, 'inputs.json')
 with open(inputs_path, 'w') as f:
     json.dump(template, f, indent=4, sort_keys=True, ensure_ascii=False)
 
-    
-script_dir = os.path.dirname(__file__)
-
 log_path = os.path.join(system_path, "log.txt")
 
 paths = {
-    "config_path" : config.kneaddata_config, 
-    "cromwell_path" : config.cromwell_dir, 
-    "wdl_path" : config.wdl_paths["qc_and_assemble"],
-    "output_config_path" : config.output_config
+    "config_path" : config["configs"]["kneaddata"], 
+    "cromwell_path" : config["cromwell_path"], 
+    "wdl_path" : config["wdls"]["qc_and_assemble"],
+    "output_config_path" : config["output_config_path"]
 }
 
 for path in paths.keys():
     paths[path] = os.path.abspath(os.path.join(script_dir, paths[path]))
 
-paths["output_path"] = modify_output_config(paths["output_path"], output_path)
+
+paths["output_config_path"] = modify_output_config(paths["output_config_path"], output_path)
 paths["config_path"] = modify_concurrency_config(paths["config_path"], system_path, 
                                                 args["concurrent_jobs"], os.path.abspath(bowtie2_folder))
 
-os.system("""java -Dconfig.file={0} -jar {1} run {2} -o {3} -i {4} >> {5}""".format(*paths.values(), inputs_path, log_path))
+cmd = """java -Dconfig.file={0} -jar {1} run {2} -o {3} -i {4} >> {5}""".format(*paths.values(), inputs_path, log_path)
+os.system(cmd)
 
 with open(log_path) as f:
     log = f.read()

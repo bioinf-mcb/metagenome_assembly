@@ -2,7 +2,6 @@ import os
 import sys
 import re
 import json
-import config 
 import configparser
 
 import logging
@@ -58,25 +57,23 @@ def aria2c_download_file(url: str, save_dir: str) -> str:
     
     return filename 
     
+def modify_json_config(config_file: str, 
+                       config_name: str, 
+                       config_value: str) -> None:
+    """Modifies a json config file"""
+    with open(config_file, "r") as f:
+        config = json.loads(f.read())
+    config[config_name] = config_value
+    with open(config_file, "w") as f:
+        json.dump(config, f, indent=4, sort_keys=True, ensure_ascii=False)
+    logging.debug(f"{config_file} modified - {config_name}:{config_value}")
 
-def modify_config_file(filename: str, 
-                       section: str, 
-                       config_name: str,
-                       config_value) -> None:
 
-    config = configparser.ConfigParser()
-    try: 
-        config.read(filename)
-    except FileNotFoundError:
-        pass
-    
-    if not section in config.sections():
-        config.add_section(section)
-    
-    config[section][config_name] = config_value
-    with open(filename, "w") as configfile:
-        config.write(configfile)
-    logging.info(f"{filename} modified - {section}:{config_name} added")
+def read_json_config(config_file: str) -> dict:
+    """Reads a json config file and returns a dictionary"""
+    with open(config_file, "r") as f:
+        config = json.loads(f.read())
+    return config
     
 
 def modify_output_config(path_to_file : str, 

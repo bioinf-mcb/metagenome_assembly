@@ -1,0 +1,10 @@
+{
+    "output_config_path" : "./json_templates/output_options.json",
+    "cromwell_path" : "/storage/TomaszLab/vbez/metagenomic_gmhi/metagenomome_assembly/cromwell/cromwell-84.jar",
+    "wdls" : {"qc_and_assemble" : "./wdl/qc_and_assemble.wdl"},
+    "bowtie2_index_formats" :  [
+        ".1.bt2", ".2.bt2", ".3.bt2", ".4.bt2", ".rev.1.bt2", ".rev.2.bt2", ".rev.1.bt2l"],
+        
+    "grch38_url" : "https://genome-idx.s3.amazonaws.com/bt/GRCh38_noalt_as.zip",
+    "configs" : {"kneaddata" : "./cromwell_configs/kneaddata.conf"}
+}

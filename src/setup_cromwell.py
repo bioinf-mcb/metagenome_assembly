@@ -1,5 +1,6 @@
 import os
 import re
+from telnetlib import OLD_ENVIRON
 
 from urllib.parse import urljoin
 import requests
@@ -9,7 +10,7 @@ import argparse
 
 from _utils import (
     aria2c_download_file,
-    modify_config_file
+    modify_json_config
 )
 
 from typing import List
@@ -85,51 +86,42 @@ def setup_cromwell(url, save_dir):
     link = find_link(url)
     latest_version_online = link.split("/")[-1]
     os.makedirs(save_dir, exist_ok=True)
-    cromwell_dir = os.path.join(save_dir, "cromwell")
     
-    if os.path.isdir(cromwell_dir):
-        versions = retrieve_cromwell_version(cromwell_dir)
+    if os.path.isdir(save_dir):
+        versions = retrieve_cromwell_version(save_dir)
         
         # check if any cromwell file was found
         if versions:
             latest_version_local = versions[0].split("/")[-1] 
             if latest_version_local == latest_version_online:
-                cromwell_path = os.path.join(cromwell_dir, latest_version_local)
+                cromwell_path = os.path.join(save_dir, latest_version_local)
                 return cromwell_path
         else:
-            cromwell_path = download_cromwell(link, cromwell_dir)
+            cromwell_path = download_cromwell(link, save_dir)
             delete_older_releases(versions)
 
             return cromwell_path
     else:
-        os.makedirs(cromwell_dir)
-        cromwell_path = download_cromwell(link, cromwell_dir)
+        os.makedirs(save_dir)
+        cromwell_path = download_cromwell(link, save_dir)
         
         return cromwell_path
-    
 
-    
-    
     
 if __name__ == "__main__":
     url = "https://github.com/broadinstitute/cromwell/releases/latest"
 
     parser = argparse.ArgumentParser()
     parser.add_argument("--save_path", 
-                        help='Path to save Cromwell.', required=True)
-    parser.add_argument("--config_path",
-                        help='Path for saving the config file.', 
-                        type=str, default="./")    
+                        help='Path to save Cromwell.', required=True) 
 
     args = vars(parser.parse_args())
-    cromwell_path = setup_cromwell(url, args["save_dir"])
+    cromwell_path = setup_cromwell(url, args["save_path"])
     latest_version = cromwell_path.split('/')[-1].split('.')[0]
     logging.info(f"The latest release {latest_version} was installed")
+    script_dir = os.path.dirname(__file__)
 
-    modify_config_file(os.path.join(args["config_path"], "config.ini"), 
-                       "cromwell", 
-                       "cromwell_path", 
-                       os.path.abspath(cromwell_path))
+    modify_json_config(os.path.join(script_dir, "config.json"), "cromwell_path", cromwell_path)
 
     
     

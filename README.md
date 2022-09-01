@@ -21,16 +21,21 @@ The wrapper scripts in Python (located in `src`) will prepare files and send the
 ## Requirements
  - `Docker`
  - `conda` for building the envronment 
-    - `conda create -f pipeline.env`
- - Cromwell
-    - `python src/setup_cromwell.py --save_path SAVE_PATH --config_path CONFIG_PATH`
+    - `conda create -f pipeline.yml`
+ - Cromwell  
+ You may download Cromwell yourself from [here](https://github.com/broadinstitute/cromwell) or use the `setup_cromwell.py` script to download and install it.
+    - `python src/setup_cromwell.py --save_path SAVE_PATH`
  - Python 
 
 ## Running the pipeline
 ### 1. QC and assemble  
  - Requirements
    - `input_folder` - path to directory with paired shotgun sequencing files
-   - `bt2_index` - path to a directory with a Bowite2 index. In case folder doesn't contain index, the user would be proposed to download GRCh38 index used for decontamination of metagenomic samples from human DNA.
+   - `bt2_index` - path to a directory with a Bowite2 index. In case the folder doesn't contain an index, the user would be proposed to download GRCh38 index used for decontamination of metagenomic samples from human DNA.
+    - `output_folder` - path to directory where the results will be saved
+ - Optional arguments
+   - `threads` - number of threads to use (default: 1)
+   - `concurrent_jobs` - number of concurrent jobs to run (default: 1)
  - Output
    - quality controlled .fastq.gz files
    - assembled contigs in `OUTPUT_DIR/assemble`
