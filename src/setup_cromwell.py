@@ -116,7 +116,7 @@ if __name__ == "__main__":
                         help='Path to save Cromwell.', required=True) 
 
     args = vars(parser.parse_args())
-    cromwell_path = setup_cromwell(url, args["save_path"])
+    cromwell_path = os.path.abspath(setup_cromwell(url, args["save_path"]))
     latest_version = cromwell_path.split('/')[-1].split('.')[0]
     logging.info(f"The latest release {latest_version} was installed")
     script_dir = os.path.dirname(__file__)

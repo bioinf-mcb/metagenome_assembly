@@ -67,13 +67,9 @@ if not index:
 # getting sorted lists of forward and reverse reads from a folder
 
 sequencing_files = filter_list_of_terms(config["read_extensions"], os.listdir(study_path))
-print(os.listdir(study_path))
 
 split_character = infer_split_character(sequencing_files[0])
 base_names = [id.split(split_character)[0] for id in sequencing_files]
-
-forward = []
-reverse = []
 
 ## TODO modify template to include all arguments
 # template
@@ -82,10 +78,15 @@ template_path = os.path.join(template_dir, "qc_and_assemble.json")
 with open(template_path) as f:
     template = json.loads(f.read())
 
-for base in base_names:
+for base in set(base_names):
+    
     r1 = [id for id in sequencing_files if re.search(base+split_character+"1", id)]
     r2 = [id for id in sequencing_files if re.search(base+split_character+"2", id)]
-    template["qc_and_assemble.sampleInfo"].append({"file_r1": r1, "file_r2": r2})
+    r1_full_path = os.path.join(study_path, r1[0])
+    r2_full_path = os.path.join(study_path, r2[0])
+    template["qc_and_assemble.sampleInfo"].append({"sample_id" : base, 
+                                                   "file_r1": r1_full_path, 
+                                                   "file_r2": r2_full_path})
 
 # counting samples   
 n_samples = len(template["qc_and_assemble.sampleInfo"]) 
@@ -122,8 +123,7 @@ paths["output_config_path"] = modify_output_config(paths["output_config_path"], 
 paths["config_path"] = modify_concurrency_config(paths["config_path"], system_path, 
                                                 args["concurrent_jobs"], os.path.abspath(bowtie2_folder))
 
-print(paths)
-cmd = """java -Dconfig.file={0} -jar {1} run {2} -o {3} -i {4} >> {5}""".format(*paths.values(), inputs_path, log_path)
+cmd = """java -Dconfig.file={0} -jar {1} run {2} -o {3} -i {4} > {5}""".format(*paths.values(), inputs_path, log_path)
 os.system(cmd)
 
 with open(log_path) as f:

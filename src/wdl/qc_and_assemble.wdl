@@ -24,7 +24,7 @@ workflow qc_and_assemble {
     Int trf_minscore = 50
     Int trf_maxperiod = 500
     
-    String sample_suffix = "_1.fastq.gz"
+    
     }
     
     scatter (info in sampleInfo) {
@@ -33,7 +33,7 @@ workflow qc_and_assemble {
         input:
         file_r1=info.file_r1,
         file_r2=info.file_r2,
-        sample_id=sub(basename(info.file_r1), sample_suffix, ""),
+        sample_id = info.sample_id,
         thread=thread_num,
 
         trimmomatic_options=trimmomatic_options,
@@ -56,7 +56,7 @@ workflow qc_and_assemble {
         r2=kneadData.fileR2, 
         s1=kneadData.fileS1, 
         s2=kneadData.fileS2,
-        sample_id=sub(basename(info.file_r1), sample_suffix, ""),
+        sample_id=info.sample_id,
         thread=thread_num
         }
     }
