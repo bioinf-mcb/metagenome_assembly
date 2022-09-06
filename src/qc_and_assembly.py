@@ -1,5 +1,6 @@
 import os 
 import json 
+import re
 
 from rich.console import Console
 console = Console()
@@ -12,7 +13,9 @@ from _utils import (
     aria2c_download_file,
     unpack_archive,
     create_directory,
-    find_database_index
+    find_database_index,
+    infer_split_character, 
+    filter_list_of_terms
 )
 
 import logging
@@ -62,10 +65,15 @@ if not index:
     logging.info(message)
 
 # getting sorted lists of forward and reverse reads from a folder
-forward, reverse = [os.path.join(study_path, file) for file in sorted(os.listdir(study_path)) if file.endswith("_1.fastq.gz")], \
-                   [os.path.join(study_path, file) for file in sorted(os.listdir(study_path)) if file.endswith("_2.fastq.gz")]
 
-script_dir = os.path.dirname(__file__)
+sequencing_files = filter_list_of_terms(config["read_extensions"], os.listdir(study_path))
+print(os.listdir(study_path))
+
+split_character = infer_split_character(sequencing_files[0])
+base_names = [id.split(split_character)[0] for id in sequencing_files]
+
+forward = []
+reverse = []
 
 ## TODO modify template to include all arguments
 # template
@@ -74,15 +82,19 @@ template_path = os.path.join(template_dir, "qc_and_assemble.json")
 with open(template_path) as f:
     template = json.loads(f.read())
 
-# adding files to json
-for r1, r2 in zip(forward, reverse):
+for base in base_names:
+    r1 = [id for id in sequencing_files if re.search(base+split_character+"1", id)]
+    r2 = [id for id in sequencing_files if re.search(base+split_character+"2", id)]
     template["qc_and_assemble.sampleInfo"].append({"file_r1": r1, "file_r2": r2})
 
-    # adding threads
+# counting samples   
+n_samples = len(template["qc_and_assemble.sampleInfo"]) 
+logging.info(f"Found samples: {n_samples}")
+
+# adding threads
 template['qc_and_assemble.thread_num'] = threads
 
-n_samples = len(template["qc_and_assemble.sampleInfo"]) 
-print(f"Found samples: {n_samples}")
+
 
 # creating output directory
 create_directory(output_path)
@@ -110,6 +122,7 @@ paths["output_config_path"] = modify_output_config(paths["output_config_path"], 
 paths["config_path"] = modify_concurrency_config(paths["config_path"], system_path, 
                                                 args["concurrent_jobs"], os.path.abspath(bowtie2_folder))
 
+print(paths)
 cmd = """java -Dconfig.file={0} -jar {1} run {2} -o {3} -i {4} >> {5}""".format(*paths.values(), inputs_path, log_path)
 os.system(cmd)
 

@@ -21,7 +21,7 @@ The wrapper scripts in Python (located in `src`) will prepare files and send the
 ## Requirements
  - `Docker`
  - `conda` for building the environment 
-    - `conda create -f pipeline.yml`
+    - `conda env create -f pipeline.yml`
  - Cromwell  
  You may download Cromwell yourself from [here](https://github.com/broadinstitute/cromwell) or use the `setup_cromwell.py` script to download and install it.
     - `python src/setup_cromwell.py --save_path SAVE_PATH`

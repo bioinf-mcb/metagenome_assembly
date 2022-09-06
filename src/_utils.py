@@ -165,6 +165,33 @@ def find_database_index(directory, all_extensions):
         logging.info(f"Unable to find Bowtie2 index files in directory: {directory}\n")
     
     return index
+
+
+def infer_split_character(base_name):
+    "Infer if fastq filename uses '_R1' '_1' to seperate filenames"
+
+    # infer split character if necessary only the first time.
+
+    if ("_R1" in base_name) or ("_R2" in base_name):
+        split_character = "_R"
+
+    elif ("_1" in base_name) or ("_2" in base_name):
+        split_character = "_"
+
+    if split_character is not None:
+
+        logging.info(
+            f"I inferred that {split_character}1 and {split_character}2 distinguish paired end reads."
+        )
+        
+    return split_character
+
+def filter_list_of_terms(key_terms, list_of_terms):
+    """
+    Filter a list of terms based on a list of key terms.
+    """
+    return [term for term in list_of_terms if any(key_term in term for key_term in key_terms)]
+
     
     
     
