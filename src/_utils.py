@@ -2,7 +2,7 @@ import os
 import sys
 import re
 import json
-import configparser
+import glob
 
 import logging
 logging.basicConfig(level=logging.DEBUG)
@@ -134,33 +134,20 @@ def find_database_index(directory, all_extensions):
     # sort the extensions with the longest first, to test the most specific first
     # to find the index
     all_extensions.sort(key=lambda x: len(x), reverse=True)
-    
-    if not os.path.isdir(directory):
-        # check if this is the database index file
-        if os.path.isfile(directory):
-            # check for the database extension
-            for extension in all_extensions:
-                if re.search(extension+"$",directory):
-                    index=directory.replace(extension,"")
-                    break
-        else:
-            # check if this is the basename of the index files
-            # only need to check the first three (to include bowtie2 large index)
-            for extension in all_extensions[:3]:
-                if os.path.isfile(directory+extension):
-                    index=directory
-                    break
-    else:
-        # search through the files to find one with the bowtie2 extension
-        for file in os.listdir(directory):
-            # look for an extension for a standard and large bowtie2 indexed database
-            for extension in all_extensions:
-                if re.search(extension+"$",file):
-                    index=os.path.join(directory,file.replace(extension,""))
-                    break
-            if index:
-                break
-    
+    if os.path.isfile(directory):
+        for extension in all_extensions:
+            if re.search(extension+"$",directory):
+                index=directory.replace(extension,"")
+                logging.info(f"Treating {index} as Bowtie2 index\n")
+                return index
+
+    for fname in glob.glob(directory+"/**/*", recursive=True):
+        for extension in all_extensions:
+            if re.search(extension+"$",fname):
+                index = os.path.abspath(os.path.dirname(fname))
+                logging.info(f"Treating {index} as directory with Bowtie2 index\n")
+                return index
+
     if not index:
         logging.info(f"Unable to find Bowtie2 index files in directory: {directory}\n")
     

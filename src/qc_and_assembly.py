@@ -24,9 +24,25 @@ logging.basicConfig(level=logging.DEBUG)
 import argparse
 
 ## TODO test for single end reads
+# check if provided path is a dir 
+
+def parse_args(args):
+    args["study_path"] = os.path.abspath(args["input_folder"])
+    args["system_path"] = os.path.join(args["output_folder"], "system")
+    return args
+
+def download_grch(url, destination):
+    logging.info("GRCh38 database will be downloaded.  It will allow to remove human contaminant DNA from samples.")
+    zip_filename = aria2c_download_file(url, destination)
+    zip_filepath = os.path.join(destination, zip_filename)
+    bowtie2_folder = unpack_archive(zip_filepath, destination)
+    message = "Downloaded GRCh38."
+    logging.info(message)
+    return bowtie2_folder
+
 parser = argparse.ArgumentParser(description='Quality control and assembly of contigs for paired metagenomic reads.'
-                                             'The succesful execution of this step requires Bowtie2 index.',
-                                 formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+                                            'The succesful execution of this step requires Bowtie2 index.',
+                                formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
 ## TODO add all arguments from wdl script
 parser.add_argument('-i','--input_folder', help='The directory with raw reads in .fastq or fastq.gz\
@@ -37,37 +53,26 @@ parser.add_argument('-o','--output_folder', help='The directory for saving the o
 parser.add_argument('-c','--concurrent_jobs', help='Number of jobs to run in parallel', 
                     type=int, default=1, required=False)
 parser.add_argument('-bt2_index','--bowtie2_index', help='Path to a diretory with Bowtie2 index. If directory does not contain' 
-                                                         'required index GRCh38 database would be downloaded for' 
-                                                         'decontamination of samples from human DNA.', required=True)
+                                                        'required index GRCh38 database would be downloaded for' 
+                                                        'decontamination of samples from human DNA.', required=True)
 
 args = vars(parser.parse_args())
-
-# check if provided path is a dir 
 
 script_dir = os.path.dirname(__file__)
 config = read_json_config(os.path.join(script_dir, "config.json"))
 
+args = parse_args(args)
+check_path_dir(args["study_path"])
 
-study_path = os.path.abspath(args["input_folder"])
-threads = args["threads"]
-output_path = args["output_folder"]
-system_path = os.path.join(output_path, "system")
-bowtie2_folder = args["bowtie2_index"]
-check_path_dir(study_path)
-index = find_database_index(bowtie2_folder, config["bowtie2_index_formats"])
+bowtie2_folder = find_database_index(args["bowtie2_index"], config["bowtie2_index_formats"])
+if not bowtie2_folder:
+    bowtie2_folder = download_grch(config["grch38_url"], args["bowtie2_index"])
+    bowtie2_folder = find_database_index(bowtie2_folder, config["bowtie2_index_formats"])
 
-if not index:
-    zip_filename = aria2c_download_file(config["grch38_url"], bowtie2_folder)
-    zip_filepath = os.path.join(bowtie2_folder, zip_filename)
-    bowtie2_folder = unpack_archive(zip_filepath, bowtie2_folder)
-    message = "GRCh38 database will be downloaded.  It will allow to remove human contaminant DNA from samples.\n \
-              Downloading GRCh38..."
-    logging.info(message)
+print(bowtie2_folder)
 
 # getting sorted lists of forward and reverse reads from a folder
-
-sequencing_files = filter_list_of_terms(config["read_extensions"], os.listdir(study_path))
-
+sequencing_files = filter_list_of_terms(config["read_extensions"], os.listdir(args["study_path"]))
 split_character = infer_split_character(sequencing_files[0])
 base_names = [id.split(split_character)[0] for id in sequencing_files]
 
@@ -79,11 +84,10 @@ with open(template_path) as f:
     template = json.loads(f.read())
 
 for base in set(base_names):
-    
     r1 = [id for id in sequencing_files if re.search(base+split_character+"1", id)]
     r2 = [id for id in sequencing_files if re.search(base+split_character+"2", id)]
-    r1_full_path = os.path.join(study_path, r1[0])
-    r2_full_path = os.path.join(study_path, r2[0])
+    r1_full_path = os.path.join(args["study_path"], r1[0])
+    r2_full_path = os.path.join(args["study_path"], r2[0])
     template["qc_and_assemble.sampleInfo"].append({"sample_id" : base, 
                                                    "file_r1": r1_full_path, 
                                                    "file_r2": r2_full_path})
@@ -93,18 +97,18 @@ n_samples = len(template["qc_and_assemble.sampleInfo"])
 logging.info(f"Found samples: {n_samples}")
 
 # changing number of threads
-template['qc_and_assemble.thread_num'] = threads
+template['qc_and_assemble.thread_num'] = args["threads"]
 
 # creating output directory
-create_directory(output_path)
-create_directory(system_path)
+create_directory(args["output_folder"])
+create_directory(args["system_path"])
 
 # writing input json
-inputs_path = os.path.join(system_path, 'inputs.json')
+inputs_path = os.path.join(args["system_path"], 'inputs.json')
 with open(inputs_path, 'w') as f:
     json.dump(template, f, indent=4, sort_keys=True, ensure_ascii=False)
 
-log_path = os.path.join(system_path, "log.txt")
+log_path = os.path.join(args["system_path"], "log.txt")
 
 paths = {
     "config_path" : config["configs"]["kneaddata"], 
@@ -117,8 +121,8 @@ for path in paths.keys():
     paths[path] = os.path.abspath(os.path.join(script_dir, paths[path]))
 
 
-paths["output_config_path"] = modify_output_config(paths["output_config_path"], output_path)
-paths["config_path"] = modify_concurrency_config(paths["config_path"], system_path, 
+paths["output_config_path"] = modify_output_config(paths["output_config_path"], args["output_folder"])
+paths["config_path"] = modify_concurrency_config(paths["config_path"], args["system_path"], 
                                                 args["concurrent_jobs"], os.path.abspath(bowtie2_folder))
 
 cmd = """java -Dconfig.file={0} -jar {1} run {2} -o {3} -i {4} > {5}""".format(*paths.values(), inputs_path, log_path)
@@ -131,3 +135,6 @@ if "workflow finished with status 'Succeeded'" in log:
     console.log("Workflow finished successfully", style="green")
 else:
     console.log("Workflow failed, check the log file", style="red")
+
+
+

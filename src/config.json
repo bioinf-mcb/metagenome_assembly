@@ -11,7 +11,7 @@
     "configs": {
         "kneaddata": "./cromwell_configs/kneaddata.conf"
     },
-    "cromwell_path": "/storage/TomaszLab/vbez/metagenomic_gmhi/metagenomome_assembly/cromwell/cromwell-84.jar",
+    "cromwell_path": "/home/MCB/wwydmanski/vbez-pipeline/metagenome_assembly/cromwell_build/cromwell-84.jar",
     "grch38_url": "https://genome-idx.s3.amazonaws.com/bt/GRCh38_noalt_as.zip",
     "output_config_path": "./json_templates/output_options.json",
     "read_extensions": [
