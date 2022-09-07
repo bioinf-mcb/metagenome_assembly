@@ -10,3 +10,5 @@ docker/gene-mapper/tests/__pycache__/*
 tests/*
 config.ini
 .pytest_cache
+cromwell_build
+src/cromwell-executions

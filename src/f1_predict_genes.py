@@ -3,26 +3,30 @@ import json
 import sys
 from _utils import (
     modify_output_config,
-    modify_concurrency_config
+    modify_concurrency_config,
+    read_json_config
 )
 
 import argparse
+
+script_dir = os.path.dirname(__file__)
+config = read_json_config(os.path.join(script_dir, "config.json"))
+
 
 # Command line argyments
 parser = argparse.ArgumentParser(description='Predict genes using Prodigal', 
                                  formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
-parser.add_argument('-i','--input', help='The directory with contigs in .fa format', required=True)
+parser.add_argument('-i','--input_dir', help='The directory with contigs in .fa format', required=True)
 parser.add_argument('-o','--output_dir', help='The directory for the output', required=True)
 parser.add_argument('-s','--suffix', help='Suffix of the filename to be identified in input folder & replaced in the output(i.e. -s .fa  -i ID7.fa -> ID7.fna)', 
                     type=str, default=".min500.contigs.fa")
 parser.add_argument('-c','--concurrent_jobs', help='Number of jobs to run in parallel', 
                     type=int, default=1, required=False)
 
-
 args = vars(parser.parse_args())
 
-study_path = args["input"]
+study_path = args["input_dir"]
 output_path = args["output_dir"]
 filename_suffix = args["suffix"]
 
@@ -52,7 +56,7 @@ script_dir = os.path.dirname(__file__)
 
 paths = {
     "config_dir" : "./cromwell_configs/kneaddata.conf", 
-    "cromwell_dir" : "../cromwell/cromwell-80.jar", 
+    "cromwell_dir" : config["cromwell_path"], 
     "wdl_dir" : "./wdl/f1_predict_genes.wdl",
     "output_dir" : "json_templates/output_options.json"
 }
