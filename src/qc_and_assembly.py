@@ -92,10 +92,8 @@ for base in set(base_names):
 n_samples = len(template["qc_and_assemble.sampleInfo"]) 
 logging.info(f"Found samples: {n_samples}")
 
-# adding threads
+# changing number of threads
 template['qc_and_assemble.thread_num'] = threads
-
-
 
 # creating output directory
 create_directory(output_path)

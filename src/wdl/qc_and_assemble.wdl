@@ -124,8 +124,8 @@ task kneadData {
                   --maxperiod ${maxperiod} \
                   --reorder \
                   --remove-intermediate-output \
-                  --log ${sample_id}.log
-                  -t ${thread} \
+                  --log ${sample_id}.log \
+                  -t ${thread} 
 
         pigz -p ${thread} ${sample_id}_paired_1.fastq
         pigz -p ${thread} ${sample_id}_paired_2.fastq
