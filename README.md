@@ -22,12 +22,12 @@ The wrapper scripts in Python (located in `src`) will prepare files and send the
  - `Docker`
  - `conda` for building the environment 
     - `conda env create -f pipeline.yml`
- - Cromwell  
- You may download Cromwell yourself from [here](https://github.com/broadinstitute/cromwell) and modify `config.json` in `src` folder providing path to the software or use the `setup_cromwell.py` script to download and install it.
-    - `python src/setup_cromwell.py --save_path SAVE_PATH`
  - Python 
 
 ## Running the pipeline
+### Install Cromwell  
+Use the `setup_cromwell.py` script to download and install it.
+    - `python src/setup_cromwell.py --save_path SAVE_PATH`
 ### 1. QC and assemble  
  - Requirements
    - `input_folder` - path to directory with paired shotgun sequencing files
