@@ -25,10 +25,10 @@ The wrapper scripts in Python (located in `src`) will prepare files and send the
  - Python 
 
 ## Running the pipeline
-### Install Cromwell  
+### 1. Install Cromwell  
 Use the `setup_cromwell.py` script to download and install it.
     - `python src/setup_cromwell.py --save_path SAVE_PATH`
-### 1. QC and assemble  
+### 2. Quality control and assembly 
  - Requirements
    - `input_folder` - path to directory with paired shotgun sequencing files
    - `bt2_index` - path to a directory with a Bowite2 index. In case the folder doesn't contain an index, the user would be proposed to download GRCh38 index used for decontamination of metagenomic samples from human DNA.
