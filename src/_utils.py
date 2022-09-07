@@ -2,7 +2,6 @@ import os
 import sys
 import re
 import json
-import configparser
 
 import logging
 logging.basicConfig(level=logging.DEBUG)
@@ -118,9 +117,9 @@ def modify_concurrency_config(path_to_file : str,
 
 def unpack_archive(zip_path, unpack_folder):
     unpack_path = os.path.abspath(unpack_folder)
-    os.system(f"unzip {zip_path} -d {unpack_folder}")
+    os.system(f"unzip {zip_path} -d {unpack_path}")
     os.remove(zip_path)
-    
+
     return unpack_path
     
 

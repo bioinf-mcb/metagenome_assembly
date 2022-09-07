@@ -57,12 +57,14 @@ check_path_dir(study_path)
 index = find_database_index(bowtie2_folder, config["bowtie2_index_formats"])
 
 if not index:
-    zip_filename = aria2c_download_file(config["grch38_url"], bowtie2_folder)
-    zip_filepath = os.path.join(bowtie2_folder, zip_filename)
-    bowtie2_folder = unpack_archive(zip_filepath, bowtie2_folder)
     message = "GRCh38 database will be downloaded.  It will allow to remove human contaminant DNA from samples.\n \
               Downloading GRCh38..."
     logging.info(message)
+    zip_filename = aria2c_download_file(config["grch38_url"], bowtie2_folder)
+    zip_filepath = os.path.abspath(os.path.join(bowtie2_folder, zip_filename))
+    bowtie2_folder = unpack_archive(zip_filepath, bowtie2_folder)
+    bowtie2_folder = os.path.abspath(os.path.join(bowtie2_folder, "GRCh38_noalt_as"))
+
 
 # getting sorted lists of forward and reverse reads from a folder
 
