@@ -69,8 +69,6 @@ if not bowtie2_folder:
     bowtie2_folder = download_grch(config["grch38_url"], args["bowtie2_index"])
     bowtie2_folder = find_database_index(bowtie2_folder, config["bowtie2_index_formats"])
 
-print(bowtie2_folder)
-
 # getting sorted lists of forward and reverse reads from a folder
 sequencing_files = filter_list_of_terms(config["read_extensions"], os.listdir(args["study_path"]))
 split_character = infer_split_character(sequencing_files[0])

@@ -22,13 +22,13 @@ The wrapper scripts in Python (located in `src`) will prepare files and send the
  - `Docker`
  - `conda` for building the environment 
     - `conda env create -f pipeline.yml`
- - Cromwell  
- You may download Cromwell yourself from [here](https://github.com/broadinstitute/cromwell) and modify `config.json` in `src` folder providing path to the software or use the `setup_cromwell.py` script to download and install it.
-    - `python src/setup_cromwell.py --save_path SAVE_PATH`
  - Python 
 
 ## Running the pipeline
-### 1. QC and assemble  
+### 1. Install Cromwell  
+Use the `setup_cromwell.py` script to download and install it.
+    - `python src/setup_cromwell.py --save_path SAVE_PATH`
+### 2. Quality control and assembly 
  - Requirements
    - `input_folder` - path to directory with paired shotgun sequencing files
    - `bt2_index` - path to a directory with a Bowite2 index. In case the folder doesn't contain an index, the user would be proposed to download GRCh38 index used for decontamination of metagenomic samples from human DNA.
