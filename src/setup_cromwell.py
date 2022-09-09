@@ -66,10 +66,11 @@ def retrieve_cromwell_version(folder: str) -> List[str]:
 
 def delete_older_releases(old_cromwell_versions: List[str]):
 
-    string_older_releases = ", ".join(old_cromwell_versions)
-    logging.info(f"Older releases {string_older_releases} removed")
-    for item in old_cromwell_versions:
-        os.remove(item)
+    if old_cromwell_versions:
+        for version in old_cromwell_versions:
+            os.remove(version)
+        string_older_releases = ", ".join(old_cromwell_versions)
+        logging.info(f"Older releases {string_older_releases} removed")
 
 def download_cromwell(link: str, cromwell_dir: str) -> str:
     """
@@ -89,24 +90,25 @@ def setup_cromwell(url, save_dir):
     os.makedirs(save_dir, exist_ok=True)
     
     if os.path.isdir(save_dir):
-        versions = retrieve_cromwell_version(save_dir)
         
+        versions = retrieve_cromwell_version(save_dir)
         # check if any cromwell file was found
         if versions:
-            latest_version_local = versions[0].split("/")[-1] 
+            latest_version_local = versions[0].split("/")[-1]
+            # check if the latest version is already installed
             if latest_version_local == latest_version_online:
-                cromwell_path = os.path.join(save_dir, latest_version_local)
-                return cromwell_path
-        else:
+                cromwell_path = os.path.join(save_dir, versions[0])
+        # if no cromwell file was found, download the latest version
+        # also downloads latest version if the latest version is not installed
+        else:    
             cromwell_path = download_cromwell(link, save_dir)
-            delete_older_releases(versions)
+            delete_older_releases(versions[1:])
 
-            return cromwell_path
     else:
         os.makedirs(save_dir)
         cromwell_path = download_cromwell(link, save_dir)
-        
-        return cromwell_path
+
+    return cromwell_path
 
     
 if __name__ == "__main__":
@@ -118,8 +120,6 @@ if __name__ == "__main__":
 
     args = vars(parser.parse_args())
     cromwell_path = os.path.abspath(setup_cromwell(url, args["save_path"]))
-    latest_version = cromwell_path.split('/')[-1].split('.')[0]
-    logging.info(f"The latest release {latest_version} was installed")
     script_dir = os.path.dirname(__file__)
 
     modify_json_config(os.path.join(script_dir, "config.json"), "cromwell_path", cromwell_path)
