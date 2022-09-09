@@ -8,9 +8,7 @@
         ".rev.2.bt2",
         ".rev.1.bt2l"
     ],
-    "configs": {
-        "kneaddata": "./cromwell_configs/kneaddata.conf"
-    },
+    "db_mount_config" : "./mount.conf",
     "cromwell_path": "/home/MCB/wwydmanski/vbez-pipeline/metagenome_assembly/cromwell_build/cromwell-84.jar",
     "grch38_url": "https://genome-idx.s3.amazonaws.com/bt/GRCh38_noalt_as.zip",
     "output_config_path": "./json_templates/output_options.json",

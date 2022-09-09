@@ -109,7 +109,7 @@ with open(inputs_path, 'w') as f:
 log_path = os.path.join(args["system_path"], "log.txt")
 
 paths = {
-    "config_path" : config["configs"]["kneaddata"], 
+    "config_path" : config["db_mount_config"], 
     "cromwell_path" : config["cromwell_path"], 
     "wdl_path" : config["wdls"]["qc_and_assemble"],
     "output_config_path" : config["output_config_path"]
