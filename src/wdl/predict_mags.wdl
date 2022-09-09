@@ -7,7 +7,7 @@ workflow predict_mags {
     Array[SampleInfo] sampleInfo
     Int thread_num = 4
     String sample_suffix = ".min500.contigs.fa"
-    String gtdb_release = "release202"
+    String gtdb_release = "release207"
     }
     
     scatter  (info in sampleInfo) {

@@ -22,5 +22,8 @@
     ],
     "wdls": {
         "qc_and_assemble": "./wdl/qc_and_assemble.wdl"
-    }
+    },
+    "_gtdbtk_comment" : "Attention to version compatibility in gtdbtk and db. See ecogenomics.github.io",
+    "gtdbtk_version" : "2.1.1", 
+    "gtdbtk_db_version" : "release207" 
 }

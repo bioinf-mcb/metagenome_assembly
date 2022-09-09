@@ -12,8 +12,8 @@ RUN apt-get update && apt-get install -y \
         zlib1g-dev \
         libbz2-dev \
         liblzma-dev \
-        libjpeg-dev
-
+        libjpeg-dev \
+        jq
 
 # prodigal
 RUN mkdir /gtdb-deps && \
@@ -43,12 +43,12 @@ RUN cd /gtdb-deps && wget http://www.microbesonline.org/fasttree/FastTree && \
     mv FastTreeMP /usr/local/bin/ 
 
 # GTDB-Tk 
-RUN pip3 install numpy && pip3 install matplotlib && pip3 install pysam && pip3 install gtdbtk
+COPY config.json /gtdb-deps
+RUN export GTDBTK_VERSION=$(jq -r ".gtdbtk_version" /gtdb-deps/config.json) && \
+    pip3 install numpy && pip3 install matplotlib && pip3 install pysam && pip3 install gtdbtk==$GTDBTK_VERSION
 
 ## GTDB-Tk data 
 RUN mkdir /gtdbtk-data  
 ARG GTDBTK_DATA_PATH=/gtdbtk-data/
 ## This data needs to be obtained before analysis (not included in the docker image)
-# Download data from https://data.ace.uq.edu.au/public/gtdb/data/releases/release89/89.0/gtdbtk_r89_data.tar.gz
-# (or check if there is more recent release)
-# uncompress to /gtdbtk-data (or other directory) and set GTDBTK_DATA_PATH env variable accordingly
+
