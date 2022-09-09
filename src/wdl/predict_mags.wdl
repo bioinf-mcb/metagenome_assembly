@@ -183,7 +183,7 @@ task gtdbtk {
     }
 
     runtime {
-        docker: "crusher083/gtdb-tk@sha256:c080f0de4a3a9907a042de9d579a2a3bace9167e704ca7d850303d3986205d70"
+        docker: "crusher083/gtdb-tk@sha256:57e7f544022920b7e899695ed2d8bb915b2959da5f023226fa49251a15333005
         maxRetries: 1
     }
 }
