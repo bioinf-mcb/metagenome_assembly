@@ -21,16 +21,19 @@ The wrapper scripts in Python (located in `src`) will prepare files and send the
 ## Requirements
  - `Docker`
  - `conda` for building the environment 
-    - `conda env create -f pipeline.yml`
  - Python 
 
 ## Running the pipeline
-### 1. Install Cromwell  
+### 1. Clone the repository
+ - `git clone www.github.com/crusher083/metagenome_assembly`
+### 2. Create a conda environment
+ - `conda env create -f pipeline.yml`
+### 3. Install Cromwell  
 Use the `setup_cromwell.py` script to download and install it.
     - `python src/setup_cromwell.py --save_path SAVE_PATH`
-### 2. Quality control and assembly 
+### 4. Quality control and assembly 
  - Requirements
-   - `input_folder` - path to directory with paired shotgun sequencing files
+   - `input_folder` - path to directory with paired shotgun sequencing files (fastq.gz, fastq, fq.gz, fq formats)
    - `bt2_index` - path to a directory with a Bowite2 index. In case the folder doesn't contain an index, the user would be proposed to download GRCh38 index used for decontamination of metagenomic samples from human DNA.
     - `output_folder` - path to a directory where the results will be saved
  - Optional arguments
@@ -45,7 +48,7 @@ Use the `setup_cromwell.py` script to download and install it.
  python src/qc_and_assemble.py -i input_folder -o OUTPUT_DIR -t 8 -c 3 -bt2_index ./GRCh38_bt2
  ```
 
-### 2. (...)
+### 5. (...)
 
 ## Outputs
 This pipeline will produce a number of directories and files
