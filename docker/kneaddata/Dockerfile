@@ -54,4 +54,8 @@ RUN wget -O trf https://github.com/Benson-Genomics-Lab/TRF/releases/download/v4.
     && mv trf /bin \
     && chmod 755 /app/* 
 
+RUN adduser --system --group --shell /bin/sh auser \
+ && mkdir /home/auser/bin
+USER auser
+
 ENV PATH /app:$PATH

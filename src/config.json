@@ -1,4 +1,5 @@
 {
+    "_gtdbtk_comment": "Attention to version compatibility in gtdbtk and db. See ecogenomics.github.io",
     "bowtie2_index_formats": [
         ".1.bt2",
         ".2.bt2",
@@ -8,9 +9,11 @@
         ".rev.2.bt2",
         ".rev.1.bt2l"
     ],
-    "db_mount_config" : "./mount.conf",
-    "cromwell_path": "/home/MCB/wwydmanski/vbez-pipeline/metagenome_assembly/cromwell_build/cromwell-84.jar",
+    "cromwell_path": "/storage/TomaszLab/vbez/metagenomic_gmhi/metagenomome_assembly/tests/cromwell/cromwell-84.jar",
+    "db_mount_config": "./mount.conf",
     "grch38_url": "https://genome-idx.s3.amazonaws.com/bt/GRCh38_noalt_as.zip",
+    "gtdbtk_db_version": "release207",
+    "gtdbtk_version": "2.1.1",
     "output_config_path": "./json_templates/output_options.json",
     "read_extensions": [
         ".fastq",
@@ -20,8 +23,5 @@
     ],
     "wdls": {
         "qc_and_assemble": "./wdl/qc_and_assemble.wdl"
-    },
-    "_gtdbtk_comment" : "Attention to version compatibility in gtdbtk and db. See ecogenomics.github.io",
-    "gtdbtk_version" : "2.1.1", 
-    "gtdbtk_db_version" : "release207" 
+    }
 }
