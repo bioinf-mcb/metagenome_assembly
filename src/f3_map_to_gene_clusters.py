@@ -4,6 +4,7 @@ import sys
 from _utils import (
     modify_output_config,
     modify_concurrency_config,
+    read_json_config,
     create_directory,
     read_evaluate_log
 )
@@ -26,41 +27,44 @@ parser.add_argument('-t','--threads', help='Number of threads to use for cluster
 
 
 args = vars(parser.parse_args())
+args["system_folder"] = os.path.join(args["output_folder"], "system")
 
-reads_path = args["input_folder"]
+script_dir = os.path.dirname(__file__)
+config = read_json_config(os.path.join(script_dir, "config.json"))
+
+
 output_path = args["output_folder"]
 suffix1, suffix2 = args["suffix1"], args["suffix2"]
 
-# load json template
-script_dir = os.path.dirname(__file__)
-
-# collect files from dir
-forward, reverse = [os.path.join(reads_path, file) for file in sorted(os.listdir(reads_path)) if file.endswith(suffix1)], \
-                   [os.path.join(reads_path, file) for file in sorted(os.listdir(reads_path)) if file.endswith(suffix2)]
-
-# load template
+# load input template
 template_dir = os.path.abspath(os.path.join(script_dir, "json_templates"))
 template_path = os.path.join(template_dir, "map_to_gene_clusters.json")
 with open(template_path) as f:
     template = json.loads(f.read())
 
+# collect files from dir
+forward, reverse = [os.path.join(args["input_folder"], file) for file in sorted(os.listdir(args["input_folder"])) if file.endswith(suffix1)], \
+                   [os.path.join(args["input_folder"], file) for file in sorted(os.listdir(args["input_folder"])) if file.endswith(suffix2)]
+
 # modify template
 for read_1, read_2 in zip(forward, reverse):
-    template["map_to_gene_clusters.sampleInfo"].append({"file_r1": read_1, "file_r2": read_2})
+    template["map_to_gene_clusters.sampleInfo"].append({"file_r1": read_1, "file_r2": read_2, "sample_id": read_1.split(suffix1)[0]})
 
 template["map_to_gene_clusters.thread_num"] = args["threads"]
 template["map_to_gene_clusters.kma_db_file"] = args["database"]
 template["map_to_gene_clusters.sample_suffix"] = suffix1
 
-# writing input json
+# creating output directory
 create_directory(args["output_folder"])
-inputs_path = os.path.join(output_path, 'input_map_to_gene_clusters.json')
+create_directory(args["system_folder"])
+
+# writing input json
+inputs_path = os.path.join(args["system_folder"], 'input_map_to_gene_clusters.json')
 
 with open(inputs_path, 'w') as f:
     json.dump(template, f, indent=4, sort_keys=True, ensure_ascii=False)
 
-    
-script_dir = os.path.dirname(__file__)
+
 
 paths = {
     "config_path" : config["db_mount_config"], 
@@ -73,10 +77,18 @@ paths = {
 for path in paths.keys():
     paths[path] = os.path.abspath(os.path.join(script_dir, paths[path]))
 
-paths["output_dir"] = modify_output_config(paths["output_dir"], output_path)
+# modifying config to change output folder
+paths["output_config_path"] = modify_output_config(paths["output_config_path"], args["output_folder"], args["system_folder"])
+# modifying config to change number of concurrent jobs and mount dbs
+paths["config_path"] = modify_concurrency_config(paths["config_path"], 
+                                                 args["system_folder"],
+                                                 n_jobs=1)
 
-log_path = os.path.join(output_path, "log.txt")
+# creating a log file 
+log_path = os.path.join(args["system_folder"], "log.txt")
+
 # pass everything to a shell command
-os.system("""java -Dconfig.file={0} -jar {1} run {2} -o {3} -i {4} > {5}""".format(*paths.values(), inputs_path, log_path))
+cmd = """java -Dconfig.file={0} -jar {1} run {2} -o {3} -i {4} > {5}""".format(*paths.values(), inputs_path, log_path)
+os.system(cmd)
 
 read_evaluate_log(log_path)

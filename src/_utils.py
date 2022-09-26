@@ -81,7 +81,7 @@ def read_json_config(config_file: str) -> dict:
 
 def modify_output_config(path_to_file : str, 
                          output_path : str,
-                         save_path) -> None: 
+                         save_path : str) -> None: 
     """Modifies Cromwell's output configuraton .json
     required for specification of the output directory"""
     
@@ -92,7 +92,7 @@ def modify_output_config(path_to_file : str,
     output_params["final_workflow_outputs_dir"] = output_path
     
     # save new config in the output path
-    out_config_path = os.path.join(output_path, "output_config.json") 
+    out_config_path = os.path.join(save_path, "output_config.json") 
     with open(out_config_path, "w") as f: 
         json.dump(output_params, f, indent=4, sort_keys=True, ensure_ascii=False)
     

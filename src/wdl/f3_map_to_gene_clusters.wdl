@@ -11,7 +11,7 @@ workflow map_to_gene_clusters {
     }
     
     scatter (info in sampleInfo) {
-    call map_to_gene_clusters_kma {
+    call map_to_gene_clusters_paired {
         input:
         fileR1=info.file_r1,
         fileR2=info.file_r2,
