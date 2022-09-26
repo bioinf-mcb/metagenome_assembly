@@ -66,7 +66,7 @@ for path in paths.keys():
     paths[path] = os.path.abspath(os.path.join(script_dir, paths[path]))
 
 # modifying config to change output folder
-paths["output_config_path"] = modify_output_config(paths["output_config_path"], args["output_folder"])
+paths["output_config_path"] = modify_output_config(paths["output_config_path"], args["output_folder"], args["system_folder"])
 # modifying config to change number of concurrent jobs and mount dbs
 paths["config_path"] = modify_concurrency_config(paths["config_path"], 
                                                  args["system_folder"],

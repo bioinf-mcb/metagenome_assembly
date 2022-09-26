@@ -80,7 +80,8 @@ def read_json_config(config_file: str) -> dict:
     
 
 def modify_output_config(path_to_file : str, 
-                         output_path : str) -> None: 
+                         output_path : str,
+                         save_path) -> None: 
     """Modifies Cromwell's output configuraton .json
     required for specification of the output directory"""
     
@@ -185,6 +186,7 @@ def filter_list_of_terms(key_terms, list_of_terms):
 
 
 def read_evaluate_log(log_path):
+    """ Reads the Cromwell log and checks wherher the workflow was successful or not"""
     with open(log_path, "r") as f:
         log = f.read()
     if "workflow finished with status 'Succeeded'" in log:

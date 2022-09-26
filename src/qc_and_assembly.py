@@ -67,17 +67,20 @@ if not bowtie2_folder:
     bowtie2_folder = download_grch(config["grch38_url"], args["bowtie2_index"])
     bowtie2_folder = find_database_index(bowtie2_folder, config["bowtie2_index_formats"])
 
-# getting sorted lists of forward and reverse reads from a folder
-sequencing_files = filter_list_of_terms(config["read_extensions"], os.listdir(args["study_path"]))
-split_character = infer_split_character(sequencing_files[0])
-base_names = [id.split(split_character)[0] for id in sequencing_files]
+
 
 ## TODO modify template to include all arguments
-# template
+
+# load input template
 template_dir = os.path.abspath(os.path.join(script_dir, "json_templates"))
 template_path = os.path.join(template_dir, "qc_and_assemble.json")
 with open(template_path) as f:
     template = json.loads(f.read())
+
+# getting sorted lists of forward and reverse reads from a folder
+sequencing_files = filter_list_of_terms(config["read_extensions"], os.listdir(args["study_path"]))
+split_character = infer_split_character(sequencing_files[0])
+base_names = [id.split(split_character)[0] for id in sequencing_files]
 
 # find all read files in a folder and prepare them for processing
 for base in set(base_names):
@@ -118,7 +121,7 @@ for path in paths.keys():
     paths[path] = os.path.abspath(os.path.join(script_dir, paths[path]))
 
 
-paths["output_config_path"] = modify_output_config(paths["output_config_path"], args["output_folder"])
+paths["output_config_path"] = modify_output_config(paths["output_config_path"], args["output_folder"], args["system_folder"])
 paths["config_path"] = modify_concurrency_config(paths["config_path"], 
                                                  args["system_folder"], 
                                                  args["concurrent_jobs"], 
