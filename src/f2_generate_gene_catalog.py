@@ -80,3 +80,8 @@ cmd = """java -Dconfig.file={0} -jar {1} run {2} -o {3} -i {4} > {5}""".format(*
 os.system(cmd)
 
 read_evaluate_log(log_path)
+
+# rename output folder
+glob_name = [file for file in os.listdir(args["output_folder"]) if file.startswith("glob")][0]
+os.rename(os.path.join(args["output_folder"], glob_name), os.path.join(args["output_folder"], "gene_catalogue_split"))
+    
