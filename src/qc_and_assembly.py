@@ -56,12 +56,12 @@ parser.add_argument('-bt2_index','--bowtie2_index', help='Path to a diretory wit
                                                         'required index GRCh38 database would be downloaded for' 
                                                         'decontamination of samples from human DNA.', required=True)
 
-args = vars(parser.parse_args())
-
+# reading config file 
 script_dir = os.path.dirname(__file__)
 config = read_json_config(os.path.join(script_dir, "config.json"))
-
+# parsing arguments
 args = parse_args(args)
+# checking if input directory exists
 check_path_dir(args["study_path"])
 
 bowtie2_folder = find_database_index(args["bowtie2_index"], config["bowtie2_index_formats"])
@@ -81,6 +81,7 @@ template_path = os.path.join(template_dir, "qc_and_assemble.json")
 with open(template_path) as f:
     template = json.loads(f.read())
 
+# find all read files in a folder and prepare them for processing
 for base in set(base_names):
     r1 = [id for id in sequencing_files if re.search(base+split_character+"1", id)]
     r2 = [id for id in sequencing_files if re.search(base+split_character+"2", id)]
@@ -119,9 +120,11 @@ for path in paths.keys():
     paths[path] = os.path.abspath(os.path.join(script_dir, paths[path]))
 
 
-paths["output_config_path"] = modify_output_config(paths["output_config_path"], args["output_folder"])
-paths["config_path"] = modify_concurrency_config(paths["config_path"], args["system_path"], 
-                                                args["concurrent_jobs"], os.path.abspath(bowtie2_folder))
+paths["output_config_path"] = modify_output_config(paths["output_config_path"], args["system_folder"])
+paths["config_path"] = modify_concurrency_config(paths["config_path"], 
+                                                 args["system_path"], 
+                                                 args["concurrent_jobs"], 
+                                                 os.path.abspath(bowtie2_folder))
 
 cmd = """java -Dconfig.file={0} -jar {1} run {2} -o {3} -i {4} > {5}""".format(*paths.values(), inputs_path, log_path)
 os.system(cmd)

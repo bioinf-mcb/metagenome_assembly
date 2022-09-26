@@ -1,7 +1,9 @@
 import os 
 import json 
 import sys
+
 from _utils import (
+    read_json_config,
     modify_output_config,
     modify_concurrency_config
 )
@@ -19,6 +21,9 @@ parser.add_argument('-s','--suffix', help='Suffix of the filename to be identifi
 parser.add_argument('-t','--threads', help='Number of threads to use for clustering', 
                     type=int, default=1, required=False)
 
+# reading config file 
+script_dir = os.path.dirname(__file__)
+config = read_json_config(os.path.join(script_dir, "config.json"))
 
 args = vars(parser.parse_args())
 
@@ -28,8 +33,6 @@ filename_suffix = args["suffix"]
 
 # load json template
 script_dir = os.path.dirname(__file__)
-
-# template
 template_dir = os.path.abspath(os.path.join(script_dir, "json_templates"))
 template_path = os.path.join(template_dir, "gene_catalogue.json")
 with open(template_path) as f:
@@ -51,10 +54,10 @@ with open(inputs_path, 'w') as f:
 script_dir = os.path.dirname(__file__)
 
 paths = {
-    "config_dir" : "./cromwell_configs/kneaddata.conf", 
-    "cromwell_dir" : "../cromwell/cromwell-80.jar", 
-    "wdl_dir" : "./wdl/f2_generate_gene_catalog.wdl",
-    "output_dir" : "json_templates/output_options.json"
+    "config_path" : config["db_mount_config"], 
+    "cromwell_path" : config["cromwell_path"], 
+    "wdl_path" : config["wdls"]["qc_and_assemble"],
+    "output_config_path" : config["output_config_path"]
 }
 
 # creating absolute paths

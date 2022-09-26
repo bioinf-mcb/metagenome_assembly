@@ -9,7 +9,7 @@
         ".rev.2.bt2",
         ".rev.1.bt2l"
     ],
-    "cromwell_path": "/storage/TomaszLab/vbez/metagenomic_gmhi/metagenomome_assembly/tests/cromwell/cromwell-84.jar",
+    "cromwell_path": "/storage/TomaszLab/vbez/metagenomic_gmhi/metagenomome_assembly/cromwell/cromwell-84.jar",
     "db_mount_config": "./mount.conf",
     "grch38_url": "https://genome-idx.s3.amazonaws.com/bt/GRCh38_noalt_as.zip",
     "gtdbtk_db_version": "release207",
@@ -22,6 +22,7 @@
         ".fq.gz"
     ],
     "wdls": {
-        "qc_and_assemble": "./wdl/qc_and_assemble.wdl"
+        "qc_and_assemble": "./wdl/qc_and_assemble.wdl",
+        "f1_predict_genes": "./wdl/f1_predict_genes.wdl"
     }
 }
