@@ -81,6 +81,8 @@ log_path = os.path.join(args["system_path"], "log.txt")
 # pass everything to a shell command
 os.system("""java -Dconfig.file={0} -jar {1} run {2} -o {3} -i {4} > {5}""".format(*paths.values(), inputs_path, log_path))
 
+with open(log_path) as f:
+    log = f.read()
 if "workflow finished with status 'Succeeded'" in log:
     console.log("Workflow finished successfully", style="green")
 else:
