@@ -1,4 +1,4 @@
-# Metagenome_assembly
+# Metagenomic assembly
 WDL Workflow for metagenome assembly:
 ![metagenomics-pipeline drawio](https://raw.githubusercontent.com/crusher083/metagenome_assembly/master/metagenomics-pipeline.drawio.png)
 Python script to generate a mapping between non-redundant gene catalogue and MAGS
