@@ -23,6 +23,7 @@
     ],
     "wdls": {
         "qc_and_assemble": "./wdl/qc_and_assemble.wdl",
-        "f1_predict_genes": "./wdl/f1_predict_genes.wdl"
+        "f1_predict_genes": "./wdl/f1_predict_genes.wdl",
+        "f2_generate_gene_catalog": "./wdl/f2_generate_gene_catalog.wdl"
     }
 }

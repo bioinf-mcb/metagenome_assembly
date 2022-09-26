@@ -176,14 +176,16 @@ def infer_split_character(base_name):
         
     return split_character
 
+
 def filter_list_of_terms(key_terms, list_of_terms):
     """
     Filter a list of terms based on a list of key terms.
     """
     return [term for term in list_of_terms if any(key_term in term for key_term in key_terms)]
 
+
 def read_evaluate_log(log_path):
-    with open(log, "r") as f:
+    with open(log_path, "r") as f:
         log = f.read()
     if "workflow finished with status 'Succeeded'" in log:
         console.log("Workflow finished successfully", style="green")
