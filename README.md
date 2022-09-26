@@ -71,7 +71,24 @@ This step will perform gene recognition using `Prodigal`.
 # Process the data
 python src/f1_predict_genes.py -i INPUT_FOLDER -o OUTPUT_FOLDER -c 3 -s .min.500.contigs.fa
 ```
-
+#### F2 - Gene clustering 
+This step will cluster genes using `CD-HIT` and sequence similarity threshold.
+- Requirements
+   - `input_folder` - path to directory with predicted nucleotide sequences of genes (`OUTPUT_FOLDER/*.fna` of previous step)
+   - `output_folder` - path to a directory where the results will be saved.
+- Optional arguments
+   - `threads` - number of threads. (default: 1)
+   - `suffix` - suffix, that helps to identify contigs and preserve consistent filenames (default: `.fna`)
+- Output
+   - `gene_catalogue_split` - gene cataloge split in chunks of 10,000 sequences for further analysis.
+   - `combined_genepredictions.sorted.fna` - combined predictions of complete genes sorted by length.
+   - `nr.fa` - full gene catalogue.
+   - `nr.fa.clstr` - clustered genes.
+   - `kma_db.tar.gz` - KMA database - required for quantification of gene copies in bacterial genomes (next step).  
+```sh
+# Process the data
+python src/f2_generate_gene_catalogue.py -i INPUT_FOLDER -o OUTPUT_FOLDER -t 16 -s .fna
+```
 ## Outputs
 This pipeline will produce a number of directories and files
 * assemble; contains assembled contigs

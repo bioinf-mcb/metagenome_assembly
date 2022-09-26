@@ -3,7 +3,9 @@ import json
 import sys
 from _utils import (
     modify_output_config,
-    modify_concurrency_config
+    modify_concurrency_config,
+    create_directory,
+    read_evaluate_log
 )
 
 import argparse
@@ -12,9 +14,9 @@ import argparse
 parser = argparse.ArgumentParser(description='Qunatify gene abundance mapping genes from catalog to a reference genomes using KMA.', 
                                  formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
-parser.add_argument('-i','--input', help='The directory with reads in fastq.gz format.', required=True)
+parser.add_argument('-i','--input_folder', help='The directory with reads in fastq.gz format.', required=True)
 parser.add_argument('-db','--database', help='Path to KMA database from previous step.', required=True)
-parser.add_argument('-o','--output_dir', help='The directory for the output', required=True)
+parser.add_argument('-o','--output_folder', help='The directory for the output', required=True)
 parser.add_argument('-s1','--suffix1', help='Suffix of the first of the paired reads', 
                     type=str, default="_paired_1.fastq.gz", required=False)
 parser.add_argument('-s2','--suffix2', help='Suffix of the second of the paired reads', 
@@ -25,8 +27,8 @@ parser.add_argument('-t','--threads', help='Number of threads to use for cluster
 
 args = vars(parser.parse_args())
 
-reads_path = args["input"]
-output_path = args["output_dir"]
+reads_path = args["input_folder"]
+output_path = args["output_folder"]
 suffix1, suffix2 = args["suffix1"], args["suffix2"]
 
 # load json template
@@ -51,7 +53,7 @@ template["map_to_gene_clusters.kma_db_file"] = args["database"]
 template["map_to_gene_clusters.sample_suffix"] = suffix1
 
 # writing input json
-os.makedirs(output_path, exist_ok=True)
+create_directory(args["output_folder"])
 inputs_path = os.path.join(output_path, 'input_map_to_gene_clusters.json')
 
 with open(inputs_path, 'w') as f:
@@ -61,10 +63,10 @@ with open(inputs_path, 'w') as f:
 script_dir = os.path.dirname(__file__)
 
 paths = {
-    "config_dir" : "./cromwell_configs/kneaddata.conf", 
-    "cromwell_dir" : "../cromwell/cromwell-80.jar", 
-    "wdl_dir" : "./wdl/f3_map_to_gene_clusters.wdl",
-    "output_dir" : "json_templates/output_options.json"
+    "config_path" : config["db_mount_config"], 
+    "cromwell_path" : config["cromwell_path"], 
+    "wdl_path" : config["wdls"]["f3_map_to_gene_clusters"],
+    "output_config_path" : config["output_config_path"]
 }
 
 # creating absolute paths
@@ -76,3 +78,5 @@ paths["output_dir"] = modify_output_config(paths["output_dir"], output_path)
 log_path = os.path.join(output_path, "log.txt")
 # pass everything to a shell command
 os.system("""java -Dconfig.file={0} -jar {1} run {2} -o {3} -i {4} > {5}""".format(*paths.values(), inputs_path, log_path))
+
+read_evaluate_log(log_path)
