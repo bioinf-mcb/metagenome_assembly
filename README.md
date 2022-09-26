@@ -23,7 +23,7 @@ The wrapper scripts in Python (located in `src`) will prepare files and send the
  - `conda` for building the environment 
  - Python 
 
-## Running the pipeline
+## 1. Installation
 ### 1. Clone the repository
  - `git clone www.github.com/crusher083/metagenome_assembly`
 ### 2. Create a conda environment
@@ -31,24 +31,42 @@ The wrapper scripts in Python (located in `src`) will prepare files and send the
 ### 3. Install Cromwell  
 Use the `setup_cromwell.py` script to download and install it.
     - `python src/setup_cromwell.py --save_path SAVE_PATH`
-### 4. Quality control and assembly 
+## 2. Run the pipeline!
+### 1. Quality control and assembly 
+This step will perform quality control of your reads with `Kneaddata` and assemble quality-controlled reads into contigs using `MegaHIT`.
+
  - Requirements
    - `input_folder` - path to directory with paired shotgun sequencing files (fastq.gz, fastq, fq.gz, fq formats)
    - `bt2_index` - path to a directory with a Bowite2 index. In case the folder doesn't contain an index, the user would be proposed to download GRCh38 index used for decontamination of metagenomic samples from human DNA.
-    - `output_folder` - path to a directory where the results will be saved
+    - `output_folder` - path to a directory where the results will be saved.
  - Optional arguments
-   - `threads` - number of threads to use (default: 1)
-   - `concurrent_jobs` - number of concurrent jobs to run (default: 1)
+   - `threads` - number of threads to use. (default: 1)
+   - `concurrent_jobs` - number of concurrent jobs to run. (default: 1)
  - Output
-   - quality controlled .fastq.gz files
-   - assembled contigs in `OUTPUT_DIR/assemble`
-   - count table with read counts per sample
+   - quality controlled .fastq.gz files in `OUTPUT_FOLDER`
+   - assembled contigs in `OUTPUT_FOLDER/assemble`
+   - count table with read counts per sample `OUTPUT_FOLDER/kneaddata_count_table.tsv`
+   - files needed for correct `Cromwell` run in `OUTPUT_FOLDER/system`
  ```sh
  # Process the data
  python src/qc_and_assemble.py -i input_folder -o OUTPUT_DIR -t 8 -c 3 -bt2_index ./GRCh38_bt2
  ```
 
-### 5. (...)
+### Then pipeline forks into two branches - taxonomical and functional 
+
+### F - Functional annotation
+#### F1 - Gene prediction
+This step will perform gene recognition using `Prodigal`.
+- Requirements
+   - `input_folder` - path to directory with assembled contigs (located in `OUTPUT_FOLDER/assemble` of previous step)
+   - `output_folder` - path to a directory where the results will be saved.
+- Optional arguments
+   - `concurrent_jobs` - number of concurrent jobs to run. (default: 1)
+   - `suffix` - suffix, that helps to identify contigs and preserve consistent filenames (default: `.min500.contigs.fa`)
+- Output
+   - `SAMPLE_NAME.gff` - feature table in Genbank table
+   - `SAMPLE_NAME.fna` - nucleotide sequences for genes in FASTA
+   - `SAMPLE_NAME.faa` - protein translations for genes in FASTA
 
 ## Outputs
 This pipeline will produce a number of directories and files
