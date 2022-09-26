@@ -4,6 +4,9 @@ import re
 import json
 import glob
 
+from rich.console import Console
+console = Console()
+
 import logging
 logging.basicConfig(level=logging.DEBUG)
 
@@ -179,6 +182,11 @@ def filter_list_of_terms(key_terms, list_of_terms):
     """
     return [term for term in list_of_terms if any(key_term in term for key_term in key_terms)]
 
-    
-    
+def read_evaluate_log(log_path):
+    with open(log, "r") as f:
+        log = f.read()
+    if "workflow finished with status 'Succeeded'" in log:
+        console.log("Workflow finished successfully", style="green")
+    else:
+        console.log("Workflow failed, check the log file", style="red")
     

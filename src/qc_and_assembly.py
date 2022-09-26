@@ -2,9 +2,6 @@ import os
 import json 
 import re
 
-from rich.console import Console
-console = Console()
-
 from _utils import (
     read_json_config,
     check_path_dir,
@@ -15,7 +12,8 @@ from _utils import (
     create_directory,
     find_database_index,
     infer_split_character, 
-    filter_list_of_terms
+    filter_list_of_terms,
+    read_evaluate_log
 )
 
 import logging
@@ -129,13 +127,8 @@ paths["config_path"] = modify_concurrency_config(paths["config_path"],
 cmd = """java -Dconfig.file={0} -jar {1} run {2} -o {3} -i {4} > {5}""".format(*paths.values(), inputs_path, log_path)
 os.system(cmd)
 
-with open(log_path) as f:
-    log = f.read()
-
-if "workflow finished with status 'Succeeded'" in log:
-    console.log("Workflow finished successfully", style="green")
-else:
-    console.log("Workflow failed, check the log file", style="red")
+# checking if the job was succesful
+read_evaluate_log(log_path)
 
 
 
