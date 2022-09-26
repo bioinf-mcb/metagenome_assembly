@@ -36,7 +36,7 @@ Use the `setup_cromwell.py` script to download and install it.
 This step will perform quality control of your reads with `Kneaddata` and assemble quality-controlled reads into contigs using `MegaHIT`.
 
  - Requirements
-   - `input_folder` - path to directory with paired shotgun sequencing files (fastq.gz, fastq, fq.gz, fq formats)
+   - `input_folder` - path to directory with paired shotgun sequencing files. (fastq.gz, fastq, fq.gz, fq formats)
    - `bt2_index` - path to a directory with a Bowite2 index. In case the folder doesn't contain an index, the user would be proposed to download GRCh38 index used for decontamination of metagenomic samples from human DNA.
     - `output_folder` - path to a directory where the results will be saved.
  - Optional arguments
@@ -44,9 +44,9 @@ This step will perform quality control of your reads with `Kneaddata` and assemb
    - `concurrent_jobs` - number of concurrent jobs to run. (default: 1)
  - Output
    - quality controlled .fastq.gz files in `OUTPUT_FOLDER`
-   - assembled contigs in `OUTPUT_FOLDER/assemble`
-   - count table with read counts per sample `OUTPUT_FOLDER/kneaddata_count_table.tsv`
-   - files needed for correct `Cromwell` run in `OUTPUT_FOLDER/system`
+   - assembled contigs in `OUTPUT_FOLDER/assemble`.
+   - count table with read counts per sample `OUTPUT_FOLDER/kneaddata_count_table.tsv`.
+
  ```sh
  # Process the data
  python src/qc_and_assemble.py -i input_folder -o OUTPUT_DIR -t 8 -c 3 -bt2_index ./GRCh38_bt2
@@ -58,15 +58,15 @@ This step will perform quality control of your reads with `Kneaddata` and assemb
 #### F1 - Gene prediction
 This step will perform gene recognition using `Prodigal`.
 - Requirements
-   - `input_folder` - path to directory with assembled contigs (located in `OUTPUT_FOLDER/assemble` of previous step)
+   - `input_folder` - path to directory with assembled contigs (located in `OUTPUT_FOLDER/assemble` of previous step).
    - `output_folder` - path to a directory where the results will be saved.
 - Optional arguments
    - `concurrent_jobs` - number of concurrent jobs to run. (default: 1)
-   - `suffix` - suffix, that helps to identify contigs and preserve consistent filenames (default: `.min500.contigs.fa`)
+   - `suffix` - suffix, that helps to identify contigs and preserve consistent filenames. (default: `.min500.contigs.fa`)
 - Output
-   - `SAMPLE_NAME.gff` - feature table in Genbank table
-   - `SAMPLE_NAME.fna` - nucleotide sequences for genes in FASTA
-   - `SAMPLE_NAME.faa` - protein translations for genes in FASTA
+   - `SAMPLE_NAME.gff` - feature table in Genbank table.
+   - `SAMPLE_NAME.fna` - nucleotide sequences for genes in FASTA.
+   - `SAMPLE_NAME.faa` - protein translations for genes in FASTA.
 ```sh
 # Process the data
 python src/f1_predict_genes.py -i INPUT_FOLDER -o OUTPUT_FOLDER -c 3 -s .min.500.contigs.fa
@@ -74,11 +74,11 @@ python src/f1_predict_genes.py -i INPUT_FOLDER -o OUTPUT_FOLDER -c 3 -s .min.500
 #### F2 - Gene clustering 
 This step will cluster genes using `CD-HIT` and sequence similarity threshold.
 - Requirements
-   - `input_folder` - path to directory with predicted nucleotide sequences of genes (`OUTPUT_FOLDER/*.fna` of previous step)
+   - `input_folder` - path to directory with predicted nucleotide sequences of genes (`OUTPUT_FOLDER/*.fna` of previous step).
    - `output_folder` - path to a directory where the results will be saved.
 - Optional arguments
    - `threads` - number of threads. (default: 1)
-   - `suffix` - suffix, that helps to identify contigs and preserve consistent filenames (default: `.fna`)
+   - `suffix` - suffix, that helps to identify contigs and preserve consistent filenames. (default: `.fna`)
 - Output
    - `gene_catalogue_split` - gene cataloge split in chunks of 10,000 sequences for further analysis.
    - `combined_genepredictions.sorted.fna` - combined predictions of complete genes sorted by length.
@@ -89,6 +89,20 @@ This step will cluster genes using `CD-HIT` and sequence similarity threshold.
 # Process the data
 python src/f2_generate_gene_catalogue.py -i INPUT_FOLDER -o OUTPUT_FOLDER -t 16 -s .fna
 ```
+
+#### F3 - Map to gene clusters 
+This step will quantify amount of gene cluster in sequenced reads using `KMA`.
+- Requirements
+   - `input_folder` - path to a directory with quality-controlled reads (from `qc_and_assembly` step).
+   - `database` - path to a KMA database. (from `F2` step) 
+   - `output_folder` - path path to a directory where the results will be saved.
+- Optional arguments
+   - `suffix1` - suffix, that helps to identify forward reads. (default: `_paired_1.fastq.gz`)
+   - `suffix2` - suffix, that helps to identify reverse reads. (default: `_paired_2.fastq.gz`)
+   - `threads` - number of threads. (default: 1)
+- Output
+   - `SAMPLE_NAME.kma.res` - KMA full output.
+   - `SAMPLE_NAME.geneCPM.txt` - table with extracted and normalized gene counts (count per million).
 ## Outputs
 This pipeline will produce a number of directories and files
 * assemble; contains assembled contigs
