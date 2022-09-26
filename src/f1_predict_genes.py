@@ -8,6 +8,9 @@ from _utils import (
     modify_concurrency_config, 
 )
 
+from rich.console import Console
+console = Console()
+
 import argparse
 
 script_dir = os.path.dirname(__file__)
@@ -50,14 +53,9 @@ create_directory(args["system_path"])
 
 # writing input json
 inputs_path = os.path.join(args["system_path"], 'input_predict_genes.json')
-
-log_path = os.path.join(args["system_path"], "log.txt")
-
 with open(inputs_path, 'w') as f:
     json.dump(template, f, indent=4, sort_keys=True, ensure_ascii=False)
 
-    
-script_dir = os.path.dirname(__file__)
 
 paths = {
     "config_path" : config["db_mount_config"], 
@@ -70,10 +68,20 @@ paths = {
 for path in paths.keys():
     paths[path] = os.path.abspath(os.path.join(script_dir, paths[path]))
 
+# modifying config to change output folder
 paths["output_config_path"] = modify_output_config(paths["output_config_path"], args["system_folder"])
+# modifying config to change number of concurrent jobs and mount dbs
 paths["config_path"] = modify_concurrency_config(paths["config_path"], 
                                                  args["system_path"],
                                                  args["concurrent_jobs"])
 
+# creating a log file 
+log_path = os.path.join(args["system_path"], "log.txt")
+
 # pass everything to a shell command
 os.system("""java -Dconfig.file={0} -jar {1} run {2} -o {3} -i {4} > {5}""".format(*paths.values(), inputs_path, log_path))
+
+if "workflow finished with status 'Succeeded'" in log:
+    console.log("Workflow finished successfully", style="green")
+else:
+    console.log("Workflow failed, check the log file", style="red")

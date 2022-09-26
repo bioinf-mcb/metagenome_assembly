@@ -24,7 +24,6 @@ logging.basicConfig(level=logging.DEBUG)
 import argparse
 
 ## TODO test for single end reads
-# check if provided path is a dir 
 
 def parse_args(args):
     args["study_path"] = os.path.abspath(args["input_folder"])

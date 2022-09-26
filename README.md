@@ -67,11 +67,15 @@ This step will perform gene recognition using `Prodigal`.
    - `SAMPLE_NAME.gff` - feature table in Genbank table
    - `SAMPLE_NAME.fna` - nucleotide sequences for genes in FASTA
    - `SAMPLE_NAME.faa` - protein translations for genes in FASTA
+```sh
+# Process the data
+python src/qc_and_assemble.py -i INPUT_FOLDER -o OUTPUT_FOLDER -c 3 -s .min.500.contigs.fa
+```
 
 ## Outputs
 This pipeline will produce a number of directories and files
 * assemble; contains assembled contigs
-* predictgenes; gene coordinates file (GFF), protein translations and nucleotide sequences in fasta format
+* predictgenes; gene coordinates file (GFF), protein translations and nucleotide sequences in FASTA format
 * metabat2; binned contigs and a summary report
 * CheckM; genome assessment summary report
 * gtdbtk; taxonomic classification summary file
