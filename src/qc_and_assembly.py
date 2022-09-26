@@ -59,6 +59,7 @@ parser.add_argument('-bt2_index','--bowtie2_index', help='Path to a diretory wit
 script_dir = os.path.dirname(__file__)
 config = read_json_config(os.path.join(script_dir, "config.json"))
 # parsing arguments
+args = vars(parser.parse_args())
 args = parse_args(args)
 # checking if input directory exists
 check_path_dir(args["study_path"])
