@@ -69,7 +69,7 @@ This step will perform gene recognition using `Prodigal`.
    - `SAMPLE_NAME.faa` - protein translations for genes in FASTA
 ```sh
 # Process the data
-python src/qc_and_assemble.py -i INPUT_FOLDER -o OUTPUT_FOLDER -c 3 -s .min.500.contigs.fa
+python src/f1_predict_genes.py -i INPUT_FOLDER -o OUTPUT_FOLDER -c 3 -s .min.500.contigs.fa
 ```
 
 ## Outputs
