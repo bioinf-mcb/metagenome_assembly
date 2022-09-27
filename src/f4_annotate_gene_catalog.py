@@ -16,6 +16,7 @@ parser = argparse.ArgumentParser(description='Qunatify gene abundance mapping ge
                                  formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
 parser.add_argument('-i','--input_folder', help='The directory with gene catalog split into chunks', required=True)
+parser.add_argument('-db','--eggnog_database', help='Path to a diretory with eggNOG-mapper database', required=True)
 parser.add_argument('-o','--output_folder', help='The directory for the output', required=True)
 parser.add_argument('-s','--suffix', help='Suffix for the gene catalog chunks', 
                     type=str, default=".fa", required=False)
@@ -23,7 +24,7 @@ parser.add_argument('-t','--threads', help='Number of threads to use for cluster
                     type=int, default=1, required=False)
 parser.add_argument('-c','--concurrent_jobs', help='Number of jobs to run in parallel. Careful, DeepFRI requires around 55GB of RAM per job.', 
                     type=int, default=1, required=False)
-parser.add_argument('-db','--eggnog_database', help='Path to a diretory with eggNOG-mapper database', required=True)
+
 
 
 args = vars(parser.parse_args())

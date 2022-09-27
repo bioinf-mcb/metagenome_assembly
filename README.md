@@ -111,12 +111,13 @@ This step will provide functional annotation of gene clusters from both `eggNOG-
    - `eggnog_database` - path to a `eggNOG-mapper` database.  
    - `output_folder` - path path to a directory where the results will be saved.
 - Optional arguments
-   - `suffix1` - suffix, that helps to identify forward reads. (default: `_paired_1.fastq.gz`)
-   - `suffix2` - suffix, that helps to identify reverse reads. (default: `_paired_2.fastq.gz`)
+   - `suffix` - suffix, that helps to gene catalog chunks. (default: `.fa`)
    - `threads` - number of threads. (default: 1)
+   - `concurrent_jobs` - number of jobs to run in parallel. Single `DeepFRI` run requires 55GB of RAM, too many jobs may result in out-of-memory error.
 - Output
-   - `SAMPLE_NAME.kma.res` - KMA full output.
-   - `SAMPLE_NAME.geneCPM.txt` - table with extracted and normalized gene counts (count per million).
+   - `deepfri_annotations.csv` - `DeepFRI` functional annotation for a gene catalog.
+   - `nr-eggnog.emapper.annotations` - `eggNOG-mapper` functional annotation for a gene catalog.
+   - `nr-eggnog.emapper.seed_orthologs`- a file with the results from parsing the hits. Each row links a query with a seed ortholog. 
 
 ## Outputs
 This pipeline will produce a number of directories and files
