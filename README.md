@@ -54,6 +54,9 @@ This step will perform quality control of your reads with `Kneaddata` and assemb
 
 ### Then pipeline forks into two branches - taxonomical and functional 
 
+### T - Taxonomical annotation 
+These steps will bin contigs using `MetaBAT2`, check bins for quality and contamination using `CheckM` and assign taxonomical classification for MAGs using `GTDB`.
+
 ### F - Functional annotation
 #### F1 - Gene prediction
 This step will perform gene recognition using `Prodigal`.
