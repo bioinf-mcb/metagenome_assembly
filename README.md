@@ -87,7 +87,7 @@ This step will cluster genes using `CD-HIT` and sequence similarity threshold.
    - `kma_db.tar.gz` - KMA database - required for quantification of gene copies in bacterial genomes (next step).  
 ```sh
 # Process the data
-python src/f2_generate_gene_catalogue.py -i INPUT_FOLDER -o OUTPUT_FOLDER -t 16 -s .fna
+python src/f2_generate_gene_catalog.py -i INPUT_FOLDER -o OUTPUT_FOLDER -t 16 -s .fna
 ```
 
 #### F3 - Map to gene clusters 
