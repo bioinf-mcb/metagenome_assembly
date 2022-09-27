@@ -67,8 +67,7 @@ if not bowtie2_folder:
     bowtie2_folder = download_grch(config["grch38_url"], args["bowtie2_index"])
     bowtie2_folder = find_database_index(bowtie2_folder, config["bowtie2_index_formats"])
 
-
-
+    
 ## TODO modify template to include all arguments
 
 # load input template

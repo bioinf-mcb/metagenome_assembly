@@ -101,19 +101,29 @@ def modify_output_config(path_to_file : str,
 def modify_concurrency_config(path_to_file : str, 
                               output_path : str, 
                               n_jobs: int, 
-                              bt2_path: str=None) -> None: 
-    """Modifies Cromwell's config configuraton .json
-    required running multiple jobs in parallel"""
+                              bt2_path: str=None,
+                              gtdbtk_path: str=None,
+                              eggnog_path: str=None) -> None: 
+    """Modifies Cromwell's config mount.json required for mounting databases from filesystem 
+    and running multiple jobs in parallel"""
     
     # read initial file 
     with open(path_to_file, "r") as f: 
         config = f.read()
         
     config = config.replace("concurrent-job-limit = 8", f"concurrent-job-limit = {n_jobs}")
+    
     if bt2_path is not None: 
         config = config.replace("bt2_index_path", 
                                 f"{bt2_path}")
-    out_config_path = os.path.join(output_path, "concurrency_config.conf") 
+    elif gtdbtk_path is not None: 
+        config = config.replace("gtdbtk_data_path", 
+                                f"{gtdbtk_path}")
+    elif eggnog_path is not None: 
+        config = config.replace("eggnog_data_path", 
+                                f"{eggnog_path}")
+
+    out_config_path = os.path.join(output_path, "mount.conf") 
     with open(out_config_path, "w") as f:   
         f.write(config)
         

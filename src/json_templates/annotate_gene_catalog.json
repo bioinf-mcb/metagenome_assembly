@@ -1,0 +1,5 @@
+{
+  "annotate_gene_catalog.thread_num": "Int (optional, default = 4)",
+  "annotate_gene_catalog.gene_clusters_split": "Array[File]"
+}
+

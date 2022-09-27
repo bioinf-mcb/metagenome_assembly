@@ -1,9 +1,9 @@
 version 1.0
 
-workflow annotate_gene_catalogue {
+workflow annotate_gene_catalog {
     input{
         Array[File] gene_clusters_split
-        Int num_threads = 4 
+        Int thread_num = 4 
     }
     
     scatter (gene_shard in gene_clusters_split) {
@@ -11,7 +11,7 @@ workflow annotate_gene_catalogue {
         call annotate_eggnog {
             input:
             gene_catalogue=gene_shard,
-            eggnog_threads=num_threads
+            eggnog_threads=thread_num
         }
 
         call annotate_deepfri {
