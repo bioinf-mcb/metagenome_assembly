@@ -44,6 +44,7 @@ task cluster_genes {
         File combined_genepredictions = "combined_genepredictions.sorted.fna" 
         File nrFa = "nr.fa"
         File nrClusters = "nr.fa.clstr"
+        Array[File] nr_split = glob("nr_*.fa")
     }
 
     runtime {

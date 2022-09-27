@@ -83,5 +83,5 @@ read_evaluate_log(log_path)
 
 # rename output folder
 glob_name = [file for file in os.listdir(args["output_folder"]) if file.startswith("glob")][0]
-os.rename(os.path.join(args["output_folder"], glob_name), os.path.join(args["output_folder"], "gene_catalogue_split"))
+os.rename(os.path.join(args["output_folder"], glob_name), os.path.join(args["output_folder"], "gene_catalog_split"))
     

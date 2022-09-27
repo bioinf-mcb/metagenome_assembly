@@ -94,7 +94,7 @@ python src/f2_generate_gene_catalogue.py -i INPUT_FOLDER -o OUTPUT_FOLDER -t 16 
 This step will quantify amount of gene cluster in sequenced reads using `KMA`.
 - Requirements
    - `input_folder` - path to a directory with quality-controlled reads (from `qc_and_assembly` step).
-   - `database` - path to a KMA database. (from `F2` step) 
+   - `database` - path to a KMA database. (from `F2 - Gene clustering` step) 
    - `output_folder` - path path to a directory where the results will be saved.
 - Optional arguments
    - `suffix1` - suffix, that helps to identify forward reads. (default: `_paired_1.fastq.gz`)
@@ -103,6 +103,21 @@ This step will quantify amount of gene cluster in sequenced reads using `KMA`.
 - Output
    - `SAMPLE_NAME.kma.res` - KMA full output.
    - `SAMPLE_NAME.geneCPM.txt` - table with extracted and normalized gene counts (count per million).
+
+#### F4 - Annotate gene catalog
+This step will provide functional annotation of gene clusters from both `eggNOG-mapper` and `DeepFRI`.
+- Requirements
+   - `input_folder` - path to a directory with gene catalog split into chunks of 10,000 reads (from `F2 - gene clustering` step).
+   - `eggnog_database` - path to a `eggNOG-mapper` database.  
+   - `output_folder` - path path to a directory where the results will be saved.
+- Optional arguments
+   - `suffix1` - suffix, that helps to identify forward reads. (default: `_paired_1.fastq.gz`)
+   - `suffix2` - suffix, that helps to identify reverse reads. (default: `_paired_2.fastq.gz`)
+   - `threads` - number of threads. (default: 1)
+- Output
+   - `SAMPLE_NAME.kma.res` - KMA full output.
+   - `SAMPLE_NAME.geneCPM.txt` - table with extracted and normalized gene counts (count per million).
+
 ## Outputs
 This pipeline will produce a number of directories and files
 * assemble; contains assembled contigs
