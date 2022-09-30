@@ -77,7 +77,7 @@ with open(template_path) as f:
     template = json.loads(f.read())
 
 # getting sorted lists of forward and reverse reads from a folder
-sequencing_files = filter_list_of_terms(config["read_extensions"], os.listdir(args["study_path"]))
+sequencing_files = filter_list_of_terms(config["read_extensions"], os.listdir(args["study_folder"]))
 split_character = infer_split_character(sequencing_files[0])
 base_names = [id.split(split_character)[0] for id in sequencing_files]
 
