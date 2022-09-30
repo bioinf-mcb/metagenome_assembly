@@ -35,6 +35,7 @@
         "f3_map_to_gene_clusters": "./wdl/f3_map_to_gene_clusters.wdl",
         "f4_annotate_gene_catalog" : "./wdl/f4_annotate_gene_catalog.wdl"
     },
+    "_eggnog_comment" : "Attention to version compatibility in eggnog-mapper and db. See https://github.com/eggnogdb/eggnog-mapper/commits/fc4f5f6d78062daec38f3b4c0cbf6c3aeb5deac1/eggnogmapper/version.py",
     "eggnog_version": "2.1.6",
     "eggnog_db_version": "5.0.2",
     "eggnog_base_url":"http://eggnogdb.embl.de/download/emapperdb-",
