@@ -1,7 +1,5 @@
 import os
 import re
-from telnetlib import OLD_ENVIRON
-from tkinter import N
 
 from urllib.parse import urljoin
 import requests

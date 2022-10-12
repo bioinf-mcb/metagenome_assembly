@@ -1,6 +1,6 @@
 import os 
 import json 
-import sys
+
 from _utils import (
     create_directory,
     read_json_config,
@@ -27,8 +27,8 @@ parser.add_argument('-c','--concurrent_jobs', help='Number of jobs to run in par
 
 args = vars(parser.parse_args())
 
-study_path = args["input_folder"]
-args["system_folder"] = os.path.join(args["output_folder"], "system")
+
+system_folder = os.path.join(args["output_folder"], "system")
 
 # load json template
 script_dir = os.path.dirname(__file__)
@@ -40,16 +40,16 @@ with open(template_path) as f:
     template = json.loads(f.read())
     
 # collect files from dir
-files =  [os.path.join(study_path, file) for file in sorted(os.listdir(study_path)) if file.endswith(args["suffix"])]
+files =  [os.path.join(args["input_folder"], file) for file in sorted(os.listdir(args["input_folder"])) if file.endswith(args["suffix"])]
 template["predict_mags.contigs"] = files
 template["predict_mags.sample_suffix"] = args["suffix"]
 
 # creating output directory
 create_directory(args["output_folder"])
-create_directory(args["system_folder"])
+create_directory(system_folder)
 
 # writing input json
-inputs_path = os.path.join(args["system_folder"], 'input_predict_genes.json')
+inputs_path = os.path.join(system_folder, 'input_predict_genes.json')
 with open(inputs_path, 'w') as f:
     json.dump(template, f, indent=4, sort_keys=True, ensure_ascii=False)
 
@@ -66,14 +66,14 @@ for path in paths.keys():
     paths[path] = os.path.abspath(os.path.join(script_dir, paths[path]))
 
 # modifying config to change output folder
-paths["output_config_path"] = modify_output_config(paths["output_config_path"], args["output_folder"], args["system_folder"])
+paths["output_config_path"] = modify_output_config(paths["output_config_path"], args["output_folder"], system_folder)
 # modifying config to change number of concurrent jobs and mount dbs
 paths["config_path"] = modify_concurrency_config(paths["config_path"], 
-                                                 args["system_folder"],
+                                                 system_folder,
                                                  args["concurrent_jobs"])
 
 # creating a log file 
-log_path = os.path.join(args["system_folder"], "log.txt")
+log_path = os.path.join(system_folder, "log.txt")
 
 # pass everything to a shell command
 cmd = """java -Dconfig.file={0} -jar {1} run {2} -o {3} -i {4} > {5}""".format(*paths.values(), inputs_path, log_path)

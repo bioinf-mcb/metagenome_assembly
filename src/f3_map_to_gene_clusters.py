@@ -1,6 +1,6 @@
 import os 
 import json 
-import sys
+
 from _utils import (
     modify_output_config,
     modify_concurrency_config,
@@ -27,7 +27,7 @@ parser.add_argument('-t','--threads', help='Number of threads to use for cluster
 
 
 args = vars(parser.parse_args())
-args["system_folder"] = os.path.join(args["output_folder"], "system")
+system_folder = os.path.join(args["output_folder"], "system")
 
 script_dir = os.path.dirname(__file__)
 config = read_json_config(os.path.join(script_dir, "config.json"))
@@ -56,10 +56,10 @@ template["map_to_gene_clusters.sample_suffix"] = suffix1
 
 # creating output directory
 create_directory(args["output_folder"])
-create_directory(args["system_folder"])
+create_directory(system_folder)
 
 # writing input json
-inputs_path = os.path.join(args["system_folder"], 'input_map_to_gene_clusters.json')
+inputs_path = os.path.join(system_folder, 'input_map_to_gene_clusters.json')
 
 with open(inputs_path, 'w') as f:
     json.dump(template, f, indent=4, sort_keys=True, ensure_ascii=False)
@@ -78,14 +78,14 @@ for path in paths.keys():
     paths[path] = os.path.abspath(os.path.join(script_dir, paths[path]))
 
 # modifying config to change output folder
-paths["output_config_path"] = modify_output_config(paths["output_config_path"], args["output_folder"], args["system_folder"])
+paths["output_config_path"] = modify_output_config(paths["output_config_path"], args["output_folder"], system_folder)
 # modifying config to change number of concurrent jobs and mount dbs
 paths["config_path"] = modify_concurrency_config(paths["config_path"], 
-                                                 args["system_folder"],
+                                                 system_folder,
                                                  n_jobs=1)
 
 # creating a log file 
-log_path = os.path.join(args["system_folder"], "log.txt")
+log_path = os.path.join(system_folder, "log.txt")
 
 # pass everything to a shell command
 cmd = """java -Dconfig.file={0} -jar {1} run {2} -o {3} -i {4} > {5}""".format(*paths.values(), inputs_path, log_path)
