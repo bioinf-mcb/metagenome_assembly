@@ -11,7 +11,8 @@ from _utils import (
     infer_split_character, 
     filter_list_of_terms,
     read_evaluate_log, 
-    check_or_download_database
+    find_database,
+    download_database
 )
 
 import logging
@@ -61,11 +62,12 @@ args = parse_args(args)
 # checking if input directory exists
 check_path_dir(args["study_folder"])
 
-bowtie2_index = check_or_download_database(args["bowtie2_index"], config["bowtie2_index_extensions"],
-                                           "bowtie2 index", "GRCh38", config["grch38_url"],
-                                           "It will allow to remove human contaminant DNA from samples.",
-                                           )
-    
+bowtie2_index = find_database(args["bowtie2_index"], config["bowtie2_index_extensions"], "bowtie2 index")
+if not bowtie2_index:
+    description = "It will allow to remove human contaminant DNA from samples."
+    bowtie2_folder = download_database(args["bowtie2_index"], config["grch38_url"], "GRCh38", description)
+    bowtie2_index = find_database(bowtie2_folder, config["bowtie2_index_extensions"], "bowtie2_index")
+
 ## TODO modify template to include all arguments
 
 # load input template

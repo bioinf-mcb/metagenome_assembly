@@ -167,7 +167,7 @@ def find_database(database_path, all_extensions, database_name):
     
     return index
 
-def download_database(url, save_dir, database_name, database_description):
+def download_database(save_dir, url, database_name, database_description):
     """
     Download a database from a url to a save directory.
     """
