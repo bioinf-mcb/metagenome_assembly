@@ -58,6 +58,7 @@ def load_fasta_ids(path):
     return fasta_ids
 
 
+# Remove after --tab_table tested
 def load_checkm_files(file, colnames):
     """
     Reads CHECKM txt file and extracts specified columns.

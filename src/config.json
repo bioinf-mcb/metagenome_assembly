@@ -1,6 +1,6 @@
 {
     "_gtdbtk_comment": "Attention to version compatibility in gtdbtk and db. See ecogenomics.github.io",
-    "bowtie2_index_formats": [
+    "bowtie2_index_extensions": [
         ".1.bt2",
         ".2.bt2",
         ".3.bt2",
@@ -39,6 +39,6 @@
     "eggnog_version": "2.1.6",
     "eggnog_db_version": "5.0.2",
     "eggnog_base_url":"http://eggnogdb.embl.de/download/emapperdb-",
-    "eggnog_db" : "/eggnog.db.gz",
-    "eggnog_diamond_db" : "/eggnog_proteins.dmnd.gz"
+    "eggnog_db" : "eggnog.db.gz",
+    "eggnog_diamond_db" : "eggnog_proteins.dmnd.gz"
 }

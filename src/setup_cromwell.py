@@ -81,8 +81,6 @@ def download_cromwell(link: str, cromwell_dir: str) -> str:
     return cromwell_path
 
 
-
-
 def setup_cromwell(url, save_dir):
     
     link = find_link(url)

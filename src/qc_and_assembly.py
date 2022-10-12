@@ -7,13 +7,11 @@ from _utils import (
     check_path_dir,
     modify_output_config,
     modify_concurrency_config,
-    aria2c_download_file,
-    unpack_archive,
     create_directory,
-    find_database_index,
     infer_split_character, 
     filter_list_of_terms,
-    read_evaluate_log
+    read_evaluate_log, 
+    check_or_download_database
 )
 
 import logging
@@ -28,14 +26,15 @@ def parse_args(args):
     args["system_folder"] = os.path.join(args["output_folder"], "system")
     return args
 
-def download_grch(url, destination):
-    logging.info("GRCh38 database will be downloaded.  It will allow to remove human contaminant DNA from samples.")
-    zip_filename = aria2c_download_file(url, destination)
-    zip_filepath = os.path.join(destination, zip_filename)
-    bowtie2_folder = unpack_archive(zip_filepath, destination)
-    message = "Downloaded GRCh38."
-    logging.info(message)
-    return bowtie2_folder
+# def download_grch(url, destination):
+#     message = "GRCh38 database will be downloaded.  It will allow to remove human contaminant DNA from samples."
+#     logging.info(message)
+#     zip_filename = aria2c_download_file(url, destination)
+#     zip_filepath = os.path.join(destination, zip_filename)
+#     bowtie2_folder = unpack_archive(zip_filepath, destination)
+#     message = "Downloaded GRCh38."
+#     logging.info(message)
+#     return bowtie2_folder
 
 parser = argparse.ArgumentParser(description='Quality control and assembly of contigs for paired metagenomic reads.'
                                             'The succesful execution of this step requires Bowtie2 index.',
@@ -62,11 +61,10 @@ args = parse_args(args)
 # checking if input directory exists
 check_path_dir(args["study_folder"])
 
-bowtie2_folder = find_database_index(args["bowtie2_index"], config["bowtie2_index_formats"])
-if not bowtie2_folder:
-    bowtie2_folder = download_grch(config["grch38_url"], args["bowtie2_index"])
-    bowtie2_folder = find_database_index(bowtie2_folder, config["bowtie2_index_formats"])
-
+bowtie2_index = check_or_download_database(args["bowtie2_index"], config["bowtie2_index_extensions"],
+                                           "bowtie2 index", "GRCh38", config["grch38_url"],
+                                           "It will allow to remove human contaminant DNA from samples.",
+                                           )
     
 ## TODO modify template to include all arguments
 
@@ -124,7 +122,7 @@ paths["output_config_path"] = modify_output_config(paths["output_config_path"], 
 paths["config_path"] = modify_concurrency_config(paths["config_path"], 
                                                  args["system_folder"], 
                                                  args["concurrent_jobs"], 
-                                                 os.path.abspath(bowtie2_folder))
+                                                 os.path.abspath(bowtie2_index))
 
 cmd = """java -Dconfig.file={0} -jar {1} run {2} -o {3} -i {4} > {5}""".format(*paths.values(), inputs_path, log_path)
 os.system(cmd)

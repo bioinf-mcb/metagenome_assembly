@@ -127,7 +127,8 @@ task checkm {
         # https://github.com/broadinstitute/cromwell/issues/3647
         export TMPDIR=/tmp
         
-        checkm lineage_wf -f ${sample}_checkm.txt -t ${thread} -x fa ${sample}_bins/ ${sample}_checkm
+        # Add --tab_table and test if it works
+        checkm lineage_wf -f ${sample}_checkm.txt -t ${thread} -x fa ${sample}_bins/ ${sample}_checkm 
         #checkm lineage_wf -t 10 -x fa ${sample}_bins/ ${sample}_checkm
         tar -cf ${sample}_checkm.tar ${sample}_checkm
         gzip ${sample}_checkm.tar

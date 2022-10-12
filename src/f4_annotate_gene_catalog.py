@@ -11,6 +11,10 @@ from _utils import (
 
 import argparse
 
+
+def concatenate_eggnog_database_link(base_url:str, version:str, database:str) -> str:
+    return os.path.join(base_url+version, database)
+
 # Command line argyments
 parser = argparse.ArgumentParser(description='Qunatify gene abundance mapping genes from catalog to a reference genomes using KMA.', 
                                  formatter_class=argparse.ArgumentDefaultsHelpFormatter)

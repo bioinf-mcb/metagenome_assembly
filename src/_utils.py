@@ -138,9 +138,9 @@ def unpack_archive(zip_path, unpack_folder):
     return unpack_path
     
 
-def find_database_index(directory, all_extensions):
+def find_database(database_path, all_extensions, database_name):
     """
-    Search through the directory for Bowtie2 index files
+    Search through the directory for database files.
     """
     
     index=""
@@ -148,25 +148,49 @@ def find_database_index(directory, all_extensions):
     # sort the extensions with the longest first, to test the most specific first
     # to find the index
     all_extensions.sort(key=lambda x: len(x), reverse=True)
-    if os.path.isfile(directory):
+    if os.path.isfile(database_path):
         for extension in all_extensions:
-            if re.search(extension+"$",directory):
-                index=directory.replace(extension,"")
-                logging.info(f"Treating {index} as Bowtie2 index\n")
+            if re.search(extension+"$", database_path):
+                index=database_path.replace(extension,"")
+                logging.info(f"Treating {index} as {database_name}.")
                 return index
 
-    for fname in glob.glob(directory+"/**/*", recursive=True):
+    for fname in glob.glob(database_path+"/**/*", recursive=True):
         for extension in all_extensions:
             if re.search(extension+"$",fname):
                 index = os.path.abspath(os.path.dirname(fname))
-                logging.info(f"Treating {index} as directory with Bowtie2 index\n")
+                logging.info(f"Treating {index} as directory with {database_name}.")
                 return index
 
     if not index:
-        logging.info(f"Unable to find Bowtie2 index files in directory: {directory}\n")
+        logging.info(f"Unable to find {database_name} files in directory: {database_path}.")
     
     return index
 
+def download_database(url, save_dir, database_name, database_description):
+    """
+    Download a database from a url to a save directory.
+    """
+    
+    message = f"{database_name} database will be downloaded. {database_description}"
+    logging.info(message)
+    zip_filename = aria2c_download_file(url, save_dir)
+    zip_filepath = os.path.join(save_dir, zip_filename)
+    database_path = unpack_archive(zip_filepath, save_dir)
+    message = f"Downloaded {database_name}."
+    logging.info(message)
+    return database_path
+
+def check_or_download_database(database_path, extensions, software_name, database_name, database_url, database_description):
+    """
+    Check if the database is present in the database_path. If not, download it.
+    """
+    db = find_database(database_path, extensions, software_name)
+    if not db:
+        db_folder = download_database(database_url, database_path, database_name, database_description)
+        db = find_database(db_folder, extensions, software_name)
+
+    return database_path
 
 def infer_split_character(base_name):
     "Infer if fastq filename uses '_R1' '_1' to seperate filenames"
