@@ -42,17 +42,33 @@ config = read_json_config(os.path.join(script_dir, "config.json"))
 # eggnog db
 eggnog_filename = [".".join(config["eggnog_db"].split(".")[:-1])]
 eggnog_path = find_database(args["eggnog_database"], eggnog_filename, "eggNOG")
-print(eggnog_filename)
 if not eggnog_path:
     description = "A database of orthology relationships, functional annotation, \
                   and gene evolutionary histories."
-    eggnog_db_url = concatenate_eggnog_database_link(config["eggnog_base_url"], config["eggnog_db_version"], config["eggnog_db"])
+    eggnog_db_url = concatenate_eggnog_database_link(config["eggnog_base_url"], config["eggnog_db_version"], 
+                                                     config["eggnog_db"])
+
     eggnog_folder = download_database(args["eggnog_database"], eggnog_db_url, 
                                       "eggNOG", description,
                                       archive_format="gz",
                                       )
 
     eggnog_path = find_database(args["eggnog_database"], eggnog_filename, "eggNOG")
+
+# diamond db
+diamond_filename = [".".join(config["eggnog_diamond_db"].split(".")[:-1])]
+diamond_path = find_database(args["eggnog_database"], diamond_filename, "Diamond")
+if not diamond_path:
+    description = ""
+    diamond_db_url = concatenate_eggnog_database_link(config["eggnog_base_url"], config["eggnog_db_version"], 
+                                                     config["eggnog_diamond_db"])
+
+    diamond_folder = download_database(args["eggnog_database"], diamond_db_url, 
+                                      "Diamond", description,
+                                      archive_format="gz",
+                                      )
+
+    diamond_path = find_database(args["eggnog_database"], diamond_filename, "Diamond")
 
 # load input template
 template_dir = os.path.abspath(os.path.join(script_dir, "json_templates"))
@@ -96,11 +112,11 @@ paths["config_path"] = modify_concurrency_config(paths["config_path"],
                                                  eggnog_path=os.path.abspath(args["eggnog_database"]),
                                                  n_jobs=args["concurrent_jobs"])
 
-# # creating a log file 
-# log_path = os.path.join(args["system_folder"], "log.txt")
+# creating a log file 
+log_path = os.path.join(args["system_folder"], "log.txt")
 
-# # pass everything to a shell command
-# cmd = """java -Dconfig.file={0} -jar {1} run {2} -o {3} -i {4} > {5}""".format(*paths.values(), inputs_path, log_path)
-# os.system(cmd)
+# pass everything to a shell command
+cmd = """java -Dconfig.file={0} -jar {1} run {2} -o {3} -i {4} > {5}""".format(*paths.values(), inputs_path, log_path)
+os.system(cmd)
 
-# read_evaluate_log(log_path)
+read_evaluate_log(log_path)

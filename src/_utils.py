@@ -52,10 +52,11 @@ def aria2c_download_file(url: str, save_dir: str) -> str:
     cmd = (
     f'aria2c -x 16 -j 16 -c {url} -d {save_dir}'
     )
+
+    logging.info(cmd)
     os.system(cmd)
     
     # Log download 
-    logging.info(cmd)
     filename = url.split("/")[-1]
     logging.info(f"Downloaded {filename}")
     
@@ -187,8 +188,6 @@ def download_database(save_dir, url, database_name, database_description, archiv
     zip_filename = aria2c_download_file(url, save_dir)
     zip_filepath = os.path.join(save_dir, zip_filename)
     database_path = unpack_archive(zip_filepath, save_dir, archive_format=archive_format)
-    message = f"Downloaded {database_name}."
-    logging.info(message)
     return database_path
 
 def check_or_download_database(database_path, extensions, software_name, database_name, database_url, database_description):
