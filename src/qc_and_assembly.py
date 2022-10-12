@@ -1,6 +1,7 @@
 import os 
 import json 
 import re
+from shutil import unpack_archive
 
 from _utils import (
     read_json_config,
@@ -12,7 +13,7 @@ from _utils import (
     filter_list_of_terms,
     read_evaluate_log, 
     find_database,
-    download_database
+    download_database,
 )
 
 import logging
@@ -65,7 +66,9 @@ check_path_dir(args["study_folder"])
 bowtie2_index = find_database(args["bowtie2_index"], config["bowtie2_index_extensions"], "bowtie2 index")
 if not bowtie2_index:
     description = "It will allow to remove human contaminant DNA from samples."
-    bowtie2_folder = download_database(args["bowtie2_index"], config["grch38_url"], "GRCh38", description)
+    bowtie2_folder = download_database(args["bowtie2_index"], config["grch38_url"],
+                                      "GRCh38", description,
+                                       archive_format="zip")
     bowtie2_index = find_database(bowtie2_folder, config["bowtie2_index_extensions"], "bowtie2_index")
 
 ## TODO modify template to include all arguments

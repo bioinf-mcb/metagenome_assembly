@@ -1,3 +1,4 @@
+from distutils import archive_util
 import os
 import sys
 import re
@@ -130,10 +131,19 @@ def modify_concurrency_config(path_to_file : str,
     return out_config_path
 
 
-def unpack_archive(zip_path, unpack_folder):
+def unpack_archive(archive_path, unpack_folder, archive_format, remove_archive=True):
     unpack_path = os.path.abspath(unpack_folder)
-    os.system(f"unzip {zip_path} -d {unpack_path}")
-    os.remove(zip_path)
+    
+    if archive_format == "zip":
+        cmd = f"unzip -q {archive_path} -d {unpack_path}"
+    elif archive_format == "gz":
+        filename = ".".join(archive_path.split("/")[-1].split('.')[:-1])
+        cmd = f"gunzip -c {archive_path} > {os.path.join(unpack_path, filename)}"
+    
+    os.system(cmd)
+    
+    if remove_archive:
+        os.remove(archive_path)
 
     return unpack_path
     
@@ -167,7 +177,7 @@ def find_database(database_path, all_extensions, database_name):
     
     return index
 
-def download_database(save_dir, url, database_name, database_description):
+def download_database(save_dir, url, database_name, database_description, archive_format,):
     """
     Download a database from a url to a save directory.
     """
@@ -176,7 +186,7 @@ def download_database(save_dir, url, database_name, database_description):
     logging.info(message)
     zip_filename = aria2c_download_file(url, save_dir)
     zip_filepath = os.path.join(save_dir, zip_filename)
-    database_path = unpack_archive(zip_filepath, save_dir)
+    database_path = unpack_archive(zip_filepath, save_dir, archive_format=archive_format)
     message = f"Downloaded {database_name}."
     logging.info(message)
     return database_path
