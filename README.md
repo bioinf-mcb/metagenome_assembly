@@ -111,7 +111,7 @@ This step will quantify amount of gene cluster in sequenced reads using `KMA`.
 This step will provide functional annotation of gene clusters from both `eggNOG-mapper` and `DeepFRI`.
 - Requirements
    - `input_folder` - path to a directory with gene catalog split into chunks of 10,000 reads (from `F2 - gene clustering` step).
-   - `eggnog_database` - path to a `eggNOG-mapper` database.  
+   - `eggnog_database` - path to a `eggNOG-mapper` database. If it won't be located in the folder, necessary files will be downloaded automatically.
    - `output_folder` - path path to a directory where the results will be saved.
 - Optional arguments
    - `suffix` - suffix, that helps to gene catalog chunks. (default: `.fa`)
