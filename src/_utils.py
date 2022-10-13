@@ -12,6 +12,20 @@ import logging
 logging.basicConfig(level=logging.DEBUG)
 
 
+def get_files_with_extension(directory, extension):
+    """
+    Get all files with a specific extension in a directory.
+    """
+    return glob.glob(f"{directory}/*{extension}")
+
+def reorder_list_substrings(list_of_strings, substrings):
+    """
+    Reorder a list of strings based on the order of substrings.
+    """
+    return sorted(list_of_strings, key=lambda x: [x.find(substring) for substring in substrings])
+    
+
+
 def check_path_dir(*paths):
     for path in paths: 
         if os.path.exists(path):

@@ -22,18 +22,20 @@
         ".fq.gz"
     ],
     "input_templates": {
-        "qc_and_assemble": "./input_templates/qc_and_assemble.wdl",
-        "f1_predict_genes": "./input_templates/f1_predict_genes.wdl",
-        "f2_generate_gene_catalog": "./input_templates/f2_generate_gene_catalog.wdl",
-        "f3_map_to_gene_clusters": "./input_templates/f3_map_to_gene_clusters.wdl",
-        "f4_annotate_gene_catalog" : "./input_templates/f4_annotate_gene_catalog.wdl"
+        "qc_and_assemble": "./input_templates/qc_and_assemble.json",
+        "f1_predict_genes": "./input_templates/f1_predict_genes.json",
+        "f2_generate_gene_catalog": "./input_templates/f2_generate_gene_catalog.json",
+        "f3_map_to_gene_clusters": "./input_templates/f3_map_to_gene_clusters.json",
+        "f4_annotate_gene_catalog" : "./input_templates/f4_annotate_gene_catalog.json"
+
     },
     "wdls": {
         "qc_and_assemble": "./wdl/qc_and_assemble.wdl",
         "f1_predict_genes": "./wdl/f1_predict_genes.wdl",
         "f2_generate_gene_catalog": "./wdl/f2_generate_gene_catalog.wdl",
         "f3_map_to_gene_clusters": "./wdl/f3_map_to_gene_clusters.wdl",
-        "f4_annotate_gene_catalog" : "./wdl/f4_annotate_gene_catalog.wdl"
+        "f4_annotate_gene_catalog" : "./wdl/f4_annotate_gene_catalog.wdl",
+        "t1_predict_mags" : "./wdl/t1_predict_mags.wdl"
     },
     "_eggnog_comment" : "Attention to version compatibility in eggnog-mapper and db. See https://github.com/eggnogdb/eggnog-mapper/commits/fc4f5f6d78062daec38f3b4c0cbf6c3aeb5deac1/eggnogmapper/version.py",
     "eggnog_version": "2.1.6",
