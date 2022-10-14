@@ -32,6 +32,7 @@ The wrapper scripts in Python (located in `src`) will prepare files and send the
 Use the `setup_cromwell.py` script to download and install it.
     - `python src/setup_cromwell.py --save_path SAVE_PATH`
 ## 2. Run the pipeline!
+### Attention: The pipeline was tested on two samples with 4.3 Gb and 2.7 Gb in 2 parallel jobs, 16 CPU cores and 64 Gb RAM each. Time may vary significantly depending on your system and sequencing depth
 ### 1. Quality control and assembly 
 This step will perform quality control of your reads with `Kneaddata` and assemble quality-controlled reads into contigs using `MegaHIT`.
 
@@ -47,12 +48,21 @@ This step will perform quality control of your reads with `Kneaddata` and assemb
    - assembled contigs in `OUTPUT_FOLDER/assemble`.
    - count table with read counts per sample `OUTPUT_FOLDER/kneaddata_count_table.tsv`.
 
- ```sh
- # Qualirty control raw reads and assemble contigs 
- python src/qc_and_assemble.py -i INPUT_FOLDER -o OUTPUT_FOLDER \
- -bt2_index FOLDER_WITH_BT2_INDEX \
- -t 8 -c 3 
- ```
+```sh
+# Qualirty control raw reads and assemble contigs 
+python src/qc_and_assemble.py -i INPUT_FOLDER -o OUTPUT_FOLDER \
+-bt2_index FOLDER_WITH_BT2_INDEX \
+-t 8 -c 3 
+```
+```sh
+INFO:root:Treating /storage/TomaszLab/vbez/metagenomic_gmhi/metagenomome_assembly/databases/GRCh38_bt2 as directory with bowtie2 index.
+INFO:root:I inferred that _1 and _2 distinguish paired end reads.
+INFO:root:Found samples: 2
+DEBUG:root:Creating output directory: qc_assemble_out
+DEBUG:root:Creating output directory: qc_assemble_out/system
+[17:09:48] Workflow started succesfully. Please, be patient.  
+[17:16:09] Workflow finished successfully.   
+```
 
 ## Then pipeline forks into two branches - taxonomical and functional 
 
@@ -82,6 +92,12 @@ python src/t1_predict_mags.py -ir INPUT_FOLDER_READS -s1 _paired_1.fastq.gz -s2 
 -gtdb ../databases/gtdbtk-data/ -o OUTPUT_FOLDER \
 -t 24 -c 2 
 ```
+```
+DEBUG:root:Creating output directory: out_mags
+DEBUG:root:Creating output directory: out_mags/system
+[17:23:29] Workflow started succesfully. Please, be patient.  
+[17:40:13] Workflow finished successfully.
+
 ### F - Functional annotation
 #### F1 - Gene prediction
 This step will perform gene recognition using `Prodigal`.
@@ -99,6 +115,13 @@ This step will perform gene recognition using `Prodigal`.
 # Process the data
 python src/f1_predict_genes.py -i INPUT_FOLDER -s .min500.contigs.fa -o OUTPUT_FOLDER   \
 -c 3
+```
+
+```sh
+DEBUG:root:Creating output directory: OUTPUT_FOLDER
+DEBUG:root:Creating output directory: OUTPUT FOLDER/system
+[15:19:43] Workflow started succesfully. Please, be patient.
+[15:21:29] Workflow finished successfully.       
 ```
 #### F2 - Gene clustering 
 This step will cluster genes using `CD-HIT` and sequence similarity threshold.
@@ -120,6 +143,13 @@ python src/f2_generate_gene_catalog.py -i INPUT_FOLDER -s .fna -o OUTPUT_FOLDER 
 -t 16
 ```
 
+```sh
+DEBUG:root:Creating output directory: OUTPUT_FOLDER
+DEBUG:root:Creating output directory: OUTPUT FOLDER/system
+[15:23:26] Workflow started succesfully. Please, be patient.
+[15:24:56] Workflow finished successfully.     
+```
+
 #### F3 - Map to gene clusters 
 This step will quantify the number of gene clusters in sequenced reads aligning it to the reference using `KMA`.
 - Requirements
@@ -129,14 +159,23 @@ This step will quantify the number of gene clusters in sequenced reads aligning 
 - Optional arguments
    - `suffix1` - suffix, that helps to identify forward reads. (default: `_paired_1.fastq.gz`)
    - `suffix2` - suffix, that helps to identify reverse reads. (default: `_paired_2.fastq.gz`)
-   - `thread_num_` - number of threads. (default: 1)
+   - `thread_num` - number of threads. (default: 1)
 - Output
    - `SAMPLE_NAME.kma.res` - KMA full output.
    - `SAMPLE_NAME.geneCPM.txt` - table with extracted and normalized gene counts (count per million).
 ```sh
 # Process the data
-python src/f2_generate_gene_catalog.py -i INPUT_FOLDER -s .fna -o OUTPUT_FOLDER \
+python src/f3_generate_gene_catalog.py -i INPUT_FOLDER -s1 _paired_1.fastq.gz -s2 _paired_2.fastq.gz \
+-db F2_OUTPUT_FOLDER/kma_db.tar.gz \
+-o OUTPUT_FOLDER \
 -t 16
+```
+
+```sh
+DEBUG:root:Creating output directory: OUTPUT_FOLDER
+DEBUG:root:Creating output directory: OUTPUT FOLDER/system
+[15:26:48] Workflow started succesfully. Please, be patient.
+[15:29:08] Workflow finished successfully.     
 ```
 
 #### F4 - Annotate gene catalog
@@ -153,6 +192,24 @@ This step will provide functional annotation of gene clusters from both `eggNOG-
    - `deepfri_annotations.csv` - `DeepFRI` functional annotation for a gene catalog.
    - `nr-eggnog.emapper.annotations` - `eggNOG-mapper` functional annotation for a gene catalog.
    - `nr-eggnog.emapper.seed_orthologs`- a file with the results from parsing the hits. Each row links a query with a seed ortholog. 
+```sh
+# Process the data
+python src/f4_annotate_gene_catalog.py 
+-i F2_OUTPUT_FOLDER/gene_catalog_split/ -s .fa \
+-db eggNOG-DATABASE \
+-o OUTPUT_FOLDER \
+-t 16 -c 2
+```
+
+```sh
+INFO:root:Treating /storage/TomaszLab/vbez/metagenomic_gmhi/metagenomome_assembly/databases/eggnog-data as directory with eggNOG.
+INFO:root:Treating /storage/TomaszLab/vbez/metagenomic_gmhi/metagenomome_assembly/databases/eggnog-data as directory with Diamond.
+DEBUG:root:Creating output directory: OUTPUT_FOLDER
+DEBUG:root:Creating output directory: OUTPUT_FOLDER/system
+[15:56:27] Workflow started succesfully. Please, be patient.                                            
+[16:47:31] Workflow finished successfully.  
+
+```
 
 ## Outputs
 This pipeline will produce a number of directories and files

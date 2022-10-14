@@ -22,15 +22,16 @@
         ".fq.gz"
     ],
     "input_templates": {
-        "qc_and_assemble": "./input_templates/qc_and_assemble.json",
+        "qc_and_assembly": "./input_templates/qc_and_assembly.json",
         "f1_predict_genes": "./input_templates/f1_predict_genes.json",
         "f2_generate_gene_catalog": "./input_templates/f2_generate_gene_catalog.json",
         "f3_map_to_gene_clusters": "./input_templates/f3_map_to_gene_clusters.json",
-        "f4_annotate_gene_catalog" : "./input_templates/f4_annotate_gene_catalog.json"
+        "f4_annotate_gene_catalog" : "./input_templates/f4_annotate_gene_catalog.json",
+        "t1_predict_mags" : "./input_templates/t1_predict_mags.json"
 
     },
     "wdls": {
-        "qc_and_assemble": "./wdl/qc_and_assemble.wdl",
+        "qc_and_assembly": "./wdl/qc_and_assembly.wdl",
         "f1_predict_genes": "./wdl/f1_predict_genes.wdl",
         "f2_generate_gene_catalog": "./wdl/f2_generate_gene_catalog.wdl",
         "f3_map_to_gene_clusters": "./wdl/f3_map_to_gene_clusters.wdl",

@@ -88,7 +88,7 @@ create_directory(args["output_folder"])
 create_directory(system_folder)
 
 # writing input json
-inputs_path = os.path.join(system_folder, 'input_map_to_gene_clusters.json')
+inputs_path = os.path.join(system_folder, 'input_annotate_catalog.json')
 
 with open(inputs_path, 'w') as f:
     json.dump(template, f, indent=4, sort_keys=True, ensure_ascii=False)

@@ -10,31 +10,32 @@ workflow annotate_gene_catalog {
 
         call annotate_eggnog {
             input:
-            gene_catalogue=gene_shard,
+            gene_catalog=gene_shard,
             eggnog_threads=thread_num
         }
 
         call annotate_deepfri {
             input:     
-            gene_catalogue=gene_shard
+            gene_catalog=gene_shard
         }
     }
 }
 
 task annotate_eggnog {
     input {
-    File gene_catalogue
+    File gene_catalog
     Int eggnog_threads
+    String gene_catalog_name = basename(gene_catalog, ".fa")
     }
     
     command {
         # TODO: mount in submit script 
         
-
+        echo ${gene_catalog_name}
         python3.9 /app/eggnog-mapper-2.1.6/emapper.py \
             --itype CDS \
             --cpu ${eggnog_threads} \
-            -i ${gene_catalogue} \
+            -i ${gene_catalog} \
             --output nr-eggnog \
             --output_dir . \
             -m diamond \
@@ -49,11 +50,14 @@ task annotate_eggnog {
             --translate \
             --override
 
+        mv nr-eggnog.emapper.annotations ${gene_catalog_name}.emapper.annotations
+        mv nr-eggnog.emapper.seed_orthologs ${gene_catalog_name}.emapper.seed_orthologs
+
     }
 
     output {
-        File eggnog_annotations = "nr-eggnog.emapper.annotations"
-        File eggnog_seed_orthologs = "nr-eggnog.emapper.seed_orthologs"
+        File eggnog_annotations = "${gene_catalog_name}.emapper.annotations"
+        File eggnog_seed_orthologs = "${gene_catalog_name}.emapper.seed_orthologs"
     }
 
     runtime {
@@ -64,15 +68,18 @@ task annotate_eggnog {
 
 task annotate_deepfri {
     input {
-    File gene_catalogue
+    File gene_catalog
+    String gene_catalog_name = basename(gene_catalog, ".fa")
     } 
     
     command {
-        /bin/python3 /app/scripts/cromwell_process_fasta.py -i ${gene_catalogue} -o deepfri_annotations.csv -m /app --translate
+        echo ${gene_catalog_name}
+        /bin/python3 /app/scripts/cromwell_process_fasta.py -i ${gene_catalog} \
+        -o ${gene_catalog_name}_deepfri_annotations.csv -m /app --translate
     }
 
     output {
-        File deepfri_out = "deepfri_annotations.csv"
+        File deepfri_out = "${gene_catalog_name}_deepfri_annotations.csv"
     }
 
     runtime {
