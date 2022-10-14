@@ -9,7 +9,8 @@ from _utils import (
     read_evaluate_log,
     get_files_with_extension,
     check_inputs_not_empty,
-    start_workflow
+    start_workflow,
+    load_input_template
 )
 
 import argparse
@@ -38,10 +39,9 @@ script_dir = os.path.dirname(__file__)
 
 # Getting necessary files from script name
 script_name = os.path.basename(__file__).split(".")[0]
+
 # load input template
-template_path = config["input_templates"][script_name]
-with open(template_path) as f:
-    template = json.loads(f.read())
+template = load_input_template(script_dir, script_name, config)
     
 # collect contigs from dir
 contigs =  get_files_with_extension(args["input_folder"], args["suffix"])

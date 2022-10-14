@@ -276,3 +276,10 @@ def start_workflow(system_paths, inputs_path, system_folder):
     os.system(cmd)
 
     return log_path
+
+def load_input_template(script_dir, script_name, config):
+    template_path = os.path.abspath(os.path.join(script_dir, config["input_templates"][script_name]))
+    with open(template_path) as f:
+        template = json.loads(f.read())
+    
+    return template

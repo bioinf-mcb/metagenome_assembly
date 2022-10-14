@@ -15,7 +15,8 @@ from _utils import (
     find_database,
     download_database,
     check_inputs_not_empty,
-    start_workflow
+    start_workflow,
+    load_input_template
 )
 
 import logging
@@ -64,10 +65,9 @@ if not bowtie2_index:
 
 # Getting necessary files from script name
 script_name = os.path.basename(__file__).split(".")[0]
+
 # load input template
-template_path = config["input_templates"][script_name]
-with open(template_path) as f:
-    template = json.loads(f.read())
+template = load_input_template(script_dir, script_name, config)
 
 # getting sorted lists of forward and reverse reads from a folder
 sequencing_files = filter_list_of_terms(config["read_extensions"], os.listdir(args["input_folder"]))

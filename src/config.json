@@ -14,7 +14,7 @@
     "grch38_url": "https://genome-idx.s3.amazonaws.com/bt/GRCh38_noalt_as.zip",
     "gtdbtk_db_release": "release207_v2",
     "gtdbtk_version": "2.1.1",
-    "output_config_path": "./json_templates/output_options.json",
+    "output_config_path": "./input_templates/output_options.json",
     "read_extensions": [
         ".fastq",
         ".fq",

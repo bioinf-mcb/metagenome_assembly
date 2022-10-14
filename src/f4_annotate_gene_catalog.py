@@ -10,7 +10,8 @@ from _utils import (
     find_database,
     download_database,
     check_inputs_not_empty,
-    start_workflow
+    start_workflow, 
+    load_input_template
 )
 
 import argparse
@@ -72,10 +73,9 @@ if not diamond_path:
 
 # Getting necessary files from script name
 script_name = os.path.basename(__file__).split(".")[0]
+
 # load input template
-template_path = config["input_templates"][script_name]
-with open(template_path) as f:
-    template = json.loads(f.read())
+template = load_input_template(script_dir, script_name, config)
 
 # collect files from dir
 files =  [os.path.join(args["input_folder"], file) for file in sorted(os.listdir(args["input_folder"])) if file.endswith(args["suffix"])]
