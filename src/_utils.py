@@ -266,3 +266,13 @@ def check_inputs_not_empty(inputs: Dict[str, List]) -> None:
         if len(input_) == 0:
             console.log(f"Workflow failed. Input {name} is empty. Check the inputs.", style="red")
             sys.exit(1)
+
+def start_workflow(system_paths, inputs_path, system_folder):
+    """Starts the workflow. Redirects output to a log file and returns the log path for evaluation"""
+    console.log("Workflow started succesfully. Please, be patient.", style="green")
+    log_path = os.path.join(system_folder, "log.txt")
+
+    cmd = """java -Dconfig.file={0} -jar {1} run {2} -o {3} -i {4} > {5}""".format(*system_paths.values(), inputs_path, log_path)
+    os.system(cmd)
+
+    return log_path

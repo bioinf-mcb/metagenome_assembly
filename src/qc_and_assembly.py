@@ -14,7 +14,8 @@ from _utils import (
     read_evaluate_log, 
     find_database,
     download_database,
-    check_inputs_not_empty
+    check_inputs_not_empty,
+    start_workflow
 )
 
 import logging
@@ -101,8 +102,6 @@ inputs_path = os.path.join(system_folder, 'inputs.json')
 with open(inputs_path, 'w') as f:
     json.dump(template, f, indent=4, sort_keys=True, ensure_ascii=False)
 
-log_path = os.path.join(system_folder, "log.txt")
-
 paths = {
     "config_path" : config["db_mount_config"], 
     "cromwell_path" : config["cromwell_path"], 
@@ -120,8 +119,8 @@ paths["config_path"] = modify_concurrency_config(paths["config_path"],
                                                  args["concurrent_jobs"], 
                                                  bt2_path=os.path.abspath(bowtie2_index))
 
-cmd = """java -Dconfig.file={0} -jar {1} run {2} -o {3} -i {4} > {5}""".format(*paths.values(), inputs_path, log_path)
-os.system(cmd)
+# starting workflow
+log_path = start_workflow(paths, inputs_path, system_folder)
 
 # checking if the job was succesful
 read_evaluate_log(log_path)

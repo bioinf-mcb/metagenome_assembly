@@ -8,7 +8,8 @@ from _utils import (
     read_json_config,
     check_inputs_not_empty,
     create_directory,
-    read_evaluate_log
+    read_evaluate_log,
+    start_workflow
 )
 
 import argparse
@@ -53,9 +54,7 @@ for path in paths.keys():
 
 modify_output_config(paths["output_dir"], args["output_folder"], system_folder)
 
-log_path = os.path.join(system_folder, "log.txt")
-# pass everything to a shell command
-cmd = """java -Dconfig.file={0} -jar {1} run {2} -o {3} -i {4} > {5}""".format(*paths.values(), inputs_path, log_path)
-os.system(cmd)
+# starting workflow
+log_path = start_workflow(paths, inputs_path, system_folder)
 
 read_evaluate_log(log_path)

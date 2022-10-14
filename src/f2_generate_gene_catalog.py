@@ -9,7 +9,8 @@ from _utils import (
     create_directory,
     read_evaluate_log,
     get_files_with_extension,
-    check_inputs_not_empty
+    check_inputs_not_empty,
+    start_workflow
 )
 
 import argparse
@@ -74,12 +75,8 @@ paths["config_path"] = modify_concurrency_config(paths["config_path"],
                                                  system_folder,
                                                  n_jobs=1)
 
-# creating a log file 
-log_path = os.path.join(system_folder, "log.txt")
-
-# pass everything to a shell command
-cmd = """java -Dconfig.file={0} -jar {1} run {2} -o {3} -i {4} > {5}""".format(*paths.values(), inputs_path, log_path)
-os.system(cmd)
+# starting workflow
+log_path = start_workflow(paths, inputs_path, system_folder)
 
 read_evaluate_log(log_path)
 
