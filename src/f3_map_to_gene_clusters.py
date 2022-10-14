@@ -10,6 +10,7 @@ from _utils import (
     read_evaluate_log, 
     get_files_with_extension,
     reorder_list_substrings,
+    check_inputs_not_empty
 )
 
 import argparse
@@ -54,6 +55,9 @@ for read_1, read_2 in zip(forward, reverse):
 
 template["map_to_gene_clusters.thread_num"] = args["threads"]
 template["map_to_gene_clusters.kma_db_file"] = args["database"]
+check_inputs_not_empty({"reads" : template["map_to_gene_clusters.sampleInfo"], 
+                        "kma database fil e" : template["map_to_gene_clusters.kma_db_file"]})
+
 template["map_to_gene_clusters.sample_suffix"] = args["suffix1"]
 
 # creating output directory

@@ -1,5 +1,6 @@
 import os 
-import json 
+import json
+from tabnanny import check 
 
 from _utils import (
     read_json_config,
@@ -7,7 +8,8 @@ from _utils import (
     modify_concurrency_config,
     create_directory,
     read_evaluate_log,
-    get_files_with_extension
+    get_files_with_extension,
+    check_inputs_not_empty
 )
 
 import argparse
@@ -40,6 +42,7 @@ with open(template_path) as f:
     
 # collect files from dir
 files =  get_files_with_extension(args["input_folder"], args["suffix"])
+check_inputs_not_empty({"gene predictions" : files})
 template["generate_gene_catalog.genepreds"] = files
 template["generate_gene_catalog.thread_num"] = args["threads"]
 

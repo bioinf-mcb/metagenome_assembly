@@ -7,7 +7,8 @@ from _utils import (
     modify_output_config,
     modify_concurrency_config, 
     read_evaluate_log,
-    get_files_with_extension
+    get_files_with_extension,
+    check_inputs_not_empty
 )
 
 import argparse
@@ -42,6 +43,7 @@ with open(template_path) as f:
     
 # collect contigs from dir
 contigs =  get_files_with_extension(args["input_folder"], args["suffix"])
+check_inputs_not_empty({"contigs" : contigs})
 template["predict_mags.contigs"] = contigs
 template["predict_mags.sample_suffix"] = args["suffix"]
 

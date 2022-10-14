@@ -9,6 +9,7 @@ from _utils import (
     read_evaluate_log,
     find_database,
     download_database,
+    check_inputs_not_empty
 )
 
 import argparse
@@ -76,6 +77,7 @@ with open(template_path) as f:
 
 # collect files from dir
 files =  [os.path.join(args["input_folder"], file) for file in sorted(os.listdir(args["input_folder"])) if file.endswith(args["suffix"])]
+check_inputs_not_empty({"gene catalog chunks": files})
 template["annotate_gene_catalog.gene_clusters_split"] = files
 template["annotate_gene_catalog.thread_num"] = args["threads"]
 

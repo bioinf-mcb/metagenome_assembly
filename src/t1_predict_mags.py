@@ -8,7 +8,8 @@ from _utils import (
     modify_concurrency_config, 
     read_evaluate_log,
     get_files_with_extension, 
-    reorder_list_substrings
+    reorder_list_substrings, 
+    check_inputs_not_empty
 )
 
 import argparse
@@ -51,17 +52,21 @@ with open(template_path) as f:
     template = json.loads(f.read())
     
 # collect reads from dir
-forward = get_files_with_extension(args["input_folder_reads"], args["suffix1"])
-reverse = get_files_with_extension(args["input_folder_reads"], args["suffix2"])
-sample_ids = [x.split("/")[-1].split("_")[0] for x in forward]
-reverse = reorder_list_substrings(reverse, sample_ids)
+forward_reads = get_files_with_extension(args["input_folder_reads"], args["suffix1"])
+reverse_reads = get_files_with_extension(args["input_folder_reads"], args["suffix2"])
+sample_ids = [x.split("/")[-1].split("_")[0] for x in forward_reads]
+reverse_reads = reorder_list_substrings(reverse_reads, sample_ids)
 
 # collect contigs from dir
 contigs =  get_files_with_extension(args["input_folder_contigs"], args["suffix"])
 contigs = reorder_list_substrings(contigs, sample_ids)
 
+check_inputs_not_empty({"forward reads" : forward_reads, 
+                       "reverse reads" : reverse_reads, 
+                       "contigs" : contigs})
+
 # fill the input template
-for read_1, read_2, contig in zip(forward, reverse, contigs):
+for read_1, read_2, contig in zip(forward_reads, reverse_reads, contigs):
     template["predict_mags.sampleInfo"].append({"file_r1": read_1, 
                                                 "file_r2": read_2, 
                                                 "contigs": contig,

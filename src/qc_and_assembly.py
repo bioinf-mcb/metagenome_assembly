@@ -14,6 +14,7 @@ from _utils import (
     read_evaluate_log, 
     find_database,
     download_database,
+    check_inputs_not_empty
 )
 
 import logging
@@ -38,6 +39,8 @@ parser.add_argument('-c','--concurrent_jobs', help='Number of jobs to run in par
 parser.add_argument('-bt2_index','--bowtie2_index', help='Path to a diretory with Bowtie2 index. If directory does not contain' 
                                                         'required index GRCh38 database would be downloaded for' 
                                                         'decontamination of samples from human DNA.', required=True)
+parser.add_argument('-split_char','--split_character', help='Character used to separate paired reads. Software can deduct use of "_" and "_R", otherwise it will fail. \
+                    Ex. SAMPLE_1(R).fastq  SAMPLE_2(R).fastq. If you have reads with different naming convention, please specify it here.', required=False)
 
 # reading config file 
 script_dir = os.path.dirname(__file__)
@@ -78,6 +81,8 @@ for base in set(base_names):
     template["qc_and_assemble.sampleInfo"].append({"sample_id" : base, 
                                                    "file_r1": r1_full_path, 
                                                    "file_r2": r2_full_path})
+
+check_inputs_not_empty({"reads" : template["qc_and_assemble.sampleInfo"]})
 
 # counting samples   
 n_samples = len(template["qc_and_assemble.sampleInfo"]) 

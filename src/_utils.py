@@ -4,6 +4,7 @@ import sys
 import re
 import json
 import glob
+from typing import Dict, List
 
 from rich.console import Console
 console = Console()
@@ -249,13 +250,19 @@ def filter_list_of_terms(key_terms, list_of_terms):
     return [term for term in list_of_terms if any(key_term in term for key_term in key_terms)]
 
 
-## TODO : add a functionality to catch an empty output
 def read_evaluate_log(log_path):
     """ Reads the Cromwell log and checks wherher the workflow was successful or not"""
     with open(log_path, "r") as f:
         log = f.read()
     if "workflow finished with status 'Succeeded'" in log:
-        console.log("Workflow finished successfully", style="green")
+        console.log("Workflow finished successfully.", style="green")
     else:
-        console.log("Workflow failed, check the log file", style="red")
+        console.log("Workflow failed. Check the log file.", style="red")
     
+
+def check_inputs_not_empty(inputs: Dict[str, List]) -> None:
+    """Checks if all lists are not empty"""
+    for name, input_ in inputs.items():
+        if len(input_) == 0:
+            console.log(f"Workflow failed. Input {name} is empty. Check the inputs.", style="red")
+            sys.exit(1)
