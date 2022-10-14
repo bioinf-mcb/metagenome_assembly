@@ -49,8 +49,7 @@ if not eggnog_path:
                                                      config["eggnog_db"])
 
     eggnog_folder = download_database(args["eggnog_database"], eggnog_db_url, 
-                                      "eggNOG", description,
-                                      archive_format="gz",
+                                      "eggNOG", description
                                       )
 
     eggnog_path = find_database(args["eggnog_database"], eggnog_filename, "eggNOG")
@@ -64,8 +63,7 @@ if not diamond_path:
                                                      config["eggnog_diamond_db"])
 
     diamond_folder = download_database(args["eggnog_database"], diamond_db_url, 
-                                      "Diamond", description,
-                                      archive_format="gz",
+                                      "Diamond", description
                                       )
 
     diamond_path = find_database(args["eggnog_database"], diamond_filename, "Diamond")

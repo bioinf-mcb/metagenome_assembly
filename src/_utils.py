@@ -22,8 +22,8 @@ def reorder_list_substrings(list_of_strings, substrings):
     """
     Reorder a list of strings based on the order of substrings.
     """
-    return sorted(list_of_strings, key=lambda x: [x.find(substring) for substring in substrings])
-    
+    return [list_item for substring in substrings for list_item in list_of_strings if substring in list_item]
+
 
 
 def check_path_dir(*paths):
@@ -97,7 +97,7 @@ def read_json_config(config_file: str) -> dict:
 
 def modify_output_config(path_to_file : str, 
                          output_path : str,
-                         save_path : str) -> None: 
+                         save_path : str) -> str: 
     """Modifies Cromwell's output configuraton .json
     required for specification of the output directory"""
     
@@ -119,7 +119,7 @@ def modify_concurrency_config(path_to_file : str,
                               n_jobs: int, 
                               bt2_path: str=None,
                               gtdbtk_path: str=None,
-                              eggnog_path: str=None) -> None: 
+                              eggnog_path: str=None) -> str: 
     """Modifies Cromwell's config mount.json required for mounting databases from filesystem 
     and running multiple jobs in parallel"""
     
@@ -146,14 +146,18 @@ def modify_concurrency_config(path_to_file : str,
     return out_config_path
 
 
-def unpack_archive(archive_path, unpack_folder, archive_format, remove_archive=True):
+def unpack_archive(archive_path, unpack_folder, remove_archive=True):
     unpack_path = os.path.abspath(unpack_folder)
     
-    if archive_format == "zip":
+    if archive_path.endswith(".zip"):
         cmd = f"unzip -q {archive_path} -d {unpack_path}"
-    elif archive_format == "gz":
+    elif archive_path.endswith("tar.gz"):
+        cmd = f"tar xvzf gtdbtk_v2_data.tar.gz"   
+    elif archive_path.endswith(".gz"):
         filename = ".".join(archive_path.split("/")[-1].split('.')[:-1])
         cmd = f"gunzip -c {archive_path} > {os.path.join(unpack_path, filename)}"
+    else:
+        raise ValueError("Archive format is not supported.")
     
     os.system(cmd)
     
@@ -192,7 +196,7 @@ def find_database(database_path, all_extensions, database_name):
     
     return index
 
-def download_database(save_dir, url, database_name, database_description, archive_format,):
+def download_database(save_dir, url, database_name, database_description):
     """
     Download a database from a url to a save directory.
     """
@@ -201,7 +205,7 @@ def download_database(save_dir, url, database_name, database_description, archiv
     logging.info(message)
     zip_filename = aria2c_download_file(url, save_dir)
     zip_filepath = os.path.join(save_dir, zip_filename)
-    database_path = unpack_archive(zip_filepath, save_dir, archive_format=archive_format)
+    database_path = unpack_archive(zip_filepath, save_dir)
     return database_path
 
 def check_or_download_database(database_path, extensions, software_name, database_name, database_url, database_description):
@@ -225,6 +229,9 @@ def infer_split_character(base_name):
 
     elif ("_1" in base_name) or ("_2" in base_name):
         split_character = "_"
+    
+    else:
+        raise ValueError("Unable to infer split character from filename. Please specify it manually.")
 
     if split_character is not None:
 
@@ -242,6 +249,7 @@ def filter_list_of_terms(key_terms, list_of_terms):
     return [term for term in list_of_terms if any(key_term in term for key_term in key_terms)]
 
 
+## TODO : add a functionality to catch an empty output
 def read_evaluate_log(log_path):
     """ Reads the Cromwell log and checks wherher the workflow was successful or not"""
     with open(log_path, "r") as f:

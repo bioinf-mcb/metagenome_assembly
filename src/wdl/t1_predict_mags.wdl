@@ -7,7 +7,7 @@ workflow predict_mags {
     Array[SampleInfo] sampleInfo
     Int thread_num = 4
     String sample_suffix = ".min500.contigs.fa"
-    String gtdb_release = "release207"
+    String gtdb_release 
     }
     
     scatter  (info in sampleInfo) {
@@ -17,7 +17,7 @@ workflow predict_mags {
         fileR1 = info.file_r1,
         fileR2 = info.file_r2,
         contigs = info.contigs,
-        sample = sub(basename(info.contigs), sample_suffix, ""),
+        sample = info.sample_id,
         thread = thread_num
         }
 
@@ -25,7 +25,7 @@ workflow predict_mags {
         input:
         bam=map_to_contigs.fileBAM,
         contigs = info.contigs,
-        sample = sub(basename(info.contigs), sample_suffix, ""),
+        sample = info.sample_id,
         thread = thread_num
         }
         
@@ -33,7 +33,7 @@ workflow predict_mags {
     call checkm {
         input:
         bins=metabat2.bins,
-        sample = sub(basename(info.contigs), sample_suffix, ""),
+        sample = info.sample_id,
         thread = thread_num
         }
 
@@ -41,7 +41,7 @@ workflow predict_mags {
         input:
         bins=metabat2.bins,
         gtdb_release = gtdb_release,
-        sample = sub(basename(info.contigs), sample_suffix, ""),
+        sample = info.sample_id,
         thread = thread_num
         }
     }
@@ -62,9 +62,8 @@ task map_to_contigs {
         samtools faidx ${contigs}
 
         bwa mem -t ${thread} -M ${contigs} ${fileR1} ${fileR2} | \
-        samtools view - -h -Su -F 2308 -q 0 | \
         # sorting BAM file with Samtools
-        samtools sort -@ ${thread} -m 2G -O bam -o ${sample}.sort.bam 
+        samtools sort -@ ${thread} -m 4G -O bam -o ${sample}.sort.bam 
 
     }
     
@@ -128,7 +127,7 @@ task checkm {
         export TMPDIR=/tmp
         
         # Add --tab_table and test if it works
-        checkm lineage_wf -f ${sample}_checkm.txt -t ${thread} -x fa ${sample}_bins/ ${sample}_checkm 
+        checkm lineage_wf -f ${sample}_checkm.txt -t ${thread} -x fa ${sample}_bins/ ${sample}_checkm --tab_table
         #checkm lineage_wf -t 10 -x fa ${sample}_bins/ ${sample}_checkm
         tar -cf ${sample}_checkm.tar ${sample}_checkm
         gzip ${sample}_checkm.tar

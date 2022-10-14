@@ -6,7 +6,9 @@ from _utils import (
     read_json_config,
     modify_output_config,
     modify_concurrency_config, 
-    read_evaluate_log
+    read_evaluate_log,
+    get_files_with_extension, 
+    reorder_list_substrings
 )
 
 import argparse
@@ -27,9 +29,11 @@ parser.add_argument('-s2','--suffix2', help='Suffix of the second of the paired 
 parser.add_argument('-ic','--input_folder_contigs', help='The directory with contigs in .fa format', required=True)
 parser.add_argument('-sc','--suffix', help='Suffix of the filename to be identified in contig folder & replaced in the output(i.e. -s .fa  -i ID7.fa -> ID7.fna)', 
                     type=str, default=".min500.contigs.fa")
+parser.add_argument('-gtdb','--gtdbtk_data', help='Path to a diretory with GTDB database', required=True)
+
 parser.add_argument('-o','--output_folder', help='The directory for the output', required=True)
 
-parser.add_argument('-t', '--thread_num', help="Number of threads to use", type=int, default=4)
+parser.add_argument('-t', '--thread_num', help="Number of threads to use", type=int, default=1)
 parser.add_argument('-c','--concurrent_jobs', help='Number of jobs to run in parallel', 
                     type=int, default=1, required=False)
 
@@ -46,17 +50,32 @@ template_path = os.path.join(template_dir, "predict_mags.json")
 with open(template_path) as f:
     template = json.loads(f.read())
     
-# collect files from dir
-files =  [os.path.join(args["input_folder"], file) for file in sorted(os.listdir(args["input_folder"])) if file.endswith(args["suffix"])]
-template["predict_mags.contigs"] = files
-template["predict_mags.sample_suffix"] = args["suffix"]
+# collect reads from dir
+forward = get_files_with_extension(args["input_folder_reads"], args["suffix1"])
+reverse = get_files_with_extension(args["input_folder_reads"], args["suffix2"])
+sample_ids = [x.split("/")[-1].split("_")[0] for x in forward]
+reverse = reorder_list_substrings(reverse, sample_ids)
+
+# collect contigs from dir
+contigs =  get_files_with_extension(args["input_folder_contigs"], args["suffix"])
+contigs = reorder_list_substrings(contigs, sample_ids)
+
+# fill the input template
+for read_1, read_2, contig in zip(forward, reverse, contigs):
+    template["predict_mags.sampleInfo"].append({"file_r1": read_1, 
+                                                "file_r2": read_2, 
+                                                "contigs": contig,
+                                                "sample_id": contig.split("/")[-1].split(".")[0]}) 
+
+template["predict_mags.thread_num"] = args["thread_num"]
+template["predict_mags.gtdb_release"] = config["gtdbtk_db_release"]
 
 # creating output directory
 create_directory(args["output_folder"])
 create_directory(system_folder)
 
 # writing input json
-inputs_path = os.path.join(system_folder, 'input_predict_genes.json')
+inputs_path = os.path.join(system_folder, 'input_predict_mags.json')
 with open(inputs_path, 'w') as f:
     json.dump(template, f, indent=4, sort_keys=True, ensure_ascii=False)
 
@@ -64,7 +83,7 @@ with open(inputs_path, 'w') as f:
 paths = {
     "config_path" : config["db_mount_config"], 
     "cromwell_path" : config["cromwell_path"], 
-    "wdl_path" : config["wdls"]["f1_predict_genes"],
+    "wdl_path" : config["wdls"]["t1_predict_mags"],
     "output_config_path" : config["output_config_path"]
 }
 
@@ -77,8 +96,8 @@ paths["output_config_path"] = modify_output_config(paths["output_config_path"], 
 # modifying config to change number of concurrent jobs and mount dbs
 paths["config_path"] = modify_concurrency_config(paths["config_path"], 
                                                  system_folder,
-                                                 args["concurrent_jobs"])
-
+                                                 gtdbtk_path=os.path.abspath(args["gtdbtk_data"]),
+                                                 n_jobs=args["concurrent_jobs"])
 # creating a log file 
 log_path = os.path.join(system_folder, "log.txt")
 

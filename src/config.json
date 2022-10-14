@@ -12,7 +12,7 @@
     "cromwell_path": "/storage/TomaszLab/vbez/metagenomic_gmhi/metagenomome_assembly/cromwell/cromwell-84.jar",
     "db_mount_config": "./mount.conf",
     "grch38_url": "https://genome-idx.s3.amazonaws.com/bt/GRCh38_noalt_as.zip",
-    "gtdbtk_db_version": "release207",
+    "gtdbtk_db_release": "release207_v2",
     "gtdbtk_version": "2.1.1",
     "output_config_path": "./json_templates/output_options.json",
     "read_extensions": [

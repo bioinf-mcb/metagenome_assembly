@@ -57,33 +57,6 @@ def load_fasta_ids(path):
     fasta_ids = [seq.metadata['id'] for seq in io.read(path, format='fasta')]
     return fasta_ids
 
-
-# Remove after --tab_table tested
-def load_checkm_files(file, colnames):
-    """
-    Reads CHECKM txt file and extracts specified columns.
-
-    Parameters
-    ----------
-    input_file : str
-      txt file containing CHECKM report
-    colnames : list of str
-        column names
-
-    Returns
-    ------
-    A CHECKM dataframe
-    """
-    CHECKM = []
-    checkm_f = open(file, 'r')
-    for line in checkm_f:
-        contents = (re.sub('\-+', '', line.strip()))
-        if contents:
-            contents = re.sub('\s\s+', '\t', contents)
-            CHECKM.append(contents.split('\t'))
-    return pd.DataFrame(data=CHECKM[1:], columns=CHECKM[0])[colnames]
-
-
 def load_mags_contigs_taxonomies_for_sample(sample_dir, taxonomy_path,
                                             checkm_path):
     """
@@ -107,13 +80,11 @@ def load_mags_contigs_taxonomies_for_sample(sample_dir, taxonomy_path,
     mag_root = sample_dir_name[:sample_dir_name.rfind("_bins")]
 
     # runs through per-sample Checkm files and creates a dataframe
-    colnames = ["Bin Id", "Marker lineage", "# genomes", "# markers",
-                "Completeness", "Contamination", "Strain heterogeneity"]
-    checkm_df = pd.DataFrame(columns=colnames)
     checkm_file = join(checkm_path, f"{mag_root}_checkm.txt")
+    checkm_df = pd.DataFrame()
     try:
         f = open(checkm_file, "r")
-        checkm_df = checkm_df.append(load_checkm_files(checkm_file, colnames))
+        checkm_df = pd.concat(checkm_df, pd.read_csv(checkm_file, sep="\t"))
     except:
         print('Missing or empty checkM output file:', checkm_file)
     checkm_df.rename({"Bin Id": "Bin_ID", "# genomes": "n_genomes",

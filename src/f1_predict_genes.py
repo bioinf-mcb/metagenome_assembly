@@ -6,7 +6,8 @@ from _utils import (
     read_json_config,
     modify_output_config,
     modify_concurrency_config, 
-    read_evaluate_log
+    read_evaluate_log,
+    get_files_with_extension
 )
 
 import argparse
@@ -39,9 +40,9 @@ template_path = os.path.join(template_dir, "predict_genes.json")
 with open(template_path) as f:
     template = json.loads(f.read())
     
-# collect files from dir
-files =  [os.path.join(args["input_folder"], file) for file in sorted(os.listdir(args["input_folder"])) if file.endswith(args["suffix"])]
-template["predict_mags.contigs"] = files
+# collect contigs from dir
+contigs =  get_files_with_extension(args["input_folder"], args["suffix"])
+template["predict_mags.contigs"] = contigs
 template["predict_mags.sample_suffix"] = args["suffix"]
 
 # creating output directory

@@ -53,8 +53,7 @@ bowtie2_index = find_database(args["bowtie2_index"], config["bowtie2_index_exten
 if not bowtie2_index:
     description = "It will allow to remove human contaminant DNA from samples."
     bowtie2_folder = download_database(args["bowtie2_index"], config["grch38_url"],
-                                      "GRCh38", description,
-                                       archive_format="zip")
+                                      "GRCh38", description)
     bowtie2_index = find_database(bowtie2_folder, config["bowtie2_index_extensions"], "bowtie2_index")
 
 ## TODO modify template to include all arguments
@@ -68,7 +67,7 @@ with open(template_path) as f:
 # getting sorted lists of forward and reverse reads from a folder
 sequencing_files = filter_list_of_terms(config["read_extensions"], os.listdir(args["input_folder"]))
 split_character = infer_split_character(sequencing_files[0])
-base_names = [id.split(split_character)[0] for id in sequencing_files]
+base_names = [f"{split_character}".join(id.split(split_character)[:-1]) for id in sequencing_files]
 
 # find all read files in a folder and prepare them for processing
 for base in set(base_names):
@@ -113,7 +112,7 @@ paths["output_config_path"] = modify_output_config(paths["output_config_path"], 
 paths["config_path"] = modify_concurrency_config(paths["config_path"], 
                                                  system_folder, 
                                                  args["concurrent_jobs"], 
-                                                 os.path.abspath(bowtie2_index))
+                                                 bt2_path=os.path.abspath(bowtie2_index))
 
 cmd = """java -Dconfig.file={0} -jar {1} run {2} -o {3} -i {4} > {5}""".format(*paths.values(), inputs_path, log_path)
 os.system(cmd)

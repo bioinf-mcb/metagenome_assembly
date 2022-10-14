@@ -6,7 +6,8 @@ from _utils import (
     modify_output_config,
     modify_concurrency_config,
     create_directory,
-    read_evaluate_log
+    read_evaluate_log,
+    get_files_with_extension
 )
 
 import argparse
@@ -28,7 +29,6 @@ config = read_json_config(os.path.join(script_dir, "config.json"))
 
 args = vars(parser.parse_args())
 
-study_path = args["input_folder"]
 system_folder = os.path.join(args["output_folder"], "system")
 
 # load json template
@@ -39,7 +39,7 @@ with open(template_path) as f:
     template = json.loads(f.read())
     
 # collect files from dir
-files =  [os.path.join(study_path, file) for file in sorted(os.listdir(study_path)) if file.endswith(args["suffix"])]
+files =  get_files_with_extension(args["input_folder"], args["suffix"])
 template["generate_gene_catalog.genepreds"] = files
 template["generate_gene_catalog.thread_num"] = args["threads"]
 

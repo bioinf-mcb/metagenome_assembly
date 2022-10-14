@@ -3,13 +3,14 @@ version 1.0
 struct PairedSample {
     File file_r1
     File file_r2
-    File sample_id
+    String sample_id
 }
 
 struct QcAndContigs { 
     File file_r1
     File file_r2
     File contigs
+    String sample_id
 }
 
 struct QcFull { 
