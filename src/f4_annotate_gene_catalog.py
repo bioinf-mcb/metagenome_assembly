@@ -69,9 +69,10 @@ if not diamond_path:
 
     diamond_path = find_database(args["eggnog_database"], diamond_filename, "Diamond")
 
+# Getting necessary files from script name
+script_name = os.path.basename(__file__).split(".")[0]
 # load input template
-template_dir = os.path.abspath(os.path.join(script_dir, "json_templates"))
-template_path = os.path.join(template_dir, "annotate_gene_catalog.json")
+template_path = config["input_templates"][script_name]
 with open(template_path) as f:
     template = json.loads(f.read())
 
@@ -96,7 +97,7 @@ with open(inputs_path, 'w') as f:
 paths = {
     "config_path" : config["db_mount_config"], 
     "cromwell_path" : config["cromwell_path"], 
-    "wdl_path" : config["wdls"]["f4_annotate_gene_catalog"],
+    "wdl_path" : config["wdls"][script_name],
     "output_config_path" : config["output_config_path"]
 }
 

@@ -61,9 +61,10 @@ if not bowtie2_index:
 
 ## TODO modify template to include all arguments
 
+# Getting necessary files from script name
+script_name = os.path.basename(__file__).split(".")[0]
 # load input template
-template_dir = os.path.abspath(os.path.join(script_dir, "json_templates"))
-template_path = os.path.join(template_dir, "qc_and_assemble.json")
+template_path = config["input_templates"][script_name]
 with open(template_path) as f:
     template = json.loads(f.read())
 
@@ -105,7 +106,7 @@ log_path = os.path.join(system_folder, "log.txt")
 paths = {
     "config_path" : config["db_mount_config"], 
     "cromwell_path" : config["cromwell_path"], 
-    "wdl_path" : config["wdls"]["qc_and_assemble"],
+    "wdl_path" : config["wdls"][script_name],
     "output_config_path" : config["output_config_path"]
 }
 

@@ -36,9 +36,10 @@ system_folder = os.path.join(args["output_folder"], "system")
 script_dir = os.path.dirname(__file__)
 config = read_json_config(os.path.join(script_dir, "config.json"))
 
+# Getting necessary files from script name
+script_name = os.path.basename(__file__).split(".")[0]
 # load input template
-template_dir = os.path.abspath(os.path.join(script_dir, "json_templates"))
-template_path = os.path.join(template_dir, "map_to_gene_clusters.json")
+template_path = config["input_templates"][script_name]
 with open(template_path) as f:
     template = json.loads(f.read())
 
@@ -75,7 +76,7 @@ with open(inputs_path, 'w') as f:
 paths = {
     "config_path" : config["db_mount_config"], 
     "cromwell_path" : config["cromwell_path"], 
-    "wdl_path" : config["wdls"]["f3_map_to_gene_clusters"],
+    "wdl_path" : config["wdls"][script_name],
     "output_config_path" : config["output_config_path"]
 }
 

@@ -42,12 +42,10 @@ args = vars(parser.parse_args())
 
 system_folder = os.path.join(args["output_folder"], "system")
 
-# load json template
-script_dir = os.path.dirname(__file__)
-
-# template
-template_dir = os.path.abspath(os.path.join(script_dir, "json_templates"))
-template_path = os.path.join(template_dir, "predict_mags.json")
+# Getting necessary files from script name
+script_name = os.path.basename(__file__).split(".")[0]
+# load input template
+template_path = config["input_templates"][script_name]
 with open(template_path) as f:
     template = json.loads(f.read())
     
