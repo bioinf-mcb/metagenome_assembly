@@ -86,7 +86,7 @@ with open(inputs_path, 'w') as f:
 paths = {
     "config_path" : config["db_mount_config"], 
     "cromwell_path" : config["cromwell_path"], 
-    "wdl_path" : config["wdls"]["t1_predict_mags"],
+    "wdl_path" : config["wdls"][script_name],
     "output_config_path" : config["output_config_path"]
 }
 

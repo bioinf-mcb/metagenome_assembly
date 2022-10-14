@@ -1,9 +1,13 @@
+from distutils.command.config import config
 import os 
 import json
 import sys 
 
 from _utils import (
     modify_output_config,
+    read_json_config,
+    check_inputs_not_empty,
+    create_directory,
     read_evaluate_log
 )
 
@@ -16,29 +20,31 @@ parser.add_argument('-o','--output_folder', help='The directory for the output',
 args = vars(parser.parse_args())
 
 system_folder = os.path.join(args["output_folder"], "system")
+script_dir = os.path.dirname(__file__)
+config = read_json_config(os.path.join(script_dir, "config.json"))
 
 logs  = [os.path.join(args["input_folder"], file) for file in sorted(os.listdir(args["input_folder"])) if file.endswith(".log")]
 
-if not logs:
-    raise FileNotFoundError("No .log files found")
+check_inputs_not_empty({"logs" : logs})
     
 # json template
 read_table_input = {"read_table.logs" : logs}
 # writing input json
-os.makedirs(args["output_folder"], exist_ok=True)
-inputs_path = os.path.join(args["output_folder"], 'input_logs.json')
+create_directory(args["output_folder"])
+create_directory(system_folder)
+
+inputs_path = os.path.join(system_folder, 'input_logs.json')
 
 with open(inputs_path, 'w') as f:
     json.dump(read_table_input, f, indent=4, sort_keys=True, ensure_ascii=False)
 
-    
-script_dir = os.path.dirname(__file__)
+script_name = os.path.basename(__file__).split(".")[0]
 
 paths = {
-    "config_dir" : "./cromwell_configs/kneaddata.conf", 
-    "cromwell_dir" : "../cromwell/cromwell-78.jar", 
-    "wdl_dir" : "./wdl/util_kneaddata.wdl",
-    "output_dir" : "json_templates/output_options.json"
+    "config_path" : config["db_mount_config"], 
+    "cromwell_path" : config["cromwell_path"], 
+    "wdl_path" : config["wdls"][script_name],
+    "output_config_path" : config["output_config_path"]
 }
 
 # creating absolute paths
