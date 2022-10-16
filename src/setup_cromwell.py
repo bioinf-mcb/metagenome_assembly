@@ -45,6 +45,7 @@ def find_link(url: str) -> str:
     for element in BeautifulSoup(response.content, parse_only=SoupStrainer('a'), features="html.parser"):
         if element.has_attr('href') and "cromwell" in element['href'] and element["href"].endswith(".jar"):
             link = urljoin(base, element["href"])
+        
         return link
 
 def atoi(text):
