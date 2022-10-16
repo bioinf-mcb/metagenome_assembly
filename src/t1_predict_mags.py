@@ -11,7 +11,10 @@ from _utils import (
     reorder_list_substrings, 
     check_inputs_not_empty,
     start_workflow,
-    load_input_template
+    load_input_template,
+    check_path_dir,
+    find_database,
+    download_database
 )
 
 import argparse
@@ -41,8 +44,19 @@ parser.add_argument('-c','--concurrent_jobs', help='Number of jobs to run in par
                     type=int, default=1, required=False)
 
 args = vars(parser.parse_args())
-
 system_folder = os.path.join(args["output_folder"], "system")
+args["input_folder_reads"] = os.path.abspath(args["input_folder_reads"])
+args["input_folder_contigs"] = os.path.abspath(args["input_folder_contigs"])
+# checking if input directory exists
+check_path_dir(args["input_folder_reads"])
+check_path_dir(args["input_folder_contigs"])
+
+gtdb = find_database(args["gtdbtk_data"], [config["gtdbtk_db_release"]], "gtdb")
+if not gtdb:
+    description = "It will allow to remove human contaminant DNA from samples."
+    gtdb_folder = download_database(args["gtdbtk_data"], config["gtdb_url"],
+                                      "gtdb", description)
+    gtdb = find_database(gtdb_folder, [config["gtdbtk_db_release"]], "gtdb")
 
 # Getting necessary files from script name
 script_name = os.path.basename(__file__).split(".")[0]
@@ -104,7 +118,7 @@ paths["config_path"] = modify_concurrency_config(paths["config_path"],
                                                  n_jobs=args["concurrent_jobs"])
 
 # starting workflow 
-log_path = start_workflow(paths, inputs_path, system_folder)
+log_path = start_workflow(paths, inputs_path, system_folder, script_name)
 
 # checking if the job was successful
 read_evaluate_log(log_path)

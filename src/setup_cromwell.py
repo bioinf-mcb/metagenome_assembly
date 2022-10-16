@@ -37,9 +37,15 @@ def find_link(url: str) -> str:
     base = "https://github.com/"
     response = requests.get(url)
 
-    for link in BeautifulSoup(response.content, parse_only=SoupStrainer('a'), features="html.parser"):
-        if link.has_attr('href') and link['href'].endswith(".jar") and "cromwell" in link['href']:
-            return urljoin(base, link['href'])
+    for element in BeautifulSoup(response.content, parse_only=SoupStrainer('a'), features="html.parser"):
+        if element.has_attr('href') and "releases/tag" in element['href']:
+            expanded_assets_url = re.sub("tag", "expanded_assets", element["href"])
+    
+    response = requests.get(urljoin(base, expanded_assets_url))
+    for element in BeautifulSoup(response.content, parse_only=SoupStrainer('a'), features="html.parser"):
+        if element.has_attr('href') and "cromwell" in element['href'] and element["href"].endswith(".jar"):
+            link = urljoin(base, element["href"])
+        return link
 
 def atoi(text):
     return int(text) if text.isdigit() else text
@@ -106,6 +112,7 @@ def setup_cromwell(url, save_dir):
 
     return cromwell_path
 
+from time import sleep
     
 if __name__ == "__main__":
     url = "https://github.com/broadinstitute/cromwell/releases/latest"

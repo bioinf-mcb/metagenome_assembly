@@ -76,7 +76,7 @@ paths["config_path"] = modify_concurrency_config(paths["config_path"],
                                                  n_jobs=1)
 
 # starting workflow
-log_path = start_workflow(paths, inputs_path, system_folder)
+log_path = start_workflow(paths, inputs_path, system_folder, script_name)
 
 read_evaluate_log(log_path)
 

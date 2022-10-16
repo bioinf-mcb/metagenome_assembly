@@ -1,4 +1,5 @@
 {
+    "_eggnog_comment": "Attention to version compatibility in eggnog-mapper and db. See https://github.com/eggnogdb/eggnog-mapper/commits/fc4f5f6d78062daec38f3b4c0cbf6c3aeb5deac1/eggnogmapper/version.py",
     "_gtdbtk_comment": "Attention to version compatibility in gtdbtk and db. See ecogenomics.github.io",
     "bowtie2_index_extensions": [
         ".1.bt2",
@@ -9,11 +10,25 @@
         ".rev.2.bt2",
         ".rev.1.bt2l"
     ],
-    "cromwell_path": "/storage/TomaszLab/vbez/metagenomic_gmhi/metagenomome_assembly/cromwell/cromwell-84.jar",
+    "cromwell_path": "/storage/TomaszLab/vbez/metagenomic_gmhi/metagenomome_assembly/tests/cromwell/cromwell-84.jar",
     "db_mount_config": "./mount.conf",
+    "eggnog_base_url": "http://eggnogdb.embl.de/download/emapperdb-",
+    "eggnog_db": "eggnog.db.gz",
+    "eggnog_db_version": "5.0.2",
+    "eggnog_diamond_db": "eggnog_proteins.dmnd.gz",
+    "eggnog_version": "2.1.6",
     "grch38_url": "https://genome-idx.s3.amazonaws.com/bt/GRCh38_noalt_as.zip",
+    "gtdb_url": "https://data.gtdb.ecogenomic.org/releases/latest/auxillary_files/gtdbtk_v2_data.tar.gz",
     "gtdbtk_db_release": "release207_v2",
     "gtdbtk_version": "2.1.1",
+    "input_templates": {
+        "f1_predict_genes": "./input_templates/f1_predict_genes.json",
+        "f2_generate_gene_catalog": "./input_templates/f2_generate_gene_catalog.json",
+        "f3_map_to_gene_clusters": "./input_templates/f3_map_to_gene_clusters.json",
+        "f4_annotate_gene_catalog": "./input_templates/f4_annotate_gene_catalog.json",
+        "qc_and_assembly": "./input_templates/qc_and_assembly.json",
+        "t1_predict_mags": "./input_templates/t1_predict_mags.json"
+    },
     "output_config_path": "./input_templates/output_options.json",
     "read_extensions": [
         ".fastq",
@@ -21,27 +36,12 @@
         ".fastq.gz",
         ".fq.gz"
     ],
-    "input_templates": {
-        "qc_and_assembly": "./input_templates/qc_and_assembly.json",
-        "f1_predict_genes": "./input_templates/f1_predict_genes.json",
-        "f2_generate_gene_catalog": "./input_templates/f2_generate_gene_catalog.json",
-        "f3_map_to_gene_clusters": "./input_templates/f3_map_to_gene_clusters.json",
-        "f4_annotate_gene_catalog" : "./input_templates/f4_annotate_gene_catalog.json",
-        "t1_predict_mags" : "./input_templates/t1_predict_mags.json"
-
-    },
     "wdls": {
-        "qc_and_assembly": "./wdl/qc_and_assembly.wdl",
         "f1_predict_genes": "./wdl/f1_predict_genes.wdl",
         "f2_generate_gene_catalog": "./wdl/f2_generate_gene_catalog.wdl",
         "f3_map_to_gene_clusters": "./wdl/f3_map_to_gene_clusters.wdl",
-        "f4_annotate_gene_catalog" : "./wdl/f4_annotate_gene_catalog.wdl",
-        "t1_predict_mags" : "./wdl/t1_predict_mags.wdl"
-    },
-    "_eggnog_comment" : "Attention to version compatibility in eggnog-mapper and db. See https://github.com/eggnogdb/eggnog-mapper/commits/fc4f5f6d78062daec38f3b4c0cbf6c3aeb5deac1/eggnogmapper/version.py",
-    "eggnog_version": "2.1.6",
-    "eggnog_db_version": "5.0.2",
-    "eggnog_base_url":"http://eggnogdb.embl.de/download/emapperdb-",
-    "eggnog_db" : "eggnog.db.gz",
-    "eggnog_diamond_db" : "eggnog_proteins.dmnd.gz"
+        "f4_annotate_gene_catalog": "./wdl/f4_annotate_gene_catalog.wdl",
+        "qc_and_assembly": "./wdl/qc_and_assembly.wdl",
+        "t1_predict_mags": "./wdl/t1_predict_mags.wdl"
+    }
 }

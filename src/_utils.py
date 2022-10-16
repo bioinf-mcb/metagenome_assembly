@@ -7,7 +7,18 @@ import glob
 from typing import Dict, List
 
 from rich.console import Console
-console = Console()
+from rich.highlighter import RegexHighlighter
+from rich.theme import Theme
+
+class WorkflowHighlighter(RegexHighlighter):
+    """Apply style to workflowname."""
+
+    base_style = "example."
+    highlights = [r".*_?.*"]
+
+
+theme = Theme({"example.workflow": "bold yellow"})
+console = Console(highlighter=WorkflowHighlighter(), theme=theme)
 
 import logging
 logging.basicConfig(level=logging.DEBUG)
@@ -267,13 +278,15 @@ def check_inputs_not_empty(inputs: Dict[str, List]) -> None:
             console.log(f"Workflow failed. Input {name} is empty. Check the inputs.", style="red")
             sys.exit(1)
 
-def start_workflow(system_paths, inputs_path, system_folder):
+def start_workflow(system_paths, inputs_path, system_folder, workflow_name, console=console):
     """Starts the workflow. Redirects output to a log file and returns the log path for evaluation"""
-    console.log("Workflow started succesfully. Please, be patient.", style="green")
-    log_path = os.path.join(system_folder, "log.txt")
+    console.log(f"Workflow [bold yellow]{workflow_name}[/bold yellow] has started. Please, be patient.")
+    
+    with console.status("[yellow]Processing data...") as status:
+        log_path = os.path.join(system_folder, "log.txt")
 
-    cmd = """java -Dconfig.file={0} -jar {1} run {2} -o {3} -i {4} > {5}""".format(*system_paths.values(), inputs_path, log_path)
-    os.system(cmd)
+        cmd = """java -Dconfig.file={0} -jar {1} run {2} -o {3} -i {4} > {5}""".format(*system_paths.values(), inputs_path, log_path)
+        os.system(cmd)
 
     return log_path
 
