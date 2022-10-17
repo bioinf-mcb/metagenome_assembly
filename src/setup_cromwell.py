@@ -126,7 +126,7 @@ if __name__ == "__main__":
     cromwell_path = os.path.abspath(setup_cromwell(url, args["save_path"]))
     script_dir = os.path.dirname(__file__)
 
-    modify_json_config(os.path.join(script_dir, "config.json"), "cromwell_path", cromwell_path)
+    modify_json_config(os.path.join(script_dir, "config.json"), "cromwell_path", cromwell_path, "system_paths")
 
     
     

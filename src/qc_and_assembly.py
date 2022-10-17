@@ -1,22 +1,18 @@
 import os 
-import json 
 import re
-from shutil import unpack_archive
 
 from _utils import (
-    read_json_config,
-    check_path_dir,
-    modify_output_config,
     modify_concurrency_config,
-    create_directory,
     infer_split_character, 
     filter_list_of_terms,
     read_evaluate_log, 
     find_database,
     download_database,
     check_inputs_not_empty,
-    start_workflow,
-    load_input_template
+    start_workflow, 
+    retrieve_config_paths,
+    prepare_system_variables,
+    write_inputs_file
 )
 
 import logging
@@ -44,15 +40,7 @@ parser.add_argument('-bt2_index','--bowtie2_index', help='Path to a diretory wit
 parser.add_argument('-split_char','--split_character', help='Character used to separate paired reads. Software can deduct use of "_" and "_R", otherwise it will fail. \
                     Ex. SAMPLE_1(R).fastq  SAMPLE_2(R).fastq. If you have reads with different naming convention, please specify it here.', required=False)
 
-# reading config file 
-script_dir = os.path.dirname(__file__)
-config = read_json_config(os.path.join(script_dir, "config.json"))
-# parsing arguments
-args = vars(parser.parse_args())
-system_folder = os.path.join(args["output_folder"], "system")
-args["input_folder"] = os.path.abspath(args["input_folder"])
-# checking if input directory exists
-check_path_dir(args["input_folder"])
+script_name, script_dir, config, args, system_folder, template = prepare_system_variables(parser, __file__)
 
 bowtie2_index = find_database(args["bowtie2_index"], config["bowtie2_index_extensions"], "bowtie2 index")
 if not bowtie2_index:
@@ -60,14 +48,6 @@ if not bowtie2_index:
     bowtie2_folder = download_database(args["bowtie2_index"], config["grch38_url"],
                                       "GRCh38", description)
     bowtie2_index = find_database(bowtie2_folder, config["bowtie2_index_extensions"], "bowtie2_index")
-
-## TODO modify template to include all arguments
-
-# Getting necessary files from script name
-script_name = os.path.basename(__file__).split(".")[0]
-
-# load input template
-template = load_input_template(script_dir, script_name, config)
 
 # getting sorted lists of forward and reverse reads from a folder
 sequencing_files = filter_list_of_terms(config["read_extensions"], os.listdir(args["input_folder"]))
@@ -93,37 +73,16 @@ logging.info(f"Found samples: {n_samples}")
 # changing number of threads
 template['qc_and_assemble.thread_num'] = args["threads"]
 
-# creating output directory
-create_directory(args["output_folder"])
-create_directory(system_folder)
-
 # writing input json
-inputs_path = os.path.join(system_folder, 'inputs.json')
-with open(inputs_path, 'w') as f:
-    json.dump(template, f, indent=4, sort_keys=True, ensure_ascii=False)
+inputs_path = write_inputs_file(template, system_folder, "_".join(["inputs", script_name]) + ".json")
 
-paths = {
-    "config_path" : config["db_mount_config"], 
-    "cromwell_path" : config["cromwell_path"], 
-    "wdl_path" : config["wdls"][script_name],
-    "output_config_path" : config["output_config_path"]
-}
+paths = retrieve_config_paths(config, script_dir, script_name, output_path=args["output_folder"], save_path=system_folder)
 
-for path in paths.keys():
-    paths[path] = os.path.abspath(os.path.join(script_dir, paths[path]))
-
-
-paths["output_config_path"] = modify_output_config(paths["output_config_path"], args["output_folder"], system_folder)
-paths["config_path"] = modify_concurrency_config(paths["config_path"], 
-                                                 system_folder, 
-                                                 args["concurrent_jobs"], 
-                                                 bt2_path=os.path.abspath(bowtie2_index))
+paths["db_mount_config"] = modify_concurrency_config(paths["db_mount_config"], system_folder, args["concurrent_jobs"], 
+                                                     bt2_path=os.path.abspath(bowtie2_index))
 
 # starting workflow
 log_path = start_workflow(paths, inputs_path, system_folder, script_name)
 
 # checking if the job was succesful
 read_evaluate_log(log_path)
-
-
-

@@ -14,7 +14,10 @@ from _utils import (
     load_input_template,
     check_path_dir,
     find_database,
-    download_database
+    download_database,
+    prepare_system_variables,
+    write_inputs_file,
+    retrieve_config_paths
 )
 
 import argparse
@@ -43,8 +46,8 @@ parser.add_argument('-t', '--thread_num', help="Number of threads to use", type=
 parser.add_argument('-c','--concurrent_jobs', help='Number of jobs to run in parallel', 
                     type=int, default=1, required=False)
 
-args = vars(parser.parse_args())
-system_folder = os.path.join(args["output_folder"], "system")
+script_dir, script_name, config, args, system_folder, template = prepare_system_variables(parser, __file__)
+
 args["input_folder_reads"] = os.path.abspath(args["input_folder_reads"])
 args["input_folder_contigs"] = os.path.abspath(args["input_folder_contigs"])
 # checking if input directory exists
@@ -57,12 +60,6 @@ if not gtdb:
     gtdb_folder = download_database(args["gtdbtk_data"], config["gtdb_url"],
                                       "gtdb", description)
     gtdb = find_database(gtdb_folder, [config["gtdbtk_db_release"]], "gtdb")
-
-# Getting necessary files from script name
-script_name = os.path.basename(__file__).split(".")[0]
-
-# load input template
-template = load_input_template(script_dir, script_name, config)
     
 # collect reads from dir
 forward_reads = get_files_with_extension(args["input_folder_reads"], args["suffix1"])
@@ -88,29 +85,11 @@ for read_1, read_2, contig in zip(forward_reads, reverse_reads, contigs):
 template["predict_mags.thread_num"] = args["thread_num"]
 template["predict_mags.gtdb_release"] = config["gtdbtk_db_release"]
 
-# creating output directory
-create_directory(args["output_folder"])
-create_directory(system_folder)
-
 # writing input json
-inputs_path = os.path.join(system_folder, 'input_predict_mags.json')
-with open(inputs_path, 'w') as f:
-    json.dump(template, f, indent=4, sort_keys=True, ensure_ascii=False)
+inputs_path = write_inputs_file(template, system_folder, "_".join(["inputs", script_name]) + ".json")
 
 
-paths = {
-    "config_path" : config["db_mount_config"], 
-    "cromwell_path" : config["cromwell_path"], 
-    "wdl_path" : config["wdls"][script_name],
-    "output_config_path" : config["output_config_path"]
-}
-
-# creating absolute paths
-for path in paths.keys():
-    paths[path] = os.path.abspath(os.path.join(script_dir, paths[path]))
-
-# modifying config to change output folder
-paths["output_config_path"] = modify_output_config(paths["output_config_path"], args["output_folder"], system_folder)
+paths = retrieve_config_paths(config, script_dir, script_name, output_path=args["output_folder"], save_path=system_folder)
 # modifying config to change number of concurrent jobs and mount dbs
 paths["config_path"] = modify_concurrency_config(paths["config_path"], 
                                                  system_folder,

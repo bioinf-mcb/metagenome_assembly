@@ -1,4 +1,3 @@
-from distutils import archive_util
 import os
 import sys
 import re
@@ -10,15 +9,7 @@ from rich.console import Console
 from rich.highlighter import RegexHighlighter
 from rich.theme import Theme
 
-class WorkflowHighlighter(RegexHighlighter):
-    """Apply style to workflowname."""
-
-    base_style = "example."
-    highlights = [r".*_?.*"]
-
-
-theme = Theme({"example.workflow": "bold yellow"})
-console = Console(highlighter=WorkflowHighlighter(), theme=theme)
+console = Console()
 
 import logging
 logging.basicConfig(level=logging.DEBUG)
@@ -90,14 +81,21 @@ def aria2c_download_file(url: str, save_dir: str) -> str:
     
 def modify_json_config(config_file: str, 
                        config_name: str, 
-                       config_value: str) -> None:
+                       config_value: str,
+                       subsection: str=None) -> None:
     """Modifies a json config file"""
     with open(config_file, "r") as f:
         config = json.loads(f.read())
-    config[config_name] = config_value
+    if subsection:
+        config[subsection][config_name] = config_value
+        logging.debug(f"{config_file} modified - {subsection}:{config_name}:{config_value}")
+    else:
+        config[config_name] = config_value
+        logging.debug(f"{config_file} modified - {config_name}:{config_value}")
+
     with open(config_file, "w") as f:
         json.dump(config, f, indent=4, sort_keys=True, ensure_ascii=False)
-    logging.debug(f"{config_file} modified - {config_name}:{config_value}")
+    
 
 
 def read_json_config(config_file: str) -> dict:
@@ -281,11 +279,11 @@ def check_inputs_not_empty(inputs: Dict[str, List]) -> None:
 def start_workflow(system_paths, inputs_path, system_folder, workflow_name, console=console):
     """Starts the workflow. Redirects output to a log file and returns the log path for evaluation"""
     console.log(f"Workflow [bold yellow]{workflow_name}[/bold yellow] has started. Please, be patient.")
-    
-    with console.status("[yellow]Processing data...") as status:
+
+    with console.status("[yellow]Processing data..."):
         log_path = os.path.join(system_folder, "log.txt")
 
-        cmd = """java -Dconfig.file={0} -jar {1} run {2} -o {3} -i {4} > {5}""".format(*system_paths.values(), inputs_path, log_path)
+        cmd = """java -Dconfig.file={1} -jar {0} run {3} -o {2} -i {4} > {5}""".format(*system_paths.values(), inputs_path, log_path)
         os.system(cmd)
 
     return log_path
@@ -296,3 +294,49 @@ def load_input_template(script_dir, script_name, config):
         template = json.loads(f.read())
     
     return template
+
+
+def retrieve_config_paths(config, script_dir, script_name, **kwargs):
+    """Returns paths to the config files"""
+    
+    paths = config["system_paths"]
+    paths["wdl_path"] = config["wdls"][script_name]
+    
+    for entry, path in paths.items():
+        paths[entry] = os.path.abspath(os.path.join(script_dir, path))
+
+    paths["output_config_path"] = modify_output_config(paths["output_config_path"], **kwargs)
+
+    return paths
+
+def prepare_system_variables(argparser, py_script):
+    """Loads system variables for the script"""
+    # Getting necessary files from script name
+    script_name = os.path.basename(py_script).split(".")[0]
+    # reading config file 
+    script_dir = os.path.dirname(py_script)
+    config = read_json_config(os.path.join(script_dir, "config.json"))
+    # parsing arguments
+    args = vars(argparser.parse_args())
+    system_folder = os.path.join(args["output_folder"], "system")
+
+    if not py_script.split("_")[0] == "t1""
+        args["input_folder"] = os.path.abspath(args["input_folder"])
+    
+    # creating output directory
+    create_directory(args["output_folder"])
+    create_directory(system_folder)
+    
+    # checking if input directory exists
+    check_path_dir(args["input_folder"])
+    # load input template
+    template = load_input_template(script_dir, script_name, config)
+
+    return script_name, script_dir, config, args, system_folder, template
+
+def write_inputs_file(inputs_template, system_folder, inputs_filename):
+    """Writes the inputs to a system folder for troubleshooting and returns the path to the file"""
+    inputs_path = os.path.join(system_folder, inputs_filename)
+    with open(inputs_path, 'w') as f:
+        json.dump(inputs_template, f, indent=4, sort_keys=True, ensure_ascii=False)
+    return inputs_path

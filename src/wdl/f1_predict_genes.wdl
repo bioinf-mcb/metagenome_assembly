@@ -10,7 +10,7 @@ workflow predict_mags {
         call predictgenes {
             input:
             contig = contig,
-            sample = sub(basename(contig), sample_suffix, "")
+            sample = basename(contig, sample_suffix)
             }
     }
 }

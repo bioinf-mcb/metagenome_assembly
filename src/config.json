@@ -10,8 +10,6 @@
         ".rev.2.bt2",
         ".rev.1.bt2l"
     ],
-    "cromwell_path": "/storage/TomaszLab/vbez/metagenomic_gmhi/metagenomome_assembly/tests/cromwell/cromwell-84.jar",
-    "db_mount_config": "./mount.conf",
     "eggnog_base_url": "http://eggnogdb.embl.de/download/emapperdb-",
     "eggnog_db": "eggnog.db.gz",
     "eggnog_db_version": "5.0.2",
@@ -29,13 +27,17 @@
         "qc_and_assembly": "./input_templates/qc_and_assembly.json",
         "t1_predict_mags": "./input_templates/t1_predict_mags.json"
     },
-    "output_config_path": "./input_templates/output_options.json",
     "read_extensions": [
         ".fastq",
         ".fq",
         ".fastq.gz",
         ".fq.gz"
     ],
+    "system_paths": {
+        "cromwell_path": "/storage/TomaszLab/vbez/metagenomic_gmhi/metagenomome_assembly/cromwell/cromwell-84.jar",
+        "db_mount_config": "./mount.conf",
+        "output_config_path": "./input_templates/output_options.json"
+    },
     "wdls": {
         "f1_predict_genes": "./wdl/f1_predict_genes.wdl",
         "f2_generate_gene_catalog": "./wdl/f2_generate_gene_catalog.wdl",

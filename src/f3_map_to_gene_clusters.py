@@ -3,16 +3,15 @@ import os
 import json 
 
 from _utils import (
-    modify_output_config,
     modify_concurrency_config,
-    read_json_config,
-    create_directory,
     read_evaluate_log, 
     get_files_with_extension,
     reorder_list_substrings,
     check_inputs_not_empty,
     start_workflow,
-    load_input_template
+    write_inputs_file,
+    retrieve_config_paths,
+    prepare_system_variables
 )
 
 import argparse
@@ -31,18 +30,7 @@ parser.add_argument('-s2','--suffix2', help='Suffix of the second of the paired 
 parser.add_argument('-t','--threads', help='Number of threads to use for clustering', 
                     type=int, default=1, required=False)
 
-
-args = vars(parser.parse_args())
-system_folder = os.path.join(args["output_folder"], "system")
-
-script_dir = os.path.dirname(__file__)
-config = read_json_config(os.path.join(script_dir, "config.json"))
-
-# Getting necessary files from script name
-script_name = os.path.basename(__file__).split(".")[0]
-
-# load input template
-template = load_input_template(script_dir, script_name, config)
+script_name, script_dir, config, args, system_folder, template = prepare_system_variables(parser, __file__)
 
 # collect files from dir
 forward = get_files_with_extension(args["input_folder"], args["suffix1"])
@@ -62,35 +50,14 @@ check_inputs_not_empty({"reads" : template["map_to_gene_clusters.sampleInfo"],
 
 template["map_to_gene_clusters.sample_suffix"] = args["suffix1"]
 
-# creating output directory
-create_directory(args["output_folder"])
-create_directory(system_folder)
-
 # writing input json
-inputs_path = os.path.join(system_folder, 'input_map_to_gene_clusters.json')
-
-with open(inputs_path, 'w') as f:
-    json.dump(template, f, indent=4, sort_keys=True, ensure_ascii=False)
-
-
-
-paths = {
-    "config_path" : config["db_mount_config"], 
-    "cromwell_path" : config["cromwell_path"], 
-    "wdl_path" : config["wdls"][script_name],
-    "output_config_path" : config["output_config_path"]
-}
+inputs_path = write_inputs_file(template, system_folder, "_".join(["inputs", script_name]) + ".json")
 
 # creating absolute paths
-for path in paths.keys():
-    paths[path] = os.path.abspath(os.path.join(script_dir, paths[path]))
+paths = retrieve_config_paths(config, script_dir, script_name, output_path=args["output_folder"], save_path=system_folder)
 
-# modifying config to change output folder
-paths["output_config_path"] = modify_output_config(paths["output_config_path"], args["output_folder"], system_folder)
 # modifying config to change number of concurrent jobs and mount dbs
-paths["config_path"] = modify_concurrency_config(paths["config_path"], 
-                                                 system_folder,
-                                                 n_jobs=1)
+paths["db_mount_config"] = modify_concurrency_config(paths["db_mount_config"], system_folder, n_jobs=1)
 
 # starting workflow
 log_path = start_workflow(paths, inputs_path, system_folder, script_name)

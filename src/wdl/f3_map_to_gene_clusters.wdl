@@ -15,8 +15,8 @@ workflow map_to_gene_clusters {
         input:
         fileR1=info.file_r1,
         fileR2=info.file_r2,
-        sample=sub(basename(info.file_r1), sample_suffix, ""),
-        kma_db = kma_db_file,
+        sample=basename(info.file_r1, sample_suffix),
+        kma_db=kma_db_file,
         threads=thread_num
         }
     }

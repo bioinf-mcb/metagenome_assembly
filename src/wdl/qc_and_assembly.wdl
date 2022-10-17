@@ -142,7 +142,7 @@ task kneadData {
     }
 
     runtime {
-        docker: "crusher083/kneaddata@sha256:db19f5146938b1bf806722df7a68594b1536cb25612a941be1556205abffb9f6" # use kneaddata docker here
+        docker: "crusher083/kneaddata@sha256:74614fc84f02412f975c66fbee9d02ab211be5974478ac5c3b78b2d7178839d7" # use kneaddata docker here
         maxRetries: 1
     }
 }
