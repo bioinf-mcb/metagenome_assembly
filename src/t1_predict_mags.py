@@ -2,16 +2,13 @@ import os
 import json 
 
 from _utils import (
-    create_directory,
     read_json_config,
-    modify_output_config,
     modify_concurrency_config, 
     read_evaluate_log,
     get_files_with_extension, 
     reorder_list_substrings, 
     check_inputs_not_empty,
     start_workflow,
-    load_input_template,
     check_path_dir,
     find_database,
     download_database,
@@ -46,7 +43,7 @@ parser.add_argument('-t', '--thread_num', help="Number of threads to use", type=
 parser.add_argument('-c','--concurrent_jobs', help='Number of jobs to run in parallel', 
                     type=int, default=1, required=False)
 
-script_dir, script_name, config, args, system_folder, template = prepare_system_variables(parser, __file__)
+script_name, script_dir, config, args, system_folder, template = prepare_system_variables(parser, __file__)
 
 args["input_folder_reads"] = os.path.abspath(args["input_folder_reads"])
 args["input_folder_contigs"] = os.path.abspath(args["input_folder_contigs"])
@@ -91,7 +88,7 @@ inputs_path = write_inputs_file(template, system_folder, "_".join(["inputs", scr
 
 paths = retrieve_config_paths(config, script_dir, script_name, output_path=args["output_folder"], save_path=system_folder)
 # modifying config to change number of concurrent jobs and mount dbs
-paths["config_path"] = modify_concurrency_config(paths["config_path"], 
+paths["db_mount_config"] = modify_concurrency_config(paths["db_mount_config"],
                                                  system_folder,
                                                  gtdbtk_path=os.path.abspath(args["gtdbtk_data"]),
                                                  n_jobs=args["concurrent_jobs"])

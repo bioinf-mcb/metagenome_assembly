@@ -282,7 +282,7 @@ def start_workflow(system_paths, inputs_path, system_folder, workflow_name, cons
 
     with console.status("[yellow]Processing data..."):
         log_path = os.path.join(system_folder, "log.txt")
-
+        
         cmd = """java -Dconfig.file={1} -jar {0} run {3} -o {2} -i {4} > {5}""".format(*system_paths.values(), inputs_path, log_path)
         os.system(cmd)
 
@@ -319,16 +319,16 @@ def prepare_system_variables(argparser, py_script):
     # parsing arguments
     args = vars(argparser.parse_args())
     system_folder = os.path.join(args["output_folder"], "system")
-
-    if not py_script.split("_")[0] == "t1""
+    if not "t1" in py_script:
         args["input_folder"] = os.path.abspath(args["input_folder"])
-    
+        check_path_dir(args["input_folder"])
+
     # creating output directory
     create_directory(args["output_folder"])
     create_directory(system_folder)
     
     # checking if input directory exists
-    check_path_dir(args["input_folder"])
+   
     # load input template
     template = load_input_template(script_dir, script_name, config)
 

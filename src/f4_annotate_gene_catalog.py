@@ -74,9 +74,9 @@ inputs_path = write_inputs_file(template, system_folder, "_".join(["inputs", scr
 paths = retrieve_config_paths(config, script_dir, script_name, output_path=args["output_folder"], save_path=system_folder)
 
 # modifying config to change number of concurrent jobs and mount dbs
-paths["config_path"] = modify_concurrency_config(paths["config_path"], system_folder, n_jobs=args["concurrent_jobs"],
-                                                 eggnog_path=os.path.abspath(args["eggnog_database"]),
-                                                 )
+paths["db_mount_config"] = modify_concurrency_config(paths["db_mount_config"], system_folder, n_jobs=args["concurrent_jobs"],
+                                                     eggnog_path=os.path.abspath(args["eggnog_database"]),
+                                                    )
 
 # starting workflow
 log_path = start_workflow(paths, inputs_path, system_folder, script_name)

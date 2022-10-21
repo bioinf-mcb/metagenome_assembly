@@ -63,7 +63,7 @@ task map_to_contigs {
 
         bwa mem -t ${thread} -M ${contigs} ${fileR1} ${fileR2} | \
         # sorting BAM file with Samtools
-        samtools sort -@ ${thread} -m 4G -O bam -o ${sample}.sort.bam 
+        samtools sort -@ ${thread} -m 3G -O bam -o ${sample}.sort.bam 
 
     }
     

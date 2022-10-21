@@ -36,13 +36,9 @@ task merge_eggnog_outputs {
     }
 
     runtime {
-        docker: "gcr.io/microbiome-xavier/gene-mapper:111920"
-        cpu: 2
-        memory: "4GB"
+        docker: "crusher083/gene-mapper@sha256:79301af19fc7af2b125297976674e88a5b4149e1867977938510704d1198f70f"
         preemptible: num_preemptible
         maxRetries: num_preemptible + 1
-        bootDiskSizeGb: 50
-        disks: "local-disk 200 HDD"
     }
 }
 
@@ -64,13 +60,9 @@ task merge_deepfri_outputs {
     }
 
     runtime {
-        docker: "gcr.io/microbiome-xavier/gene-mapper:111920"
-        cpu: 2
-        memory: "4GB"
+        docker: "crusher083/gene-mapper@sha256:79301af19fc7af2b125297976674e88a5b4149e1867977938510704d1198f70f"
         preemptible: num_preemptible
         maxRetries: num_preemptible + 1
-        bootDiskSizeGb: 50
-        disks: "local-disk 200 HDD"
     }
 }
 
@@ -84,8 +76,6 @@ task genes_to_mags_mapping {
     Array[File] gtdbtk_output
     Array[File] checkm_output
     Int num_preemptible
-    Int gene_mapper_memory_gb
-    Int gene_mapper_disk_gb
 
     command {
 
@@ -129,18 +119,14 @@ task genes_to_mags_mapping {
     }
     
     output {
-        File gene_cluster_info = "Mapped_genes_cluster.tsv"
-        File gene_info = "Individual_mapped_genes.tsv"
-        File MAG_info = "MAGS.tsv"
+        File gene_cluster_info = "mapped_genes_cluster.tsv"
+        File gene_info = "individual_mapped_genes.tsv"
+        File MAG_info = "mags.tsv"
     }
     
     runtime {
-        docker: "gcr.io/microbiome-xavier/gene-mapper:030821"
-        cpu: 2
-        memory: gene_mapper_memory_gb + "GB"
+        docker: "crusher083/gene-mapper@sha256:79301af19fc7af2b125297976674e88a5b4149e1867977938510704d1198f70f"
         preemptible: num_preemptible
         maxRetries: num_preemptible + 1
-        bootDiskSizeGb: 50
-        disks: "local-disk " + gene_mapper_disk_gb + " HDD"
     }
 }
