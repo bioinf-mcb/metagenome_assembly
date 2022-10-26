@@ -223,9 +223,24 @@ This step will collect all the output into one table.
    - `eggnog_annotations` - a path to a file with `eggNOG-mapper` annotations.
    - `deepfri_annotations` - a path to a file with `DeepFRI` annotations.
    - `output_folder` - a path to a directory where the results will be saved.
-## Outputs
+
+- Outputs
    - `_individual_mapped_genes.tsv` - genes clusters mapped to MAGs.
    - `_MAGS.tsv` - MAGs summary from `GTDB-tk` and `CheckM`.
    - `_mapped_genes_cluster.tsv` - `eggNOG-mapper` annotations for gene clusters.
    - `merged_eggnog_output.tsv` - `eggNOG-mapper` annotations for gene clusters.
    - `merged_deepfri_output.tsv` - `DeepFRI` annotations for gene clusters.
+
+```sh
+# Generate final output
+python ../src/generate_table.py \
+-c qc_assemble_out/assemble \
+-b t1_output \
+-g t1_output \
+-cm t1_output \
+-gcf f2_output/nr.fa.clstr \
+-gc f2_output/nr.fa \
+-ea f4_output \
+-dfa f4_output \
+-o final_out
+```
