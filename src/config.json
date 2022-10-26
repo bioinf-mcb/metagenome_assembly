@@ -25,7 +25,8 @@
         "f3_map_to_gene_clusters": "./input_templates/f3_map_to_gene_clusters.json",
         "f4_annotate_gene_catalog": "./input_templates/f4_annotate_gene_catalog.json",
         "qc_and_assembly": "./input_templates/qc_and_assembly.json",
-        "t1_predict_mags": "./input_templates/t1_predict_mags.json"
+        "t1_predict_mags": "./input_templates/t1_predict_mags.json",
+        "generate_table" : "./input_templates/generate_table.json"
     },
     "read_extensions": [
         ".fastq",
@@ -44,6 +45,7 @@
         "f3_map_to_gene_clusters": "./wdl/f3_map_to_gene_clusters.wdl",
         "f4_annotate_gene_catalog": "./wdl/f4_annotate_gene_catalog.wdl",
         "qc_and_assembly": "./wdl/qc_and_assembly.wdl",
-        "t1_predict_mags": "./wdl/t1_predict_mags.wdl"
+        "t1_predict_mags": "./wdl/t1_predict_mags.wdl",
+        "generate_table" : "./wdl/generate_table.wdl"
     }
 }

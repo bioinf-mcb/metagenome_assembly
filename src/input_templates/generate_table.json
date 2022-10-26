@@ -1,0 +1,11 @@
+{
+  "generate_table.genes_to_mags_mapping.gene_clusters": "File",
+  "generate_table.merge_eggnog_outputs.eggnog_output_files": "Array[File]",
+  "generate_table.genes_to_mags_mapping.gene_catalog": "File",
+  "generate_table.genes_to_mags_mapping.metabat2_bins": "Array[File]",
+  "generate_table.merge_deepfri_outputs.deepfri_output_files": "Array[File]",
+  "generate_table.genes_to_mags_mapping.gtdbtk_output": "Array[File]",
+  "generate_table.genes_to_mags_mapping.contigs": "Array[File]",
+  "generate_table.genes_to_mags_mapping.checkm_output": "Array[File]"
+}
+

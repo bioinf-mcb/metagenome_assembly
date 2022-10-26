@@ -1,5 +1,4 @@
 import os 
-import json 
 
 from _utils import (
     read_json_config,
@@ -60,6 +59,7 @@ if not gtdb:
     
 # collect reads from dir
 forward_reads = get_files_with_extension(args["input_folder_reads"], args["suffix1"])
+
 reverse_reads = get_files_with_extension(args["input_folder_reads"], args["suffix2"])
 sample_ids = [x.split("/")[-1].split("_")[0] for x in forward_reads]
 reverse_reads = reorder_list_substrings(reverse_reads, sample_ids)
@@ -67,10 +67,6 @@ reverse_reads = reorder_list_substrings(reverse_reads, sample_ids)
 # collect contigs from dir
 contigs =  get_files_with_extension(args["input_folder_contigs"], args["suffix"])
 contigs = reorder_list_substrings(contigs, sample_ids)
-
-check_inputs_not_empty({"forward reads" : forward_reads, 
-                       "reverse reads" : reverse_reads, 
-                       "contigs" : contigs})
 
 # fill the input template
 for read_1, read_2, contig in zip(forward_reads, reverse_reads, contigs):
@@ -85,6 +81,10 @@ template["predict_mags.gtdb_release"] = config["gtdbtk_db_release"]
 # writing input json
 inputs_path = write_inputs_file(template, system_folder, "_".join(["inputs", script_name]) + ".json")
 
+# check if inputs are not empty
+check_inputs_not_empty({"forward reads" : forward_reads, 
+                       "reverse reads" : reverse_reads, 
+                       "contigs" : contigs})
 
 paths = retrieve_config_paths(config, script_dir, script_name, output_path=args["output_folder"], save_path=system_folder)
 # modifying config to change number of concurrent jobs and mount dbs

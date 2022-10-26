@@ -22,13 +22,14 @@ parser.add_argument('-o','--output_folder', help='The directory for the output',
 script_name, script_dir, config, args, system_folder, template = prepare_system_variables(parser, __file__)
 
 logs  = [os.path.join(args["input_folder"], file) for file in sorted(os.listdir(args["input_folder"])) if file.endswith(".log")]
-
-check_inputs_not_empty({"logs" : logs})
     
 # json template
 read_table_input = {"read_table.logs" : logs}
 
 inputs_path = write_inputs_file(read_table_input, system_folder, "_".join(["inputs", script_name]) + ".json")
+
+# check inputs
+check_inputs_not_empty({"logs" : logs})
 
 paths = retrieve_config_paths(config, script_dir, script_name, output_path=args["output_folder"], save_path=system_folder)
 

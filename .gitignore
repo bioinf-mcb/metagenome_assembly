@@ -8,7 +8,8 @@ cromwell/*
 .ipynb_checkpoints
 docker/gene-mapper/tests/__pycache__/*
 tests/*
-config.ini
+!tests/final_out
 .pytest_cache
 cromwell_build
 src/cromwell-executions
+

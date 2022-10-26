@@ -84,7 +84,7 @@ def load_mags_contigs_taxonomies_for_sample(sample_dir, taxonomy_path,
     checkm_df = pd.DataFrame()
     try:
         f = open(checkm_file, "r")
-        checkm_df = pd.concat(checkm_df, pd.read_csv(checkm_file, sep="\t"))
+        checkm_df = pd.concat([checkm_df, pd.read_csv(checkm_file, sep="\t")])
     except:
         print('Missing or empty checkM output file:', checkm_file)
     checkm_df.rename({"Bin Id": "Bin_ID", "# genomes": "n_genomes",
@@ -113,10 +113,11 @@ def load_mags_contigs_taxonomies_for_sample(sample_dir, taxonomy_path,
         taxonomies_df = pd.read_csv(f, sep='\t', usecols=taxonomy_cols)
         merged_df = raw_df.join(taxonomies_df.set_index(taxonomy_cols[0]),
                                 on='Bin_ID', how='left')
-    except:
+    except FileNotFoundError:
         print(f'Missing or empty taxonomy file: {taxonomy_file}')
         print('Adding empty taxonomy columns...')
         merged_df = raw_df.join(raw_df.reindex(columns=taxonomy_cols[1:]))
+
     # Add checkM information
     merged_df = merged_df.join(checkm_df.set_index('Bin_ID'), on='Bin_ID',
                                how='left')
@@ -221,14 +222,13 @@ def _perform_mapping(cluster_file, genes_file, contigs_file,
     3) Contig files (fasta)
     4) binned contigs (MAGS)
     5) taxonomy files (tsv)
-    6) taxonomy files (tsv)
-    7) EggNOG annotation file (tsv)
-    8) (optional) Split the output table into three tables:
+    6) EggNOG annotation file (tsv)
+    7) (optional) Split the output table into three tables:
         a) Gene cluster table
         b) Individual gene table
         c) MAG table
-    9) Path to the output folder.
-    10) Name for output table(s). Example:
+    8) Path to the output folder.
+    9) Name for output table(s). Example:
        - if equal `table` and --split-output is True we would get `table.tsv`
        - if equal `table` and --split-output is False we would get
         `table_mapped_genes_cluster.tsv`, `table_individual_mapped_genes.tsv`,
@@ -295,12 +295,12 @@ def _perform_mapping(cluster_file, genes_file, contigs_file,
     mapped_genes_contigs_mags_eggNOG = pd.merge(mapped_genes_contigs_mags,
                                                 eggNOG_df,
                                                 left_on='Gene_ID',
-                                                right_on='#query_name',
+                                                right_on='#query',
                                                 how='outer')
 
     # drop unused columns and replace spaces with tabs in the rest
     mapped_genes_contigs_mags_eggNOG.\
-        drop(columns=["Gene_trunc", "contigs", "#query_name"], inplace=True)
+        drop(columns=["Gene_trunc", "contigs", "#query"], inplace=True)
     old_cols = mapped_genes_contigs_mags_eggNOG.columns
     new_cols = ["_".join(col.split(' ')) for col in old_cols]
     mapped_genes_contigs_mags_eggNOG.rename(dict(zip(old_cols, new_cols)),
@@ -308,23 +308,25 @@ def _perform_mapping(cluster_file, genes_file, contigs_file,
 
     if split_output:
         # split master table into three and save results
-        gene_clust_cols = ['Cluster_ID', 'centroid', 'seed_eggNOG_ortholog',
-                           'seed_ortholog_evalue', 'seed_ortholog_score',
-                           'best_tax_level', 'Preferred_name', 'GOs', 'EC',
+        gene_clust_cols = ['Cluster_ID', 'centroid', 'seed_ortholog',
+                           'evalue', 'score',
+                           'max_annot_lvl', 'Preferred_name', 'GOs', 'EC',
                            'KEGG_ko', 'KEGG_Pathway', 'KEGG_Module',
                            'KEGG_Reaction', 'KEGG_rclass', 'BRITE', 'KEGG_TC',
-                           'CAZy', 'BiGG_Reaction', 'taxonomic_scope',
-                           'eggNOG_OGs', 'best_eggNOG_OG',
-                           'COG_Functional_cat.', 'eggNOG_free_text_desc.']
+                           'CAZy', 'BiGG_Reaction', 'PFAMs',
+                           'eggNOG_OGs', 
+                           'COG_category', 'Description']
         gene_table_cols = ['Cluster_ID', 'Gene_ID', 'Contig_ID', 'MAG_ID']
-        mapped_genes_contigs_mags_eggNOG[gene_clust_cols].to_csv(join(out_path,
-            f'{out_name}_mapped_genes_cluster.tsv'), sep='\t', na_rep='NaN')
+        gene_cluster_filname, mapped_genes_filename, mags_filename = \
+            ["_".join([out_name, x]) for x in ["mapped_genes_cluster", "individual_mapped_genes", "MAGS"]]
+        mapped_genes_contigs_mags_eggNOG[gene_clust_cols].to_csv(os.path.join(out_path,
+            gene_cluster_filname + ".tsv"), sep='\t', na_rep='NaN')
         mapped_genes_contigs_mags_eggNOG[gene_table_cols].to_csv(join(out_path,
-            f'{out_name}_individual_mapped_genes.tsv'), sep='\t', na_rep='NaN')
+            mapped_genes_filename + ".tsv"), sep='\t', na_rep='NaN')
         # Drop unnecessary columns and sort by MAG ID column
         MAGS_df = MAGS_df.drop(columns=['Bin_ID', 'contigs']).\
             sort_values('MAG_ID').reset_index(drop=True)
-        MAGS_df.to_csv(join(out_path, f'{out_name}_MAGS.tsv'), sep='\t',
+        MAGS_df.to_csv(join(out_path, mags_filename + ".tsv"), sep='\t',
                        na_rep='NaN')
     else:
         mapped_genes_contigs_mags_eggNOG.to_csv(join(out_path,
@@ -333,3 +335,4 @@ def _perform_mapping(cluster_file, genes_file, contigs_file,
 
 if __name__ == "__main__":
     _perform_mapping()
+

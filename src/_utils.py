@@ -162,13 +162,14 @@ def unpack_archive(archive_path, unpack_folder, remove_archive=True):
     if archive_path.endswith(".zip"):
         cmd = f"unzip -q {archive_path} -d {unpack_path}"
     elif archive_path.endswith("tar.gz"):
-        cmd = f"tar xvzf gtdbtk_v2_data.tar.gz"   
+        cmd = f"tar -xzf {archive_path} -C {unpack_path}"   
     elif archive_path.endswith(".gz"):
         filename = ".".join(archive_path.split("/")[-1].split('.')[:-1])
         cmd = f"gunzip -c {archive_path} > {os.path.join(unpack_path, filename)}"
     else:
         raise ValueError("Archive format is not supported.")
     
+    logging.info(f"Unpacking {archive_path} to {unpack_path}")
     os.system(cmd)
     
     if remove_archive:
@@ -203,7 +204,7 @@ def find_database(database_path, all_extensions, database_name):
 
     if not index:
         logging.info(f"Unable to find {database_name} files in directory: {database_path}.")
-    
+
     return index
 
 def download_database(save_dir, url, database_name, database_description):
@@ -273,7 +274,7 @@ def check_inputs_not_empty(inputs: Dict[str, List]) -> None:
     """Checks if all lists are not empty"""
     for name, input_ in inputs.items():
         if len(input_) == 0:
-            console.log(f"Workflow failed. Input {name} is empty. Check the inputs.", style="red")
+            console.log(f"Workflow failed. Input {name} is empty. Check the inputs in the system files.", style="red")
             sys.exit(1)
 
 def start_workflow(system_paths, inputs_path, system_folder, workflow_name, console=console):
@@ -319,7 +320,8 @@ def prepare_system_variables(argparser, py_script):
     # parsing arguments
     args = vars(argparser.parse_args())
     system_folder = os.path.join(args["output_folder"], "system")
-    if not "t1" in py_script:
+    print(py_script)
+    if script_name not in ["t1_predict_mags", "generate_table"]:
         args["input_folder"] = os.path.abspath(args["input_folder"])
         check_path_dir(args["input_folder"])
 

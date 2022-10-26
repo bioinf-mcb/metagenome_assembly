@@ -64,12 +64,14 @@ if not diamond_path:
 
 # collect files from dir
 files =  [os.path.join(args["input_folder"], file) for file in sorted(os.listdir(args["input_folder"])) if file.endswith(args["suffix"])]
-check_inputs_not_empty({"gene catalog chunks": files})
 template["annotate_gene_catalog.gene_clusters_split"] = files
 template["annotate_gene_catalog.thread_num"] = args["threads"]
 
 # writing input json
 inputs_path = write_inputs_file(template, system_folder, "_".join(["inputs", script_name]) + ".json")
+
+# check inputs
+check_inputs_not_empty({"gene catalog chunks": files})
 
 paths = retrieve_config_paths(config, script_dir, script_name, output_path=args["output_folder"], save_path=system_folder)
 

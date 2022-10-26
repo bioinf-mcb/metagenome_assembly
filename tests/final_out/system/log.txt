@@ -1,0 +1,291 @@
+[2022-10-26 14:18:16,67] [info] Running with database db.url = jdbc:hsqldb:mem:15d101b7-7a1b-4b47-a0bb-7e1dcc327422;shutdown=false;hsqldb.tx=mvcc
+[2022-10-26 14:18:18,98] [info] Running migration RenameWorkflowOptionsInMetadata with a read batch size of 100000 and a write batch size of 100000
+[2022-10-26 14:18:18,99] [info] [RenameWorkflowOptionsInMetadata] 100%
+[2022-10-26 14:18:19,18] [info] Running with database db.url = jdbc:hsqldb:mem:c7637d8c-1464-45e7-b226-3f0a2481fffc;shutdown=false;hsqldb.tx=mvcc
+[2022-10-26 14:18:19,63] [info] Slf4jLogger started
+[2022-10-26 14:18:19,79] [info] Workflow heartbeat configuration:
+{
+  "cromwellId" : "cromid-1dac27f",
+  "heartbeatInterval" : "2 minutes",
+  "ttl" : "10 minutes",
+  "failureShutdownDuration" : "5 minutes",
+  "writeBatchSize" : 10000,
+  "writeThreshold" : 10000
+}
+[2022-10-26 14:18:19,84] [info] Metadata summary refreshing every 1 second.
+[2022-10-26 14:18:19,84] [info] No metadata archiver defined in config
+[2022-10-26 14:18:19,85] [info] No metadata deleter defined in config
+[2022-10-26 14:18:19,86] [info] KvWriteActor configured to flush with batch size 200 and process rate 5 seconds.
+[2022-10-26 14:18:19,87] [info] WriteMetadataActor configured to flush with batch size 200 and process rate 5 seconds.
+[2022-10-26 14:18:19,88] [info] CallCacheWriteActor configured to flush with batch size 100 and process rate 3 seconds.
+[2022-10-26 14:18:19,94] [info] JobRestartCheckTokenDispenser - Distribution rate: 50 per 1 seconds.
+[2022-10-26 14:18:19,96] [info] JobExecutionTokenDispenser - Distribution rate: 20 per 10 seconds.
+[2022-10-26 14:18:19,99] [info] SingleWorkflowRunnerActor: Version 84
+[2022-10-26 14:18:20,00] [info] SingleWorkflowRunnerActor: Submitting workflow
+[2022-10-26 14:18:20,04] [info] Unspecified type (Unspecified version) workflow c7909309-db55-40cc-b059-a129daa1a06a submitted
+[2022-10-26 14:18:20,06] [info] SingleWorkflowRunnerActor: Workflow submitted [38;5;2mc7909309-db55-40cc-b059-a129daa1a06a[0m
+[2022-10-26 14:18:20,07] [info] 1 new workflows fetched by cromid-1dac27f: c7909309-db55-40cc-b059-a129daa1a06a
+[2022-10-26 14:18:20,07] [info] WorkflowManagerActor: Starting workflow [38;5;2mc7909309-db55-40cc-b059-a129daa1a06a[0m
+[2022-10-26 14:18:20,08] [info] WorkflowManagerActor: Successfully started WorkflowActor-c7909309-db55-40cc-b059-a129daa1a06a
+[2022-10-26 14:18:20,08] [info] Retrieved 1 workflows from the WorkflowStoreActor
+[2022-10-26 14:18:20,10] [info] WorkflowStoreHeartbeatWriteActor configured to flush with batch size 10000 and process rate 2 minutes.
+[2022-10-26 14:18:20,16] [info] MaterializeWorkflowDescriptorActor [[38;5;2mc7909309[0m]: Parsing workflow as WDL draft-2
+[2022-10-26 14:18:20,65] [info] MaterializeWorkflowDescriptorActor [[38;5;2mc7909309[0m]: Call-to-Backend assignments: generate_table.merge_eggnog_outputs -> Docker, generate_table.genes_to_mags_mapping -> Docker, generate_table.merge_deepfri_outputs -> Docker
+[2022-10-26 14:18:21,82] [info] WorkflowExecutionActor-c7909309-db55-40cc-b059-a129daa1a06a [[38;5;2mc7909309[0m]: Starting generate_table.merge_deepfri_outputs, generate_table.merge_eggnog_outputs
+[2022-10-26 14:18:24,95] [info] Not triggering log of restart checking token queue status. Effective log interval = None
+[2022-10-26 14:18:24,98] [info] Not triggering log of execution token queue status. Effective log interval = None
+[2022-10-26 14:18:29,99] [info] Assigned new job execution tokens to the following groups: c7909309: 1
+[2022-10-26 14:18:32,04] [info] BackgroundConfigAsyncJobExecutionActor [[38;5;2mc7909309[0mgenerate_table.merge_eggnog_outputs:NA:1]: [38;5;5mhead -n 1 eggnog_output_files[1] > merged_eggnog_output.tsv
+cat /cromwell-executions/generate_table/c7909309-db55-40cc-b059-a129daa1a06a/call-merge_eggnog_outputs/execution/write_lines_7f5f865e7f4f436acd4648d07de12d71.tmp > eggnog_output.txt
+while read eggnog_file; do
+    tail -n+2 $eggnog_file >> merged_eggnog_output.tsv
+done <eggnog_output.txt[0m
+[2022-10-26 14:18:32,07] [info] BackgroundConfigAsyncJobExecutionActor [[38;5;2mc7909309[0mgenerate_table.merge_eggnog_outputs:NA:1]: executing: # make sure there is no preexisting Docker CID file
+rm -f /storage/TomaszLab/vbez/metagenomic_gmhi/metagenomome_assembly/tests/cromwell-executions/generate_table/c7909309-db55-40cc-b059-a129daa1a06a/call-merge_eggnog_outputs/execution/docker_cid
+# run as in the original configuration without --rm flag (will remove later)
+if [[ crusher083/gene-mapper@sha256:621db5845d6204cf0bb7b67163c7adc068d0fc91dcdcb20e7670703277be71e4 =~ "kneaddata" ]]; then
+  docker run \
+    --cidfile /storage/TomaszLab/vbez/metagenomic_gmhi/metagenomome_assembly/tests/cromwell-executions/generate_table/c7909309-db55-40cc-b059-a129daa1a06a/call-merge_eggnog_outputs/execution/docker_cid \
+    -i \
+     \
+    --entrypoint /bin/bash \
+    -v /storage/TomaszLab/vbez/metagenomic_gmhi/metagenomome_assembly/tests/cromwell-executions/generate_table/c7909309-db55-40cc-b059-a129daa1a06a/call-merge_eggnog_outputs:/cromwell-executions/generate_table/c7909309-db55-40cc-b059-a129daa1a06a/call-merge_eggnog_outputs:delegated \
+    -v "bt2_index_path":"/GRCh38" \
+    crusher083/gene-mapper@sha256:621db5845d6204cf0bb7b67163c7adc068d0fc91dcdcb20e7670703277be71e4 /cromwell-executions/generate_table/c7909309-db55-40cc-b059-a129daa1a06a/call-merge_eggnog_outputs/execution/script
+elif [[ crusher083/gene-mapper@sha256:621db5845d6204cf0bb7b67163c7adc068d0fc91dcdcb20e7670703277be71e4 =~ "gtdb" ]]; then
+  docker run \
+    --cidfile /storage/TomaszLab/vbez/metagenomic_gmhi/metagenomome_assembly/tests/cromwell-executions/generate_table/c7909309-db55-40cc-b059-a129daa1a06a/call-merge_eggnog_outputs/execution/docker_cid \
+    -i \
+     \
+    --entrypoint /bin/bash \
+    -v /storage/TomaszLab/vbez/metagenomic_gmhi/metagenomome_assembly/tests/cromwell-executions/generate_table/c7909309-db55-40cc-b059-a129daa1a06a/call-merge_eggnog_outputs:/cromwell-executions/generate_table/c7909309-db55-40cc-b059-a129daa1a06a/call-merge_eggnog_outputs:delegated \
+    -v "gtdbtk_data_path":"/gtdbtk-data" \
+    crusher083/gene-mapper@sha256:621db5845d6204cf0bb7b67163c7adc068d0fc91dcdcb20e7670703277be71e4 /cromwell-executions/generate_table/c7909309-db55-40cc-b059-a129daa1a06a/call-merge_eggnog_outputs/execution/script
+elif [[ crusher083/gene-mapper@sha256:621db5845d6204cf0bb7b67163c7adc068d0fc91dcdcb20e7670703277be71e4 =~ "eggnog" ]]; then
+  docker run \
+    --cidfile /storage/TomaszLab/vbez/metagenomic_gmhi/metagenomome_assembly/tests/cromwell-executions/generate_table/c7909309-db55-40cc-b059-a129daa1a06a/call-merge_eggnog_outputs/execution/docker_cid \
+    -i \
+     \
+    --entrypoint /bin/bash \
+    -v /storage/TomaszLab/vbez/metagenomic_gmhi/metagenomome_assembly/tests/cromwell-executions/generate_table/c7909309-db55-40cc-b059-a129daa1a06a/call-merge_eggnog_outputs:/cromwell-executions/generate_table/c7909309-db55-40cc-b059-a129daa1a06a/call-merge_eggnog_outputs:delegated \
+    -v "eggnog_data_path":"/app/eggnog-mapper-2.1.6/data" \
+    crusher083/gene-mapper@sha256:621db5845d6204cf0bb7b67163c7adc068d0fc91dcdcb20e7670703277be71e4 /cromwell-executions/generate_table/c7909309-db55-40cc-b059-a129daa1a06a/call-merge_eggnog_outputs/execution/script
+else
+  docker run \
+    --cidfile /storage/TomaszLab/vbez/metagenomic_gmhi/metagenomome_assembly/tests/cromwell-executions/generate_table/c7909309-db55-40cc-b059-a129daa1a06a/call-merge_eggnog_outputs/execution/docker_cid \
+    -i \
+     \
+    --entrypoint /bin/bash \
+    -v /storage/TomaszLab/vbez/metagenomic_gmhi/metagenomome_assembly/tests/cromwell-executions/generate_table/c7909309-db55-40cc-b059-a129daa1a06a/call-merge_eggnog_outputs:/cromwell-executions/generate_table/c7909309-db55-40cc-b059-a129daa1a06a/call-merge_eggnog_outputs:delegated \
+    crusher083/gene-mapper@sha256:621db5845d6204cf0bb7b67163c7adc068d0fc91dcdcb20e7670703277be71e4 /cromwell-executions/generate_table/c7909309-db55-40cc-b059-a129daa1a06a/call-merge_eggnog_outputs/execution/script
+fi
+# get the return code (working even if the container was detached)
+rc=$(docker wait [38;5;5mcat /storage/TomaszLab/vbez/metagenomic_gmhi/metagenomome_assembly/tests/cromwell-executions/generate_table/c7909309-db55-40cc-b059-a129daa1a06a/call-merge_eggnog_outputs/execution/docker_cid[0m)
+
+# remove the container after waiting
+docker rm [38;5;5mcat /storage/TomaszLab/vbez/metagenomic_gmhi/metagenomome_assembly/tests/cromwell-executions/generate_table/c7909309-db55-40cc-b059-a129daa1a06a/call-merge_eggnog_outputs/execution/docker_cid[0m
+
+# return exit code
+exit $rc
+[2022-10-26 14:18:34,90] [info] BackgroundConfigAsyncJobExecutionActor [[38;5;2mc7909309[0mgenerate_table.merge_eggnog_outputs:NA:1]: job id: 2320340
+[2022-10-26 14:18:34,91] [info] BackgroundConfigAsyncJobExecutionActor [[38;5;2mc7909309[0mgenerate_table.merge_eggnog_outputs:NA:1]: Status change from - to WaitingForReturnCode
+[2022-10-26 14:18:38,23] [info] BackgroundConfigAsyncJobExecutionActor [[38;5;2mc7909309[0mgenerate_table.merge_eggnog_outputs:NA:1]: Status change from WaitingForReturnCode to Done
+[2022-10-26 14:18:39,98] [info] Assigned new job execution tokens to the following groups: c7909309: 1
+[2022-10-26 14:18:40,06] [info] BackgroundConfigAsyncJobExecutionActor [[38;5;2mc7909309[0mgenerate_table.merge_deepfri_outputs:NA:1]: [38;5;5mhead -n 1 deepfri_output_files[1] > merged_deepfri_output.tsv
+cat /cromwell-executions/generate_table/c7909309-db55-40cc-b059-a129daa1a06a/call-merge_deepfri_outputs/execution/write_lines_32c7ac4a36078297836abc456605bcc3.tmp > deepfri_output.txt
+while read deepfri_file; do
+    tail -n+2 $deepfri_file >> merged_deepfri_output.tsv
+done < deepfri_output.txt[0m
+[2022-10-26 14:18:40,08] [info] BackgroundConfigAsyncJobExecutionActor [[38;5;2mc7909309[0mgenerate_table.merge_deepfri_outputs:NA:1]: executing: # make sure there is no preexisting Docker CID file
+rm -f /storage/TomaszLab/vbez/metagenomic_gmhi/metagenomome_assembly/tests/cromwell-executions/generate_table/c7909309-db55-40cc-b059-a129daa1a06a/call-merge_deepfri_outputs/execution/docker_cid
+# run as in the original configuration without --rm flag (will remove later)
+if [[ crusher083/gene-mapper@sha256:621db5845d6204cf0bb7b67163c7adc068d0fc91dcdcb20e7670703277be71e4 =~ "kneaddata" ]]; then
+  docker run \
+    --cidfile /storage/TomaszLab/vbez/metagenomic_gmhi/metagenomome_assembly/tests/cromwell-executions/generate_table/c7909309-db55-40cc-b059-a129daa1a06a/call-merge_deepfri_outputs/execution/docker_cid \
+    -i \
+     \
+    --entrypoint /bin/bash \
+    -v /storage/TomaszLab/vbez/metagenomic_gmhi/metagenomome_assembly/tests/cromwell-executions/generate_table/c7909309-db55-40cc-b059-a129daa1a06a/call-merge_deepfri_outputs:/cromwell-executions/generate_table/c7909309-db55-40cc-b059-a129daa1a06a/call-merge_deepfri_outputs:delegated \
+    -v "bt2_index_path":"/GRCh38" \
+    crusher083/gene-mapper@sha256:621db5845d6204cf0bb7b67163c7adc068d0fc91dcdcb20e7670703277be71e4 /cromwell-executions/generate_table/c7909309-db55-40cc-b059-a129daa1a06a/call-merge_deepfri_outputs/execution/script
+elif [[ crusher083/gene-mapper@sha256:621db5845d6204cf0bb7b67163c7adc068d0fc91dcdcb20e7670703277be71e4 =~ "gtdb" ]]; then
+  docker run \
+    --cidfile /storage/TomaszLab/vbez/metagenomic_gmhi/metagenomome_assembly/tests/cromwell-executions/generate_table/c7909309-db55-40cc-b059-a129daa1a06a/call-merge_deepfri_outputs/execution/docker_cid \
+    -i \
+     \
+    --entrypoint /bin/bash \
+    -v /storage/TomaszLab/vbez/metagenomic_gmhi/metagenomome_assembly/tests/cromwell-executions/generate_table/c7909309-db55-40cc-b059-a129daa1a06a/call-merge_deepfri_outputs:/cromwell-executions/generate_table/c7909309-db55-40cc-b059-a129daa1a06a/call-merge_deepfri_outputs:delegated \
+    -v "gtdbtk_data_path":"/gtdbtk-data" \
+    crusher083/gene-mapper@sha256:621db5845d6204cf0bb7b67163c7adc068d0fc91dcdcb20e7670703277be71e4 /cromwell-executions/generate_table/c7909309-db55-40cc-b059-a129daa1a06a/call-merge_deepfri_outputs/execution/script
+elif [[ crusher083/gene-mapper@sha256:621db5845d6204cf0bb7b67163c7adc068d0fc91dcdcb20e7670703277be71e4 =~ "eggnog" ]]; then
+  docker run \
+    --cidfile /storage/TomaszLab/vbez/metagenomic_gmhi/metagenomome_assembly/tests/cromwell-executions/generate_table/c7909309-db55-40cc-b059-a129daa1a06a/call-merge_deepfri_outputs/execution/docker_cid \
+    -i \
+     \
+    --entrypoint /bin/bash \
+    -v /storage/TomaszLab/vbez/metagenomic_gmhi/metagenomome_assembly/tests/cromwell-executions/generate_table/c7909309-db55-40cc-b059-a129daa1a06a/call-merge_deepfri_outputs:/cromwell-executions/generate_table/c7909309-db55-40cc-b059-a129daa1a06a/call-merge_deepfri_outputs:delegated \
+    -v "eggnog_data_path":"/app/eggnog-mapper-2.1.6/data" \
+    crusher083/gene-mapper@sha256:621db5845d6204cf0bb7b67163c7adc068d0fc91dcdcb20e7670703277be71e4 /cromwell-executions/generate_table/c7909309-db55-40cc-b059-a129daa1a06a/call-merge_deepfri_outputs/execution/script
+else
+  docker run \
+    --cidfile /storage/TomaszLab/vbez/metagenomic_gmhi/metagenomome_assembly/tests/cromwell-executions/generate_table/c7909309-db55-40cc-b059-a129daa1a06a/call-merge_deepfri_outputs/execution/docker_cid \
+    -i \
+     \
+    --entrypoint /bin/bash \
+    -v /storage/TomaszLab/vbez/metagenomic_gmhi/metagenomome_assembly/tests/cromwell-executions/generate_table/c7909309-db55-40cc-b059-a129daa1a06a/call-merge_deepfri_outputs:/cromwell-executions/generate_table/c7909309-db55-40cc-b059-a129daa1a06a/call-merge_deepfri_outputs:delegated \
+    crusher083/gene-mapper@sha256:621db5845d6204cf0bb7b67163c7adc068d0fc91dcdcb20e7670703277be71e4 /cromwell-executions/generate_table/c7909309-db55-40cc-b059-a129daa1a06a/call-merge_deepfri_outputs/execution/script
+fi
+# get the return code (working even if the container was detached)
+rc=$(docker wait [38;5;5mcat /storage/TomaszLab/vbez/metagenomic_gmhi/metagenomome_assembly/tests/cromwell-executions/generate_table/c7909309-db55-40cc-b059-a129daa1a06a/call-merge_deepfri_outputs/execution/docker_cid[0m)
+
+# remove the container after waiting
+docker rm [38;5;5mcat /storage/TomaszLab/vbez/metagenomic_gmhi/metagenomome_assembly/tests/cromwell-executions/generate_table/c7909309-db55-40cc-b059-a129daa1a06a/call-merge_deepfri_outputs/execution/docker_cid[0m
+
+# return exit code
+exit $rc
+[2022-10-26 14:18:40,20] [info] WorkflowExecutionActor-c7909309-db55-40cc-b059-a129daa1a06a [[38;5;2mc7909309[0m]: Starting generate_table.genes_to_mags_mapping
+[2022-10-26 14:18:44,89] [info] BackgroundConfigAsyncJobExecutionActor [[38;5;2mc7909309[0mgenerate_table.merge_deepfri_outputs:NA:1]: job id: 2320631
+[2022-10-26 14:18:44,89] [info] BackgroundConfigAsyncJobExecutionActor [[38;5;2mc7909309[0mgenerate_table.merge_deepfri_outputs:NA:1]: Status change from - to Done
+[2022-10-26 14:18:49,98] [info] Assigned new job execution tokens to the following groups: c7909309: 1
+[2022-10-26 14:18:50,08] [info] BackgroundConfigAsyncJobExecutionActor [[38;5;2mc7909309[0mgenerate_table.genes_to_mags_mapping:NA:1]: [38;5;5m# concatenate contigs together to merged_min500.contigs.fa
+cat /cromwell-executions/generate_table/c7909309-db55-40cc-b059-a129daa1a06a/call-genes_to_mags_mapping/execution/write_lines_de55db334d9d88a8d2bec8467ec58c7e.tmp > contig_fasta.txt
+while read fasta_file; do
+    cat $fasta_file >> merged_min500.contigs.fa
+done <contig_fasta.txt
+
+# extract MAGs to directory 'bins'
+mkdir bins
+cat /cromwell-executions/generate_table/c7909309-db55-40cc-b059-a129daa1a06a/call-genes_to_mags_mapping/execution/write_lines_f328ac688f03fd55a52afdb4d1f0c05d.tmp > metabat2_bins.txt
+while read bin_file; do
+    tar -xf $bin_file -C bins/
+done <metabat2_bins.txt
+
+# copy GTDBTk output summaries to directory gtdbtk
+mkdir gtdbtk
+cat /cromwell-executions/generate_table/c7909309-db55-40cc-b059-a129daa1a06a/call-genes_to_mags_mapping/execution/write_lines_3731265205d7c799e91505a007d8460e.tmp > gtdbtk_2_download.txt
+while read gtdbtk_file; do
+    cp $gtdbtk_file gtdbtk/
+done <gtdbtk_2_download.txt
+
+# copy CheckM output summaries to directory checkm
+mkdir checkm
+cat /cromwell-executions/generate_table/c7909309-db55-40cc-b059-a129daa1a06a/call-genes_to_mags_mapping/execution/write_lines_0e950474110f28364f61d9b2d45e2521.tmp > checkm_2_download.txt
+while read checkm_file; do
+    cp $checkm_file checkm/
+done <checkm_2_download.txt
+
+python3 /app/genes_MAGS_eggNOG_mapping.py \
+    --genes_file /cromwell-executions/generate_table/c7909309-db55-40cc-b059-a129daa1a06a/call-genes_to_mags_mapping/inputs/-843326779/nr.fa \
+    --cluster_file /cromwell-executions/generate_table/c7909309-db55-40cc-b059-a129daa1a06a/call-genes_to_mags_mapping/inputs/-843326779/nr.fa.clstr \
+    --contigs_file merged_min500.contigs.fa \
+    --eggnog_ann_file /cromwell-executions/generate_table/c7909309-db55-40cc-b059-a129daa1a06a/call-genes_to_mags_mapping/inputs/799904502/merged_eggnog_output.tsv \
+    --bin_fp bins \
+    --tax_fp gtdbtk \
+    --checkm_fp checkm \
+    --out_path . \
+    --split-output \
+    --out_name ""[0m
+[2022-10-26 14:18:50,09] [info] BackgroundConfigAsyncJobExecutionActor [[38;5;2mc7909309[0mgenerate_table.genes_to_mags_mapping:NA:1]: executing: # make sure there is no preexisting Docker CID file
+rm -f /storage/TomaszLab/vbez/metagenomic_gmhi/metagenomome_assembly/tests/cromwell-executions/generate_table/c7909309-db55-40cc-b059-a129daa1a06a/call-genes_to_mags_mapping/execution/docker_cid
+# run as in the original configuration without --rm flag (will remove later)
+if [[ crusher083/gene-mapper@sha256:621db5845d6204cf0bb7b67163c7adc068d0fc91dcdcb20e7670703277be71e4 =~ "kneaddata" ]]; then
+  docker run \
+    --cidfile /storage/TomaszLab/vbez/metagenomic_gmhi/metagenomome_assembly/tests/cromwell-executions/generate_table/c7909309-db55-40cc-b059-a129daa1a06a/call-genes_to_mags_mapping/execution/docker_cid \
+    -i \
+     \
+    --entrypoint /bin/bash \
+    -v /storage/TomaszLab/vbez/metagenomic_gmhi/metagenomome_assembly/tests/cromwell-executions/generate_table/c7909309-db55-40cc-b059-a129daa1a06a/call-genes_to_mags_mapping:/cromwell-executions/generate_table/c7909309-db55-40cc-b059-a129daa1a06a/call-genes_to_mags_mapping:delegated \
+    -v "bt2_index_path":"/GRCh38" \
+    crusher083/gene-mapper@sha256:621db5845d6204cf0bb7b67163c7adc068d0fc91dcdcb20e7670703277be71e4 /cromwell-executions/generate_table/c7909309-db55-40cc-b059-a129daa1a06a/call-genes_to_mags_mapping/execution/script
+elif [[ crusher083/gene-mapper@sha256:621db5845d6204cf0bb7b67163c7adc068d0fc91dcdcb20e7670703277be71e4 =~ "gtdb" ]]; then
+  docker run \
+    --cidfile /storage/TomaszLab/vbez/metagenomic_gmhi/metagenomome_assembly/tests/cromwell-executions/generate_table/c7909309-db55-40cc-b059-a129daa1a06a/call-genes_to_mags_mapping/execution/docker_cid \
+    -i \
+     \
+    --entrypoint /bin/bash \
+    -v /storage/TomaszLab/vbez/metagenomic_gmhi/metagenomome_assembly/tests/cromwell-executions/generate_table/c7909309-db55-40cc-b059-a129daa1a06a/call-genes_to_mags_mapping:/cromwell-executions/generate_table/c7909309-db55-40cc-b059-a129daa1a06a/call-genes_to_mags_mapping:delegated \
+    -v "gtdbtk_data_path":"/gtdbtk-data" \
+    crusher083/gene-mapper@sha256:621db5845d6204cf0bb7b67163c7adc068d0fc91dcdcb20e7670703277be71e4 /cromwell-executions/generate_table/c7909309-db55-40cc-b059-a129daa1a06a/call-genes_to_mags_mapping/execution/script
+elif [[ crusher083/gene-mapper@sha256:621db5845d6204cf0bb7b67163c7adc068d0fc91dcdcb20e7670703277be71e4 =~ "eggnog" ]]; then
+  docker run \
+    --cidfile /storage/TomaszLab/vbez/metagenomic_gmhi/metagenomome_assembly/tests/cromwell-executions/generate_table/c7909309-db55-40cc-b059-a129daa1a06a/call-genes_to_mags_mapping/execution/docker_cid \
+    -i \
+     \
+    --entrypoint /bin/bash \
+    -v /storage/TomaszLab/vbez/metagenomic_gmhi/metagenomome_assembly/tests/cromwell-executions/generate_table/c7909309-db55-40cc-b059-a129daa1a06a/call-genes_to_mags_mapping:/cromwell-executions/generate_table/c7909309-db55-40cc-b059-a129daa1a06a/call-genes_to_mags_mapping:delegated \
+    -v "eggnog_data_path":"/app/eggnog-mapper-2.1.6/data" \
+    crusher083/gene-mapper@sha256:621db5845d6204cf0bb7b67163c7adc068d0fc91dcdcb20e7670703277be71e4 /cromwell-executions/generate_table/c7909309-db55-40cc-b059-a129daa1a06a/call-genes_to_mags_mapping/execution/script
+else
+  docker run \
+    --cidfile /storage/TomaszLab/vbez/metagenomic_gmhi/metagenomome_assembly/tests/cromwell-executions/generate_table/c7909309-db55-40cc-b059-a129daa1a06a/call-genes_to_mags_mapping/execution/docker_cid \
+    -i \
+     \
+    --entrypoint /bin/bash \
+    -v /storage/TomaszLab/vbez/metagenomic_gmhi/metagenomome_assembly/tests/cromwell-executions/generate_table/c7909309-db55-40cc-b059-a129daa1a06a/call-genes_to_mags_mapping:/cromwell-executions/generate_table/c7909309-db55-40cc-b059-a129daa1a06a/call-genes_to_mags_mapping:delegated \
+    crusher083/gene-mapper@sha256:621db5845d6204cf0bb7b67163c7adc068d0fc91dcdcb20e7670703277be71e4 /cromwell-executions/generate_table/c7909309-db55-40cc-b059-a129daa1a06a/call-genes_to_mags_mapping/execution/script
+fi
+# get the return code (working even if the container was detached)
+rc=$(docker wait [38;5;5mcat /storage/TomaszLab/vbez/metagenomic_gmhi/metagenomome_assembly/tests/cromwell-executions/generate_table/c7909309-db55-40cc-b059-a129daa1a06a/call-genes_to_mags_mapping/execution/docker_cid[0m)
+
+# remove the container after waiting
+docker rm [38;5;5mcat /storage/TomaszLab/vbez/metagenomic_gmhi/metagenomome_assembly/tests/cromwell-executions/generate_table/c7909309-db55-40cc-b059-a129daa1a06a/call-genes_to_mags_mapping/execution/docker_cid[0m
+
+# return exit code
+exit $rc
+[2022-10-26 14:18:54,88] [info] BackgroundConfigAsyncJobExecutionActor [[38;5;2mc7909309[0mgenerate_table.genes_to_mags_mapping:NA:1]: job id: 2320924
+[2022-10-26 14:18:54,88] [info] BackgroundConfigAsyncJobExecutionActor [[38;5;2mc7909309[0mgenerate_table.genes_to_mags_mapping:NA:1]: Status change from - to WaitingForReturnCode
+[2022-10-26 14:18:57,29] [info] BackgroundConfigAsyncJobExecutionActor [[38;5;2mc7909309[0mgenerate_table.genes_to_mags_mapping:NA:1]: Status change from WaitingForReturnCode to Done
+[2022-10-26 14:18:58,57] [info] WorkflowExecutionActor-c7909309-db55-40cc-b059-a129daa1a06a [[38;5;2mc7909309[0m]: Workflow generate_table complete. Final Outputs:
+{
+  "generate_table.merge_deepfri_outputs.deepfri_table": "/storage/TomaszLab/vbez/metagenomic_gmhi/metagenomome_assembly/tests/cromwell-executions/generate_table/c7909309-db55-40cc-b059-a129daa1a06a/call-merge_deepfri_outputs/execution/merged_deepfri_output.tsv",
+  "generate_table.genes_to_mags_mapping.gene_cluster_info": "/storage/TomaszLab/vbez/metagenomic_gmhi/metagenomome_assembly/tests/cromwell-executions/generate_table/c7909309-db55-40cc-b059-a129daa1a06a/call-genes_to_mags_mapping/execution/_mapped_genes_cluster.tsv",
+  "generate_table.genes_to_mags_mapping.MAG_info": "/storage/TomaszLab/vbez/metagenomic_gmhi/metagenomome_assembly/tests/cromwell-executions/generate_table/c7909309-db55-40cc-b059-a129daa1a06a/call-genes_to_mags_mapping/execution/_MAGS.tsv",
+  "generate_table.genes_to_mags_mapping.gene_info": "/storage/TomaszLab/vbez/metagenomic_gmhi/metagenomome_assembly/tests/cromwell-executions/generate_table/c7909309-db55-40cc-b059-a129daa1a06a/call-genes_to_mags_mapping/execution/_individual_mapped_genes.tsv",
+  "generate_table.merge_eggnog_outputs.eggnog_table": "/storage/TomaszLab/vbez/metagenomic_gmhi/metagenomome_assembly/tests/cromwell-executions/generate_table/c7909309-db55-40cc-b059-a129daa1a06a/call-merge_eggnog_outputs/execution/merged_eggnog_output.tsv"
+}
+[2022-10-26 14:18:59,91] [info] WorkflowManagerActor: Workflow actor for c7909309-db55-40cc-b059-a129daa1a06a completed with status 'Succeeded'. The workflow will be removed from the workflow store.
+[2022-10-26 14:19:05,89] [info] SingleWorkflowRunnerActor workflow finished with status 'Succeeded'.
+{
+  "outputs": {
+    "generate_table.merge_deepfri_outputs.deepfri_table": "/storage/TomaszLab/vbez/metagenomic_gmhi/metagenomome_assembly/tests/cromwell-executions/generate_table/c7909309-db55-40cc-b059-a129daa1a06a/call-merge_deepfri_outputs/execution/merged_deepfri_output.tsv",
+    "generate_table.genes_to_mags_mapping.gene_cluster_info": "/storage/TomaszLab/vbez/metagenomic_gmhi/metagenomome_assembly/tests/cromwell-executions/generate_table/c7909309-db55-40cc-b059-a129daa1a06a/call-genes_to_mags_mapping/execution/_mapped_genes_cluster.tsv",
+    "generate_table.genes_to_mags_mapping.MAG_info": "/storage/TomaszLab/vbez/metagenomic_gmhi/metagenomome_assembly/tests/cromwell-executions/generate_table/c7909309-db55-40cc-b059-a129daa1a06a/call-genes_to_mags_mapping/execution/_MAGS.tsv",
+    "generate_table.genes_to_mags_mapping.gene_info": "/storage/TomaszLab/vbez/metagenomic_gmhi/metagenomome_assembly/tests/cromwell-executions/generate_table/c7909309-db55-40cc-b059-a129daa1a06a/call-genes_to_mags_mapping/execution/_individual_mapped_genes.tsv",
+    "generate_table.merge_eggnog_outputs.eggnog_table": "/storage/TomaszLab/vbez/metagenomic_gmhi/metagenomome_assembly/tests/cromwell-executions/generate_table/c7909309-db55-40cc-b059-a129daa1a06a/call-merge_eggnog_outputs/execution/merged_eggnog_output.tsv"
+  },
+  "id": "c7909309-db55-40cc-b059-a129daa1a06a"
+}
+[2022-10-26 14:19:09,94] [info] Workflow polling stopped
+[2022-10-26 14:19:09,95] [info] 0 workflows released by cromid-1dac27f
+[2022-10-26 14:19:09,95] [info] Shutting down WorkflowStoreActor - Timeout = 5 seconds
+[2022-10-26 14:19:09,96] [info] Shutting down WorkflowLogCopyRouter - Timeout = 5 seconds
+[2022-10-26 14:19:09,96] [info] Shutting down JobExecutionTokenDispenser - Timeout = 5 seconds
+[2022-10-26 14:19:09,96] [info] JobExecutionTokenDispenser stopped
+[2022-10-26 14:19:09,96] [info] Aborting all running workflows.
+[2022-10-26 14:19:09,96] [info] WorkflowStoreActor stopped
+[2022-10-26 14:19:09,97] [info] WorkflowLogCopyRouter stopped
+[2022-10-26 14:19:09,97] [info] Shutting down WorkflowManagerActor - Timeout = 3600 seconds
+[2022-10-26 14:19:09,97] [info] WorkflowManagerActor: All workflows finished
+[2022-10-26 14:19:09,97] [info] WorkflowManagerActor stopped
+[2022-10-26 14:19:10,12] [info] Connection pools shut down
+[2022-10-26 14:19:10,12] [info] Shutting down SubWorkflowStoreActor - Timeout = 1800 seconds
+[2022-10-26 14:19:10,12] [info] Shutting down JobStoreActor - Timeout = 1800 seconds
+[2022-10-26 14:19:10,13] [info] Shutting down CallCacheWriteActor - Timeout = 1800 seconds
+[2022-10-26 14:19:10,13] [info] Shutting down ServiceRegistryActor - Timeout = 1800 seconds
+[2022-10-26 14:19:10,13] [info] Shutting down DockerHashActor - Timeout = 1800 seconds
+[2022-10-26 14:19:10,13] [info] SubWorkflowStoreActor stopped
+[2022-10-26 14:19:10,13] [info] Shutting down IoProxy - Timeout = 1800 seconds
+[2022-10-26 14:19:10,13] [info] CallCacheWriteActor Shutting down: 0 queued messages to process
+[2022-10-26 14:19:10,13] [info] JobStoreActor stopped
+[2022-10-26 14:19:10,13] [info] CallCacheWriteActor stopped
+[2022-10-26 14:19:10,13] [info] WriteMetadataActor Shutting down: 0 queued messages to process
+[2022-10-26 14:19:10,13] [info] KvWriteActor Shutting down: 0 queued messages to process
+[2022-10-26 14:19:10,13] [info] IoProxy stopped
+[2022-10-26 14:19:10,13] [info] DockerHashActor stopped
+[2022-10-26 14:19:10,13] [info] ServiceRegistryActor stopped
+[2022-10-26 14:19:10,17] [info] Database closed
+[2022-10-26 14:19:10,17] [info] Stream materializer shut down
+[2022-10-26 14:19:10,18] [info] Shutting down connection pool: curAllocated=0 idleQueues.size=0 waitQueue.size=0 maxWaitQueueLimit=256 closed=false
+[2022-10-26 14:19:10,18] [info] Shutting down connection pool: curAllocated=0 idleQueues.size=0 waitQueue.size=0 maxWaitQueueLimit=256 closed=false
+[2022-10-26 14:19:10,18] [info] WDL HTTP import resolver closed
+[2022-10-26 14:19:10,18] [info] Shutting down connection pool: curAllocated=1 idleQueues.size=1 waitQueue.size=0 maxWaitQueueLimit=256 closed=false

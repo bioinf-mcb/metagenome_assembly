@@ -45,13 +45,15 @@ for read_1, read_2 in zip(forward, reverse):
 
 template["map_to_gene_clusters.thread_num"] = args["threads"]
 template["map_to_gene_clusters.kma_db_file"] = args["database"]
-check_inputs_not_empty({"reads" : template["map_to_gene_clusters.sampleInfo"], 
-                        "kma database file": template["map_to_gene_clusters.kma_db_file"]})
 
 template["map_to_gene_clusters.sample_suffix"] = args["suffix1"]
 
 # writing input json
 inputs_path = write_inputs_file(template, system_folder, "_".join(["inputs", script_name]) + ".json")
+
+# check inputs
+check_inputs_not_empty({"reads" : template["map_to_gene_clusters.sampleInfo"], 
+                        "kma database file": template["map_to_gene_clusters.kma_db_file"]})
 
 # creating absolute paths
 paths = retrieve_config_paths(config, script_dir, script_name, output_path=args["output_folder"], save_path=system_folder)

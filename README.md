@@ -86,7 +86,7 @@ This step will bin contigs using `MetaBAT2`, check bins for quality and contamin
    - `SAMPLE_NAME.fna` - nucleotide sequences for genes in FASTA.
    - `SAMPLE_NAME.faa` - protein translations for genes in FASTA.
 ```sh
-# Process the data
+# Bin, check and taxonomically classify MAGs
 python src/t1_predict_mags.py -ir INPUT_FOLDER_READS -s1 _paired_1.fastq.gz -s2 -s1 _paired_2.fastq.gz \ 
 -ic INPUT_FOLDER_CONTIGS -s .min500.contigs.fa \
 -gtdb ../databases/gtdbtk-data/ -o OUTPUT_FOLDER \
@@ -97,7 +97,7 @@ DEBUG:root:Creating output directory: out_mags
 DEBUG:root:Creating output directory: out_mags/system
 [17:23:29] Workflow started succesfully. Please, be patient.  
 [17:40:13] Workflow finished successfully.
-
+```
 ### F - Functional annotation
 #### F1 - Gene prediction
 This step will perform gene recognition using `Prodigal`.
@@ -112,7 +112,7 @@ This step will perform gene recognition using `Prodigal`.
    - `SAMPLE_NAME.fna` - nucleotide sequences for genes in FASTA.
    - `SAMPLE_NAME.faa` - protein translations for genes in FASTA.
 ```sh
-# Process the data
+# Predict genes
 python src/f1_predict_genes.py -i INPUT_FOLDER -s .min500.contigs.fa -o OUTPUT_FOLDER   \
 -c 3
 ```
@@ -138,7 +138,7 @@ This step will cluster genes using `CD-HIT` and sequence similarity threshold.
    - `nr.fa.clstr` - clustered genes.
    - `kma_db.tar.gz` - KMA database - required for quantification of gene copies in bacterial genomes (next step).  
 ```sh
-# Process the data
+# Cluster genes
 python src/f2_generate_gene_catalog.py -i INPUT_FOLDER -s .fna -o OUTPUT_FOLDER \
 -t 16
 ```
@@ -164,7 +164,7 @@ This step will quantify the number of gene clusters in sequenced reads aligning 
    - `SAMPLE_NAME.kma.res` - KMA full output.
    - `SAMPLE_NAME.geneCPM.txt` - table with extracted and normalized gene counts (count per million).
 ```sh
-# Process the data
+# Quantify gene clusters
 python src/f3_generate_gene_catalog.py -i INPUT_FOLDER -s1 _paired_1.fastq.gz -s2 _paired_2.fastq.gz \
 -db F2_OUTPUT_FOLDER/kma_db.tar.gz \
 -o OUTPUT_FOLDER \
@@ -193,7 +193,7 @@ This step will provide functional annotation of gene clusters from both `eggNOG-
    - `nr-eggnog.emapper.annotations` - `eggNOG-mapper` functional annotation for a gene catalog.
    - `nr-eggnog.emapper.seed_orthologs`- a file with the results from parsing the hits. Each row links a query with a seed ortholog. 
 ```sh
-# Process the data
+# Annotate gene catalog
 python src/f4_annotate_gene_catalog.py 
 -i F2_OUTPUT_FOLDER/gene_catalog_split/ -s .fa \
 -db eggNOG-DATABASE \
@@ -211,26 +211,21 @@ DEBUG:root:Creating output directory: OUTPUT_FOLDER/system
 
 ```
 
+### Generate final output
+This step will collect all the output into one table. 
+- Requirements
+   - `contig_folder` - a path to a directory with contigs from the `qc_and_assembly` step.
+   - `bins_folder` - a path to a directory with bins from the `T1 - MAGs binning` step.
+   - `gtdbtk_folder` - a path to a directory with GTDB-Tk results from the `T1 - MAGs binning` step.
+   - `checkm_folder` - a path to a directory with CheckM results from the `T1 - MAGs binning` step.
+   - `gene_catalog` - a path to a gene catalog file from the `F2 - gene clustering` step.
+   - `gene_cluster_file` - a path to a file with gene clusters.
+   - `eggnog_annotations` - a path to a file with `eggNOG-mapper` annotations.
+   - `deepfri_annotations` - a path to a file with `DeepFRI` annotations.
+   - `output_folder` - a path to a directory where the results will be saved.
 ## Outputs
-This pipeline will produce a number of directories and files
-* assemble; contains assembled contigs
-* predictgenes; gene coordinates file (GFF), protein translations and nucleotide sequences in FASTA format
-* metabat2; binned contigs and a summary report
-* CheckM; genome assessment summary report
-* gtdbtk; taxonomic classification summary file
-* cluster_genes; representative sequences and list of clusters
-
-
-## Mapping between gene catalogue, MAGS and eggNOG annotation
-Python3 script to map non-redundant gene catalogue back to contigs, MAGS and eggNOG annotations 
-
-## Input requirements
-* clustering file - tab-delimited file with cluster ID and gene ID
-* Non-redundant gene catalogue (fasta)
-* Contig files in fasta
-* binned contigs (MAGS) in fasta
-* taxonomy files (tsv)
-* eggNOG annotation file (tsv)
-
-### Output
-mapping table (tsv file) that links the non-redundant gene catalog back to contigs, MAGs and to eggNOG annotations
+   - `_individual_mapped_genes.tsv` - genes clusters mapped to MAGs.
+   - `_MAGS.tsv` - MAGs summary from `GTDB-tk` and `CheckM`.
+   - `_mapped_genes_cluster.tsv` - `eggNOG-mapper` annotations for gene clusters.
+   - `merged_eggnog_output.tsv` - `eggNOG-mapper` annotations for gene clusters.
+   - `merged_deepfri_output.tsv` - `DeepFRI` annotations for gene clusters.

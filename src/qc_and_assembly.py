@@ -64,8 +64,6 @@ for base in set(base_names):
                                                    "file_r1": r1_full_path, 
                                                    "file_r2": r2_full_path})
 
-check_inputs_not_empty({"reads" : template["qc_and_assemble.sampleInfo"]})
-
 # counting samples   
 n_samples = len(template["qc_and_assemble.sampleInfo"]) 
 logging.info(f"Found samples: {n_samples}")
@@ -75,6 +73,9 @@ template['qc_and_assemble.thread_num'] = args["threads"]
 
 # writing input json
 inputs_path = write_inputs_file(template, system_folder, "_".join(["inputs", script_name]) + ".json")
+
+# check inputs
+check_inputs_not_empty({"reads" : template["qc_and_assemble.sampleInfo"]})
 
 paths = retrieve_config_paths(config, script_dir, script_name, output_path=args["output_folder"], save_path=system_folder)
 

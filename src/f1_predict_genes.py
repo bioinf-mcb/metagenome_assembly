@@ -25,12 +25,14 @@ script_name, script_dir, config, args, system_folder, template = prepare_system_
     
 # collect contigs from dir
 contigs =  get_files_with_extension(args["input_folder"], args["suffix"])
-check_inputs_not_empty({"contigs" : contigs})
 template["predict_mags.contigs"] = contigs
 template["predict_mags.sample_suffix"] = args["suffix"]
 
 # writing input json
 inputs_path = write_inputs_file(template, system_folder, "_".join(["inputs", script_name]) + ".json")
+
+# checking input 
+check_inputs_not_empty({"contigs" : contigs})
 
 paths = retrieve_config_paths(config, script_dir, script_name, output_path=args["output_folder"], save_path=system_folder)
 
