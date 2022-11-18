@@ -12,4 +12,7 @@ tests/*
 .pytest_cache
 cromwell_build
 src/cromwell-executions
+tests/final_out/merged_deepfri_output.tsv
+tests/*
+
 

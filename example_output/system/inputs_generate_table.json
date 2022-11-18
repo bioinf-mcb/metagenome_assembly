@@ -1,0 +1,28 @@
+{
+    "generate_table.genes_to_mags_mapping.checkm_output": [
+        "t1_output/G80568_pe_checkm.txt",
+        "t1_output/G80616_pe_checkm.txt"
+    ],
+    "generate_table.genes_to_mags_mapping.contigs": [
+        "qc_assemble_out/assemble/G80568_pe.min500.contigs.fa",
+        "qc_assemble_out/assemble/G80616_pe.min500.contigs.fa"
+    ],
+    "generate_table.genes_to_mags_mapping.gene_catalog": "f2_output/nr.fa",
+    "generate_table.genes_to_mags_mapping.gene_clusters": "f2_output/nr.fa.clstr",
+    "generate_table.genes_to_mags_mapping.gtdbtk_output": [
+        "t1_output/G80568_pe.bac120.summary.tsv",
+        "t1_output/G80616_pe.bac120.summary.tsv"
+    ],
+    "generate_table.genes_to_mags_mapping.metabat2_bins": [
+        "t1_output/G80568_pe.bins.tar.gz",
+        "t1_output/G80616_pe.bins.tar.gz"
+    ],
+    "generate_table.merge_deepfri_outputs.deepfri_output_files": [
+        "f4_output/nr_1_deepfri_annotations.csv",
+        "f4_output/nr_2_deepfri_annotations.csv"
+    ],
+    "generate_table.merge_eggnog_outputs.eggnog_output_files": [
+        "f4_output/nr_1.emapper.annotations",
+        "f4_output/nr_2.emapper.annotations"
+    ]
+}
