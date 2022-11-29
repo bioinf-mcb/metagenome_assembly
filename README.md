@@ -17,6 +17,8 @@ The wrapper scripts in Python (located in `src`) will prepare files and send the
 * Taxonomic classifications
 * Gene clustering with CD-HIT-EST
 * Mapping of reads to gene clusters and computing gene counts
+* Functional annotation of proteins using both eggNOG-mapper and DeepFRI
+* Metge of the output into a single table
 
 ## Requirements
  - `Docker`
