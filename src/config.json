@@ -1,21 +1,12 @@
 {
     "_eggnog_comment": "Attention to version compatibility in eggnog-mapper and db. See https://github.com/eggnogdb/eggnog-mapper/commits/fc4f5f6d78062daec38f3b4c0cbf6c3aeb5deac1/eggnogmapper/version.py",
     "_gtdbtk_comment": "Attention to version compatibility in gtdbtk and db. See ecogenomics.github.io",
-    "bowtie2_index_extensions": [
-        ".1.bt2",
-        ".2.bt2",
-        ".3.bt2",
-        ".4.bt2",
-        ".rev.1.bt2",
-        ".rev.2.bt2",
-        ".rev.1.bt2l"
-    ],
     "eggnog_base_url": "http://eggnogdb.embl.de/download/emapperdb-",
     "eggnog_db": "eggnog.db.gz",
     "eggnog_db_version": "5.0.2",
     "eggnog_diamond_db": "eggnog_proteins.dmnd.gz",
     "eggnog_version": "2.1.6",
-    "grch38_url": "https://genome-idx.s3.amazonaws.com/bt/GRCh38_noalt_as.zip",
+    "rcqfilter_url": "https://portal.nersc.gov/cfs/m3408/db/RQCFilterData.tgz",
     "gtdb_url": "https://data.gtdb.ecogenomic.org/releases/latest/auxillary_files/gtdbtk_v2_data.tar.gz",
     "gtdbtk_db_release": "release207_v2",
     "gtdbtk_version": "2.1.1",
@@ -25,7 +16,7 @@
         "f3_map_to_gene_clusters": "./input_templates/f3_map_to_gene_clusters.json",
         "f4_annotate_gene_catalog": "./input_templates/f4_annotate_gene_catalog.json",
         "generate_table": "./input_templates/generate_table.json",
-        "qc_and_assembly": "./input_templates/qc_and_assembly.json",
+        "qc": "./input_templates/qc.json",
         "t1_predict_mags": "./input_templates/t1_predict_mags.json"
     },
     "read_extensions": [
@@ -35,9 +26,8 @@
         ".fq.gz"
     ],
     "system_paths": {
-        "cromwell_path": "/app/cromwell-84.jar",
-        "db_mount_config": "./mount.conf",
-        "output_config_path": "./input_templates/output_options.json"
+        "cromwell_path": "/storage/TomaszLab/vbez/metagenomic_gmhi/metagenomome_assembly/cromwell/cromwell-84.jar",
+        "db_mount_config": "./mount.conf"
     },
     "wdls": {
         "f1_predict_genes": "./wdl/f1_predict_genes.wdl",
@@ -45,7 +35,7 @@
         "f3_map_to_gene_clusters": "./wdl/f3_map_to_gene_clusters.wdl",
         "f4_annotate_gene_catalog": "./wdl/f4_annotate_gene_catalog.wdl",
         "generate_table": "./wdl/generate_table.wdl",
-        "qc_and_assembly": "./wdl/qc_and_assembly.wdl",
+        "qc": "./wdl/qc.wdl",
         "t1_predict_mags": "./wdl/t1_predict_mags.wdl"
     }
 }

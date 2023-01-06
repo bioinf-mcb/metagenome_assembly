@@ -1,0 +1,11 @@
+{
+  "jgi_rqcfilter.input_fq1": [],
+  "jgi_rqcfilter.threads": "Int? (optional)",
+  "jgi_rqcfilter.bbtools_container": "microbiomedata/bbtools:38.96",
+  "jgi_rqcfilter.input_files": [],
+  "jgi_rqcfilter.input_fq2": [],
+  "jgi_rqcfilter.outdir": "String? (optional)",
+  "jgi_rqcfilter.chastityfilter": false,
+  "jgi_rqcfilter.input_interleaved": false
+}
+
