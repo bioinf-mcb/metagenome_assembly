@@ -24,7 +24,7 @@ workflow jgi_rqcfilter {
              call interleave_reads {
                  input:
                      input_files = [file.left,file.right],
-                     output_file = sub(basename(file.left), "_1.fastq.gz", "fastq.gz"),
+                     output_file = sub(basename(file.left), "_1.fastq.gz", ""),
                      container = bbtools_container
              }
              call rqcfilter as rqcPE {
@@ -277,7 +277,7 @@ task interleave_reads{
     String container
 
     command <<<
-        reformat.sh in1=${input_files[0]} in2=${input_files[1]} out=${output_file}
+        reformat.sh in1=${input_files[0]} in2=${input_files[1]} out=${output_file}.fastq.gz
     >>>
 
     runtime {
@@ -286,6 +286,6 @@ task interleave_reads{
     }
 
     output {
-        File out_fastq = "${output_file}"
+        File out_fastq = "${output_file}.fastq.gz"
     }
 }
