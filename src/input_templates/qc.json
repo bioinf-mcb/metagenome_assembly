@@ -6,6 +6,7 @@
   "jgi_rqcfilter.input_fq2": [],
   "jgi_rqcfilter.outdir": "String? (optional)",
   "jgi_rqcfilter.chastityfilter": false,
-  "jgi_rqcfilter.input_interleaved": false
+  "jgi_rqcfilter.input_interleaved": false,
+  "jgi_rqcfilter.memory": 60
 }
 

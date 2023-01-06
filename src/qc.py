@@ -29,14 +29,15 @@ parser = argparse.ArgumentParser(description='Quality control and assembly of co
 ## TODO add all arguments from wdl script
 parser.add_argument('-i','--input_folder', help='The directory with raw reads in .fastq or fastq.gz\
                     format', required=True)
-
-parser.add_argument('-t','--threads', help='Number of threads to use', default=1, type=int, required=False)
 parser.add_argument('-o','--output_folder', help='The directory for saving the output', required=True)
-parser.add_argument('-c','--concurrent_jobs', help='Number of jobs to run in parallel',
-                    type=int, default=1, required=False)
+
 parser.add_argument('-db_path','--database_path', help= 'Path to a diretory with RCQFilterData Database If directory does not contain'
                                                         'required index GRCh38 database would be downloaded for'
                                                         'decontamination of samples from human DNA.', required=True)
+parser.add_argument('-m', '--memory', help='Memory to be used in GB', default=60, type=int, required=False)
+parser.add_argument('-t','--threads', help='Number of threads to use', default=1, type=int, required=False)
+parser.add_argument('-c','--concurrent_jobs', help='Number of jobs to run in parallel',
+                    type=int, default=1, required=False)
 parser.add_argument('-split_char','--split_character', help='Character used to separate paired reads. Software can deduct use of "_" and "_R", otherwise it will fail. \
                     Ex. SAMPLE_1(R).fastq  SAMPLE_2(R).fastq. If you have reads with different naming convention, please specify it here.', required=False)
 
@@ -75,6 +76,8 @@ template['jgi_rqcfilter.threads'] = args["threads"]
 template["jgi_rqcfilter.database"] =  os.path.abspath(args["database_path"])
 # passing output dir
 template["jgi_rqcfilter.outdir"] = os.path.abspath(args["output_folder"])
+# passing memory requirements
+template["jgi_rqcfilter.memory"] = args["memory"]
 
 # writing input json
 inputs_path = write_inputs_file(template, system_folder, "_".join(["inputs", script_name]) + ".json")

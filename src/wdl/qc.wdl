@@ -4,7 +4,7 @@ workflow jgi_rqcfilter {
     String bbtools_container="microbiomedata/bbtools:38.96"
     String database="/refdata"
     Boolean chastityfilter=false
-    String? memory
+    Int? memory
     Int? threads
     String? proj = "ReadsQC"
     String? informed_by = "${proj}"  # "nmdc:xxxxxxxxxxxxxxx"

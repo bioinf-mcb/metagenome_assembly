@@ -34,21 +34,24 @@ The wrapper scripts in Python (located in `src`) will prepare files and send the
 Use the `setup_cromwell.py` script to download and install it.
     - `python src/setup_cromwell.py --save_path SAVE_PATH`
 ## 2. Run the pipeline!
-### Attention: The pipeline was tested on two samples with 4.3 Gb and 2.7 Gb in 2 parallel jobs, 16 CPU cores and 64 Gb RAM each. Time may vary significantly depending on your system and sequencing depth
 ### 1. Quality control
-This step will perform quality control of your reads with `Kneaddata` and assemble quality-controlled reads into contigs using `MegaHIT`.
+This step will perform quality control of your reads with `BBTools` according to [Reads QC Workflow v. 1.0.1](https://nmdc-workflow-documentation.readthedocs.io/en/latest/chapters/1_RQC_index.html).
 
  - Requirements
    - `input_folder` - path to directory with paired shotgun sequencing files. (`fastq.gz`, `fastq`, `fq.gz`, `fq`)
-   - `db_path` - path to a directory with a RQCFilter Data. In case the folder doesn't contain a database, it would be downloaded to the path.
+   - `db_path` - path to a directory with an RQCFilter Data. In case the folder doesn't contain a database, it would be downloaded to the path.
     - `output_folder` - path to a directory where the results will be saved.
  - Optional arguments
-   - `thread_num` - number of threads to use. (default: 1)
-   - `concurrent_jobs` - number of concurrent jobs to run. (default: 1)
+   - `thread_num` - number of threads to use.               (default:  1)
+   - `concurrent_jobs` - number of concurrent jobs to run.  (default:  1)
+   - `memory` - RAM memory to be used in GB.                (default: 60)
  - Output
    - quality controlled .fastq.gz files in `OUTPUT_FOLDER`
    - assembled contigs in `OUTPUT_FOLDER/assemble`.
    - count table with read counts per sample `OUTPUT_FOLDER/kneaddata_count_table.tsv`.
+ - Resources
+   - Disk space: 106 GB for the RQCFilterData database
+   - Memory: >40 GB RAM
 
 ```sh
 # Qualirty control raw reads and assemble contigs
