@@ -5,6 +5,7 @@ workflow jgi_rqcfilter {
     String database="/refdata"
     Boolean chastityfilter=false
     Int? memory
+    String memory_str = memory + "G"
     Int? threads
     String? proj = "ReadsQC"
     String? informed_by = "${proj}"  # "nmdc:xxxxxxxxxxxxxxx"
@@ -23,7 +24,7 @@ workflow jgi_rqcfilter {
              call interleave_reads {
                  input:
                      input_files = [file.left,file.right],
-                     output_file = sub(basename(file.left), "_1.fastq.gz", ""),
+                     output_file = sub(basename(file.left), "_1.fastq.gz", "fastq.gz"),
                      container = bbtools_container
              }
              call rqcfilter as rqcPE {
@@ -31,7 +32,7 @@ workflow jgi_rqcfilter {
                      container=bbtools_container,
                      database=database,
                      chastityfilter_flag=chastityfilter,
-                     memory=memory,
+                     memory=memory_str,
                      threads=threads
 
              }
@@ -59,7 +60,7 @@ workflow jgi_rqcfilter {
                      container=bbtools_container,
                      database=database,
                      chastityfilter_flag=chastityfilter,
-                     memory=memory,
+                     memory=memory_str,
                      threads=threads
             }
             call generate_objects as goInt {
@@ -149,7 +150,7 @@ task rqcfilter {
         # Capture the start time
         date --iso-8601=seconds > start.txt
         rqcfilter2.sh \
-            -da -Xmx${default="60G" memory} \
+            -Xmx${default="60G" memory} \
             threads=${jvm_threads} ${chastityfilter} \
             jni=t in=${input_file} path=filtered rna=f \
             trimfragadapter=t qtrim=r trimq=0 maxns=3 maq=3 \
@@ -276,7 +277,7 @@ task interleave_reads{
     String container
 
     command <<<
-        reformat.sh in1=${input_files[0]} in2=${input_files[1]} out=${output_file}.fastq.gz
+        reformat.sh in1=${input_files[0]} in2=${input_files[1]} out=${output_file}
     >>>
 
     runtime {
@@ -285,6 +286,6 @@ task interleave_reads{
     }
 
     output {
-        File out_fastq = "${output_file}.fastq.gz"
+        File out_fastq = "${output_file}"
     }
 }

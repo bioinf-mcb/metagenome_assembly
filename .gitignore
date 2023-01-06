@@ -6,6 +6,7 @@ src/test_utils.py
 databases/*
 cromwell/*
 cromwell-executions/
+cromwell-workflow-logs/
 .ipynb_checkpoints
 docker/gene-mapper/tests/__pycache__/*
 tests/*
