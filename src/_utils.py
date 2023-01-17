@@ -19,7 +19,7 @@ def get_files_with_extension(directory, extension):
     """
     Get all files with a specific extension in a directory.
     """
-    return glob.glob(f"{directory}/*{extension}")
+    return glob.glob(f"{directory}/**/*{extension}", recursive=True)
 
 def reorder_list_substrings(list_of_strings, substrings):
     """
@@ -283,8 +283,10 @@ def start_workflow(system_paths, inputs_path, system_folder, workflow_name, cons
 
     with console.status("[yellow]Processing data..."):
         log_path = os.path.join(system_folder, "log.txt")
-
-        cmd = """java -Dconfig.file={1} -jar {0} run {2} -i {3} > {4}""".format(*system_paths.values(), inputs_path, log_path)
+        if workflow_name == "qc":
+            cmd = """java -Dconfig.file={1} -jar {0} run {2} -i {3} > {4}""".format(*system_paths.values(), inputs_path, log_path)
+        else:
+            cmd = """java -Dconfig.file={1} -jar {0} run {3} -o {2} -i {4} > {5}""".format(*system_paths.values(), inputs_path, log_path)
         os.system(cmd)
 
     return log_path

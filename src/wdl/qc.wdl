@@ -136,6 +136,7 @@ task rqcfilter {
      String system_cpu="$(grep \"model name\" /proc/cpuinfo | wc -l)"
      String jvm_threads=select_first([threads,system_cpu])
      String chastityfilter= if (chastityfilter_flag) then "cf=t" else "cf=f"
+     String dollar = "$"
 
      runtime {
             docker: container
@@ -160,6 +161,11 @@ task rqcfilter {
             tmpdir= barcodefilter=f trimpolyg=5 usejni=f \
             rqcfilterdata=/databases/RQCFilterData  > >(tee -a ${filename_outlog}) 2> >(tee -a ${filename_errlog} >&2)
 
+        out_file=${dollar}(find filtered/ -name "*anqdpht*")
+        out1=${dollar}{out_file/".anqdpht.fastq.gz"/"_paired_1.fastq.gz"}
+        out2=${dollar}{out_file/".anqdpht.fastq.gz"/"_paired_2.fastq.gz"}
+
+        reformat.sh in=${dollar}{out_file} out1=${dollar}{out1} out2=${dollar}{out2}
 
         python <<CODE
         import json
@@ -181,6 +187,8 @@ task rqcfilter {
             File stat = filename_stat
             File stat2 = filename_stat2
             File filtered = glob("filtered/*anqdpht*")[0]
+            File paired_1 = glob("filtered/*_paired_1*")[0]
+            File paired_2 = glob("filtered/*_paired_2*")[0]
             File json_out = filename_stat_json
             String start = read_string("start.txt")
             String input_prefix = "${prefix}"
@@ -249,6 +257,7 @@ task make_output{
             cp -f $dir/../filtered/filterStats2.txt ${outdir}/$prefix
             cp -f $dir/../filtered/filterStats.json ${outdir}/$prefix
             cp -f $i ${outdir}/$prefix
+            cp -f $dir/../filtered/*paired* ${outdir}/$prefix
             echo ${outdir}/$prefix/$f
         done
         for i in ${sep=' ' activity_json}
