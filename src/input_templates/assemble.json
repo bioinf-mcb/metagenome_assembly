@@ -1,0 +1,6 @@
+{
+  "metagenome_assy.threads": "24",
+  "metagenome_assy.input_files": "Array[File]",
+  "metagenome_assy.min_contig_len": "500"
+}
+

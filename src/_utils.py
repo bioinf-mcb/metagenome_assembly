@@ -137,7 +137,7 @@ def modify_concurrency_config(path_to_file : str,
     with open(path_to_file, "r") as f:
         config = f.read()
 
-    config = config.replace("concurrent-job-limit = 8", f"concurrent-job-limit = {n_jobs}")
+    config = config.replace("concurrent-job-limit = 1", f"concurrent-job-limit = {n_jobs}")
 
     if rcq_path is not None:
         config = config.replace("rcq_database_path",
@@ -308,7 +308,7 @@ def retrieve_config_paths(config, script_dir, script_name, **kwargs):
     for entry, path in paths.items():
         paths[entry] = os.path.abspath(os.path.join(script_dir, path))
 
-    # paths["output_config_path"] = modify_output_config(paths["output_config_path"], **kwargs)
+    paths["output_config_path"] = modify_output_config(paths["output_config_path"], **kwargs)
 
     return paths
 

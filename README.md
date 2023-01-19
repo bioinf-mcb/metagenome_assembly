@@ -46,12 +46,12 @@ This step will perform quality control of your reads with `BBTools` according to
    - `concurrent_jobs` - number of concurrent jobs to run.  (default:  1)
    - `memory` - RAM memory to be used in GB.                (default: 60)
  - Output
-   - quality controlled .fastq.gz files in `OUTPUT_FOLDER`
-   - assembled contigs in `OUTPUT_FOLDER/assemble`.
-   - count table with read counts per sample `OUTPUT_FOLDER/kneaddata_count_table.tsv`.
+   - quality controlled interleaved .fastq.gz file in `OUTPUT_FOLDER/SAMPLE/SAMPLE.anqdpht.fastq.gz` - used for assembly
+   - quality controlled paired fastq.gz giles in `OUTPUT_FOLDER/SAMPLE/SAMPLE_paired_1.fastq.gz` & `OUTPUT_FOLDER/SAMPLE/SAMPLE_paired_1.fastq.gz` - used for taxonomical profiling with `MetaPhlan` or `mOTUs`
+   - QC stats
  - Resources
    - Disk space: 106 GB for the RQCFilterData database
-   - Memory: >40 GB RAM
+   - Memory: ~60 GB RAM
 
 ```sh
 # Qualirty control raw reads and assemble contigs
@@ -65,7 +65,32 @@ INFO:root:I inferred that _1 and _2 distinguish paired end reads.
 INFO:root:Found samples: 2
 ```
 
-### 2. Assembly - WORK IN PROGRESS
+### 2. Assembly
+This step will perform genome assembly with `MEGAHIT`.
+
+ - Requirements
+   - `input_folder` - path to directory with interleaved sequencing file. (`)
+    - `output_folder` - path to a directory where the results will be saved.
+ - Optional arguments
+   - `thread_num` - number of threads to use.               (default:  1)
+   - `concurrent_jobs` - number of concurrent jobs to run.  (default:  1)
+ - Output
+   - contigs filtered by minimum length
+   - scaffold filtered by minimum length
+   - QC stats
+ - Resources
+   - Memory: ~60 GB RAM
+
+```sh
+# Qualirty control raw reads and assemble contigs
+python src/assemble.py -i INPUT_FOLDER -o OUTPUT_FOLDER -min_len 500 -t 24 -c 1
+```
+```sh
+DEBUG:root:Creating output directory: tests/assemble
+DEBUG:root:Creating output directory: tests/assemble/system
+[11:32:03] Workflow assemble has started. Please, be patient.
+[11:34:54] Workflow finished successfully.
+```
 
 ## Then pipeline forks into two branches - taxonomical and functional
 

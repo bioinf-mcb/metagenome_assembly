@@ -17,6 +17,7 @@
         "f4_annotate_gene_catalog": "./input_templates/f4_annotate_gene_catalog.json",
         "generate_table": "./input_templates/generate_table.json",
         "qc": "./input_templates/qc.json",
+        "assemble": "./input_templates/assemble.json",
         "t1_predict_mags": "./input_templates/t1_predict_mags.json"
     },
     "read_extensions": [
@@ -27,7 +28,8 @@
     ],
     "system_paths": {
         "cromwell_path": "/storage/TomaszLab/vbez/metagenomic_gmhi/metagenomome_assembly/cromwell/cromwell-84.jar",
-        "db_mount_config": "./mount.conf"
+        "db_mount_config": "./mount.conf",
+        "output_config_path": "./input_templates/output_options.json"
     },
     "wdls": {
         "f1_predict_genes": "./wdl/f1_predict_genes.wdl",
@@ -36,6 +38,7 @@
         "f4_annotate_gene_catalog": "./wdl/f4_annotate_gene_catalog.wdl",
         "generate_table": "./wdl/generate_table.wdl",
         "qc": "./wdl/qc.wdl",
+        "assemble": "./wdl/assemble.wdl",
         "t1_predict_mags": "./wdl/t1_predict_mags.wdl"
     }
 }
