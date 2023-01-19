@@ -6,6 +6,10 @@ Python script to generate a mapping between non-redundant gene catalog and MAGS
 ## How does this work?
 The wrapper scripts in Python (located in `src`) will prepare files and send them to `Cromwell`. Cromwell executes instructions written in Workflow definition Language (WDL; located in `src/wdl`). To avoid dependency conflicts `Cromwell` runs `Docker` containers with preinstalled software (dockerfiles located in `docker`).
 
+## Cromwell as a workflow manager
+Cromwell is an open-source workflow manager for scientific workflows written in WDL. It is designed for handling large-scale genomic data analysis and provides features such as workflow branching, looping, and integration with other systems. It can be run on various platforms including cloud platforms.
+More information can be found in the documentation: https://cromwell.readthedocs.io/en/stable/
+
 ## Introduction to WDL workflow
 ### This pipeline will perform:
 * Pre-processing of reads with Kneaddata
