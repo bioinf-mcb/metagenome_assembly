@@ -1,4 +1,4 @@
-# Supplementary tables for the Comprehensive functional annotation of metagenomes and microbial genomes using a deep learning-based method paper
+## Supplementary tables for the Comprehensive functional annotation of metagenomes and microbial genomes using a deep learning-based method paper
 
 Table S1: List of information content (IC) values for GO terms (XLSX file)
 - The file includes a list of information content (IC) values for the Gene Ontology terms predicted by DeepFRI and eggNOG
