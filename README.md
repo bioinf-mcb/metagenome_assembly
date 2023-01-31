@@ -276,3 +276,9 @@ python ../src/generate_table.py \
 -dfa f4_output \
 -o final_out
 ```
+
+# Getting help
+To get help with the pipeline, please open an issue on the Github [tracker](https://github.com/bioinf-mcb/metagenome_assembly/issues).  
+
+Repo maintainer: [Valentyn Bezshapkin](valentyn.bezshapkin@micro.biol.ethz.ch)  
+General inquiries: [Tomasz Kosciolek](mailto:tomasz.kosciolek@uj.edu.pl)
