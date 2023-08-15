@@ -1,6 +1,6 @@
 # Metagenomic assembly
 WDL Workflow for metagenome assembly:
-![metagenomics-pipeline drawio](https://raw.githubusercontent.com/crusher083/metagenome_assembly/master/metagenomics-pipeline.drawio.png)
+![metagenomics-pipeline drawio](https://raw.githubusercontent.com/bioinf-mcb/metagenome_assembly/master/metagenomics-pipeline.drawio.png)
 Python script to generate a mapping between non-redundant gene catalog and MAGS
 
 ## How does this work?
@@ -31,7 +31,7 @@ More information can be found in the documentation: https://cromwell.readthedocs
 
 ## 1. Installation
 ### 1. Clone the repository
- - `git clone www.github.com/crusher083/metagenome_assembly`
+ - `git clone www.github.com/bioinf-mcb/metagenome_assembly`
 ### 2. Create a conda environment
  - `conda env create -f pipeline.yml`
 ### 3. Install Cromwell
